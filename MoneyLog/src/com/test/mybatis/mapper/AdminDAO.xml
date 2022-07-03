@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mvc.IAdminDAO">
+
+	<select id="countPostRept" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM POST_REPT PR LEFT JOIN AD_POST_REPT APR
+  		  ON PR.POST_REPT_CD = APR.POST_REPT_CD
+		WHERE APR.AD_POST_REPT_CD IS NULL
+	</select>
+	
+	
+	<select id="countCmntRept" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM CMNT_REPT CR LEFT JOIN AD_CMNT_REPT ACR
+		  ON CR.CMNT_REPT_CD = ACR.CMNT_REPT_CD
+		WHERE ACR.AD_CMNT_REPT_CD IS NULL
+	</select>
+	
+	
+	<select id="countQna" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM QNA Q LEFT JOIN AD_ANSR AA
+		  ON Q.QNA_CD = AA.QNA_CD
+		WHERE AA.AD_ANSR_CD IS NULL
+	</select>
+	
+	<select id="banList" resultType="com.test.mvc.UserDTO">
+		SELECT UI.USER_DSTN_CD AS USER_DSTN_CD
+		     , UI.USER_NAME AS USER_NAME
+		     , UI.USER_ID AS USER_ID
+		     , PB.POST_BAN_DATE AS BAN_DATE
+		FROM POST_BAN PB JOIN USER_INFO UI
+		  ON PB.USER_ID = UI.USER_ID
+		UNION
+		SELECT UI.USER_DSTN_CD AS USER_DSTN_CD
+		     , UI.USER_NAME AS USER_NAME
+		     , UI.USER_ID AS USER_ID
+		     , CB.CMNT_BAN_DATE AS BAN_DATE
+		FROM CMNT_BAN CB JOIN USER_INFO UI
+		  ON CB.USER_ID = UI.USER_ID
+		ORDER BY BAN_DATE DESC
+	</select>
+	
+	<select id="postReptList" resultType="com.test.mvc.PostReptDTO">
+		SELECT P.POST_CD AS POST_CD
+		     , P.OPINION AS OPINION
+		     , FN_REPT_CATE(PR.REPT_CATE_CD) AS REPT_CATE
+		     , PR.POST_REPT_DATE AS POST_REPT_DATE
+		     , NVL(FN_CNFM(APR.CNFM_CD), '-') AS CNFM_RESULT
+		FROM POST P JOIN POST_REPT PR
+		  ON P.POST_CD = PR.POST_CD
+		     LEFT JOIN AD_POST_REPT APR
+		       ON PR.POST_REPT_CD = APR.POST_REPT_CD
+		ORDER BY CNFM_RESULT, POST_REPT_DATE DESC
+	</select>
+	
+</mapper>
