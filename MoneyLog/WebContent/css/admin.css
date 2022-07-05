@@ -235,7 +235,7 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 /*공지사항 div*/
 .notice-title {margin-top: 30px}
 
-/*adNotiList.jsp*/
+/*AdNotiList.jsp*/
 #adNotiList .list-title { margin-top: 5px; font-weight: 700; font-size:16pt; color: #000;}
 #adNotiList table {text-align: center;}
 #adNotiList table th {font-weight: 700; background-color: #F7EDE2; }
@@ -245,7 +245,7 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adNotiList #prev {color: #F5CAC3;}
 #adNotiList #next {color: #92B4EC;}
 
-/*adNotiReg.jsp*/
+/*AdNotiReg.jsp*/
 #adNotiReg table {text-align: center;}
 #adNotiReg table th {font-weight: 700; background-color: #F7EDE2; }
 #adNotiReg .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
@@ -253,6 +253,16 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adNotiReg .table-content {padding-left: 12px; width: 100%}
 #adNotiReg .return-btn {background-color: #F5CAC3; float: right;}
 #adNotiReg .reg-btn{background-color: #92B4EC; float: right;}
+
+/*AdNotiCont.jsp*/
+#adNotiCont .list-title { margin-top: 5px; font-weight: 700; font-size:16pt; color: #000;}
+#adNotiCont table {text-align: center;}
+#adNotiCont table th {font-weight: 700; background-color: #F7EDE2; }
+#adNotiCont .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
+#adNotiCont .table-content {width: 100%}
+#adNotiCont .edit-btn {background-color: skyblue; float: right;}
+#adNotiCont .delete-btn {background-color: #F5CAC3; float: right;}
+#adNotiCont .return-btn {background-color: lightgray; float: right;}
 
 /*게시판 작성 포맷*/
 .table2 { border-collapse: collapse; border-top: 3px solid #036; border-bottom: 3px solid #036;  margin-left: 15px; }

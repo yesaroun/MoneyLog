@@ -28,10 +28,8 @@
 
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavCs.jsp"></jsp:include>
-        </header>
+    	<!-- ○ 상단 네비게이션 include -->
+	   	<jsp:include page="./AdNavCs.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -41,10 +39,11 @@
                 <jsp:include page="./AdMenuCs.jsp"></jsp:include>
             </div>
             <div class="span10">
-                <main id="adNotiList">
+                <main id="adNotiCont">
                     <section>
                         <div class="row">
-                            <div class="col-12" id="List_title" style="margin-top: 30px;" >
+                            <!-- <div class="col-12 notice-title" id="List_title"> -->
+                            <div class="col-12 notice-title">
                                 <div class="list-title">
                                     공지사항(관리자)
                                 </div>
@@ -78,7 +77,7 @@
                                     <tr>
                                         <th>내용</th>
                                         <td colspan="4">
-                                            <textarea name="content" rows="10" cols="60" readonly="readonly" style="width: 100%;">머니로그를 이용해주신 이용자 여러분, 안녕하세요.</textarea>
+                                            <textarea class="table-content" name="content" rows="10" cols="60" readonly="readonly">머니로그를 이용해주신 이용자 여러분, 안녕하세요.</textarea>
                                         </td>   
                                     </tr>
                                 </table>
@@ -88,13 +87,13 @@
                     <section>
                         <div class="row">
                             <div class="col-12" style="margin-top: 20px;">
-                                <button type="submit" class="btn btn-primary" style="background-color: skyblue; float: right;"
+                                <button type="submit" class="btn btn-primary edit-btn"
                                 onclick="javascript:location.href='<%=cp%>/AdNotiUpdate.jsp'">수정하기</button>
                                 
-                                <button type="submit" class="btn btn-secondary" style="background-color: #F5CAC3; float: right;" 
+                                <button type="submit" class="btn btn-secondary delete-btn"
                                 data-toggle="modal" data-target="#modal">삭제하기</button>
                                 
-                                <button type="submit" class="btn btn-third" style="background-color: lightgray; float: right;"
+                                <button type="submit" class="btn btn-third return-btn"
                                 onclick="javascript:location.href='<%=cp%>/AdNotiList.jsp'">돌아가기</button>
                             </div>
                         </div>
