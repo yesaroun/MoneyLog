@@ -103,7 +103,7 @@ public interface IUserDAO
  	public int userQnaReg(UserDTO dto);
  	
  	// 문의하기 등록글 한 건 조회
- 	public UserDTO userQnaSelect(UserDTO dto);
+ 	public UserDTO userQnaSelect(UserDTO dto); 
 	
 	
 }
