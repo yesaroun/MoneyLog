@@ -1,8 +1,7 @@
 package com.test.mvc;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -1057,7 +1056,7 @@ public class UserController
 	
 	
 	
-	// 고객센터 문의하기 버튼 클릭시 문의하기 폼으로 이동       //-- 쿼리 필요없음 그냥 뷰페이지로만 이동
+	// 고객센터 문의하기 버튼 클릭시 문의하기 폼으로 이동       //-- 쿼리 필요없음 이름은 세션으로, 날짜는 날짜 클래스로 조회해옴
 	@RequestMapping(value="/userqnareg.action", method=RequestMethod.GET)
 	public String userQnaReg(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
 	{
@@ -1070,12 +1069,15 @@ public class UserController
 	 	dto.setUser_name((String)session.getAttribute("user_name"));
 	 
 	 	
-	 	String qna_date = new SimpleDateFormat("yyyy-mm-dd").format(new Date());
-	 	
+	 	String qna_date = LocalDate.now().toString();  // 날짜 클래스 활용
 	 	
 	 	dto.setQna_date(qna_date);
-	 	
-	 	dao.userQnaReg(dto);
+	 
+	 	// System.out.println(dto.getQna_date());      // 날짜 찍어봄
+	
+		// 날짜 dto에 set 해주고 model.addAttribute 해서
+		// UserQnaReg.jsp 가 날짜 가지고 가게 한 후 EL 사용
+		model.addAttribute("qna_date" , dto.getQna_date());  
 
 		result = "/UserQnaReg.jsp";
 		
@@ -1083,7 +1085,7 @@ public class UserController
 	}
 
 	
-	// 문의폼에서 등록하기 버튼 클릭하면 인서트한 후에 폼에 내용 등록된거 나온다.
+	// 문의폼에서 등록하기 버튼 클릭하면 인서트한 후에 폼에 문의내용 등록된거 나온다.
 	@RequestMapping(value="/userqnacont.action", method={RequestMethod.GET, RequestMethod.POST})
 	public String userQnaCont(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
 	{
@@ -1099,22 +1101,23 @@ public class UserController
 	 	// 사용자가 새로 입력한 내용들
 	 	 String qna_title = request.getParameter("qna_title");
 	 	 String qna_cont = request.getParameter("qna_cont");
-	 	 String qna_view = request.getParameter("qna_view");
-	 	 String qna_date = request.getParameter("qna_date");
+	 	 String qna_date = request.getParameter("qna_date");  
 	 	 
 
 	    // 받아온 내용들 setter 에 담고 get으로 가져오기
 	 	dto.setQna_title(qna_title);
 	 	dto.setQna_cont(qna_cont);
-	 	dto.setQna_view(qna_view);
 	 	dto.setQna_date(qna_date);
 	 
 	 	
-	 	dao.userQnaReg(dto);
+	 	// dao 에 있는 insert 쿼리 실행
+	 	dao.userQnaReg(dto);                 
 	 	
-		
-       // model.addAttribute("userQnaReg");  // 필요없음 그냥 위에서 인서트 시키고 까지만 시키면 끝
-
+	 	
+	 	// 인서트 시키고 인서트 된 내용 뿌려줘야 하니까 add 해주고 jsp 로 가서 el 사용
+        model.addAttribute("qna_title" , dto.getQna_title());  
+        model.addAttribute("qna_date" , dto.getQna_date());
+        model.addAttribute("qna_cont" , dto.getQna_cont());
 		
 		result = "/UserQnaCont.jsp";
 		

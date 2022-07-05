@@ -13,9 +13,13 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
+
+<script src="./js/jquery-3.2.1.min.js"></script>
+
 <script type="text/javascript">
     /*
 	function sendIt()
@@ -89,7 +93,7 @@
 		             
 						<c:if test="${empty userQnaList}">
 						<tr>
-							<td colspan="6" style="text-align: center;">등록된 공지사항이 없습니다.</td>
+							<td colspan="6" style="text-align: center;">등록된 문의글이 없습니다.</td>
 						</tr>
 						</c:if>
 						

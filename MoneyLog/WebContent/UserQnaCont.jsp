@@ -16,13 +16,18 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
+
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+
 <script type="text/javascript">
 
+/*
 	function qnaDelete()
 	{
 		confirm("삭제가 완료되었습니다.");
 		window.location.href = "http://localhost:8090/WEB/UserQnaList.jsp";
 	}
+*/
 
 </script>
 </head>
@@ -59,6 +64,12 @@
 						         <th>제목</th>
 						         <td>
 						         	${qna_title }
+						         </td>
+						     </tr> 
+						     <tr>    
+						         <th>등록일자</th>
+						         <td>
+						         	${qna_date }
 						         </td>
 						     </tr>  
 						     <tr>    
