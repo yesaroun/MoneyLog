@@ -80,7 +80,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col" class="mobile" style="width:50px; text-align:center;">no</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">게시글 번호</th>
+                                                        <th scope="col" style="width:150px; text-align:center;">게시글 코드</th>
                                                         <th scope="col" class="mobile" style="width:200px; text-align:center;">게시글 제목</th>
                                                         <th scope="col" class="mobile" style="width:150px; text-align:center;">작성자</th>
                                                         <th scope="col" class="mobile" style="width:150px; text-align:center;">날짜</th>
@@ -95,32 +95,6 @@
                                                             <a href="./adPostRept.jsp" style="color: #000000;">2032</a>
                                                         </td>
                                                         <td class="mobile"> #20대 #반려동물 #가구원수 #전세 #자차 #디자이너 </td>
-                                                        <td class="mobile" scope="row" style="text-align:center;">test@test.com</td>
-                                                        <td class="mobile" style="text-align:center;">2022-01-05</td>
-                                                        <td scope="row" style="text-align:center;"> 공개 </td>
-                                                        <td style="text-align: center;">
-                                                            <button type="button" class="btn btn-success" onclick="newPage2()">보기</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td scope="row" class="mobile" style="text-align:center;">5</td>
-                                                        <td scope="row" style="text-align:center;">
-                                                            <a href="./adPostRept.jsp" style="color: #000000;">2032</a>
-                                                        </td>
-                                                        <td class="mobile"> #30대 #전세 #자차 #디자이너 </td>
-                                                        <td class="mobile" scope="row" style="text-align:center;">test@test.com</td>
-                                                        <td class="mobile" style="text-align:center;">2022-01-05</td>
-                                                        <td scope="row" style="text-align:center;"> 비공개 </td>
-                                                        <td style="text-align: center;">
-                                                            <button type="button" class="btn btn-success" onclick="newPage2()">보기</button>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td scope="row" class="mobile" style="text-align:center;">5</td>
-                                                        <td scope="row" style="text-align:center;">
-                                                            <a href="./adPostRept.jsp" style="color: #000000;">2032</a>
-                                                        </td>
-                                                        <td class="mobile"> #40대 #반려동물 #가구원수 #디자이너 </td>
                                                         <td class="mobile" scope="row" style="text-align:center;">test@test.com</td>
                                                         <td class="mobile" style="text-align:center;">2022-01-05</td>
                                                         <td scope="row" style="text-align:center;"> 공개 </td>

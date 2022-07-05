@@ -264,6 +264,16 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adNotiCont .delete-btn {background-color: #F5CAC3; float: right;}
 #adNotiCont .return-btn {background-color: lightgray; float: right;}
 
+/*AdNotiUpdate.jsp*/
+#adNotiUpdate .list-title { margin-top: 5px; font-weight: 700; font-size:16pt; color: #000;}
+#adNotiUpdate table {text-align: center;}
+#adNotiUpdate table th {font-weight: 700; background-color: #F7EDE2; }
+#adNotiUpdate .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
+#adNotiUpdate .table-title {padding-left:15px; width: 500px; height:35px;}
+#adNotiUpdate .table-content {padding-left: 12px;}
+#adNotiUpdate .reg-btn {background-color: skyblue; float: right;}
+#adNotiUpdate .return-btn {background-color: #F5CAC3; float: right;}
+
 /*게시판 작성 포맷*/
 .table2 { border-collapse: collapse; border-top: 3px solid #036; border-bottom: 3px solid #036;  margin-left: 15px; }
 .table2 th { border: 1px clear; border-left: 50px; border-right: 0px; width: 25%; font-size: 18px; font-weight: bold; line-height: 150%; padding-top: 20px; }
