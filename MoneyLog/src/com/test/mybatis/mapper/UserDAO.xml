@@ -420,15 +420,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 문의하기 리스트 조회 -->
 	<select id="userQnaList" resultType="com.test.mvc.UserDTO">
-	SELECT Q.QNA_TITLE, UI.USER_NAME, Q.QNA_DATE, Q.QNA_VIEW, DECODE(AA.AD_ANSR_CD, NULL , '-', '완료') "AD_ANSR_CD"
+	SELECT Q.QNA_CD, Q.QNA_TITLE, UI.USER_NAME, Q.QNA_DATE, Q.QNA_VIEW, DECODE(AA.AD_ANSR_CD, NULL , '-', '완료') "AD_ANSR_CD"
 	FROM QNA Q LEFT JOIN AD_ANSR AA
 	ON Q.QNA_CD = AA.QNA_CD
 	LEFT JOIN USER_INFO UI
 	ON Q.USER_DSTN_CD = UI.USER_DSTN_CD
-	ORDER BY QNA_DATE DESC
+	ORDER BY Q.QNA_CD DESC
 	</select>
-	
-	
 	
 	
 	<!-- 문의하기 insert -->
@@ -436,6 +434,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	INSERT INTO QNA(QNA_CD, USER_DSTN_CD, QNA_TITLE, QNA_CONT, QNA_DATE) 
 	VALUES(QNA_SEQ.NEXTVAL, #{user_dstn_cd}, #{qna_title}, #{qna_cont}, #{qna_date} )
 	</insert>
+	
+	
+	<!-- 문의하기 등록글 한 건 조회, 관리자 답변까지 -->
+	<select id="userQnaSelect" resultType="com.test.mvc.UserDTO">
+	SELECT Q.QNA_CD, Q.QNA_TITLE, UI.USER_NAME, Q.QNA_DATE, Q.QNA_CONT
+          , DECODE(AA.AD_ANSR_CD, NULL , ' ', AA.AD_ANSR_CONT) "AD_ANSR_CONT"
+	FROM QNA Q LEFT JOIN AD_ANSR AA
+	ON Q.QNA_CD = AA.QNA_CD
+	LEFT JOIN USER_INFO UI
+	ON Q.USER_DSTN_CD = UI.USER_DSTN_CD
+	WHERE Q.QNA_CD = #{qna_cd}
+	</select>
 
 
 

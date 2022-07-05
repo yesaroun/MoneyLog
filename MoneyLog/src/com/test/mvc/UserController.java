@@ -1076,9 +1076,9 @@ public class UserController
 	 	
 	    
 	 	// 사용자가 새로 입력한 내용들
-	 	 String qna_title = request.getParameter("qna_title");
-	 	 String qna_cont = request.getParameter("qna_cont");
-	 	 String qna_date = request.getParameter("qna_date");  
+	 	String qna_title = request.getParameter("qna_title");
+	 	String qna_cont = request.getParameter("qna_cont");
+	 	String qna_date = request.getParameter("qna_date");  
 	 	 
 
 	    // 받아온 내용들 setter 에 담고 get으로 가져오기
@@ -1088,7 +1088,16 @@ public class UserController
 	 
 	 	
 	 	// dao 에 있는 insert 쿼리 실행
-	 	dao.userQnaReg(dto);                 
+//	 	try
+//		{
+	 		dao.userQnaReg(dto);    
+//		} catch (SQLException e)
+//		{
+			// TODO: handle exception
+			
+//		}
+//	 	여기서 성공 메세지 뿌리기 
+	 	             
 	 	
 	 	
 	 	// 인서트 시키고 인서트 된 내용 뿌려줘야 하니까 add 해주고 jsp 로 가서 el 사용
@@ -1100,4 +1109,41 @@ public class UserController
 		
 		return result;
 	}
+	
+	// 등록된 문의글 한 건 정보 select 해오기 
+	@RequestMapping(value="/userqnaselect.action", method=RequestMethod.GET)
+	public String userQnaSelect(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
+	{
+		String result = null;
+		
+	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
+	  
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
+	 	dto.setUser_name((String)session.getAttribute("user_name"));
+
+	 	// 
+	 	String qna_cd = request.getParameter("qna_cd");
+	   	
+	 	
+	    // setter 에 담기
+	 	dto.setQna_cd(qna_cd);
+	 
+	 	
+	 	// qna_cd 가지고 dao 에 있는 select 쿼리 실행해서 문의글 한 건 데이터 조회한 결과를
+	 	// dto에 담음~
+	 	dto = dao.userQnaSelect(dto);   
+	 		
+	 	
+	 	// 조회한 값 add 해주고 UserQnaCont.jsp 로 가서 el 사용
+        model.addAttribute("qna_title" , dto.getQna_title());  
+        model.addAttribute("qna_date" , dto.getQna_date());
+        model.addAttribute("qna_cont" , dto.getQna_cont());
+        model.addAttribute("ad_ansr_cont" , dto.getAd_ansr_cont());
+        
+        result = "/UserQnaCont.jsp";
+		
+		return result;
+	}
+	
 }
