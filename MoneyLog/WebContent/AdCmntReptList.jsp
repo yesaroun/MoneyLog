@@ -25,10 +25,8 @@
 
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavManage.jsp"></jsp:include>
-        </header>
+        <!-- ○ 상단 네비게이션 include -->
+        <jsp:include page="./AdNavManage.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -43,8 +41,8 @@
                         <div class="row">
                                 <div class="col-sm-9 m-3">
                                     <div class="btn-group float-left">
-                                        <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F7EDE2; color: #000000;" onclick="location.href='AdPostReptList.jsp'">게시글 신고</button>
-                                        <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F5CAC3; color: #000000;" onclick="location.href='AdCmntReptList.jsp'">댓글 신고</button>
+                                        <button type="submit" class="btn btn-primary unactivate-btn" onclick="location.href='AdPostReptList.jsp'">게시글 신고</button>
+                                        <button type="submit" class="btn btn-primary activate-btn" onclick="location.href='AdCmntReptList.jsp'">댓글 신고</button>
                                     </div>
                                 </div>
                             </div>
@@ -60,50 +58,50 @@
                                             <table class="table table-striped" style="max-width: 1080px;">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="mobile" style="width:50px; text-align:center;">no</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">댓글 번호</th>
-                                                        <th scope="col" style="text-align:center;">댓글 내용</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">신고 카테고리</th>
-                                                        <th scope="col" class="mobile" style="width:150px; text-align:center;">날짜</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">승인여부</th>
+                                                        <th scope="col" class="mobile wid-50-col">no</th>
+                                                        <th scope="col" class="wid-150-col">댓글 번호</th>
+                                                        <th scope="col">댓글 내용</th>
+                                                        <th scope="col" class="wid-150-col">신고 카테고리</th>
+                                                        <th scope="col" class="mobile wid-150-col">날짜</th>
+                                                        <th scope="col" class="wid-150-col">승인여부</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td scope="row" class="mobile" style="text-align:center;">5</td>
-                                                        <td scope="row" style="text-align:center;">
-                                                            <a href="./AdCmntRept.jsp" style="color: #000000;">2032</a>
+                                                        <td scope="row" class="mobile">5</td>
+                                                        <td scope="row">
+                                                            <a href="./AdCmntRept.jsp">2032</a>
                                                         </td>
-                                                        <td style="text-align: left;"> 
+                                                        <td class="content-title"> 
                                                             <a href="./AdCmntRept.jsp">이걸 가게부라고 썼냐~ </a>
                                                         </td>
-                                                        <td scope="row" style="text-align:center;">홍보</td>
-                                                        <td class="mobile" style="text-align:center;">2018-01-05</td>
-                                                        <td scope="row" style="text-align:center;"> - </td>
+                                                        <td scope="row">홍보</td>
+                                                        <td class="mobile">2018-01-05</td>
+                                                        <td scope="row"> - </td>
                                                     </tr>
                                                     <tr>
-                                                        <td scope="row" class="mobile" style="text-align:center;">5</td>
-                                                        <td scope="row" style="text-align:center;">
-                                                            <a href="./adCmntRept.jsp" style="color: #000000;">2032</a>
+                                                        <td scope="row" class="mobile">5</td>
+                                                        <td scope="row">
+                                                            <a href="./adCmntRept.jsp">2032</a>
                                                         </td>
-                                                        <td style="text-align: left;"> 
+                                                        <td class="content-title"> 
                                                             <a href="./AdCmntRept.jsp">에라이!!  </a>
                                                         </td>
-                                                        <td scope="row" style="text-align:center;">기타</td>
-                                                        <td class="mobile" style="text-align:center;">2018-01-05</td>
-                                                        <td scope="row" style="text-align:center;">반려</td>
+                                                        <td scope="row">기타</td>
+                                                        <td class="mobile">2018-01-05</td>
+                                                        <td scope="row">반려</td>
                                                     </tr>
                                                     <tr>
-                                                        <td scope="row" class="mobile" style="text-align:center;">5</td>
-                                                        <td scope="row" style="text-align:center;">
-                                                            <a href="./adCmntRept.jsp" style="color: #000000;">2032</a>
+                                                        <td scope="row" class="mobile">5</td>
+                                                        <td scope="row">
+                                                            <a href="./adCmntRept.jsp">2032</a>
                                                         </td>
-                                                        <td style="text-align: left;"> 
+                                                        <td class="content-title"> 
                                                             <a href="./AdCmntRept.jsp">♚♚머니로그☆가입시♚♚전원 100만  </a>
                                                         </td>
-                                                        <td scope="row" style="text-align:center;">음란물</td>
-                                                        <td class="mobile" style="text-align:center;">2018-01-05</td>
-                                                        <td scope="row" style="text-align:center;">승인</td>
+                                                        <td scope="row">음란물</td>
+                                                        <td class="mobile">2018-01-05</td>
+                                                        <td scope="row">승인</td>
                                                     </tr>   
                                                 </tbody>
                                             </table>

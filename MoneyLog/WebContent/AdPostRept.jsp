@@ -25,10 +25,8 @@
 <body>
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-            <jsp:include page="./AdNavManage.jsp"></jsp:include>
-        </header>
+        <!-- ○ 상단 네비게이션 include -->
+        <jsp:include page="./AdNavManage.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -44,27 +42,25 @@
                             <!-- 신고접수 -->
                             <div class="col-md-12">
                                 <div class="list-group">
-                                    <div class="list-group">
                                     <br><br>
                                     <h4>[ 게시글 ] 신고 접수</h4>
-                                        <div class="list-group-item">
-                                            <table class="table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th colspan="3">신고 번호</th>
-                                                        <th colspan="3">접수 일자</th>
-                                                        <th colspan="3">게시글 번호</th>
-                                                        <th colspan="3" class="mobile">신고자</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3">33</td>
-                                                        <td colspan="3">2020-05-20</td>
-                                                        <td colspan="3"><a href="./AdPostInfo.jsp">2032</a></td>
-                                                        <td colspan="3" class="mobile">test@test.com</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th colspan="3">신고 번호</th>
+                                                    <th colspan="3">접수 일자</th>
+                                                    <th colspan="3">게시글 번호</th>
+                                                    <th colspan="3" class="mobile">신고자</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="3">33</td>
+                                                    <td colspan="3">2020-05-20</td>
+                                                    <td colspan="3"><a href="./AdPostInfo.jsp">2032</a></td>
+                                                    <td colspan="3" class="mobile">test@test.com</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -75,26 +71,24 @@
                             <!-- 승인여부 -->
                             <div class="col-md-12">
                                 <div class="list-group">
-                                    <div class="list-group">
                                     <br><br>
                                     <h4>승인 여부</h4>
-                                        <div class="list-group-item">
-                                            <table class="table">
-                                                <tbody>
-                                                    <!-- 승인 여부 -->
-                                                    <tr>
-                                                        <th colspan="4">승인 여부</th>
-                                                        <th colspan="4">처리자</th>
-                                                        <th colspan="4" class="mobile">처리 일자</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="4"> - </td>
-                                                        <td colspan="4"> - </td>
-                                                        <td colspan="4" class="mobile"> - </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <!-- 승인 여부 -->
+                                                <tr>
+                                                    <th colspan="4">승인 여부</th>
+                                                    <th colspan="4">처리자</th>
+                                                    <th colspan="4" class="mobile">처리 일자</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="4"> - </td>
+                                                    <td colspan="4"> - </td>
+                                                    <td colspan="4" class="mobile"> - </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -105,38 +99,36 @@
                             <!-- 신고내용 -->
                             <div class="col-md-12">
                                 <div class="list-group">
-                                    <div class="list-group">
                                     <br><br>
                                     <h4>신고 내용</h4>
-                                        <div class="list-group-item">
-                                            <table class="table">
-                                                <tbody>
-                                                    <!-- 신고 내용 -->
-                                                    <tr>
-                                                        <th colspan="12">게시글 내용</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="12">어쩌구저쩌구 게시글내용 부분입니다~</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th colspan="6">신고 카테고리</th>
-                                                        <th colspan="6">신고 세부 사유</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="6">기타</td>
-                                                        <td colspan="6">이상한 글을 썼어요</td>
-                                                    </tr>
-                                                    <!-- 게시글 버튼 -->
-                                                    <tr>
-                                                        <td colspan="12">
-                                                            <button class="btn" style="width: 100%; background-color: #F5CAC3;" data-toggle="modal" data-target="#modal" onclick="location.href='MoneyPost.jsp'">
-                                                                게시글 보러가기
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <!-- 신고 내용 -->
+                                                <tr>
+                                                    <th colspan="12">게시글 내용</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="12">어쩌구저쩌구 게시글내용 부분입니다~</td>
+                                                </tr>
+                                                <tr>
+                                                    <th colspan="6">신고 카테고리</th>
+                                                    <th colspan="6">신고 세부 사유</th>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="6">기타</td>
+                                                    <td colspan="6">이상한 글을 썼어요</td>
+                                                </tr>
+                                                <!-- 게시글 버튼 -->
+                                                <tr>
+                                                    <td colspan="12">
+                                                        <button class="btn send-content-btn" data-toggle="modal" data-target="#modal" onclick="location.href='MoneyPost.jsp'">
+                                                            게시글 보러가기
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -147,28 +139,26 @@
                             <!-- 신고 처리 -->
                             <div class="col-md-12">
                                 <div class="list-group">
-                                    <div class="list-group">
                                     <br><br>
                                     <h4>신고 처리<small></small></h4>
-                                        <div class="list-group-item">
-                                            <table class="table">
-                                                <tbody>
-                                                    <!-- 신고처리 -->
-                                                    <tr>
-                                                        <td colspan="12">
-                                                            <button class="btn" style="width: 49%;" data-toggle="modal" data-target="#modal">승인</button>
-                                                            <button class="btn" style="width: 50%; background-color: #F7EDE2;" data-toggle="modal" data-target="#modal">반려</button>
-                                                        </td>
-                                                    </tr>
-                                                    <!-- 돌아가기 버튼 -->
-                                                    <tr>
-                                                        <td colspan="12">
-                                                            <button class="btn" style="width: 100%; background-color: #F5CAC3;" data-toggle="modal" data-target="#modal" onclick="location.href='AdPostReptList.jsp'">돌아가기</button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="list-group-item">
+                                        <table class="table">
+                                            <tbody>
+                                                <!-- 신고처리 -->
+                                                <tr>
+                                                    <td colspan="12">
+                                                        <button class="btn approve-btn" data-toggle="modal" data-target="#modal">승인</button>
+                                                        <button class="btn deny-btn" data-toggle="modal" data-target="#modal">반려</button>
+                                                    </td>
+                                                </tr>
+                                                <!-- 돌아가기 버튼 -->
+                                                <tr>
+                                                    <td colspan="12">
+                                                        <button class="btn return-btn" data-toggle="modal" data-target="#modal" onclick="location.href='AdPostReptList.jsp'">돌아가기</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
