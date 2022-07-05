@@ -442,8 +442,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 문의하기 insert -->
 	<insert id="userQnaReg">
-	INSERT INTO QNA(QNA_CD, USER_DSTN_CD, QNA_TITLE, QNA_CONT, QNA_VIEW, QNA_DATE) 
-	VALUES(QNA_SEQ.NEXTVAL, #{user_dstn_cd}, #{qna_title}, #{qna_cont}, #{qna_view}, #{qna_date} )
+	INSERT INTO QNA(QNA_CD, USER_DSTN_CD, QNA_TITLE, QNA_CONT, QNA_DATE) 
+	VALUES(QNA_SEQ.NEXTVAL, #{user_dstn_cd}, #{qna_title}, #{qna_cont}, #{qna_date} )
 	</insert>
 
 
