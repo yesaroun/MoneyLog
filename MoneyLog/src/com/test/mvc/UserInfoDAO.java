@@ -173,9 +173,9 @@ public class UserInfoDAO implements IUserInfoDAO
 
 	// 비밀번호 찾는 메소드
 	@Override
-	public String findPwd(String user_name, String user_id, String user_tel) throws SQLException
+	public ArrayList<UserDTO> findPw(String user_name, String user_id, String user_tel) throws SQLException
 	{
-		String result = null;
+		ArrayList<UserDTO> result = new ArrayList<UserDTO>();
 
 		Connection conn = dataSource.getConnection();
 		
@@ -185,21 +185,57 @@ public class UserInfoDAO implements IUserInfoDAO
 				  + " AND USER_ID=? AND USER_TEL=?";
 		
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, user_id);
-		pstmt.setString(2, user_name);
+		pstmt.setString(1, user_name);
+		pstmt.setString(2, user_id);
 		pstmt.setString(3, user_tel);
 		
 		ResultSet rs = pstmt.executeQuery();
 		
 		while (rs.next())
 		{
-			result = rs.getString("USER_PW");
+			UserDTO user = new UserDTO();
+			
+			user.setUser_pw(rs.getString("USER_PW"));
+			
+			result.add(user);
 		}
 		
 		rs.close();
 		pstmt.close();
 		conn.close();
 
+		return result;
+	}
+
+	// 이름과 전화번호를 이용해서 아이디 찾기 메소드
+	@Override
+	public ArrayList<UserDTO> findId(String user_name, String user_tel) throws SQLException
+	{
+		ArrayList<UserDTO> result = new ArrayList<UserDTO>();
+		
+		Connection conn = dataSource.getConnection();
+		
+		String sql = "SELECT USER_ID, USER_DATE FROM USER_INFO WHERE USER_NAME = ? AND USER_TEL = ?";
+		
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, user_name);
+		pstmt.setString(2, user_tel);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while (rs.next())
+		{
+			UserDTO user = new UserDTO();
+			
+			user.setUser_id(rs.getString("USER_ID"));
+			user.setUser_date(rs.getString("USER_DATE"));
+			
+			result.add(user);
+		}
+		
+		rs.close();
+		pstmt.close();
+		
 		return result;
 	}
 	
