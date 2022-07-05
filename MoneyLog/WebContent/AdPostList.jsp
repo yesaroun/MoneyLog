@@ -80,7 +80,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col" class="mobile" style="width:50px; text-align:center;">no</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">게시글 번호</th>
+                                                        <th scope="col" style="width:150px; text-align:center;">게시글 코드</th>
                                                         <th scope="col" class="mobile" style="width:200px; text-align:center;">게시글 제목</th>
                                                         <th scope="col" class="mobile" style="width:150px; text-align:center;">작성자</th>
                                                         <th scope="col" class="mobile" style="width:150px; text-align:center;">날짜</th>
