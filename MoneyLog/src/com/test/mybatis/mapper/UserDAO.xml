@@ -14,15 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	             FROM USER_INFO
 	             WHERE USER_ID = #{user_id}) = CRYPTPACK.ENCRYPT(#{user_pw}, '123456')
 	</select>
-   
- 	
-	<!-- 아이디찾기 -->
-	<select id="findId" resultType="com.test.mvc.UserDTO">
-		SELECT USER_ID
-		FROM USER_INFO
-		WHERE USER_NAME = #{user_name}
-		  AND USER_TEL = #{user_tel}
-	</select>
 	
 
 	<!-- 회원등록 -->	

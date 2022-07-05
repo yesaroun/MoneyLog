@@ -49,6 +49,11 @@
 		<property name="dao" ref="UserInfoDAO"></property>
 	</bean>
 	
+	<!-- 아이디 찾기 -->
+	<bean name="/findid.action" class="com.test.mvc.FindIdController">
+		<property name="dao" ref="UserInfoDAO"></property>
+	</bean>
+	
 	<!-- =================================== 민지 추가 ========================================= -->
 	
 </beans>
