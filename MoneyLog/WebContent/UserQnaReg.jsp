@@ -49,20 +49,20 @@
 					
 			if($("#qna_title").val()=="")   
 			{
-					$("#err1").css("display", "inline");
-					$("#qna_title").focus();
-					return;
+				$("#err1").css("display", "inline");
+				$("#qna_title").focus();
+				return;
 			}
 			
 			
 			if($("#qna_cont").val()=="")
 			{
-					$("#err2").css("display", "inline");
-					$("#qna_cont").focus();
-					return;
+				$("#err2").css("display", "inline");
+				$("#qna_cont").focus();
+				return;
 			}
 			
-			alert("등록되었습니다.");
+			//alert("등록되었습니다.");
 			$("#qnaContForm").submit();
 			
 		});

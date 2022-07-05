@@ -15,21 +15,18 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
 
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
 
 <script type="text/javascript">
 
-/*
 	function qnaDelete()
 	{
-		confirm("삭제가 완료되었습니다.");
-		window.location.href = "http://localhost:8090/WEB/UserQnaList.jsp";
+		window.location.href = './userqnadelete.action';
 	}
-*/
-
+		
 </script>
+
 </head>
 <body>
 	<!-- ○ 상단 네비게이션 include -->
@@ -89,7 +86,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 20px;" >
 							<div class="input-group">
-								   <input type="text" class="form-control" style="height: 70px; border: 1px solid;" readonly="readonly">
+								   <input type="text" value="${ad_ansr_cont }" class="form-control" style="height: 70px; border: 1px solid;" readonly="readonly">
 							</div>
 						</div><!-- /.col-sm-8 -->
 						<div class="col-2" style="margin-top: 20px;" >
@@ -103,14 +100,14 @@
 				<div class="row">
 						<div class="col-12" style="margin-top: 20px;">
 								
-								<button type="submit" class="btn btn-primary" style="background-color: lightgray; float: right;"
-								onclick="javascript:location.href='<%=cp%>/UserQnaUpdate.jsp'">수정하기</button>
+								<button type="button" class="btn btn-primary" style="background-color: lightgray; float: right;"
+								onclick="location.href='./userqnaselect.action'">수정하기</button>
 								
-								<button type="submit" class="btn btn-secondary" style="background-color: skyblue; float: right;" 
+								<button type="button" class="btn btn-secondary" style="background-color: skyblue; float: right;" 
 								data-toggle="modal" data-target="#modal">삭제하기</button>
 						
-								<button type="submit" class="btn btn-third" style="background-color: #1fa766; float: right; color: white;"
-								onclick="javascript:location.href='<%=cp%>/UserQnaList.jsp'">목록가기</button>
+								<button type="button" class="btn btn-third" style="background-color: #1fa766; float: right; color: white;"
+								onclick="location.href='./userqnalist.action'">목록가기</button>
 						</div>
 				</div>
 		</div>

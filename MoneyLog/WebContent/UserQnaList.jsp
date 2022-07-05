@@ -16,7 +16,6 @@
 
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
 
 <script src="./js/jquery-3.2.1.min.js"></script>
 
@@ -102,7 +101,7 @@
 		                <c:forEach var="userQna" items="${userQnaList }" varStatus="status">
 		                <tr>
 			                <td scope="row" class="mobile" style="text-align:center;">${fn:length(userQnaList) - status.index }</td>
-			                <td><a href="./boardView.html" style="color: #000000;">${userQna.qna_title }</a></td>
+			                <td><a href="./userqnaselect.action?qna_cd=${userQna.qna_cd }" style="color: #000000;">${userQna.qna_title }</a></td>
 			                <td class="mobile" style="text-align:center;">${userQna.user_name }</td>
 			                <td class="mobile" style="text-align:center;">${userQna.ad_ansr_cd}</td>
 			                <td class="mobile" style="text-align:center;">
