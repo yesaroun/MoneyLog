@@ -11,10 +11,7 @@ public class MoneyDTO
 	int post_cd;
 	int post_count;
 	String year, month;
-	
-	
-	
-	
+
 	
 	// 머니리뷰 소비/지출 내역
 	String inout_cont, acnt_date, cate_fst_name, cate_sec_name, acnt_dtl_cont;
@@ -50,6 +47,22 @@ public class MoneyDTO
 	// 게시글 공개여부 체크
 	String post_check;
 	
+	
+	// 이용자 아이디
+	String user_id;
+	
+	
+	
+	
+	
+	public String getUser_id()
+	{
+		return user_id;
+	}
+	public void setUser_id(String user_id)
+	{
+		this.user_id = user_id;
+	}
 	public String getPost_check()
 	{
 		return post_check;
