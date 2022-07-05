@@ -1100,4 +1100,37 @@ public class UserController
 		
 		return result;
 	}
+	
+	// 문의글 수정하기 위해서 원래 문의글 정보 select 해오기  -- 여기서 멈춤 ㅠ
+	@RequestMapping(value="/userqnaselect.action", method=RequestMethod.GET)
+	public String userQnaSelect(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
+	{
+		String result = null;
+		
+	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
+	  
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
+	 	dto.setUser_name((String)session.getAttribute("user_name"));
+	   	 
+	    // 받아온 내용들 setter 에 담고 get으로 가져오기
+	 	//dto.setQna_title(qna_title);
+	 	//dto.setQna_cont(qna_cont);
+	 	//dto.setQna_date(qna_date);
+	 
+	 	
+	 	// dao 에 있는 insert 쿼리 실행
+	 	//dao.userQnaReg(dto);                 
+	 	
+	 	
+	 	// 인서트 시키고 인서트 된 내용 뿌려줘야 하니까 add 해주고 jsp 로 가서 el 사용
+        //model.addAttribute("qna_title" , dto.getQna_title());  
+        //model.addAttribute("qna_date" , dto.getQna_date());
+       // model.addAttribute("qna_cont" , dto.getQna_cont());
+		
+		//result = "/UserQnaCont.jsp";
+		
+		return result;
+	}
+	
 }

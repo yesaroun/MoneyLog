@@ -20,52 +20,10 @@
 
 <script type="text/javascript">
 
-	//keyup 시 발생.. 순서 중요
-	$(document).ready(function()
-	{	
-		//제목 입력하면 에러 사라지게 처리
-		$("#qna_title").keyup(function() 
-		{
-			$("#err1").css("display", "none");
-			return;
-		});
-		
-		// 내용 입력하면 에러 사라지게 처리
-		$("#qna_cont").keyup(function() 
-		{
-			$("#err2").css("display", "none");
-			return;
-		});
-				
-	});
-
-
-	$(function()
+	function qnaDelete()
 	{
-		$("#qnaReg-btn").click(function()    
-		{
-					
-			if($("#qna_title").val()=="")   
-			{
-				$("#err1").css("display", "inline");
-				$("#qna_title").focus();
-				return;
-			}
-			
-			
-			if($("#qna_cont").val()=="")
-			{
-				$("#err2").css("display", "inline");
-				$("#qna_cont").focus();
-				return;
-			}
-			
-			alert("등록되었습니다.");
-			$("#qnaContForm").submit();
-			
-		});
-				
-	});
+		window.location.href = './userqnadelete.action';
+	}
 		
 </script>
 
@@ -142,14 +100,14 @@
 				<div class="row">
 						<div class="col-12" style="margin-top: 20px;">
 								
-								<button type="submit" class="btn btn-primary" style="background-color: lightgray; float: right;"
-								onclick="javascript:location.href='<%=cp%>/UserQnaUpdate.jsp'">수정하기</button>
+								<button type="button" class="btn btn-primary" style="background-color: lightgray; float: right;"
+								onclick="location.href='./userqnaselect.action'">수정하기</button>
 								
-								<button type="submit" class="btn btn-secondary" style="background-color: skyblue; float: right;" 
+								<button type="button" class="btn btn-secondary" style="background-color: skyblue; float: right;" 
 								data-toggle="modal" data-target="#modal">삭제하기</button>
 						
-								<button type="submit" class="btn btn-third" style="background-color: #1fa766; float: right; color: white;"
-								onclick="javascript:location.href='<%=cp%>/UserQnaList.jsp'">목록가기</button>
+								<button type="button" class="btn btn-third" style="background-color: #1fa766; float: right; color: white;"
+								onclick="location.href='./userqnalist.action'">목록가기</button>
 						</div>
 				</div>
 		</div>
