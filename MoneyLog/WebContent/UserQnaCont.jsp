@@ -86,7 +86,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 20px;" >
 							<div class="input-group">
-								   <input type="text" class="form-control" style="height: 70px; border: 1px solid;" readonly="readonly">
+								   <input type="text" value="${ad_ansr_cont }" class="form-control" style="height: 70px; border: 1px solid;" readonly="readonly">
 							</div>
 						</div><!-- /.col-sm-8 -->
 						<div class="col-2" style="margin-top: 20px;" >

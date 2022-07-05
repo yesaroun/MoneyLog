@@ -62,7 +62,7 @@
 				return;
 			}
 			
-			alert("등록되었습니다.");
+			//alert("등록되었습니다.");
 			$("#qnaContForm").submit();
 			
 		});
