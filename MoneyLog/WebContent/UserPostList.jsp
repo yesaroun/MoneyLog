@@ -54,7 +54,7 @@
 							 <table class="table">
 							     <tr>
 							        <!-- 항목 -->
-							         <th>게시글번호</th>
+							         <th>no</th>
 							         <th>제목</th>
 							         <th>댓글</th>
 							         <th>등록일자</th>
