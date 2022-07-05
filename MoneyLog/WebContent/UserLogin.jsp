@@ -58,8 +58,8 @@
 					<br><br>
 					
                     <div id="login-links">
-                        <a href="findId.action" >아이디 찾기</a> |
-                        <a href="findpw.action">비밀번호 찾기</a>
+                        <a href="/MoneyLog/searchid.action" >아이디 찾기</a> |
+                        <a href="/MoneyLog/searchpw.action">비밀번호 찾기</a>
                     </div>
                     <br>
                     <div>

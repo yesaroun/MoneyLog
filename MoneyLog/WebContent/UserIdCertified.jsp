@@ -12,7 +12,7 @@
 <title>휴대폰 인증 아이디 찾기</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
 <link rel="stylesheet" href="./css/main.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
 <script type="text/javascript">
 
@@ -66,7 +66,7 @@
 
         <div class="row bg-light sign-up-form mt-3">
 			<div class="sign-up-process col-12">
-                <form action="/findId.action" method="post" id="idForm" class="pt-3 md-3" style="max-width: 720px">
+                <form action="/MoneyLog/findid.action" method="post" id="idForm" class="pt-3 md-3" style="max-width: 720px">
                     <div class="row form-group">
 						<div class="col-8">
 							<label>이름</label>

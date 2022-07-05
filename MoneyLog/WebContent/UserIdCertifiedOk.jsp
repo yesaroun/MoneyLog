@@ -16,7 +16,7 @@
 </head>
 <body>
 	<!-- ○ 상단 네비게이션 include -->
-	<%-- <jsp:include page="./GuestNav.jsp"></jsp:include> --%>
+	<jsp:include page="./GuestNav.jsp"></jsp:include>
 
 	<div class="container-fixed m-4">
         <div class="row sign-up-form">
@@ -29,7 +29,12 @@
 					<div class="form-group text-center">
 						<img src="img2/smile.svg" alt="웃는얼굴" style="width: 50px;" class="mb-3">
 						<p>요청하신 아이디 찾기 결과입니다.</p>
-						<p>입력하신 정보로 조회한 아이디는 입니다.</p>
+						<p>입력하신 정보로 조회한 아이디는 아래와 같습니다.</p>
+						
+						<c:forEach var="check" items="${checkId }">
+						<p style="color: blue;">${check.user_id }</p> (가입한 날짜 ${check.user_date })
+						</c:forEach>
+						
 					</div>
 					<div class="text-center mt-3">
 						<button type="submit" class="btn btn-primary mb-3" style="background-color: #1fa766;">로그인하러 가기</button>

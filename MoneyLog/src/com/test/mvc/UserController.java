@@ -84,6 +84,22 @@ public class UserController
 		 	return result; 
 	}
 	
+	// 아이디 찾기 페이지로 이동
+	@RequestMapping(value = "/searchid.action", method = RequestMethod.GET)
+	public String searchId(HttpServletRequest request, HttpSession session, Model model) throws SQLException
+	{
+		String result = "UserIdCertified.jsp";
+		return result;
+	}
+	
+	// 비밀번호 찾기 페이지로 이동
+	@RequestMapping(value = "/searchpw.action", method = RequestMethod.GET)
+	public String searchPw(HttpServletRequest request, HttpSession session, Model model) throws SQLException
+	{
+		String result = "UserPwCertified.jsp";
+		return result;
+	}
+	
 	// 최초 캘린더 출력
 	@RequestMapping(value = "/fstcalendar.action", method = RequestMethod.POST)
 	public ModelAndView fstCalendar(UserDTO dto, HttpServletRequest request, HttpSession session) throws SQLException
@@ -552,46 +568,7 @@ public class UserController
 		// 회원 가입 후에 보내는 뷰
 		 return "UserSuOk.jsp";
 	 }
-	 
-	// 아이디찾기
-	@RequestMapping(value = "/findId.action", method = RequestMethod.POST)
-	public String findId(HttpSession session, HttpServletRequest request, HttpServletResponse response, Model model)
-	{
-		String result = null;
-		
-		// 데이터 수신
-		String user_name = request.getParameter("user_name");
-		String user_tel = request.getParameter("user_tel");
-		
-		//String session_user_name = (String)session.getAttribute("user_name");
-		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
-	
-		UserDTO dto = dao.findId(user_name, user_tel);
-		
-		if(dto != null)
-		{
-			// 아이디 찾기 성공
-			
-			// 뷰에 데이터 전달
-			model.addAttribute("find_id", dto.getFind_id());
-			
-			session.setAttribute("find_id", dto.getFind_id());
-			
-			//System.out.println("-------------------------");
-		 	//System.out.println(dto.getFind_id());
-		 	//System.out.println("-------------------------");
-	
-			
-			result = "/UserIdCertifiedOk.jsp";    // 성공안내 페이지
-		}
-		else
-		{
-			result = "/UserIdNo.jsp";	// 실패안내 페이지
-		}
-	    
-	    return result;
-	}
-	    
+
 	    
 	// ================================================================================ 민지 추가
 
