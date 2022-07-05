@@ -17,10 +17,8 @@
 
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavCs.jsp"></jsp:include>
-        </header>
+    	<!-- ○ 상단 네비게이션 include -->
+        <jsp:include page="./AdNavCs.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -30,10 +28,10 @@
                 <jsp:include page="./AdMenuCs.jsp"></jsp:include>
             </div>
             <div class="span10">
-                <main id="adNotiList">
+                <main id="adNotiReg">
                     <section>
                         <div class="row">
-                            <div class="col-12" style="margin-top: 30px;" >
+                            <div class="col-12 notice-title">
                                 <div class="list-title">
                                         공지사항
                                 </div>
@@ -52,13 +50,13 @@
                                 <tr>    
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" style="padding-left:15px; width: 100%; height:35px;" placeholder="제목을 입력해주세요.">
+                                        <input type="text" class="table-title" placeholder="제목을 입력해주세요.">
                                     </td>
                                 </tr>  
                                 <tr>    
                                     <th>내용</th>
                                     <td>
-                                        <textarea name="content" rows="10" cols="60" placeholder="내용을 입력해주세요." style="padding-left: 12px; width: 100%;"></textarea>
+                                        <textarea class="table-content" name="content" rows="10" cols="60" placeholder="내용을 입력해주세요."></textarea>
                                     </td>    
                                 </tr>
                             </table>
@@ -67,10 +65,10 @@
                     <section>
                         <div class="row">
                             <div class="col-12" style="margin-top: 20px;">
-                                <button type="submit" class="btn btn-secondary" style="background-color: #F5CAC3; float: right;"
+                                <button type="submit" class="btn btn-secondary return-btn"
                                 onclick="javascript:location.href='<%=cp%>/AdNotiList.jsp'">돌아가기</button>
 
-                                <button type="submit" class="btn btn-primary" style="background-color: #92B4EC; float: right;" 
+                                <button type="submit" class="btn btn-primary reg-btn"
                                 data-toggle="modal" data-target="#modal">등록하기</button>
                             </div>
                         </div>
