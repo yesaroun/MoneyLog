@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -56,14 +59,52 @@
                                     <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F7EDE2; color: #000000;" onclick="location.href='AdCmntList.jsp'">댓글</button>
                                 </div>
                                 <div class="btn-group float-right">
-                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                
+                                
+                                	<c:if test="${empty postListCheck}">
+										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       	데이터 없음
+	                                    </button>
+	                                    <div class="dropdown-menu">
+	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1">전체</a>
+	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1">공개</a>
+	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1">비공개</a>
+	                                    </div>
+									</c:if>
+                                
+                                	<c:if test="${postListCheck==1}">
+										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         전체
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="./AdPostList.jsp" style="background-color: #F5CAC3; border: none;">전체</a>
-                                        <a class="dropdown-item" href="./AdPostOpen.jsp">공개</a>
-                                        <a class="dropdown-item" href="./AdPostPrivate.jsp">비공개</a>
-                                    </div>
+	                                    </button>
+	                                    <div class="dropdown-menu">
+	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1" style="background-color: #F5CAC3; border: none;">전체</a>
+	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1">공개</a>
+	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1">비공개</a>
+	                                    </div>
+									</c:if>
+									
+									<c:if test="${postListCheck==2}">
+										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        공개
+	                                    </button>
+	                                    <div class="dropdown-menu">
+	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1">전체</a>
+	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1" style="background-color: #F5CAC3; border: none;">공개</a>
+	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1">비공개</a>
+	                                    </div>
+									</c:if>
+									
+									<c:if test="${postListCheck==3}">
+										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        비공개
+	                                    </button>
+	                                    <div class="dropdown-menu">
+	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1">전체</a>
+	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1">공개</a>
+	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1" style="background-color: #F5CAC3; border: none;">비공개</a>
+	                                    </div>
+									</c:if>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -73,7 +114,20 @@
                             <!-- 게시글 리스트 -->
                             <div class="col-md-12">
                                 <div class="list-group">
-                                    <h4> [전체] <small> 머니리뷰에 게시된 게시글 리스트입니다.</small></h4>
+                                	
+                                	<c:if test="${postListCheck==1}">
+										<h4> [전체] <small> 머니리뷰에 게시된 전체 게시글 리스트입니다.</small></h4>
+									</c:if>
+									
+									<c:if test="${postListCheck==2}">
+										<h4> [공개] <small> 머니리뷰에 게시된 공개된 게시글 리스트입니다.</small></h4>
+									</c:if>
+									
+									<c:if test="${postListCheck==3}">
+										<h4> [비공개] <small> 머니리뷰에 게시된 비공개된 게시글 리스트입니다.</small></h4>
+									</c:if>
+
+                                
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table table-striped" style="max-width: 1080px;">
@@ -88,8 +142,50 @@
                                                         <th scope="col" style="width:100px; text-align:center;">상세정보</th>
                                                     </tr>
                                                 </thead>
+                                                
                                                 <tbody>
-                                                    <tr>
+                                                
+                                                
+	                                                <c:if test="${empty getPostList}">
+														<tr>
+															<td colspan="7">머니리뷰 게시글이 없습니다.</td>
+														</tr>
+													</c:if>
+													 	
+												 	<c:forEach var="list" items="${getPostList }" varStatus="loop">
+												 		<tr>
+															<td scope="row" class="mobile" style="text-align:center;">
+																${fn:length(getPostList) - loop.index }
+															</td>
+												  			<td scope="row" style="text-align:center;">
+												  				${list.post_cd}
+												  			</td>
+												  			
+												  			<td class="mobile">
+												  				<a href="./moneypost.action?post_cd=${list.post_cd}">${list.post_title}</a>
+												  			</td>
+												  		
+												  			<td class="mobile" scope="row" style="text-align:center;">
+												  				아이디
+												  			</td>
+												  			
+												  			<td class="mobile" style="text-align:center;">
+												  				<fmt:parseDate value="${list.post_date}" var="post_date" pattern="yyyy-MM-dd" />
+						                       					<fmt:formatDate value="${post_date}" pattern="yyyy-MM-dd" />
+												  			</td>
+												  		
+												  			<td scope="row" style="text-align:center;">
+												  				공개여부
+												  			</td>
+												  		
+												  			<td style="text-align: center;">
+                                                            	<button type="button" class="btn btn-success" onclick="newPage2()">보기</button>
+                                                       		</td>
+												  		</tr>
+													</c:forEach>
+                                                
+                                                
+                                                    <!-- <tr>
                                                         <td scope="row" class="mobile" style="text-align:center;">5</td>
                                                         <td scope="row" style="text-align:center;">
                                                             <a href="./adPostRept.jsp" style="color: #000000;">2032</a>
@@ -101,7 +197,7 @@
                                                         <td style="text-align: center;">
                                                             <button type="button" class="btn btn-success" onclick="newPage2()">보기</button>
                                                         </td>
-                                                    </tr>
+                                                    </tr> -->
                                                 </tbody>
                                             </table>
                                         </div>
@@ -110,6 +206,16 @@
                             </div>
                         </div>
                     </section>
+                    
+                    <div class="row">
+						<div class="col-12" style="place-items: center; display: grid;">
+							<div id="paging">
+								<p>${strList }${start }${end }</p>		
+							</div>	
+						</div>
+					</div>
+					<br><br><br>
+					
                 </main>
             </div>
         </div>

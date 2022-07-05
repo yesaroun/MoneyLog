@@ -102,4 +102,12 @@ public interface IMoneyDAO
 	public String postReptUser (String post_cd);
 	
 	// =========================== 머니리뷰 끝
+	
+	// ▼ 관리자
+	
+	// 머니리뷰 전체 리스트 가져오기
+	public ArrayList<MoneyDTO> getPostListAll(MoneyDTO dto);
+	
+	// 머니리뷰 비공개 리스트 가져오기
+	public ArrayList<MoneyDTO> getPostListPrivate(MoneyDTO dto);
 }
