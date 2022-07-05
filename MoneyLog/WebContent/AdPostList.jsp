@@ -166,7 +166,7 @@
 												  			</td>
 												  		
 												  			<td class="mobile" scope="row" style="text-align:center;">
-												  				아이디
+												  				${list.user_id}
 												  			</td>
 												  			
 												  			<td class="mobile" style="text-align:center;">
