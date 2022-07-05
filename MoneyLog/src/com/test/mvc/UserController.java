@@ -1099,9 +1099,9 @@ public class UserController
 	 	
 	    
 	 	// 사용자가 새로 입력한 내용들
-	 	 String qna_title = request.getParameter("qna_title");
-	 	 String qna_cont = request.getParameter("qna_cont");
-	 	 String qna_date = request.getParameter("qna_date");  
+	 	String qna_title = request.getParameter("qna_title");
+	 	String qna_cont = request.getParameter("qna_cont");
+	 	String qna_date = request.getParameter("qna_date");  
 	 	 
 
 	    // 받아온 내용들 setter 에 담고 get으로 가져오기

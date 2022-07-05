@@ -15,21 +15,60 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
 
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
 
 <script type="text/javascript">
 
-/*
-	function qnaDelete()
-	{
-		confirm("삭제가 완료되었습니다.");
-		window.location.href = "http://localhost:8090/WEB/UserQnaList.jsp";
-	}
-*/
+	//keyup 시 발생.. 순서 중요
+	$(document).ready(function()
+	{	
+		//제목 입력하면 에러 사라지게 처리
+		$("#qna_title").keyup(function() 
+		{
+			$("#err1").css("display", "none");
+			return;
+		});
+		
+		// 내용 입력하면 에러 사라지게 처리
+		$("#qna_cont").keyup(function() 
+		{
+			$("#err2").css("display", "none");
+			return;
+		});
+				
+	});
 
+
+	$(function()
+	{
+		$("#qnaReg-btn").click(function()    
+		{
+					
+			if($("#qna_title").val()=="")   
+			{
+				$("#err1").css("display", "inline");
+				$("#qna_title").focus();
+				return;
+			}
+			
+			
+			if($("#qna_cont").val()=="")
+			{
+				$("#err2").css("display", "inline");
+				$("#qna_cont").focus();
+				return;
+			}
+			
+			alert("등록되었습니다.");
+			$("#qnaContForm").submit();
+			
+		});
+				
+	});
+		
 </script>
+
 </head>
 <body>
 	<!-- ○ 상단 네비게이션 include -->
