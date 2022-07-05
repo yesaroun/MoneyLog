@@ -196,7 +196,6 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adPostList table {text-align: center;}
 #adPostList table th {font-weight: 700; background-color: #F7EDE2; }
 #adPostList .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
-#adPostList 
 
 /*AdPostOpen.jsp*/
 #adPostOpen table {text-align: center;}
@@ -238,7 +237,11 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adNotiList table {text-align: center;}
 #adNotiList table th {font-weight: 700; background-color: #F7EDE2; }
 #adNotiList .paging { clear:both; margin-top: 20px; margin-bottom: 40px; text-align:center; }
-
+#adNotiList .notice-title {margin-top: 30px}
+#adNotiList .write-btn {float: right;}
+#adNotiList .board-paging {place-items: center; display: grid;}
+#adNotiList #prev {color: #F5CAC3;}
+#adNotiList #next {color: #92B4EC;}
 
 /*게시판 작성 포맷*/
 .table2 { border-collapse: collapse; border-top: 3px solid #036; border-bottom: 3px solid #036;  margin-left: 15px; }
