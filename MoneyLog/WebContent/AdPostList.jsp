@@ -175,7 +175,7 @@
 												  			</td>
 												  		
 												  			<td scope="row" style="text-align:center;">
-												  				공개여부
+												  				${list.post_check}
 												  			</td>
 												  		
 												  			<td style="text-align: center;">

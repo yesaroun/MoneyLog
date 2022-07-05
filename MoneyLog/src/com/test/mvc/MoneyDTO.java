@@ -12,6 +12,10 @@ public class MoneyDTO
 	int post_count;
 	String year, month;
 	
+	
+	
+	
+	
 	// 머니리뷰 소비/지출 내역
 	String inout_cont, acnt_date, cate_fst_name, cate_sec_name, acnt_dtl_cont;
 	int amnt;
@@ -43,10 +47,17 @@ public class MoneyDTO
 	// 머니리뷰 게시글 신고
 	String rept_cate_cd, post_rept_dtl_cont, post_rept_cd;
 	
+	// 게시글 공개여부 체크
+	String post_check;
 	
-	
-	
-	
+	public String getPost_check()
+	{
+		return post_check;
+	}
+	public void setPost_check(String post_check)
+	{
+		this.post_check = post_check;
+	}
 	public String getRept_cate_cd()
 	{
 		return rept_cate_cd;
