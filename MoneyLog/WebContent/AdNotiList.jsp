@@ -23,10 +23,8 @@
 
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavCs.jsp"></jsp:include>
-        </header>
+		<!-- ○ 상단 네비게이션 include -->
+		<jsp:include page="./AdNavCs.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -39,7 +37,7 @@
                 <main id="adNotiList">
                     <section>
                         <div class="row">
-                            <div class="col-12" style="margin-top: 30px;" >
+                            <div class="col-12 notice-title">
                                 <div class="list-title">
                                         공지사항
                                 </div>
@@ -125,13 +123,13 @@
                         </div>
                         <div class="row">	
                             <div class="col-12">
-                                <button type="button" class="btn btn-success" style="float: right;"onclick="javascript:location.href='<%=cp%>/AdNotiReg.jsp'" >작성하기</button>
+                                <button type="button" class="btn btn-success write-btn" onclick="javascript:location.href='<%=cp%>/AdNotiReg.jsp'" >작성하기</button>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-12" style="place-items: center; display: grid;">
+                            <div class="col-12 board-paging">
                                 <div class="paging">
-                                    <p> 1 <span style="color: #F5CAC3;">Prev</span> 21 22 23 24 25 26 27 28 29 30 <span style="color: #92B4EC;">Next</span> 54</p>		
+                                    <p> 1 <span id="prev">Prev</span> 21 22 23 24 25 26 27 28 29 30 <span id="next">Next</span> 54</p>		
                                 </div>	
                             </div>
                         </div>
