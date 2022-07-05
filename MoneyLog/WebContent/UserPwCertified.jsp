@@ -67,7 +67,7 @@
 
         <div class="row bg-light sign-up-form mt-3">
 			<div class="sign-up-process col-12">
-                <form action="UserPwCertifiedOk.jsp" method="post" class="pt-3 md-3" id="findpw" style="max-width: 720px">
+                <form action="/MoneyLog/findpw.action" method="post" class="pt-3 md-3" id="findpw" style="max-width: 720px">
                     <div class="row form-group">
 						<div class="col-8">
 							<label>이름</label>
