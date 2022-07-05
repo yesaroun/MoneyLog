@@ -21,13 +21,13 @@ h3, h4{font-weight: 700;}
 h5, h6{font-weight: 500;}
 
 header {position: fixed; top: 0; z-index: 100; width: 100vw;}
-/*Î°úÍ∑∏Ïù∏Ïä§ÌÉÄÏùº*/
+/*∑Œ±◊¿ŒΩ∫≈∏¿œ*/
 section > .container {margin-top: 55px}
-/*Î©îÏù∏Ïä§ÌÉÄÏùº*/
+/*∏ﬁ¿ŒΩ∫≈∏¿œ*/
 main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
-/*Î≤ÑÌäº Ïä§ÌÉÄÏùº*/
+/*πˆ∆∞ Ω∫≈∏¿œ*/
 .btn {background-color: #FF9B85; border: none;}
-.btn:hover {background-color: #EF6E6B; border-radius: 4px;}
+.btn:hover {background-color: #EF6E6B; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);}
 
 /*AdLogin.jsp*/
 .login-title {margin-top: 100px; }
@@ -36,37 +36,38 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #loginForm {width: 300px; background-color: #FFD97D; color: #9b9b9b; border-radius: 5px; margin-left: auto; margin-right: auto; padding: 20px;}
 #loginForm .text-field {width: 100%; font-size: 14px; margin-bottom: 10px; padding: 10px; border-radius: 5px;}
 #loginForm #loginBtn { width: 260px; margin-bottom: 10px; padding: 10px; border-radius: 5px; background-color: #FF9B85; border: none;}
+#loginForm #loginBtn {box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);}
 
 /*Nav*/
 .navbar { background-color: #FFD97D;}
 .navbar-brand { margin-left: 10px; font-weight: 700;}
 
 /*Sidebar*/
-/*Ïã§ÏßàÏ†ÅÏù∏ Í∞Å ÎÇ¥ÎπÑÍ≤åÏù¥ÏÖò Î©îÎâ¥Îì§Ïùò ÏÉâÏÉÅ Îì±ÏùÑ Ï†ïÏùò*/
+/*Ω«¡˙¿˚¿Œ ∞¢ ≥ª∫Ò∞‘¿Ãº« ∏ﬁ¥∫µÈ¿« ªˆªÛ µÓ¿ª ¡§¿«*/
 #sidebar .list-group-item  { background-color: #F7EDE2; color: #000000; border: none; white-space: nowrap;  }
-/*ÎÇ¥ÎπÑÍ≤åÏù¥ÏÖò ÏïÑÎûò ÎÅùÍπåÏßÄ ÎÇòÏó¥*/
+/*≥ª∫Ò∞‘¿Ãº« æ∆∑° ≥°±Ó¡ˆ ≥™ø≠*/
 #sidebar .list-group  { background-color: #F7EDE2;  min-height: 100vh; }
-/*Î©îÎâ¥Î•º ÏÑ†ÌÉùÌñàÏùÑ Îïå Î∂ÄÎ™® ÏöîÏÜåÏùò ÏÉâÏÉÅÏùÑ Î≥ÄÍ≤ΩÌï¥Ï§å*/
+/*∏ﬁ¥∫∏¶ º±≈√«ﬂ¿ª ∂ß ∫Œ∏ ø‰º“¿« ªˆªÛ¿ª ∫Ø∞Ê«ÿ¡‹*/
 #sidebar .list-group .list-group-item[aria-expanded="true"]  { background-color: #F7EDE2; }
-/*Î©îÎâ¥Î•º ÏÑ†ÌÉùÌñàÏùÑ Îïå ÏûêÏãù ÏöîÏÜåÏùò ÏÉâÏÉÅÏùÑ Î≥ÄÍ≤ΩÌï¥Ï§å*/
+/*∏ﬁ¥∫∏¶ º±≈√«ﬂ¿ª ∂ß ¿⁄Ωƒ ø‰º“¿« ªˆªÛ¿ª ∫Ø∞Ê«ÿ¡‹*/
 #sidebar .list-group .list-group-item:not(.collapsed)  { background-color: #F7EDE2; }
 
-/*Î∂ÄÍ∞Ä ÏÑ§Ï†ï*/
+/*∫Œ∞° º≥¡§*/
 #sidebar { overflow: hidden; z-index: 2; }
 @media (max-width: 768px) 
 {
     .span10 main {margin-left: 30px; margin-top: 40px; margin-right: 5px;}
-    /*ÏÇ¨Ïù¥ÎìúÎ∞î ÎÑàÎπÑÎ•º Ï†ïÌï¥ÏßÑ ÌÅ¨Í∏∞ ÏÑ§Ï†ï*/
+    /*ªÁ¿ÃµÂπŸ ≥ ∫Ò∏¶ ¡§«ÿ¡¯ ≈©±‚ º≥¡§*/
     #sidebar  { min-width: 35px; max-width: 40px; overflow-y: auto; overflow-x: visible;  transition: all 0.25s ease; transform: translateX(0px); position: fixed; }
-    /*ÏÇ¨Ïù¥ÎìúÎ∞îÏùò ÏÑúÎ∏å Î©îÎâ¥Î•º Ïó¥ÏóàÏùÑ Îïå Í∏ÄÏûêÍ∞Ä Î≥¥Ïù¥ÎèÑÎ°ù Ìï® */
+    /*ªÁ¿ÃµÂπŸ¿« º≠∫Í ∏ﬁ¥∫∏¶ ø≠æ˙¿ª ∂ß ±€¿⁄∞° ∫∏¿Ãµµ∑œ «‘ */
     #sidebar, #sidebar .list-group { min-width: 35px; overflow: visible; }
-    /*ÏÇ¨Ïù¥ÎìúÎ∞îÏóêÏÑú ÏÑúÎ∏å Î©îÎâ¥Î•º ÎÑàÎπÑ ÏÑ§Ï†ï*/
+    /*ªÁ¿ÃµÂπŸø°º≠ º≠∫Í ∏ﬁ¥∫∏¶ ≥ ∫Ò º≥¡§*/
     #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing { position: relative; z-index: 1; width: 190px; top: 0; }
-    /* ÏïÑÏù¥ÏΩòÏùÑ Ï†ïÎ†¨*/
+    /* æ∆¿Ãƒ‹¿ª ¡§∑ƒ*/
     #sidebar .list-group > .list-group-item { text-align: center; padding: .75rem .5rem; }
     #sidebar::-webkit-scrollbar { width: 0px; }
 }
-/* mobileÌÅ¥ÎûòÏä§ */
+/* mobile≈¨∑°Ω∫ */
 @media (max-width: 990px)
 {
     .mobile { display: none; }
@@ -91,7 +92,7 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 
 /*info-btn*/
 .info-btn {color: #fff;}
-.info-btn:hover {background-color: #EF6E6B; border-radius: 4px;}
+.info-btn:hover {background-color: #EF6E6B; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);}
 
 /*AdUserInfo.jsp*/
 #adUserInfo table {text-align: center;}
@@ -160,22 +161,42 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adPostRept table {text-align: center;}
 #adPostRept table th {font-weight: 700; background-color: #F7EDE2; }
 #adPostRept .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
-
+#adPostRept .send-content-btn {width: 100%; background-color: #F5CAC3;}
+#adPostRept .send-content-btn:hover {box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);}
+#adPostRept .approve-btn {width: 49%;}
+#adPostRept .deny-btn {width: 50%; background-color: #F7EDE2;}
+#adPostRept .return-btn {width: 100%; background-color: #F5CAC3;}
 
 /*adCmntReptList.jsp*/
 #adCmntReptList table {text-align: center;}
 #adCmntReptList table th {font-weight: 700; background-color: #F7EDE2; }
 #adCmntReptList .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
+#adCmntReptList .wid-50-col {width: 50px;}
+#adCmntReptList .wid-150-col {width: 150px;}
+#adCmntReptList .content-title {text-align: left;}
+
+/*»∞º∫»≠µ» πˆ∆∞*/
+.unactivate-btn {width:100px; background-color: #F7EDE2; color: #000000;}
+.unactivate-btn:hover { background-color: #F7EDE2; color: #000000;}
+
+/*∫Ò»∞º∫»≠ πˆ∆∞*/
+.activate-btn {width:100px; background-color: #F5CAC3; color: #000000;}
+.activate-btn {background-color: #F5CAC3; color: #000000;}
 
 /*AdCmntRept.jsp*/
 #adCmntRept table {text-align: center;}
 #adCmntRept table th {font-weight: 700; background-color: #F7EDE2; }
 #adCmntRept .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
+#adCmntRept .send-content-btn {width: 100%;}
+#adCmntRept .approve-btn {width: 49%; background-color: #F5CAC3;}
+#adCmntRept .deny-btn {width: 50%; background-color: #F7EDE2;}
+#adCmntRept .return-btn {width: 100%;}
 
 /*AdPostList.jsp*/
 #adPostList table {text-align: center;}
 #adPostList table th {font-weight: 700; background-color: #F7EDE2; }
 #adPostList .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
+#adPostList 
 
 /*AdPostOpen.jsp*/
 #adPostOpen table {text-align: center;}
@@ -219,13 +240,13 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adNotiList .paging { clear:both; margin-top: 20px; margin-bottom: 40px; text-align:center; }
 
 
-/*Í≤åÏãúÌåê ÏûëÏÑ± Ìè¨Îß∑*/
+/*∞‘Ω√∆« ¿€º∫ ∆˜∏À*/
 .table2 { border-collapse: collapse; border-top: 3px solid #036; border-bottom: 3px solid #036;  margin-left: 15px; }
 .table2 th { border: 1px clear; border-left: 50px; border-right: 0px; width: 25%; font-size: 18px; font-weight: bold; line-height: 150%; padding-top: 20px; }
 .table2 td { border: 1px clear; border-left: 50px; border-right: 0px; font-size: 12px; font-size: 12pt; line-height: 150%; text-align: left; padding-left:20px; padding-top: 20px; padding-bottom: 10px; }
 
 
-/* Î™®Îã¨(ÌåùÏóÖÍ∞ôÏùÄÍ±∞)Ïù¥ Ï§ëÏïôÏóê Îú®ÎèÑÎ°ù  */
+/* ∏¥ﬁ(∆Àæ˜∞∞¿∫∞≈)¿Ã ¡ﬂæ”ø° ∂ﬂµµ∑œ  */
 .modal
 {
     -webkit-transform: translate(0,-50%);
