@@ -4,6 +4,7 @@
    request.setCharacterEncoding("UTF-8");
    String cp = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,6 +33,8 @@
           var area_fst_cd = $('#area_fst').val();
           $('[name=area_sec]').hide();       //area_sec를 name으로 갖는 select 태그 전부 감춤
           $('#area_sec_'+area_fst_cd).show();
+          
+          //alert(area_fst_cd);
       });
                
       $('#job_fst').on('change',function()    //직업1차 변경시, 변경한 직업1차에 해당하는 직업2차 불러오기 
@@ -39,29 +42,18 @@
            var job_fst_cd = $('#job_fst').val();
            $('[name=job_sec]').hide();      //job_sec를 name으로 갖는 select 태그 전부 감춤
            $('#job_sec_'+job_fst_cd).show();
+           
+           //alert(job_fst_cd);
       });
-   /*
-      $('select[name=area_sec]').change(function()
-      {
-         var area_sec_cd = $("select[name=area_sec] option:selected").val();
-         //alert(area_sec_cd);
-      });
-      
-      $('select[name=job_sec]').change(function()
-      {
-         var job_sec_cd = $("select[name=job_sec] option:selected").val();
-         //alert(job_sec_cd);
-      });
-   */   
+	
       
       $("#nextBtn").click(function()
       {   
          $('[name=area_sec]:hidden').remove(); //사용자가 최종 select한것만 넘기기 위해서 안보이면서 select된 select태그 자체를 삭제
          $('[name=job_sec]:hidden').remove();  //사용자가 최종 select한것만 넘기기 위해서 안보이면서 select된 select태그 자체를 삭제
          
-            
-         //alert( $("select[name=area_sec]").val() );
-         //alert( $("select[name=job_sec]").val() );
+         //alert( $("select[name=area_sec] option:selected").val() );
+         //alert( $("select[name=job_sec] option:selected").val() );
          
          if ( $("select[name=area_fst]").val()=="0" || $("select[name=area_sec]").val()=="0"
             || $("select[name=job_fst]").val()=="0"|| $("select[name=job_sec]").val()=="0")
@@ -75,32 +67,6 @@
          }
          
          $("#plusInputForm").submit();
-   
-         //$("#plusInputForm").submit();
-         
-         /*--==>> get 방식으로 처리할 때
-         var user_id = ${user_id};
-         var user_name = ${user_name };
-         var user_pw = ${user_pw};
-         
-         var user_tel = ${user_tel };
-         var ssn = ${ssn };
-         var mrg_cd = ${mrg_cd };
-         
-         var child_cd = ${child_cd };
-         var fml_cd = ${fml_cd };
-         var pet_cd = ${pet_cd };
-         
-         var car_cd = ${car_cd };
-         var house_cd = ${house_cd };
-         var area_sec_cd = ${area_sec_cd };
-         var job_sec_cd = ${job_sec_cd };
-         
-         window.location.href="plusinfosec.action?user_id="+user_id+"&user_pw="+user_pw
-                        +"&user_name="+user_name+"&user_tel="+user_tel+"&ssn="+ssn
-                        +"&mrg_cd="+mrg_cd+"&child_cd="+child_cd+"&fml_cd="+fml_cd+"&house_cd="+house_cd
-                        +"&pet_cd="+pet_cd+"&car_cd="+car_cd+"&area_sec_cd="+area_sec_cd+"&job_sec_cd="+job_sec_cd;
-         */
       
       });
       
@@ -170,7 +136,7 @@
          <div class="sign-up-process col-12"><!-- action="/plusinfosec.action" method="post" -->
                 
             <!-- action="/plusinfosec.action" method="post" -->
-                <form action="/plusinfosec.action" method="post" class="pt-3 md-3"  id="plusInputForm" style="max-width: 720px">
+                <form action="./plusinfosec.action" method="post" class="pt-3 md-3"  id="plusInputForm" style="max-width: 720px">
                <div class="form-group">
                <table class="table">
                   <tbody>
@@ -788,6 +754,7 @@
 
                <button id="preBtn" type="button"  class="btn btn-primary mb-3" style="background-color: #9b9b9b; float: left;" onclick="prePage()">이전</button>
                <button id="nextBtn" type="submit" class="btn btn-primary mb-3" style="background-color: #1fa766; float: right;" onclick="nextPage()">다음</button>
+               
                <div id="errMsg" style="color: red; display: none;">필수 입력 사항을 모두 선택해야 합니다.</div>
                </div>
             </form>

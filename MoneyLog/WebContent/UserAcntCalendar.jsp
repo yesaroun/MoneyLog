@@ -151,6 +151,7 @@
 	
 %>
 <%
+/*
 	int pigTotCount = (int)request.getAttribute("pigTotCount");
 	int pigMonthCount = (int)request.getAttribute("pigMonthCount");
 	
@@ -160,7 +161,28 @@
 	double pigCount = (result1+result2)/(double)120;
 	// double pigCount = ((result1+result2)/(double)60)/2*100;
 	// double pigCount = Math.floor(((result1+result2)/(double)60)/2*100);
+*/
+
+	String pigTotCountStr = (String)request.getAttribute("pigTotCount");
+	String pigMonthCountStr = (String)request.getAttribute("pigMonthCount");
 	
+	int pigTotCount = 0;
+	if (pigTotCountStr != null)
+	{
+		pigTotCount = Integer.parseInt(pigTotCountStr);
+	}
+	
+	int pigMonthCount = 0;
+	if (pigMonthCountStr != null)
+	{
+		pigMonthCount = Integer.parseInt(pigMonthCountStr);
+	}
+	
+	int result1 = pigTotCount > 60 ? 60 : pigTotCount;
+	int result2 = pigMonthCount > 60 ? 60 : pigTotCount;
+	
+	double pigCount = (result1+result2)/(double)120;
+
 %>
 <!DOCTYPE html>
 <html>
