@@ -18,11 +18,11 @@
             <div class="list-group border-0 card text-center text-md-left">
 		
                 <h1 class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="d-none d-md-inline ml-1"> 머니리뷰</span></h1>
-                <a href="AdPostList.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+                <a href="./adpostlist.action?pageNum=1" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
                     <img style="width: 20px;" src="./img2/file-text-black.svg"><span class="d-none d-md-inline ml-1"> 게시글 목록</span>
                 </a>
                 
-                <a href="AdCmntList.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+                <a href="./adcmntlist.action?pageNum=1" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
                     <img style="width: 20px;" src="./img2/qna.svg"><span class="d-none d-md-inline ml-1"> 댓글 목록</span>
                 </a>        
             </div> 

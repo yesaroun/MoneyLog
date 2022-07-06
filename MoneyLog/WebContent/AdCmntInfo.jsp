@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -9,15 +12,36 @@
 <title>댓글 상세 정보</title>
 
 <script type="text/javascript">
-	function newPage()
+
+	function back()
 	{
-	    window.location.href = "./AdCmntList.jsp"
+	
+		//alert(${cmntListCheck});
+		switch (${cmntListCheck})
+		{
+		case 1:
+			//alert("전체");
+			window.location.href = "./adcmntlist.action?pageNum="+${pageNum};
+			break;
+			
+		case 2:
+			//alert("공개");
+			window.location.href = "./adcmntlistOpen.action?pageNum="+${pageNum};
+			break;
+			
+		case 3:
+			//alert("비공개");
+			window.location.href = "./adcmntlistPrivate.action?pageNum="+${pageNum};
+			break;
+	
+		}
 	}
 	
-	function newPage2()
+	function getPost(post_cd)
 	{
-	    window.location.href = "./MoneyPost.jsp"
+	    window.location.href = "./moneypost.action?post_cd="+post_cd;
 	}
+	
 </script>
 
 <meta charset="utf-8">
@@ -44,7 +68,10 @@
             </div>
             <div class="span10">
                 <main id="adCmntInfo">
+                
                     <section>
+               		<c:forEach var="info" items="${getCmntInfo}" varStatus="loop">
+                    
                         <div class="row">
                             <!-- 댓글 상세정보 -->
                             <div class="col-md-12 mt-4">
@@ -63,21 +90,24 @@
                                                         
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="3" style="text-align: center;"><a href="./boardView.html" style="color: #000000;">132</a></td>
-                                                        <td colspan="3" style="text-align: center;">2020-05-20</td>
-                                                        <td colspan="3" class="mobile" style="text-align: center;">test@test.com</td>
-                                                        <td colspan="3" style="text-align: center;"> 공개 </td>
+                                                        <td colspan="3" style="text-align: center;">${info.cmnt_cd}</td>
+                                                        <td colspan="3" style="text-align: center;">
+	                                                        <fmt:parseDate value="${info.cmnt_date}" var="cmnt_date" pattern="yyyy-MM-dd" />
+							                       			<fmt:formatDate value="${cmnt_date}" pattern="yyyy-MM-dd" />
+                                                        </td>
+                                                        <td colspan="3" class="mobile" style="text-align: center;">${info.user_id}</td>
+                                                        <td colspan="3" style="text-align: center;">${info.cmnt_check}</td>
                                                     </tr>
                                                     <tr>
                                                         <th colspan="12" style="font-weight:bold; text-align: center;">댓글 내용</th>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="12" style="text-align: center;">좋은 가게부네요~ 잘보고 갑니다!</td>
+                                                        <td colspan="12" style="text-align: center;">${info.cmnt_cont}</td>
                                                     </tr>
                                                     <!-- 게시글 버튼 -->
                                                     <tr>
                                                         <td colspan="12">
-                                                            <button class="btn" style="width: 100%;" data-toggle="modal" data-target="#modal" onclick="newPage2()">댓글 보러가기</button>
+                                                            <button class="btn" style="width: 100%;" onclick="getPost(${info.post_cd})">댓글 보러가기</button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -87,8 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <section>
+                        
                         <div class="row">
                             <!-- 신고1 -->
                             <div class="col-md-12">
@@ -109,9 +138,9 @@
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td colspan="4" style="text-align: center;">33</td>
-                                                        <td colspan="4" style="text-align: center;">2020-05-20</td>
-                                                        <td colspan="4" class="mobile" style="text-align: center;">test@test.com</td>
+                                                        <td colspan="4" style="text-align: center;">${info.cmnt_rept_cd}</td>
+                                                        <td colspan="4" style="text-align: center;">${info.cmnt_rept_date}</td>
+                                                        <td colspan="4" class="mobile" style="text-align: center;">${info.rept_user_id}</td>
                                                     </tr>
                                                     
                                                     
@@ -123,9 +152,9 @@
                                                     </tr>
                                                             
                                                     <tr>
-                                                        <td colspan="4" style="text-align: center;"> - </td>
-                                                        <td colspan="4" style="text-align: center;"> - </td>
-                                                        <td colspan="4" class="mobile" style="text-align: center;"> - </td>
+                                                        <td colspan="4" style="text-align: center;">${info.cmnt_cnfm}</td>
+                                                        <td colspan="4" style="text-align: center;">${info.ad_id}</td>
+                                                        <td colspan="4" class="mobile" style="text-align: center;">${info.cmnt_cnfm_date}</td>
                                                     </tr>
                                                     
                                                     <!-- 신고 내용 -->
@@ -135,8 +164,8 @@
                                                     </tr>
                                                             
                                                     <tr>
-                                                        <td colspan="6" style="text-align: center;"> - </td>
-                                                        <td colspan="6" style="text-align: center;"> - </td>
+                                                        <td colspan="6" style="text-align: center;">${info.rept_cate_cd}</td>
+                                                        <td colspan="6" style="text-align: center;">${info.cmnt_rept_detail}</td>
                                                     </tr>
                                                     
                                                 </tbody>
@@ -146,8 +175,7 @@
                                 </div>
                             </div>
                         </div>
-                    </section>
-                    <section>
+                        
                         <div class="row">
                             <div class="col-md-12">
                                 <table class="table">
@@ -155,13 +183,14 @@
                                         <!-- 돌아가기 버튼 -->
                                         <tr>
                                             <td colspan="12">
-                                                <button class="btn" style="width: 100%;" onclick="newPage()">돌아가기</button>
+                                                <button class="btn" style="width: 100%;" onclick="back()">돌아가기</button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                	</c:forEach>
                     </section>
                 </main>
             </div>

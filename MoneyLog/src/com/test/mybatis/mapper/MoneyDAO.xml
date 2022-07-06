@@ -782,4 +782,118 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE P.POST_CD=#{post_cd}
 	</select>
 	
+	<!-- 댓글 페이징 - 전체 댓글 개수 -->
+	<select id="totalCmntCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM CMNT
+	</select>
+	
+	<!-- 댓글 페이징 - 공개 댓글 개수 -->
+	<select id="openCmntCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM CMNT C
+		LEFT JOIN CMNT_REPT CR
+		ON C.CMNT_CD = CR.CMNT_CD
+		WHERE CR.CMNT_REPT_CD IS NULL
+	</select>
+	
+	<!-- 댓글 페이징 - 비공개 댓글 개수 -->
+	<select id="privateCmntCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS COUNT
+		FROM CMNT_REPT
+	</select>
+	
+	<!-- 댓글 전체 리스트 (최근글 먼저) -->
+	<select id="getCmntListAll" resultType="com.test.mvc.MoneyDTO">
+		SELECT RNUM, POST_CD, CMNT_CD, CMNT_CONT, CMNT_CHECK, USER_ID, CMNT_DATE
+	    FROM
+	    (SELECT ROW_NUMBER() OVER(ORDER BY  C.CMNT_CD DESC) AS RNUM
+	    , C.POST_CD "POST_CD"
+	    , C.CMNT_CD "CMNT_CD"
+	    , C.CMNT_CONT "CMNT_CONT"
+	    , DECODE(CR.CMNT_REPT_CD, NULL, '공개', '비공개') "CMNT_CHECK"
+	    , DECODE(UI.USER_ID, NULL, '탈퇴회원', UI.USER_ID) "USER_ID"
+	    , C.CMNT_DATE "CMNT_DATE"
+	    FROM CMNT C
+	    LEFT JOIN CMNT_REPT CR
+	    ON C.CMNT_CD = CR.CMNT_CD
+	    LEFT JOIN USER_INFO UI
+	    ON C.USER_DSTN_CD = UI.USER_DSTN_CD
+	    ORDER BY C.CMNT_CD DESC, C.POST_CD DESC)
+		WHERE RNUM <![CDATA[ >= ]]> #{start } AND RNUM <![CDATA[ <= ]]> #{end }
+		ORDER BY RNUM
+	</select>
+	
+	<!-- 댓글 공개 리스트 (최근글 먼저) -->
+	<select id="getCmntListOpen" resultType="com.test.mvc.MoneyDTO">
+		SELECT RNUM, POST_CD, CMNT_CD, CMNT_CONT, CMNT_CHECK, USER_ID, CMNT_DATE
+	    FROM
+	    (SELECT ROW_NUMBER() OVER(ORDER BY  C.CMNT_CD DESC) AS RNUM
+	    , C.POST_CD "POST_CD"
+	    , C.CMNT_CD "CMNT_CD"
+	    , C.CMNT_CONT "CMNT_CONT"
+	    , DECODE(CR.CMNT_REPT_CD, NULL, '공개', '비공개') "CMNT_CHECK"
+	    , DECODE(UI.USER_ID, NULL, '탈퇴회원', UI.USER_ID) "USER_ID"
+	    , C.CMNT_DATE "CMNT_DATE"
+	    FROM CMNT C
+	    LEFT JOIN CMNT_REPT CR
+	    ON C.CMNT_CD = CR.CMNT_CD
+	    LEFT JOIN USER_INFO UI
+	    ON C.USER_DSTN_CD = UI.USER_DSTN_CD
+	    WHERE CR.CMNT_REPT_CD IS NULL
+	    ORDER BY C.CMNT_CD DESC, C.POST_CD DESC)
+		WHERE RNUM <![CDATA[ >= ]]> #{start } AND RNUM <![CDATA[ <= ]]> #{end }
+		ORDER BY RNUM
+	</select>
+	
+	<!-- 댓글 비공개 리스트 (최근글 먼저) -->
+	<select id="getCmntListPrivate" resultType="com.test.mvc.MoneyDTO">
+		SELECT RNUM, POST_CD, CMNT_CD, CMNT_CONT, CMNT_CHECK, USER_ID, CMNT_DATE
+	    FROM
+	    (SELECT ROW_NUMBER() OVER(ORDER BY  C.CMNT_CD DESC) AS RNUM
+	    , C.POST_CD "POST_CD"
+	    , C.CMNT_CD "CMNT_CD"
+	    , C.CMNT_CONT "CMNT_CONT"
+	    , DECODE(CR.CMNT_REPT_CD, NULL, '공개', '비공개') "CMNT_CHECK"
+	    , DECODE(UI.USER_ID, NULL, '탈퇴회원', UI.USER_ID) "USER_ID"
+	    , C.CMNT_DATE "CMNT_DATE"
+	    FROM CMNT C
+	    LEFT JOIN CMNT_REPT CR
+	    ON C.CMNT_CD = CR.CMNT_CD
+	    LEFT JOIN USER_INFO UI
+	    ON C.USER_DSTN_CD = UI.USER_DSTN_CD
+	    WHERE CR.CMNT_REPT_CD IS NOT NULL
+	    ORDER BY C.POST_CD DESC, C.CMNT_CD DESC)
+		WHERE RNUM <![CDATA[ >= ]]> #{start } AND RNUM <![CDATA[ <= ]]> #{end }
+		ORDER BY RNUM
+	</select>
+	
+	<!-- 머니리뷰 댓글 상세정보 -->
+	<select id="getCmntInfo" resultType="com.test.mvc.MoneyDTO">
+		SELECT C.CMNT_CD, C.POST_CD, C.CMNT_DATE, UI.USER_ID
+	    , DECODE(CR.CMNT_REPT_CD, NULL, '공개', '비공개') "CMNT_CHECK"
+	    , C.CMNT_CONT
+	    , (DECODE(CR.CMNT_REPT_CD, NULL, '-', CR.CMNT_REPT_CD)) "CMNT_REPT_CD"
+	    , (DECODE(CR.CMNT_REPT_DATE, NULL, '-', CR.CMNT_REPT_DATE)) "CMNT_REPT_DATE"
+	    , (DECODE(UI2.USER_ID, NULL, '-', UI2.USER_ID)) "REPT_USER_ID"
+	    , (DECODE(ACR.CNFM_CD, NULL, '-', 1, '승인')) "CMNT_CNFM"
+	    , (DECODE(ACR.AD_CD, NULL, '-', ACR.AD_CD)) "AD_ID"
+	    , (DECODE(ACR.AD_CMNT_REPT_DATE, NULL, '-', ACR.AD_CMNT_REPT_DATE)) "CMNT_CNFM_DATE"
+	    , (DECODE(FN_REPT_CATE(REPT_CATE_CD), NULL, '-', FN_REPT_CATE(REPT_CATE_CD))) "REPT_CATE_CD"
+	    , (DECODE(CRD.CMNT_REPT_DTL_CONT, NULL, '-', CRD.CMNT_REPT_DTL_CONT)) "CMNT_REPT_DETAIL"
+	FROM CMNT C
+	LEFT JOIN USER_INFO UI
+	ON C.USER_DSTN_CD = UI.USER_DSTN_CD
+	LEFT JOIN CMNT_REPT CR
+	ON C.CMNT_CD = CR.CMNT_CD
+	LEFT JOIN USER_INFO UI2
+	ON CR.USER_DSTN_CD = UI2.USER_DSTN_CD
+	LEFT JOIN AD_CMNT_REPT ACR
+	ON CR.CMNT_REPT_CD = ACR.CMNT_REPT_CD
+	LEFT JOIN CMNT_REPT_DTL CRD
+	ON CR.CMNT_REPT_CD = CRD.CMNT_REPT_CD
+	WHERE C.CMNT_CD=#{cmnt_cd}
+	</select>
+	
+	
 </mapper>

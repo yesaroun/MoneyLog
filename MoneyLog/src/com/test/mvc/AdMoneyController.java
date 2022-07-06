@@ -169,6 +169,163 @@ public class AdMoneyController
 		mv.addObject("pageNum", money.getPageNum());
 		return mv;
 	}
+	
+	
+	
+	// 댓글 목록 (전체)
+	@RequestMapping(value = "/adcmntlist.action", method = RequestMethod.GET)
+	public ModelAndView adCmntListAll(int pageNum)
+	{
+		
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/AdCmntList.jsp");
+		
+		// 머니리뷰 전체 개수 구하기 (신고된 게시글 미포함)
+		mv.addObject("allPostCount", dao.totalCmntCount());
+		
+		// 페이징
+		Paging paging = new Paging();
+		
+		// 한 페이지당 게시글 개수
+		int numPerPage = 3;
+		
+		// 페이지 개수
+		int pageCount = paging.getPageCount(numPerPage, dao.totalCmntCount());
+		
+		// 페이지 기본 url
+		String url = "./adcmntlist.action";
+		
+		// ★ 페이지 index 
+		String strList = paging.pageIndexList(pageNum, pageCount, url);
+		
+		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
+		
+		int start = (pageNum-1)*numPerPage+1;
+		int end = pageNum*numPerPage;
+		
+		MoneyDTO money = new MoneyDTO();
+		money.setStart(start);
+		money.setEnd(end);
+		
+		mv.addObject("pageCount", pageCount);
+		mv.addObject("strList", strList);
+		mv.addObject("getCmntList", dao.getCmntListAll(money));
+		mv.addObject("pageNum", pageNum);
+		
+		// 페이지 구분용 (전체, 공개, 비공개)
+		mv.addObject("cmntListCheck", 1);
+		
+		return mv;
+	}
+	
+	
+	// 댓글 목록 (공개)
+	@RequestMapping(value = "/adcmntlistOpen.action", method = RequestMethod.GET)
+	public ModelAndView adMoneyCmntListOpen(int pageNum)
+	{
+		
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/AdCmntList.jsp");
+		
+		// 머니리뷰 전체 개수 구하기 (신고된 게시글 미포함)
+		mv.addObject("allPostCount", dao.openCmntCount());
+		
+		// 페이징
+		Paging paging = new Paging();
+		
+		// 한 페이지당 게시글 개수
+		int numPerPage = 3;
+		
+		// 페이지 개수
+		int pageCount = paging.getPageCount(numPerPage, dao.openCmntCount());
+		
+		// 페이지 기본 url
+		String url = "./adcmntlistOpen.action";
+		
+		// ★ 페이지 index 
+		String strList = paging.pageIndexList(pageNum, pageCount, url);
+		
+		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
+		
+		int start = (pageNum-1)*numPerPage+1;
+		int end = pageNum*numPerPage;
+		
+		MoneyDTO money = new MoneyDTO();
+		money.setStart(start);
+		money.setEnd(end);
+		
+		mv.addObject("pageCount", pageCount);
+		mv.addObject("strList", strList);
+		mv.addObject("getCmntList", dao.getCmntListOpen(money));
+		mv.addObject("pageNum", pageNum);
+		
+		// 페이지 구분용 (전체, 공개, 비공개)
+		mv.addObject("cmntListCheck", 2);
+		
+		return mv;
+	}
+	
+	// 댓글 목록 (비공개)
+	@RequestMapping(value = "/adcmntlistPrivate.action", method = RequestMethod.GET)
+	public ModelAndView adMoneyCmntListPrivate(int pageNum)
+	{
+		
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/AdCmntList.jsp");
+		
+		// 머니리뷰 전체 개수 구하기 (신고된 게시글 미포함)
+		mv.addObject("allPostCount", dao.privateCmntCount());
+		
+		// 페이징
+		Paging paging = new Paging();
+		
+		// 한 페이지당 게시글 개수
+		int numPerPage = 3;
+		
+		// 페이지 개수
+		int pageCount = paging.getPageCount(numPerPage, dao.privateCmntCount());
+		
+		// 페이지 기본 url
+		String url = "./adcmntlistPrivate.action";
+		
+		// ★ 페이지 index 
+		String strList = paging.pageIndexList(pageNum, pageCount, url);
+		
+		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
+		
+		int start = (pageNum-1)*numPerPage+1;
+		int end = pageNum*numPerPage;
+		
+		MoneyDTO money = new MoneyDTO();
+		money.setStart(start);
+		money.setEnd(end);
+		
+		mv.addObject("pageCount", pageCount);
+		mv.addObject("strList", strList);
+		mv.addObject("getCmntList", dao.getCmntListPrivate(money));
+		mv.addObject("pageNum", pageNum);
+		
+		// 페이지 구분용 (전체, 공개, 비공개)
+		mv.addObject("cmntListCheck", 3);
+		
+		return mv;
+	}
+	
+	// 머니리뷰 댓글 상세정보
+	@RequestMapping(value = "/adcmntinfo.action", method = RequestMethod.GET)
+	public ModelAndView adCmntInfo(MoneyDTO money)
+	{
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/AdCmntInfo.jsp");
+		mv.addObject("getCmntInfo", dao.getCmntInfo(money));
+		mv.addObject("cmntListCheck", money.getCmntListCheck());
+		mv.addObject("pageNum", money.getPageNum());
+		return mv;
+	}
 
 
 

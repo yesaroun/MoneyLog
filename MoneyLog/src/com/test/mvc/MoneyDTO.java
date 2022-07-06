@@ -41,14 +41,16 @@ public class MoneyDTO
 	int start, end;
 	int count_cmnt;
 	
-	// 머니리뷰 게시글 신고
-	String rept_cate_cd, post_rept_dtl_cont, post_rept_cd;
+	// 머니리뷰 게시글, 댓글 신고
+	String rept_cate_cd, post_rept_dtl_cont, post_rept_cd, cmnt_rept_dtl_cont, cmnt_rept_cd;
 	
 	// 신고 날짜
 	String post_rept_date;
+	String cmnt_rept_date;
 	
-	// 게시글 공개여부 체크
+	// 게시글, 댓글 공개여부 체크
 	String post_check;
+	String cmnt_check;
 	
 	
 	// 이용자 아이디
@@ -62,15 +64,23 @@ public class MoneyDTO
 	
 	// 승인여부
 	String post_cnfm;
+	String cmnt_cnfm;
 	
 	// 관리자 신고처리일자
 	String post_cnfm_date;
+	String cmnt_cnfm_date;
 	
 	// 신고 세부사유
 	String post_rept_detail;
+	String cmnt_rept_detail;
 	
 	// 전체/공개/비공개
 	int postListCheck;
+	int cmntListCheck;
+
+	
+	// 댓글 작성일자
+	String cmnt_date;
 	
 	
 	
@@ -79,6 +89,78 @@ public class MoneyDTO
 	
 	
 	
+	public String getCmnt_rept_detail()
+	{
+		return cmnt_rept_detail;
+	}
+	public void setCmnt_rept_detail(String cmnt_rept_detail)
+	{
+		this.cmnt_rept_detail = cmnt_rept_detail;
+	}
+	public String getCmnt_rept_dtl_cont()
+	{
+		return cmnt_rept_dtl_cont;
+	}
+	public void setCmnt_rept_dtl_cont(String cmnt_rept_dtl_cont)
+	{
+		this.cmnt_rept_dtl_cont = cmnt_rept_dtl_cont;
+	}
+	public String getCmnt_rept_cd()
+	{
+		return cmnt_rept_cd;
+	}
+	public void setCmnt_rept_cd(String cmnt_rept_cd)
+	{
+		this.cmnt_rept_cd = cmnt_rept_cd;
+	}
+	public String getCmnt_rept_date()
+	{
+		return cmnt_rept_date;
+	}
+	public void setCmnt_rept_date(String cmnt_rept_date)
+	{
+		this.cmnt_rept_date = cmnt_rept_date;
+	}
+	public String getCmnt_cnfm()
+	{
+		return cmnt_cnfm;
+	}
+	public void setCmnt_cnfm(String cmnt_cnfm)
+	{
+		this.cmnt_cnfm = cmnt_cnfm;
+	}
+	public String getCmnt_cnfm_date()
+	{
+		return cmnt_cnfm_date;
+	}
+	public void setCmnt_cnfm_date(String cmnt_cnfm_date)
+	{
+		this.cmnt_cnfm_date = cmnt_cnfm_date;
+	}
+	public int getCmntListCheck()
+	{
+		return cmntListCheck;
+	}
+	public void setCmntListCheck(int cmntListCheck)
+	{
+		this.cmntListCheck = cmntListCheck;
+	}
+	public String getCmnt_check()
+	{
+		return cmnt_check;
+	}
+	public void setCmnt_check(String cmnt_check)
+	{
+		this.cmnt_check = cmnt_check;
+	}
+	public String getCmnt_date()
+	{
+		return cmnt_date;
+	}
+	public void setCmnt_date(String cmnt_date)
+	{
+		this.cmnt_date = cmnt_date;
+	}
 	public int getPostListCheck()
 	{
 		return postListCheck;
