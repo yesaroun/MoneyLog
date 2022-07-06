@@ -155,7 +155,7 @@ public class UserController
 	 {		 
 		String ssn1 = request.getParameter("ssn1");
 		String ssn2 = request.getParameter("ssn2");
-		String ssn = ssn1 + ssn2;
+		String ssn = ssn1 + "-" + ssn2;
 		
 		String mrg_cd = request.getParameter("mrgSelect");
 		String child_cd = request.getParameter("childSelect");
