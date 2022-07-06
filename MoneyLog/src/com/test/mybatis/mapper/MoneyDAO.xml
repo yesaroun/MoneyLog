@@ -702,6 +702,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- ▼ 관리자 -->
 	
+	<!-- 머니리뷰 페이징 - 전체 머니리뷰 개수 (신고된 게시글 포함) -->
+	<select id="totalPostCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS POST_COUNT
+		FROM POST
+	</select>
+	
+	<!-- 머니리뷰 페이징 - 비공개 머니리뷰 개수 -->
+	<select id="privatePostCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) AS POST_COUNT
+		FROM POST_REPT
+	</select>
+	
 	<!-- 머니리뷰 전체 리스트 (최근글 먼저) -->
 	<select id="getPostListAll" resultType="com.test.mvc.MoneyDTO">
 		SELECT RNUM, POST_TITLE, COUNT_CMNT, POST_DATE, POST_VIEW, POST_CD, POST_CHECK, USER_ID

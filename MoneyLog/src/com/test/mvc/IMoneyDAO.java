@@ -6,7 +6,7 @@ public interface IMoneyDAO
 {
 	// ○ 머니리뷰 ===========================
 	
-	// 모든 머니리뷰 수 (페이징)
+	// 모든 머니리뷰 수 (페이징) (★ 공개된 머니리뷰)
 	public int allPostCount();
 	
 	// 머니리뷰 리스트 가져오기
@@ -104,6 +104,12 @@ public interface IMoneyDAO
 	// =========================== 머니리뷰 끝
 	
 	// ▼ 관리자
+	
+	// 모든 머니리뷰 수 (페이징) (★ 전체 머니리뷰)
+	public int totalPostCount();
+		
+	// 모든 머니리뷰 수 (페이징) (★ 비공개된 머니리뷰)
+	public int privatePostCount();
 	
 	// 머니리뷰 전체 리스트 가져오기
 	public ArrayList<MoneyDTO> getPostListAll(MoneyDTO dto);

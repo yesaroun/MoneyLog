@@ -20,7 +20,9 @@
 	function adPostInfoAction(postCd)
 	{
 		//alert(postCd)
-        window.location.href = "./adpostinfo.action?post_cd="+postCd
+		//alert(${pageNum});
+		//alert(${postListCheck});
+        window.location.href = "./adpostinfo.action?post_cd="+postCd+"&pageNum="+${pageNum}+"&postListCheck="+${postListCheck};
 	}
 	
 	
@@ -56,7 +58,7 @@
                         <div class="row">
                             <div class="col-sm-10 m-3">
                                 <div class="btn-group float-left">
-                                    <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F5CAC3; color: #000000;" onclick="location.href='AdPostList.jsp'">게시글</button>
+                                    <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F5CAC3; color: #000000;" onclick="location.href='./adpostlist.action?pageNum=1'">게시글</button>
                                     <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F7EDE2; color: #000000;" onclick="location.href='AdCmntList.jsp'">댓글</button>
                                 </div>
                                 <div class="btn-group float-right">
@@ -156,7 +158,7 @@
 												 	<c:forEach var="list" items="${getPostList }" varStatus="loop">
 												 		<tr>
 															<td scope="row" class="mobile" style="text-align:center;">
-																${fn:length(getPostList) - loop.index }
+																${list.rnum }
 															</td>
 												  			<td scope="row" style="text-align:center;">
 												  				${list.post_cd}
