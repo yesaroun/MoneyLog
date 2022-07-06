@@ -12,13 +12,33 @@
 <title>게시글 상세 정보</title>
 
 <script type="text/javascript">
-	function newPage()
+	function back()
 	{
-        window.location.href = "./AdPostList.jsp"
+
+		//alert(${postListCheck});
+		
+		switch (${postListCheck})
+		{
+		case 1:
+			//alert("전체");
+			window.location.href = "./adpostlist.action?pageNum="+${pageNum};
+			break;
+			
+		case 2:
+			//alert("공개");
+			window.location.href = "./adpostlistOpen.action?pageNum="+${pageNum};
+			break;
+			
+		case 3:
+			//alert("비공개");
+			window.location.href = "./adpostlistPrivate.action?pageNum="+${pageNum};
+			break;
+
+		}
 	}
-	function newPage2()
+	function getPost(post_cd)
 	{
-        window.location.href = "./MoneyPost.jsp"
+        window.location.href = "./moneypost.action?post_cd="+post_cd;
 	}
 </script>
 
@@ -90,7 +110,7 @@
                                                     <!-- 게시글 버튼 -->
                                                     <tr>
                                                         <td colspan="12">
-                                                            <button class="btn" style="width: 100%;" data-toggle="modal" data-target="#modal" onclick="newPage2()">게시글 보러가기</button>
+                                                            <button class="btn" style="width: 100%;" data-toggle="modal" data-target="#modal" onclick="getPost(${info.post_cd})">게시글 보러가기</button>
                                                         </td>
                                                     </tr>
                                                 
@@ -168,7 +188,7 @@
                                         <tr>
                                             <td colspan="12">
                                                 <br><br>
-                                                <button class="btn" style="width: 100%;" onclick="newPage()">돌아가기</button>
+                                                <button class="btn" style="width: 100%;" onclick="back()">돌아가기</button>
                                             </td>
                                         </tr>
                                         
