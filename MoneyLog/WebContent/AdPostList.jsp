@@ -17,9 +17,10 @@
         window.location.href = "./AdCmntList.jsp"
 	}
 	
-	function newPage2()
+	function adPostInfoAction(postCd)
 	{
-        window.location.href = "./AdPostInfo.jsp"
+		//alert(postCd)
+        window.location.href = "./adpostinfo.action?post_cd="+postCd
 	}
 	
 	
@@ -166,6 +167,9 @@
 												  			</td>
 												  		
 												  			<td class="mobile" scope="row" style="text-align:center;">
+												  				<c:if test="${empty getPostList}">
+																	탈퇴회원
+																</c:if>
 												  				${list.user_id}
 												  			</td>
 												  			
@@ -179,25 +183,10 @@
 												  			</td>
 												  		
 												  			<td style="text-align: center;">
-                                                            	<button type="button" class="btn btn-success" onclick="newPage2()">보기</button>
+                                                            	<button type="button" class="btn btn-success" onclick="adPostInfoAction(${list.post_cd})">보기</button>
                                                        		</td>
 												  		</tr>
 													</c:forEach>
-                                                
-                                                
-                                                    <!-- <tr>
-                                                        <td scope="row" class="mobile" style="text-align:center;">5</td>
-                                                        <td scope="row" style="text-align:center;">
-                                                            <a href="./adPostRept.jsp" style="color: #000000;">2032</a>
-                                                        </td>
-                                                        <td class="mobile"> #20대 #반려동물 #가구원수 #전세 #자차 #디자이너 </td>
-                                                        <td class="mobile" scope="row" style="text-align:center;">test@test.com</td>
-                                                        <td class="mobile" style="text-align:center;">2022-01-05</td>
-                                                        <td scope="row" style="text-align:center;"> 공개 </td>
-                                                        <td style="text-align: center;">
-                                                            <button type="button" class="btn btn-success" onclick="newPage2()">보기</button>
-                                                        </td>
-                                                    </tr> -->
                                                 </tbody>
                                             </table>
                                         </div>

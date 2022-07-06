@@ -110,4 +110,7 @@ public interface IMoneyDAO
 	
 	// 머니리뷰 비공개 리스트 가져오기
 	public ArrayList<MoneyDTO> getPostListPrivate(MoneyDTO dto);
+	
+	// 머니리뷰 게시글 상세정보
+	public ArrayList<MoneyDTO> getPostInfo(MoneyDTO dto);
 }

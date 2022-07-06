@@ -153,6 +153,17 @@ public class AdMoneyController
 		
 		return mv;
 	}
+	
+	// 머니리뷰 게시글 상세정보
+	@RequestMapping(value = "/adpostinfo.action", method = RequestMethod.GET)
+	public ModelAndView adPostInfo(MoneyDTO money)
+	{
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/AdPostInfo.jsp");
+		mv.addObject("getPostInfo", dao.getPostInfo(money));
+		return mv;
+	}
 
 
 
