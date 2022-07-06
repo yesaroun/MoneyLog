@@ -30,17 +30,18 @@
         </div>
     
 	<!-- 코드 들어가기 -->	
-	
+		<!-- 
 		<div class="container">
 			<div class="row">
-				<div class="col-12" id="List_title" style="margin-top: 30px;" >
-					<!-- 공지사항 -->
+				<div class="col-md-12" id="List_title" style="margin-top: 30px;">
+					공지사항
 				</div>
 			</div>
 		</div>
-	
+		-->
 		<div class="container">
 				<div class="row">
+				
 						<table id="cont" class="table2 col-12">
 						     <tr>
 						         <th>작성일</th>
