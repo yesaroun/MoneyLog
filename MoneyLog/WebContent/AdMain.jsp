@@ -111,6 +111,7 @@
                                             <div class="list-group table-container">
                                                 <table class="table ad-main-table">
                                                     <tbody>
+								                                           	
                                                         <!-- 게시글 -->
                                                         <tr>
                                                             <th class="number-column mobile" >번호</th>
@@ -118,25 +119,38 @@
                                                             <th class="mobile" style="width: 120px; text-align: center;">작성일</th>
                                                         </tr>
                                                         
+                                                        <%--  
+                                                        --%>
+                                                        
+                                                        <!-- UserDAO.xml에서 userNotiList 로 가져오긴하는데 따로 만들어서 필요한거만 select하기 -->
+                                                        <c:if test="${empty userNotiList}">
+														<tr>
+															<td colspan="3" style="text-align: center;">등록된 공지사항이 없습니다.</td>
+														</tr>
+														</c:if>
+														
+														
+														<c:if test="${not empty userNotiList}">
+										                <c:forEach var="userNoti" items="${userNotiList }" varStatus="status">
+										                <tr>
+											                <td class="number-column mobile"><%-- ${fn:length(userNotiList) - status.index }--%></td>
+											                <td><a href="./boardView.html">${userNoti.noti_title }</a></td>
+											                <td class="mobile">
+											                	<fmt:parseDate value="${userNoti.noti_date }" var="noti_date" pattern="yyyy-mm-dd" />
+																<fmt:formatDate value="${noti_date}" pattern="yyyy-mm-dd" />
+											                </td>
+														</tr>
+														</c:forEach>
+														</c:if>
+														<%--  
+														--%>
+														<!-- 
                                                         <tr>
                                                             <td class="number-column mobile">3</td>
                                                             <td>머니로그 신규 업데이트 안내 (3.321 패치)</td>
                                                             <td class="mobile">2022-06-05</td>
                                                         </tr>
-                                                        
-                                                        <!-- 게시글 -->
-                                                        <tr>
-                                                            <td class="number-column mobile" >2</td>
-                                                            <td>머니로그 버그 패치 안내</td>
-                                                            <td class="mobile">2022-06-05</td>
-                                                        </tr>
-                                                        
-                                                        <!-- 게시글 -->
-                                                        <tr>
-                                                            <td class="number-column mobile" >1</td>
-                                                            <td>머니로그 관련 공지사항 안내</td>
-                                                            <td class="mobile">2022-06-05</td>
-                                                        </tr>
+                                                        -->
                                                     </tbody>
                                                 </table>
                                             </div>
