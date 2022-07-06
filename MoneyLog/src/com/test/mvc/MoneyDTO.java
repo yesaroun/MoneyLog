@@ -11,6 +11,7 @@ public class MoneyDTO
 	int post_cd;
 	int post_count;
 	String year, month;
+
 	
 	// 머니리뷰 소비/지출 내역
 	String inout_cont, acnt_date, cate_fst_name, cate_sec_name, acnt_dtl_cont;
@@ -43,10 +44,103 @@ public class MoneyDTO
 	// 머니리뷰 게시글 신고
 	String rept_cate_cd, post_rept_dtl_cont, post_rept_cd;
 	
+	// 신고 날짜
+	String post_rept_date;
+	
+	// 게시글 공개여부 체크
+	String post_check;
+	
+	
+	// 이용자 아이디
+	String user_id;
+	
+	// 머니리뷰 신고자 id
+	String rept_user_id;
+	
+	// 관리자 id
+	String ad_id;
+	
+	// 승인여부
+	String post_cnfm;
+	
+	// 관리자 신고처리일자
+	String post_cnfm_date;
+	
+	// 신고 세부사유
+	String post_rept_detail;
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	public String getPost_cnfm()
+	{
+		return post_cnfm;
+	}
+	public void setPost_cnfm(String post_cnfm)
+	{
+		this.post_cnfm = post_cnfm;
+	}
+	public String getAd_id()
+	{
+		return ad_id;
+	}
+	public void setAd_id(String ad_id)
+	{
+		this.ad_id = ad_id;
+	}
+	public String getPost_cnfm_date()
+	{
+		return post_cnfm_date;
+	}
+	public void setPost_cnfm_date(String post_cnfm_date)
+	{
+		this.post_cnfm_date = post_cnfm_date;
+	}
+	public String getPost_rept_detail()
+	{
+		return post_rept_detail;
+	}
+	public void setPost_rept_detail(String post_rept_detail)
+	{
+		this.post_rept_detail = post_rept_detail;
+	}
+	public String getPost_rept_date()
+	{
+		return post_rept_date;
+	}
+	public void setPost_rept_date(String post_rept_date)
+	{
+		this.post_rept_date = post_rept_date;
+	}
+	public String getRept_user_id()
+	{
+		return rept_user_id;
+	}
+	public void setRept_user_id(String rept_user_id)
+	{
+		this.rept_user_id = rept_user_id;
+	}
+	public String getUser_id()
+	{
+		return user_id;
+	}
+	public void setUser_id(String user_id)
+	{
+		this.user_id = user_id;
+	}
+	public String getPost_check()
+	{
+		return post_check;
+	}
+	public void setPost_check(String post_check)
+	{
+		this.post_check = post_check;
+	}
 	public String getRept_cate_cd()
 	{
 		return rept_cate_cd;
