@@ -26,19 +26,19 @@ public class AdMoneyController
 		mv.setViewName("/AdPostList.jsp");
 		
 		// 머니리뷰 전체 개수 구하기 (신고된 게시글 미포함)
-		mv.addObject("allPostCount", dao.allPostCount());
+		mv.addObject("allPostCount", dao.totalPostCount());
 		
 		// 페이징
 		Paging paging = new Paging();
 		
 		// 한 페이지당 게시글 개수
-		int numPerPage = 10;
+		int numPerPage = 3;
 		
 		// 페이지 개수
-		int pageCount = paging.getPageCount(numPerPage, dao.allPostCount());
+		int pageCount = paging.getPageCount(numPerPage, dao.totalPostCount());
 		
 		// 페이지 기본 url
-		String url = "./userpostlist.action";
+		String url = "./adpostlist.action";
 		
 		// ★ 페이지 index 
 		String strList = paging.pageIndexList(pageNum, pageCount, url);
@@ -55,6 +55,7 @@ public class AdMoneyController
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("strList", strList);
 		mv.addObject("getPostList", dao.getPostListAll(money));
+		mv.addObject("pageNum", pageNum);
 		
 		// 페이지 구분용 (전체, 공개, 비공개)
 		mv.addObject("postListCheck", 1);
@@ -78,13 +79,13 @@ public class AdMoneyController
 		Paging paging = new Paging();
 		
 		// 한 페이지당 게시글 개수
-		int numPerPage = 10;
+		int numPerPage = 3;
 		
 		// 페이지 개수
 		int pageCount = paging.getPageCount(numPerPage, dao.allPostCount());
 		
 		// 페이지 기본 url
-		String url = "./userpostlist.action";
+		String url = "./adpostlistOpen.action";
 		
 		// ★ 페이지 index 
 		String strList = paging.pageIndexList(pageNum, pageCount, url);
@@ -101,6 +102,7 @@ public class AdMoneyController
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("strList", strList);
 		mv.addObject("getPostList", dao.getPostList(money));
+		mv.addObject("pageNum", pageNum);
 		
 		// 페이지 구분용 (전체, 공개, 비공개)
 		mv.addObject("postListCheck", 2);
@@ -118,19 +120,19 @@ public class AdMoneyController
 		mv.setViewName("/AdPostList.jsp");
 		
 		// 머니리뷰 전체 개수 구하기 (신고된 게시글 미포함)
-		mv.addObject("allPostCount", dao.allPostCount());
+		mv.addObject("allPostCount", dao.privatePostCount());
 		
 		// 페이징
 		Paging paging = new Paging();
 		
 		// 한 페이지당 게시글 개수
-		int numPerPage = 10;
+		int numPerPage = 3;
 		
 		// 페이지 개수
-		int pageCount = paging.getPageCount(numPerPage, dao.allPostCount());
+		int pageCount = paging.getPageCount(numPerPage, dao.privatePostCount());
 		
 		// 페이지 기본 url
-		String url = "./userpostlist.action";
+		String url = "./adpostlistPrivate.action";
 		
 		// ★ 페이지 index 
 		String strList = paging.pageIndexList(pageNum, pageCount, url);
@@ -147,6 +149,7 @@ public class AdMoneyController
 		mv.addObject("pageCount", pageCount);
 		mv.addObject("strList", strList);
 		mv.addObject("getPostList", dao.getPostListPrivate(money));
+		mv.addObject("pageNum", pageNum);
 		
 		// 페이지 구분용 (전체, 공개, 비공개)
 		mv.addObject("postListCheck", 3);
@@ -162,6 +165,8 @@ public class AdMoneyController
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/AdPostInfo.jsp");
 		mv.addObject("getPostInfo", dao.getPostInfo(money));
+		mv.addObject("postListCheck", money.getPostListCheck());
+		mv.addObject("pageNum", money.getPageNum());
 		return mv;
 	}
 

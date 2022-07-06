@@ -69,6 +69,8 @@ public class MoneyDTO
 	// 신고 세부사유
 	String post_rept_detail;
 	
+	// 전체/공개/비공개
+	int postListCheck;
 	
 	
 	
@@ -77,6 +79,14 @@ public class MoneyDTO
 	
 	
 	
+	public int getPostListCheck()
+	{
+		return postListCheck;
+	}
+	public void setPostListCheck(int postListCheck)
+	{
+		this.postListCheck = postListCheck;
+	}
 	public String getPost_cnfm()
 	{
 		return post_cnfm;
