@@ -15,7 +15,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
-<link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
+<script src="./js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 
 	function sendIt()
@@ -40,31 +40,33 @@
             </nav>            
         </div>
     
-	<!-- 게시판 코드 들어가기 -->	
+		<!-- 게시판 코드 들어가기 -->	
 	
 	<div class="container">
 		<div class="row">
+		
+			<!-- 공지사항 내역 -->
 			<div class="col-12" style="margin-top: 30px;" >
 				<div id="List_title">
-					<!-- 	공지사항 -->
+					<!-- 공지사항 -->
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<form action="" name="searchForm" method="post">
+			<div class="row">
+				<div class="col-12">
+					<form action="" name="searchForm" method="post">
 					      <select name="searchKey" class="selectField">
 					           <option value="subject" selected="selected">제목</option>
 					           <option value="content">내용</option>
 					           <option value="name">제목+내용</option>
 					      </select>
-				<input type="text" name="searchValue" class="textField">
-				<button type="submit" value="검색" class="btn btn-primary" style="background-color: #1fa766; height: 35px;" onclick="sendIt()">검색</button>
-				</form>
+					<input type="text" name="searchValue" class="textField">
+					<button type="submit" value="검색" class="btn btn-primary" style="background-color: #1fa766; height: 35px;" onclick="sendIt()">검색</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
-					
+						
 	<div class="container">
 		<div class="row">
 				<div class="col-12">
@@ -80,15 +82,12 @@
 					      </tr>	
 			    	 </thead>
 			         <tbody>
-			            
-
 		             
 						<c:if test="${empty userNotiList}">
 						<tr>
 							<td colspan="5" style="text-align: center;">등록된 공지사항이 없습니다.</td>
 						</tr>
 						</c:if>
-						
 						
 						<c:if test="${not empty userNotiList}">
 		                <c:forEach var="userNoti" items="${userNotiList }" varStatus="status">
@@ -120,8 +119,7 @@
 			 </div>
 		</div>
 	</div>
-				
-
+</div>
 	
 	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="./js/jquery-3.2.1.min.js"></script>
@@ -134,7 +132,6 @@
 
 
 
-	</div>
 <!--   <script>
     $('img[alt="N"]').each(function(){$(this).replaceWith('<img src="./img/new-icon5.svg" class="newpost">')});
   </script> -->
