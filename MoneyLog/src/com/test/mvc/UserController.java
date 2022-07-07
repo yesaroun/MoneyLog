@@ -1198,7 +1198,7 @@ public class UserController
  		return result;
  		
 	}
-	
+	 
 	
 	// 문의글 삭제 버튼 클릭 시 삭제 후 문의글 리스트 페이지 요청
 	@RequestMapping(value = "/userqnadelete.action", method = RequestMethod.GET)

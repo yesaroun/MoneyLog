@@ -436,7 +436,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
-	<!-- 문의하기 등록글 한 건 조회, 관리자 답변까지 -->
+	<!-- 문의하기 등록글 한 건 조회, 관리자 답변 -->
 	<select id="userQnaSelect" resultType="com.test.mvc.UserDTO">
 	SELECT Q.QNA_CD, Q.QNA_TITLE, Q.USER_DSTN_CD, UI.USER_NAME, Q.QNA_DATE, Q.QNA_CONT
           , DECODE(AA.AD_ANSR_CD, NULL , ' ', AA.AD_ANSR_CONT) "AD_ANSR_CONT", AA.AD_ANSR_CD
