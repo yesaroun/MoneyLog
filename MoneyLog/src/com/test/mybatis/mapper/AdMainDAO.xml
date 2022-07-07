@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mvc.IAdMainDAO">
+
+	<select id="mainCountPostRept" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM POST_REPT PR LEFT JOIN AD_POST_REPT APR
+  		  ON PR.POST_REPT_CD = APR.POST_REPT_CD
+		WHERE APR.AD_POST_REPT_CD IS NULL
+	</select>
+	
+	<select id="mainCountCmntRept" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM CMNT_REPT CR LEFT JOIN AD_CMNT_REPT ACR
+		  ON CR.CMNT_REPT_CD = ACR.CMNT_REPT_CD
+		WHERE ACR.AD_CMNT_REPT_CD IS NULL
+	</select>
+	
+	
+	<select id="mainCountQna" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM QNA Q LEFT JOIN AD_ANSR AA
+		  ON Q.QNA_CD = AA.QNA_CD
+		WHERE AA.AD_ANSR_CD IS NULL
+	</select>
+	
+	
+	
+</mapper>
