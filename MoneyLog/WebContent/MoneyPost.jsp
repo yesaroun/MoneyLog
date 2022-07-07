@@ -527,7 +527,7 @@
 							</c:if>
 							
 							<!-- 글작성자가 아닐때 - 게시글 신고버튼 -->
-							<c:if test="${not writer_flag }">
+							<c:if test="${not writer_flag}">
 								<div class="float-left">
 									<br><br>
 									<button class="btn" style="width: 100px;" onclick="postReport()">신고</button>

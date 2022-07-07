@@ -38,7 +38,7 @@
 	}
 	function getPost(post_cd)
 	{
-        window.location.href = "./moneypost.action?post_cd="+post_cd;
+        window.location.href = "./admoneypost.action?post_cd="+post_cd;
 	}
 </script>
 

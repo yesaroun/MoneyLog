@@ -12,10 +12,6 @@
 <title>커뮤니티 웹 사이트</title>
 
 <script type="text/javascript">
-	function newPage()
-	{
-        window.location.href = "./AdCmntList.jsp"
-	}
 	
 	function adPostInfoAction(postCd)
 	{
@@ -159,13 +155,14 @@
 												 		<tr>
 															<td scope="row" class="mobile" style="text-align:center;">
 																${list.rnum }
+																<%-- ${fn:length(getPostList) - loop.index } --%>
 															</td>
 												  			<td scope="row" style="text-align:center;">
 												  				${list.post_cd}
 												  			</td>
 												  			
 												  			<td class="mobile">
-												  				<a href="./moneypost.action?post_cd=${list.post_cd}">${list.post_title}</a>
+												  				<a href="./admoneypost.action?post_cd=${list.post_cd}">${list.post_title}</a>
 												  			</td>
 												  		
 												  			<td class="mobile" scope="row" style="text-align:center;">
