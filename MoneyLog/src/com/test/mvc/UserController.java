@@ -1,6 +1,8 @@
 package com.test.mvc;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -1116,11 +1118,7 @@ public class UserController
 		
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
-	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
-	 	dto.setUser_name((String)session.getAttribute("user_name"));
-
-	 	// 
+	    
 	 	String qna_cd = request.getParameter("qna_cd");
 	   	
 	 	
@@ -1134,6 +1132,8 @@ public class UserController
 	 		
 	 	
 	 	// 조회한 값 add 해주고 UserQnaCont.jsp 로 가서 el 사용
+	 	model.addAttribute("user_dstn_cd", dto.getUser_dstn_cd());
+	 	model.addAttribute("qna_cd", dto.getQna_cd());
         model.addAttribute("qna_title" , dto.getQna_title());  
         model.addAttribute("qna_date" , dto.getQna_date());
         model.addAttribute("qna_cont" , dto.getQna_cont());
@@ -1143,5 +1143,116 @@ public class UserController
 		
 		return result;
 	}
+	
+	
+	
+
+	// 문의글에서 수정하기 버튼 클릭시 기존 문의정보 가지고 업데이트 폼으로 이동       
+	@RequestMapping(value="/userqnaupdateform.action", method=RequestMethod.GET)
+	public String userQnaUpdateForm(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
+	{
+		String result = null;
+		
+		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
+		  
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
+	 	dto.setUser_name((String)session.getAttribute("user_name"));
+	 
+	 	String qna_cd = request.getParameter("qna_cd");
+	
+	    // setter 에 담기
+	 	dto.setQna_cd(qna_cd);
+	  	
+	 	// qna_cd 가지고 dao 에 있는 select 쿼리 실행해서 문의글 한 건 데이터 조회한 결과를
+	 	// dto에 담음~
+	 	dto = dao.userQnaSelect(dto);   
+
+	 	// 조회한 값 add 해주고 UserQnaUpdate.jsp 로 가서 el 사용
+	 	model.addAttribute("qna_cd" , dto.getQna_cd());  
+        model.addAttribute("qna_title" , dto.getQna_title());  
+        model.addAttribute("qna_date" , dto.getQna_date());
+        model.addAttribute("qna_cont" , dto.getQna_cont());
+        model.addAttribute("ad_ansr_cont" , dto.getAd_ansr_cont());
+        
+ 
+        result = "/UserQnaUpdate.jsp";
+ 		
+ 		return result;
+	}
+	
+	
+	// 새로 입력한 문의글 정보로 수정한 후 다시 UserQnaCont.jsp 페이지 요청
+	@RequestMapping(value="/userqnaupdate.action", method=RequestMethod.GET)
+	public String userQnaUpdate(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
+	{
+		String result = null;
+		
+		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
+		  
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
+	 	dto.setUser_name((String)session.getAttribute("user_name"));
+	 
+	 	// 문의글 코드랑 사용자가 수정하려고 하는 제목, 내용 정보 받아옴
+	 	String qna_cd = request.getParameter("qna_cd");
+ 	 	String qna_title = request.getParameter("qna_title");
+ 	 	String qna_cont = request.getParameter("qna_cont");
+ 	 	
+// System.out.println(qna_cd);
+// System.out.println(qna_title);
+// System.out.println(qna_cont);
+
+ 	 	
+ 	    // setter 에 담기
+	 	dto.setQna_cd(qna_cd);
+ 	 	dto.setQna_title(qna_title);
+ 	 	dto.setQna_cont(qna_cont);
+ 	 	
+ 	 	// update 쿼리문 실행
+ 	 	dao.userQnaUpdate(dto); 
+
+ 	 	
+ 	 	// 업데이트 된 내용 읽어와서 UserQnaCont.jsp 에 뿌려준다.
+	 	dto = dao.userQnaSelect(dto);   
+ 	 	
+	 	model.addAttribute("qna_cd", dto.getQna_cd());
+        model.addAttribute("qna_title" , dto.getQna_title());  
+        model.addAttribute("qna_date" , dto.getQna_date());
+        model.addAttribute("qna_cont" , dto.getQna_cont());
+        model.addAttribute("ad_ansr_cont" , dto.getAd_ansr_cont());
+        
+        result = "/UserQnaCont.jsp";
+ 		
+ 		return result;
+ 		
+	}
+	
+	
+	// 문의글 삭제 버튼 클릭 시 삭제 후 문의글 리스트 페이지 요청
+	@RequestMapping(value = "/userqnadelete.action", method = RequestMethod.GET)
+	public String userQnaDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
+	{
+		String result = null;
+		
+	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
+	  
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
+	 	dto.setUser_name((String)session.getAttribute("user_name"));
+		 
+	 	String qna_cd = request.getParameter("qna_cd");
+       
+	 	dto.setQna_cd(qna_cd);
+	 	
+        dao.userQnaDelete(dto);   
+        
+        // ++ 추가) try ~catch로 db에서 삭제됐나 확인 한다음에 삭제되었습니다 msg 뿌리기
+        
+		result = "/userqnalist.action"; 
+		
+		return result;
+	}
+	
 	
 }

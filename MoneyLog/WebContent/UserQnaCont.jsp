@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -20,11 +21,48 @@
 
 <script type="text/javascript">
 
-	function qnaDelete()
-	{
-		window.location.href = './userqnadelete.action';
-	}
+	var user_dstn_cd = "${user_dstn_cd}";
+	var user_dstn_cd_ss = '<%=(String)session.getAttribute("user_dstn_cd")%>';
+
+	$(function()
+	{	
+		// 수정 버튼 클릭 시 액션 처리
+		$("#qnaUpdate-btn").click(function()
+		{
+			if (user_dstn_cd != user_dstn_cd_ss)
+			{
+				alert("다른 회원이 작성한 문의글은 수정할 수 없습니다.")
+				$(location).attr("href", "userqnalist.action");
+				return;
+				
+			}
+			$(location).attr("href", "userqnaupdateform.action?qna_cd=" + $(this).val());
 		
+		});
+		
+		
+		// 삭제 버튼 클릭 시 액션 처리
+		$("#qnaDelete-btn").click(function()
+		{
+			if (user_dstn_cd != user_dstn_cd_ss)
+			{
+				alert("다른 회원이 작성한 문의글은 삭제할 수 없습니다.")
+				$(location).attr("href", "userqnalist.action");
+				return;
+				
+			}
+				
+			if (confirm("해당 문의글을 삭제하시겠습니까?"))
+			{
+				$(location).attr("href", "userqnadelete.action?qna_cd=" + $(this).val());
+			}
+			
+
+		});
+		
+	});
+
+	
 </script>
 
 </head>
@@ -60,13 +98,15 @@
 						     <tr>    
 						         <th>제목</th>
 						         <td>
-						         	${qna_title }
+						         	${qna_title } 
 						         </td>
 						     </tr> 
 						     <tr>    
 						         <th>등록일자</th>
 						         <td>
-						         	${qna_date }
+						         	<%-- ${qna_date } --%>
+			                		<fmt:parseDate value="${qna_date }" var="qna_date" pattern="yyyy-mm-dd" />
+									<fmt:formatDate value="${qna_date}" pattern="yyyy-mm-dd" />
 						         </td>
 						     </tr>  
 						     <tr>    
@@ -74,7 +114,7 @@
 						         <td>
 						         	<textarea name="content" rows="10" cols="60" readonly="readonly">${qna_cont }</textarea>
 						     	</td>    
-						     </tr>
+						     </tr> 
 						</table>
 				</div>
 				
@@ -100,11 +140,11 @@
 				<div class="row">
 						<div class="col-12" style="margin-top: 20px;">
 								
-								<button type="button" class="btn btn-primary" style="background-color: lightgray; float: right;"
-								onclick="location.href='./userqnaselect.action'">수정하기</button>
+								<button type="button" id="qnaUpdate-btn" class="btn btn-primary" style="background-color: lightgray; 
+								float: right;" value="${qna_cd }">수정하기</button>
 								
-								<button type="button" class="btn btn-secondary" style="background-color: skyblue; float: right;" 
-								data-toggle="modal" data-target="#modal">삭제하기</button>
+								<button type="button" id="qnaDelete-btn" class="btn btn-secondary" style="background-color: skyblue; 
+								float: right;" value="${qna_cd }">삭제하기</button>
 						
 								<button type="button" class="btn btn-third" style="background-color: #1fa766; float: right; color: white;"
 								onclick="location.href='./userqnalist.action'">목록가기</button>
@@ -124,7 +164,8 @@
 	<script src="./js/mdb.min.js"></script>
 
 
-  <!-- modal 만들기 -->
+ <!-- modal 만들기 -->
+ <!--  
    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal"
    aria-hidden="true">
       <div class="modal-dialog">
@@ -150,7 +191,7 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> -->
 
 </body>
 </html>

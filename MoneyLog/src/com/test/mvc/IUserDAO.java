@@ -95,11 +95,20 @@ public interface IUserDAO
  	public ArrayList<UserDTO> userQnaList();
     
  	
- 	// 이용자 문의하기 등록
+ 	// 이용자 문의글 등록
  	public int userQnaReg(UserDTO dto);
  	
  	// 문의하기 등록글 한 건 조회
- 	public UserDTO userQnaSelect(UserDTO dto);
+ 	public UserDTO userQnaSelect(UserDTO dto); 
+ 	
+ 	// 이용자 문의글 수정
+ 	public int userQnaUpdate(UserDTO dto);
+ 	
+ 	// 이용자 문의글 삭제
+ 	public int userQnaDelete(UserDTO dto);
+ 	
+ 	
+ 	
 	
 	
 }
