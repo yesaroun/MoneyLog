@@ -59,7 +59,7 @@
                             <div class="col-sm-10 m-3">
                                 <div class="btn-group float-left">
                                     <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F5CAC3; color: #000000;" onclick="location.href='./adpostlist.action?pageNum=1'">게시글</button>
-                                    <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F7EDE2; color: #000000;" onclick="location.href='AdCmntList.jsp'">댓글</button>
+                                    <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F7EDE2; color: #000000;" onclick="location.href='./adcmntlist.action?pageNum=1'">댓글</button>
                                 </div>
                                 <div class="btn-group float-right">
                                 

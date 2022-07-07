@@ -119,4 +119,26 @@ public interface IMoneyDAO
 	
 	// 머니리뷰 게시글 상세정보
 	public ArrayList<MoneyDTO> getPostInfo(MoneyDTO dto);
+	
+	// 모든 댓글 수 (페이징) (★ 전체 댓글)
+	public int totalCmntCount();
+	
+	// 모든 댓글 수 (페이징) (★ 공개 댓글)
+	public int openCmntCount();
+		
+	// 모든 댓글 수 (페이징) (★ 비공개 댓글)
+	public int privateCmntCount();
+	
+	// 댓글 전체 리스트 가져오기
+	public ArrayList<MoneyDTO> getCmntListAll(MoneyDTO dto);
+	
+	// 댓글 공개 리스트 가져오기
+	public ArrayList<MoneyDTO> getCmntListOpen(MoneyDTO dto);
+	
+	// 댓글 비공개 리스트 가져오기
+	public ArrayList<MoneyDTO> getCmntListPrivate(MoneyDTO dto);
+	
+	// 머니리뷰 댓글 상세정보
+	public ArrayList<MoneyDTO> getCmntInfo(MoneyDTO dto);
+		
 }

@@ -93,7 +93,10 @@
                                                      
                                                     <tr>
                                                         <td colspan="3" style="text-align: center;"><a href="./boardView.html" style="color: #000000;">${info.post_cd}</a></td>
-                                                        <td colspan="3" style="text-align: center;">${info.post_date}</td>
+                                                        <td colspan="3" style="text-align: center;">
+                                                        	<fmt:parseDate value="${info.post_date}" var="post_date" pattern="yyyy-MM-dd" />
+						                       				<fmt:formatDate value="${post_date}" pattern="yyyy-MM-dd" />
+                                                        </td>
                                                         
                                                         <td colspan="3" class="mobile" style="text-align: center;">${info.user_id}</td>
                                                         <td colspan="3" style="text-align: center;">${info.post_check}</td>
@@ -110,7 +113,7 @@
                                                     <!-- 게시글 버튼 -->
                                                     <tr>
                                                         <td colspan="12">
-                                                            <button class="btn" style="width: 100%;" data-toggle="modal" data-target="#modal" onclick="getPost(${info.post_cd})">게시글 보러가기</button>
+                                                            <button class="btn" style="width: 100%;" onclick="getPost(${info.post_cd})">게시글 보러가기</button>
                                                         </td>
                                                     </tr>
                                                 

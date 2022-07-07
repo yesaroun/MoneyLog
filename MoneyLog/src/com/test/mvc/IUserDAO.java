@@ -12,10 +12,6 @@ public interface IUserDAO
 	
 	public UserDTO login(@Param("user_id") String user_id, @Param("user_pw") String user_pw);
 	
-	// 아이디 찾기
-	//public UserDTO findId(@Param("user_name") String user_name, @Param("user_tel") String user_tel);
-	public UserDTO findId(String user_name, String user_tel);
-	
 	// 회원등록 메소드
 	public int add(UserDTO dto) throws SQLException;
 	
