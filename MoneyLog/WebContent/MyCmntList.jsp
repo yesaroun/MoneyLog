@@ -87,7 +87,7 @@
 							              <td scope="row" class="mobile" style="text-align:center;">${fn:length(myCmntList) - status.index }</td>
 							              <%-- <td scope="row" class="mobile" style="text-align:center;">${cmnt.post_cd }</td> --%>
 							              <td> 
-							              	<a href="./boardView.html" style="color: #000000;">${cmnt.cmnt_cont }</a>
+							              	<a href="moneypost.action?post_cd=${cmnt.post_cd }" style="color: #000000;">${cmnt.cmnt_cont }</a>
 							              </td>
 							              <td class="mobile" style="text-align:center;">
 							                	<fmt:parseDate value="${cmnt.cmnt_date }" var="cmnt_date" pattern="yyyy-MM-dd" />
