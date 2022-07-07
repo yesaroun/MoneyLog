@@ -1,8 +1,6 @@
 package com.test.mvc;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -619,7 +617,7 @@ public class UserController
 	
 	// 내 문의글 리스트
 	@RequestMapping(value = "/myqnalist.action", method = RequestMethod.GET)
-	public String myQnaList(HttpSession session, Model model, UserDTO dto) throws SQLException // 미리만들어진 UserDTO 객체 user 를 써야 하는데 syso ..?
+	public String myQnaList(HttpSession session, Model model, UserDTO dto) throws SQLException 
 	{
 		String result = null;
 		
@@ -640,7 +638,7 @@ public class UserController
 	}
 	
 
-	// 사이드바에서 회원정보 수정 버튼 클릭 시      //-- 쿼리 필요없음 그냥 비밀번호 확인하는 뷰페이지로만 이동
+	// 사이드바에서 회원정보 수정 버튼 클릭 시      //-- 쿼리 필요없음 비밀번호 확인하는 뷰페이지로만 이동
 	@RequestMapping(value="/mycheckpw.action", method=RequestMethod.GET)
 	public String infoCheckPw()
 	{
@@ -659,7 +657,7 @@ public class UserController
 
 		IUserDAO dao =sqlSession.getMapper(IUserDAO.class);
 		
-		// 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+		// 세션에 있는 사용자 코드 얻어와서 dto에 set 
 		dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	
 		
@@ -670,14 +668,16 @@ public class UserController
 		// db 에 있는 사용자 비밀번호 얻어와서 user_pw에 담아줌
 		String user_pw = dao.myCheckPw(dto).getUser_pw();
 		
-		dto = dao.myPlusInfo(dto); //위에 200~211라인처럼 다 dto.set 안해도 됨... 이거 한줄로 끝,,,ㅠ
+		// 위에 200~211라인처럼 dto.set 전부 안해도 된다. 이거 한줄로 끝!
+		dto = dao.myPlusInfo(dto);                         
+		
 		
 		// 비밀번호 일치 여부 확인
-		if ( user_pw.equals(user_input_pw) )	  //-- 비밀번호 일치 
+		if ( user_pw.equals(user_input_pw) )	               //-- 비밀번호 일치 
 		{
-			//dao로 쿼리 수행 하고 select 결과값 받아서 그 값 dto에 담아줌~~
+			//dao로 쿼리 수행 하고 select 결과값 받아서 그 값 dto에 담아줌
 			// 그리고 전부 다 model.addAttribute에 넣어서 
-			// 확인 누르면 MyInfoModify.jsp로 그 값 가지고 가게...  → MyInfoModify 뷰에서 EL 사용가능
+			// 확인 누르면 MyInfoModify.jsp로 그 값 가지고 가도록  → MyInfoModify 뷰에서 EL 사용
 			model.addAttribute("myPlusInfo", dao.myPlusInfo(dto)); 
 			model.addAttribute("ssn" , dto.getSsn());
 			model.addAttribute("user_tel" , dto.getUser_tel());  
@@ -694,10 +694,10 @@ public class UserController
 			
 			result = "/MyInfoModify.jsp"; 
 		}
-		else				                      //-- 비밀번호 불일치
+		else				                                   //-- 비밀번호 불일치
 		{
 			request.setAttribute("msg", "비밀번호가 일치하지 않습니다.");
-			result = "/MyCheckPw.jsp"; //redirect하면 jsp에서 request -> msg값 인식 못함.... ㅠ 
+			result = "/MyCheckPw.jsp"; //redirect하면 jsp에서 request -> msg값 인식 불가
 			
 		}
 		
@@ -710,30 +710,16 @@ public class UserController
 	public String InfoModifySubmit(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
 	{
 		String result = null;
-		
-		
-	   // 전화번호 원래는 본인인증인데 직접 입력할 수 있게 disabled 지우고 잘 바뀌나 해봄..
+	
 	 
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
-/*	 
-   전화번호 수정은 인증처리 추후에 하겠다고 할게용... 
-   전화번호 수정 하려면 전화번호 수정만 하는 전용 action 분리 필요해.....ㅠ 
-   (원래 우리 정책은 인증API 쓰는 건데 API 까지 못할 것 같아서 직접 수정 가능하게하려구 해봄.. ㅠ)
-   
-	    // 사용자가 입력한 전화번호를 user_tel 에 담아줌        
-	 	String user_tel = request.getParameter("tel");     //-- input 태그에서 name=tel
-	 	//--  활용정보도 바꼈으면 user_tel 처럼 getParameter 로 받아서 dto에 set 해줘야 한다. 
+	 
 	 	
-	    // 받아온 전화번호 set해줌 
-	 	dto.setUser_tel(user_tel);
+        // 전화번호 수정은 API 사용해서 추가 예정
 	 	
-		// dao에 있는 telModify() 호출하면서 수정
-		dao.telModify(dto);
-*/		
-		
 	 	
 		dto.setMrg_cd(request.getParameter("mrg_cd"));
 		dto.setChild_cd(request.getParameter("child_cd"));
@@ -744,10 +730,8 @@ public class UserController
 		dto.setArea_sec_cd(request.getParameter("area_sec"));
 		dto.setJob_sec_cd(request.getParameter("job_sec"));
 		
-		// ※  활용정보,,,,,,, ajax 처리 랑 업데이트 쿼리 ... 필요...  dto.plusModify(dto);  ㅠㅠ
-		// 지역, 직업 셀렉트박스 ajax 처리 못해서... 다르게 처리 했슴니다..(뷰에서 하드코딩....)
-		
-		// 문제 발생 --> 직업2차 없는 무직, 아르바이트, 주부, 프리랜서는 에러난다. job_sec_cd 가 null..
+		// ※  활용정보 -> ajax 처리 랑 업데이트 쿼리 필요 ->  dto.plusModify(dto);
+		// 지역, 직업 셀렉트박스 ajax 처리 못해서 (뷰에서 하드코딩..)
 
 		dao.plusModify(dto);
 		
@@ -758,21 +742,19 @@ public class UserController
 	
 	
 	// 회원 정보 수정완료창에서 확인하기 버튼클릭하면 
-	// 새로 바뀐(업데이트) 정보 적용된 myInfoModify.jsp 뷰페이지 나와야한다.
+	// 새로 바뀐(업데이트) 정보 적용된 myInfoModify.jsp 뷰페이지 
 	@RequestMapping(value="/myinfomodifycheck.action", method=RequestMethod.GET)
 	public String myInfoCheck(HttpSession session, Model model, UserDTO dto)
 	{
 		String result = null;
 		
-	   // 전화번호 원래는 본인인증인데 disabled 지우고 직접 입력할 수 있게해서 수정 잘 됐나 해봄..
-	 
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 		
 	 	
-		// dao로 쿼리 수행 하고 결과값 받아서  필요한 정보 모두 dto에 담아주기
+		// dao로 쿼리 수행 하고 결과값 받아서  필요한 정보 모두 dto에 담기
 		dto.setSsn(dao.myInfoCheck(dto).getSsn());	            
 		dto.setUser_tel(dao.myInfoCheck(dto).getUser_tel());	
 		dto.setMrg_cd(dao.myInfoCheck(dto).getMrg_cd());	
@@ -788,7 +770,7 @@ public class UserController
 			
 		
 		// 전부 다 model.addAttribute 로 값 넣어서
-		// 확인하러가기 버튼 누르면 다시 MyInfoModify.jsp로 그 값 가지고 가게...  // → MyInfoModify 뷰에서 EL 사용가능
+		// 확인하러가기 버튼 누르면 다시 MyInfoModify.jsp로 그 값 가지고 가도록  // → MyInfoModify 뷰에서 EL 사용
 		model.addAttribute("myInfoCheck", dao.myInfoCheck(dto)); 
 		model.addAttribute("ssn" , dto.getSsn());
 		model.addAttribute("user_tel" , dto.getUser_tel());  
@@ -819,12 +801,12 @@ public class UserController
 			
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 
-		// 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+		// 세션에 있는 사용자 코드 얻어와서 dto에 set 
 		dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 		
 		
 		// db 에 있는 사용자의 기존 비밀번호 얻어와서 user_pw에 담아줌
-		String user_pw = dao.myCheckPw(dto).getUser_pw(); //-- 이미 복호화 된 값 가져옴	
+		String user_pw = dao.myCheckPw(dto).getUser_pw();              //-- 이미 복호화 된 값	
 				
 		model.addAttribute("user_pw", user_pw);		
 			
@@ -842,10 +824,10 @@ public class UserController
 		
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	    
-	 	// 사용자가 새로 입력한 암호 가져옴 (이미 여기 넘어온 이상 new_pw1, new_pw2는 같은 상태)
+	 	// 사용자가 새로 입력한 암호 가져옴 (여기 넘어왔다는 것은 new_pw1, new_pw2는 같은 상태)
 	 	 String newPw1 = request.getParameter("newPw1");
 	 	 String newPw2 = request.getParameter("newPw2");
 
@@ -856,8 +838,7 @@ public class UserController
 	 	
 	 	dao.pwModify(dto);
 	 	
-		
-        // model.addAttribute("pwModify");  // 필요없음 그냥 위에서 업데이트 까지만 시키면 끝
+        // model.addAttribute("pwModify");                     // 필요없음 업데이트 쿼리만 하면 끝
 
 		
 		result = "/MyPwModifyOk.jsp";
@@ -865,7 +846,7 @@ public class UserController
 		return result;
 	}
 	
-	// 비밀번호 수정 후 내 가계부로 돌아가기 버튼 클릭 시      //-- 쿼리 필요없음 그냥 메인페이지 (내 가계부 뷰페이지로만) 이동
+	// 비밀번호 수정 후 내 가계부로 돌아가기 버튼 클릭 시      //-- 쿼리 필요없음  메인페이지 (내 가계부 뷰페이지로만) 이동
 	@RequestMapping(value="/backtomycal.action", method=RequestMethod.GET)
 	public String backToMyCal()
 	{
@@ -876,7 +857,7 @@ public class UserController
 		return result;
 	}
 	
-	// 사이드바에서 회원탈퇴 버튼 클릭 시        //-- 쿼리 필요없음 그냥 탈퇴 전 비밀번호 받는 뷰페이지로만 이동
+	// 사이드바에서 회원탈퇴 버튼 클릭 시                     //-- 쿼리 필요없음  탈퇴 전 비밀번호 받는 뷰페이지로만 이동
 	@RequestMapping(value="/leavecheckpw.action", method=RequestMethod.GET)
 	public String leaveCheckPw()
 	{
@@ -895,34 +876,34 @@ public class UserController
 
 		IUserDAO dao =sqlSession.getMapper(IUserDAO.class);
 		
-		// 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+		// 세션에 있는 사용자 코드 얻어와서 dto에 set 
 		dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	
 		
 		// 사용자가 입력한 pw 를 user_input_pw 에 담아줌
 		String user_input_pw = request.getParameter("pw");     //-- input 태그에서 name=pw
 	
-		// db 에 있는 기존 사용자 정보 얻어와서(비밀번호, 전화번호, 가입일자) dto 에 set 해줌   -- 아이디, 식별코드는 세션에있음
-        dto = dao.myPlusInfo(dto); //위에 200~211라인처럼 다 dto.set 안해도 됨... 이거 한줄로 끝,,,ㅠ
+		// db 에 있는 기존 사용자 정보 얻어와서(비밀번호, 전화번호, 가입일자) dto 에 set   -- 아이디, 식별코드는 세션에 있음
+        dto = dao.myPlusInfo(dto); 
         
-        // 밑에서 계속 써주기 귀찮아서 변수에 담음
+        // 밑에서 계속 써주기 번거로우니까 변수에 담아서 사용
         String user_pw = dto.getUser_pw();
 
 		// 비밀번호 일치 여부 확인
-		if ( user_pw.equals(user_input_pw) )	  //-- 비밀번호 일치할 때 
+		if ( user_pw.equals(user_input_pw) )	              //-- 비밀번호 일치할 때 
 		{
-			//dao로 쿼리 수행 하고 select 결과값 받아서 그 값 dto에 담아줌~~
+			//dao로 쿼리 수행 하고 select 결과값 받아서 그 값 dto에 담기
 			// 그리고 전부 다 model.addAttribute에 넣어서 
-			// 확인 누르면 LeaveForm.jsp로 그 값 가지고 가게...  → LeaveForm.jsp 뷰에서 EL 사용가능
+			// 확인 누르면 LeaveForm.jsp로 그 값 가지고 가도록 → LeaveForm.jsp 뷰에서 EL 사용
 			model.addAttribute("myPlusInfo", dao.myPlusInfo(dto)); 
 			model.addAttribute("user_tel" , dto.getUser_tel());  
 			model.addAttribute("user_date" , dto.getUser_date());  
 			result = "/LeaveForm.jsp"; 
 		}
-		else				                      //-- 비밀번호 불일치
+		else				                                  //-- 비밀번호 불일치
 		{
 			request.setAttribute("msg", "비밀번호가 일치하지 않습니다.");
-			result = "/LeaveCheckPw.jsp"; //redirect하면 jsp에서 request -> msg값 인식 못함.... ㅠ 
+			result = "/LeaveCheckPw.jsp";                     //redirect하면 jsp에서 request -> msg값 인식 불가
 			
 		}
 		
@@ -938,14 +919,14 @@ public class UserController
 		
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	    
 		 
-		// db 에 있는 기존 사용자 정보 얻어와서dto 에 set 해줌   
+		// db 에 있는 기존 사용자 정보 얻어와서dto 에 set  
         dto = dao.myPlusInfo(dto); 
         
-        String user_date = (String)dto.getUser_date();      // 형변환해서 담는거 필수!!
+        String user_date = (String)dto.getUser_date();      // 형변환해서 담는거 필수!
 	        
         // model.addAttribute("myPlusInfo"); 
         
@@ -972,9 +953,9 @@ public class UserController
 	}
 	
 	
-	//======================================= 고객센터 추가
+	//========================================================================== 고객센터 추가
 	
-	// 고객센터 클릭시 머니로그 소개        //-- 쿼리 필요없음 그냥 뷰페이지로만 이동
+	// 고객센터 클릭시 머니로그 소개        //-- 쿼리 필요없음 뷰페이지로만 이동
 	@RequestMapping(value="/userservice.action", method=RequestMethod.GET)
 	public String userServiceMain()
 	{
@@ -1020,7 +1001,7 @@ public class UserController
 	}
 	
 	
-	// 고객센터 사이드바에서 이용약관 클릭시 이용약관 내용 소개        //-- 쿼리 필요없음 그냥 뷰페이지로만 이동
+	// 고객센터 사이드바에서 이용약관 클릭시 이용약관 내용 소개        //-- 쿼리 필요없음 뷰페이지로만 이동
 	@RequestMapping(value="/userterms.action", method=RequestMethod.GET)
 	public String userTerms()
 	{
@@ -1033,7 +1014,7 @@ public class UserController
 	
 	
 	
-	// 고객센터 문의하기 버튼 클릭시 문의하기 폼으로 이동       //-- 쿼리 필요없음 이름은 세션으로, 날짜는 날짜 클래스로 조회해옴
+	// 고객센터 문의하기 버튼 클릭시 문의하기 폼으로 이동              //-- 쿼리 필요없음 이름은 세션으로, 날짜는 날짜 클래스로 조회
 	@RequestMapping(value="/userqnareg.action", method=RequestMethod.GET)
 	public String userQnaReg(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
 	{
@@ -1041,7 +1022,7 @@ public class UserController
 		
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 		  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	 	dto.setUser_name((String)session.getAttribute("user_name"));
 	 
@@ -1050,10 +1031,10 @@ public class UserController
 	 	
 	 	dto.setQna_date(qna_date);
 	 
-	 	// System.out.println(dto.getQna_date());      // 날짜 찍어봄
+	 	// System.out.println(dto.getQna_date());      // 날짜 테스트
 	
 		// 날짜 dto에 set 해주고 model.addAttribute 해서
-		// UserQnaReg.jsp 가 날짜 가지고 가게 한 후 EL 사용
+		// UserQnaReg.jsp에서 EL 사용
 		model.addAttribute("qna_date" , dto.getQna_date());  
 
 		result = "/UserQnaReg.jsp";
@@ -1062,7 +1043,7 @@ public class UserController
 	}
 
 	
-	// 문의폼에서 등록하기 버튼 클릭하면 인서트한 후에 폼에 문의내용 등록된거 나온다.
+	// 문의폼에서 등록하기 버튼 클릭하면 인서트 쿼리 실행
 	@RequestMapping(value="/userqnacont.action", method={RequestMethod.GET, RequestMethod.POST})
 	public String userQnaCont(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
 	{
@@ -1070,7 +1051,7 @@ public class UserController
 		
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	 	dto.setUser_name((String)session.getAttribute("user_name"));
 	 	
@@ -1096,55 +1077,52 @@ public class UserController
 			// TODO: handle exception
 			
 //		}
-//	 	여기서 성공 메세지 뿌리기 
+//	 	예외 없이 insert 되었다면 문의글 등록 성공 메세지 뿌리기  -- 추가사항
 	 	             
 	 	
 	 	
-	 	// 인서트 시키고 인서트 된 내용 뿌려줘야 하니까 add 해주고 jsp 로 가서 el 사용
+	 	// 인서트 시키고 인서트 된 내용 뿌려줘야 하니까 add 한뒤에 뷰페이지에서 el 사용
         model.addAttribute("qna_title" , dto.getQna_title());  
         model.addAttribute("qna_date" , dto.getQna_date());
         model.addAttribute("qna_cont" , dto.getQna_cont());
-		
-		result = "/UserQnaCont.jsp";
+         
+		// result = "/UserQnaCont.jsp";               //-- qna_cd 받아올 수 있으면 리스트 말고 내용 등록된 폼 요청 가능 -- 고민※
+		result = "/userqnalist.action";
 		
 		return result;
 	}
 	
-	// 등록된 문의글 한 건 정보 select 해오기 
+	// 등록된 문의글 한 건 정보 select 
 	@RequestMapping(value="/userqnaselect.action", method=RequestMethod.GET)
 	public String userQnaSelect(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, UserDTO dto)
 	{
 		String result = null;
 		
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
-	  
-	    
+	  	    
 	 	String qna_cd = request.getParameter("qna_cd");
 	   	
-	 	
-	    // setter 에 담기
+	    // set
 	 	dto.setQna_cd(qna_cd);
 	 
 	 	
-	 	// qna_cd 가지고 dao 에 있는 select 쿼리 실행해서 문의글 한 건 데이터 조회한 결과를
-	 	// dto에 담음~
+	 	// qna_cd 가지고 dao 에 있는 select 쿼리 실행 후 문의글 한 건 데이터 조회한 결과 -> dto에 set
 	 	dto = dao.userQnaSelect(dto);   
 	 		
 	 	
-	 	// 조회한 값 add 해주고 UserQnaCont.jsp 로 가서 el 사용
+	 	// 조회한 값 add 후 UserQnaCont.jsp에서 el 사용
 	 	model.addAttribute("user_dstn_cd", dto.getUser_dstn_cd());
 	 	model.addAttribute("qna_cd", dto.getQna_cd());
         model.addAttribute("qna_title" , dto.getQna_title());  
         model.addAttribute("qna_date" , dto.getQna_date());
         model.addAttribute("qna_cont" , dto.getQna_cont());
         model.addAttribute("ad_ansr_cont" , dto.getAd_ansr_cont());
+        model.addAttribute("ad_ansr_cd" , dto.getAd_ansr_cd());
         
         result = "/UserQnaCont.jsp";
 		
 		return result;
 	}
-	
-	
 	
 
 	// 문의글에서 수정하기 버튼 클릭시 기존 문의정보 가지고 업데이트 폼으로 이동       
@@ -1155,20 +1133,19 @@ public class UserController
 		
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 		  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	 	dto.setUser_name((String)session.getAttribute("user_name"));
 	 
 	 	String qna_cd = request.getParameter("qna_cd");
 	
-	    // setter 에 담기
+	    // set
 	 	dto.setQna_cd(qna_cd);
 	  	
-	 	// qna_cd 가지고 dao 에 있는 select 쿼리 실행해서 문의글 한 건 데이터 조회한 결과를
-	 	// dto에 담음~
+	    // qna_cd 가지고 dao 에 있는 select 쿼리 실행 후 문의글 한 건 데이터 조회한 결과 -> dto에 set
 	 	dto = dao.userQnaSelect(dto);   
 
-	 	// 조회한 값 add 해주고 UserQnaUpdate.jsp 로 가서 el 사용
+	    // 조회한 값 add 후 UserQnaCont.jsp에서 el 사용
 	 	model.addAttribute("qna_cd" , dto.getQna_cd());  
         model.addAttribute("qna_title" , dto.getQna_title());  
         model.addAttribute("qna_date" , dto.getQna_date());
@@ -1190,21 +1167,16 @@ public class UserController
 		
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 		  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	 	dto.setUser_name((String)session.getAttribute("user_name"));
 	 
-	 	// 문의글 코드랑 사용자가 수정하려고 하는 제목, 내용 정보 받아옴
+	 	// 문의글 코드랑 사용자가 입력한 수정제목, 내용 정보 받아옴
 	 	String qna_cd = request.getParameter("qna_cd");
  	 	String qna_title = request.getParameter("qna_title");
  	 	String qna_cont = request.getParameter("qna_cont");
- 	 	
-// System.out.println(qna_cd);
-// System.out.println(qna_title);
-// System.out.println(qna_cont);
 
- 	 	
- 	    // setter 에 담기
+ 	    // set
 	 	dto.setQna_cd(qna_cd);
  	 	dto.setQna_title(qna_title);
  	 	dto.setQna_cont(qna_cont);
@@ -1212,8 +1184,7 @@ public class UserController
  	 	// update 쿼리문 실행
  	 	dao.userQnaUpdate(dto); 
 
- 	 	
- 	 	// 업데이트 된 내용 읽어와서 UserQnaCont.jsp 에 뿌려준다.
+ 	 	// qna_cd 가지고 dao 에 있는 select 쿼리 실행 후 문의글 한 건 데이터 조회해서 업데이트 결과 -> dto에 set
 	 	dto = dao.userQnaSelect(dto);   
  	 	
 	 	model.addAttribute("qna_cd", dto.getQna_cd());
@@ -1237,7 +1208,7 @@ public class UserController
 		
 	    IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 	  
-	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 해줌
+	    // 세션에 있는 사용자 코드 얻어와서 dto에 set 
 	 	dto.setUser_dstn_cd((String)session.getAttribute("user_dstn_cd"));
 	 	dto.setUser_name((String)session.getAttribute("user_name"));
 		 
@@ -1247,7 +1218,7 @@ public class UserController
 	 	
         dao.userQnaDelete(dto);   
         
-        // ++ 추가) try ~catch로 db에서 삭제됐나 확인 한다음에 삭제되었습니다 msg 뿌리기
+        //  try ~catch로 db에서 삭제됐나 확인 후 삭제되었습니다 msg -- 추가사항
         
 		result = "/userqnalist.action"; 
 		
