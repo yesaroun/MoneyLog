@@ -439,7 +439,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 문의하기 등록글 한 건 조회, 관리자 답변까지 -->
 	<select id="userQnaSelect" resultType="com.test.mvc.UserDTO">
 	SELECT Q.QNA_CD, Q.QNA_TITLE, Q.USER_DSTN_CD, UI.USER_NAME, Q.QNA_DATE, Q.QNA_CONT
-          , DECODE(AA.AD_ANSR_CD, NULL , ' ', AA.AD_ANSR_CONT) "AD_ANSR_CONT"
+          , DECODE(AA.AD_ANSR_CD, NULL , ' ', AA.AD_ANSR_CONT) "AD_ANSR_CONT", AA.AD_ANSR_CD
 	FROM QNA Q LEFT JOIN AD_ANSR AA
 	ON Q.QNA_CD = AA.QNA_CD
 	LEFT JOIN USER_INFO UI
@@ -447,13 +447,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE Q.QNA_CD = #{qna_cd}
 	</select>
 
-
+	<!-- 문의글 업데이트 -->
 	<update id="userQnaUpdate">
 	UPDATE QNA
 	SET QNA_TITLE = #{qna_title}, QNA_CONT = #{qna_cont}
 	WHERE QNA_CD = #{qna_cd}
 	</update>
 	
+	<!-- 문의글 삭제 -->
 	<delete id="userQnaDelete">
 	DELETE
 	FROM QNA

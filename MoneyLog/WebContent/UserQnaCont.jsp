@@ -23,6 +23,8 @@
 
 	var user_dstn_cd = "${user_dstn_cd}";
 	var user_dstn_cd_ss = '<%=(String)session.getAttribute("user_dstn_cd")%>';
+	
+	var ad_ansr_cd = "${ad_ansr_cd}";
 
 	$(function()
 	{	
@@ -36,6 +38,15 @@
 				return;
 				
 			}
+			
+			if (ad_ansr_cd != '')
+			{
+				alert("관리자 답변이 등록된 문의글은 수정할 수 없습니다.")   
+				$(location).attr("href", "userqnalist.action");
+				return;
+				
+			}
+			
 			$(location).attr("href", "userqnaupdateform.action?qna_cd=" + $(this).val());
 		
 		});
@@ -51,7 +62,15 @@
 				return;
 				
 			}
+			
+			if (ad_ansr_cd != '')
+			{
+				alert("관리자 답변이 등록된 문의글은 삭제할 수 없습니다.")    // 삭제는 가능하게 하고 싶은데 qna 테이블에 casecase 추가 필요.. 논의!
+				$(location).attr("href", "userqnalist.action");
+				return;
 				
+			}
+			
 			if (confirm("해당 문의글을 삭제하시겠습니까?"))
 			{
 				$(location).attr("href", "userqnadelete.action?qna_cd=" + $(this).val());
@@ -98,7 +117,8 @@
 						     <tr>    
 						         <th>제목</th>
 						         <td>
-						         	${qna_title } 
+						         	<input type="text" id="qna_title" name="qna_title" value="${qna_title }">
+						         	<input type="hidden" id="qna_cd" name="qna_cd" value="${qna_cd }">
 						         </td>
 						     </tr> 
 						     <tr>    
@@ -126,7 +146,7 @@
 						</div>
 						<div class="col-8" style="margin-top: 20px;" >
 							<div class="input-group">
-								   <input type="text" value="${ad_ansr_cont }" class="form-control" style="height: 70px; border: 1px solid;" readonly="readonly">
+								   <input type="text"  value="${ad_ansr_cont }" class="form-control" style="height: 70px; border: 1px solid;" readonly="readonly">
 							</div>
 						</div><!-- /.col-sm-8 -->
 						<div class="col-2" style="margin-top: 20px;" >
