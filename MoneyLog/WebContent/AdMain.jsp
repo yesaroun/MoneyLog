@@ -122,10 +122,9 @@
                                                             <th class="mobile" style="width: 120px; text-align: center;">작성일</th>
                                                         </tr>
                                                         
-                                                        <%--  
-                                                        --%>
-                                                        
                                                         <!-- UserDAO.xml에서 userNotiList 로 가져오긴하는데 따로 만들어서 필요한거만 select하기 -->
+                                                        
+                                                       	<!-- 
                                                         <c:if test="${empty userNotiList}">
 														<tr>
 															<td colspan="3" style="text-align: center;">등록된 공지사항이 없습니다.</td>
@@ -145,8 +144,8 @@
 														</tr>
 														</c:forEach>
 														</c:if>
-														<%--  
-														--%>
+														-->
+														
 														<!-- 
                                                         <tr>
                                                             <td class="number-column mobile">3</td>
