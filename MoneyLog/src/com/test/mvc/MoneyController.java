@@ -31,7 +31,7 @@ public class MoneyController
 		Paging paging = new Paging();
 		
 		// 한 페이지당 게시글 개수
-		int numPerPage = 10;
+		int numPerPage = 3;
 		
 		// 페이지 개수
 		int pageCount = paging.getPageCount(numPerPage, dao.allPostCount());
@@ -44,8 +44,12 @@ public class MoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.allPostCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);

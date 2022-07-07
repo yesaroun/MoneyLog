@@ -45,8 +45,12 @@ public class AdMoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.totalPostCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);
@@ -92,8 +96,12 @@ public class AdMoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.allPostCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);
@@ -139,8 +147,12 @@ public class AdMoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.privatePostCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);
@@ -201,8 +213,12 @@ public class AdMoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.totalCmntCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);
@@ -249,8 +265,12 @@ public class AdMoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.openCmntCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);
@@ -296,8 +316,12 @@ public class AdMoneyController
 		
 		// 스타트 앤드 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
 		
-		int start = (pageNum-1)*numPerPage+1;
-		int end = pageNum*numPerPage;
+		int count = 0;
+		count = dao.privateCmntCount();
+		//int start = (pageNum-1)*numPerPage+1;
+		//int end = pageNum*numPerPage;
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
 		
 		MoneyDTO money = new MoneyDTO();
 		money.setStart(start);
@@ -326,6 +350,40 @@ public class AdMoneyController
 		mv.addObject("pageNum", money.getPageNum());
 		return mv;
 	}
+	
+	// 머니리뷰 게시글 조회 (관리자)
+	/*
+	@RequestMapping(value = "/admoneypost.action", method = RequestMethod.GET)
+	public ModelAndView moneypost(HttpSession session, MoneyDTO money)
+	{
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+		
+		//String user_dstn_cd = (String)session.getAttribute("user_dstn_cd");
+		String ad_cd = (String)session.getAttribute("ad_cd");
+		
+		ModelAndView mv = new ModelAndView();
+		//mv.addObject("user_dstn_cd", user_dstn_cd);
+		mv.addObject("ad_cd", ad_cd);
+		mv.setViewName("/MoneyPost.jsp");
+		mv.addObject("postFind", dao.postFind(money));
+		//mv.addObject("postCount", dao.postCount(user_dstn_cd));
+		//mv.addObject("postCount", dao.postCount(ad_cd));
+		mv.addObject("inOutList", dao.inOutList(money));
+		mv.addObject("inOutData", dao.inOutData(money));
+		
+		mv.addObject("totalIn", dao.postTotalIn(money));
+		mv.addObject("totalOut", dao.postTotalOut(money));
+		
+		mv.addObject("emtcCount", dao.emtcCount(money));
+		mv.addObject("emtc1", dao.emtc1(money));
+		mv.addObject("emtc2", dao.emtc2(money));
+		mv.addObject("emtc3", dao.emtc3(money));
+		mv.addObject("emtc4", dao.emtc4(money));
+		mv.addObject("emtc5", dao.emtc5(money));
+		mv.addObject("cmntList", dao.cmntList(money));
+		
+		return mv;
+	}*/
 
 
 

@@ -12,10 +12,6 @@
 <title>커뮤니티 웹 사이트</title>
 
 <script type="text/javascript">
-	function newPage()
-	{
-	    window.location.href = "./AdPostList.jsp"
-	}
 	
 	
 	function adCmntInfoAction(cmntCd)
@@ -24,11 +20,6 @@
 		//alert(${pageNum});
 		//alert(${postListCheck});
        window.location.href = "./adcmntinfo.action?cmnt_cd="+cmntCd+"&pageNum="+${pageNum}+"&cmntListCheck="+${cmntListCheck};
-	}
-	
-	function newPage2()
-	{
-	    window.location.href = "./AdCmntInfo.jsp"
 	}
 	
 </script>
@@ -157,7 +148,7 @@
                                                     <tr>
                                                         <td scope="row" class="mobile" style="text-align:center;">${list.rnum }</td>
                                                         <td scope="row" style="text-align:center;">
-                                                            <a href="./moneypost.action?post_cd=${list.post_cd}">${list.post_cd }</a>
+                                                            <a href="./admoneypost.action?post_cd=${list.post_cd}">${list.post_cd }</a>
                                                         </td>
                                                         <td scope="row" style="text-align:center;">${list.cmnt_cd }</td>
                                                         <td class="mobile">${list.cmnt_cont }</td>
