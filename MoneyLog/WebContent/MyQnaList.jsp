@@ -82,7 +82,6 @@
 						               <c:forEach var="qna" items="${myQnaList }" varStatus="status">
 						                <tr>
 							                <td scope="row" class="mobile" style="text-align:center;">${fn:length(myQnaList) - status.index }</td>
-						              		<%-- <td scope="row" class="mobile" style="text-align:center;">${qna.qna_cd }</td> --%>
 						                	<td>
 						                		<a href="userqnaselect.action?qna_cd=${qna.qna_cd }" style="color: #000000;">${qna.qna_title }</a>
 						                	</td>
