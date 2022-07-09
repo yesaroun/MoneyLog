@@ -8,9 +8,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>로그인</title>
+<title>관리자로그인</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
 <link rel="stylesheet" href="./css/admin.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	// 아이디 혹은 비밀번호 틀려서 다시 로그인 페이지로 돌아올 때 메세지 출력
+	var msg = "<c:out value='${msg}'/>";
+	if(!msg=="")
+	{
+		alert(msg);
+	}
+	
+	$(function()
+	{
+		$("#loginBtn").click(function()
+		{
+			$("#err").css("display", "none");
+					
+			if($("#ad_id").val()=="" || $("#ad_pw").val()=="")
+			{
+					$("#err").html("※ 항목을 모두 입력하세요.").css("display", "inline");
+					return;
+			}
+			$("#adLoginForm").submit();	
+		});
+	});
+	
+</script>
 </head>
 <body>
     <div class="wrap">
@@ -29,10 +55,11 @@
                 </div>
                 <div class="row pt-2" >
                     <div id="loginForm">
-                        <form action=""> 
-                            <input type="text" name="id" class="text-field form-control" placeholder="아이디" />
-                            <input type="password" name="pw" class="text-field form-control" placeholder="비밀번호" />
-                            <button type="button" onclick="location.href='AdMain.jsp'" class="btn btn-primary" id="loginBtn">관리자 로그인</button>
+                        <form action="adlogin.action" method="POST" id="adLoginForm"> 
+                            <input type="text" id="ad_id" name="ad_id" class="text-field form-control" placeholder="아이디" />
+                            <input type="password" id="ad_pw" name="ad_pw" class="text-field form-control" placeholder="비밀번호" />
+                            <button type="button" class="btn btn-primary" id="loginBtn">관리자 로그인</button>
+                			<span id="err" style="color: red; display: none;"></span>
                         </form>
                     </div>
                 </div>

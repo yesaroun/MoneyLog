@@ -17,7 +17,7 @@
 
 <!-- 네비게이션바 ===================================================== -->
 	<nav class="navbar navbar-expand-lg navbar-dark">
-		<a class="navbar-brand" href="AdLogin.jsp">MONEYLOG</a>
+		<a class="navbar-brand" href="./adloginform.action">MONEYLOG</a>
 	</nav>
 	<!-- 네비게이션바 ===================================================== -->
 

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -12,14 +13,20 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	var ad_id = (String)session.getAttribute("ad_cd");
+	
+</script>
 </head>
 <body>
 
 <!-- 네비게이션바 ===================================================== -->
 	<nav class="navbar navbar-expand-lg navbar-dark">
-		<a class="navbar-brand" href="./AdMain.jsp">MONEYLOG</a>
+		<a class="navbar-brand" href="./admain.action">MONEYLOG</a>
 		<ol class="breadcrumb mobile" style="height: 30px; background: #FFD97D;">
-            <li class="active"> 안녕하세요. [ 김태형 ] 관리자님 반갑습니다.</li>
+            <li class="active"> 안녕하세요. [ ${ad_id } ] 관리자님 반갑습니다.</li>
         </ol>
         <button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar" aria-controls="navbar" aria-expanded="false"
@@ -32,7 +39,7 @@
 				<a class="nav-item nav-link" href="AdUserList.jsp">통합관리</a>
 				<a class="nav-item nav-link active" href="./adpostlist.action?pageNum=1">머니리뷰</a>
 				<a class="nav-item nav-link" href="./adnotilist.action">고객지원</a>
-				<a class="nav-item nav-link" href="AdLogin.jsp">로그아웃</a>
+				<a class="nav-item nav-link" href="./adminlogout.action">로그아웃</a>
 			</div>
 		</div>
 	</nav>
