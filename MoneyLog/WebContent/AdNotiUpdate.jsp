@@ -16,35 +16,55 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
 <script type="text/javascript">
-
-/* --> 진행중
+	
+		/* 수정 기능은 잠시 보류 */
+	
 		$(function()
 		{
 			// 체크박스를 클릭할 때 작동
 			$('input[name="pin"]').change(function()
 			{
-				//alert("확인");
-				
-				//var value = $(this).val();
-				//var checked = $(this).prop('checked', 1);
-				
-				// $("#pin1") 체크박스를 건드리면 noti_pin 은 Y 로 바뀌어야 함
-				if($("#pin1"))
+				// 상단고정 체크한다면
+				if( $('input[name="pin"]').is(":checked") == true ) 
 				{
-					// value 1 을 줄 것이고, 1일 경우에 컨트롤러에서 update 쿼리가 noti_pin 이 y 로 바뀌는 메소드 실행
-					$("#pin1").prop("value", 1);
+					//alert("상단고정 x → 상단고정");
+				
+					// noti_pin 의 value 값은 Y 로 바뀌어야 함
+					var noti_pin = $("#pin2").val('Y');
+					
+					// id가 noti_pin 인 input 태그 값을 Y 로 지정하여 넘겨줌
+					//$("#noti_pin").val() = noti_pin;
+					
+					//$('input[name="pin"]').val('Y');
+					
 				}
-				// $("#pin2") 체크박스를 건드리면 noti_pin 은 N 로 바뀌어야 함
-				else
+				// 체크된 상단고정 해제한다면
+				else 
 				{
-					// value 1 을 줄 것이고, 1일 경우에 컨트롤러에서 update 쿼리가 noti_pin 이 y 로 바뀌는 메소드 실행
-					$("#pin2").prop("value", 0);
+					//alert("상단고정 → 상단고정 x");
+				
+					// noti_pin 의 value 값은 N 으로 바뀌어야 함
+					var noti_pin = $("#pin1").val('N');
+					
+					// id가 noti_pin 인 input 태그 값을 N 으로 지정하여 넘겨줌
+					
+					
+					//$('input[name="pin"]').val('N');
 				}
+				
+				return noti_pin;
+				
 			});
 			
 		});
- */
- 
+	
+		function update(noti_pin)
+		{
+			window.location.href = "./adnotiupdate.action?noti_cd=" + ${update.noti_cd} + "?noti_title=" + ${update.noti_title} + "?noti_noti_cont=" + ${update.noti_cont} + "?noti_pin=" + noti_pin;
+			$("#updateForm").submit();
+		}
+ 		
+ 		
 </script>
 </head>
 <body>
@@ -74,13 +94,14 @@
                         </div>
                     </section>
                     <section>
+                    <form action="./adnotiupdate.action" id="updateForm" >
                         <div class="row">
                             <table id="cont" class="table2 col-12">
                                 <tr>
                                     <th>공지유형</th>
                                     <td>
                                         <c:choose>
-                                        	<c:when test="${UpdateForm.noti_pin eq 'N'}">
+                                        	<c:when test="${update.noti_pin eq 'N'}">
                                         		<label for="pin"><input type="checkbox" id="pin1" name="pin"> 상단고정</label>
                                         	</c:when>
                                         	<c:otherwise>
@@ -92,13 +113,13 @@
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input class="table-title" type="text" value="${UpdateForm.noti_title}">
+                                        <input class="table-title" id="title" type="text" value="${update.noti_title}">
                                     <td>
                                 </tr>
                                 <tr>    
                                     <th>내용</th>
                                     <td>
-                                        <textarea class="table-content" name="content" rows="10" cols="60">${UpdateForm.noti_cont}</textarea>
+                                        <textarea class="table-content" id="cont" name="content" rows="10" cols="60">${update.noti_cont}</textarea>
                                     </td>    
                                 </tr>
                             </table>
@@ -106,11 +127,12 @@
                         </div>
                         <div class="row">
                             <div class="col-12" style="margin-top: 20px;">	
-                                <button type="submit" class="btn btn-primary reg-btn" data-toggle="modal" data-target="#modal">등록하기</button>
+                                <button type="submit" class="btn btn-primary reg-btn" id="updateBtn">등록하기</button>
                                 <button type="button" class="btn btn-secondary return-btn"
-                                onclick="javascript:location.href='<%=cp%>/adnoticont.action?noti_cd=${UpdateForm.noti_cd}'">취소하기</button>
+                                onclick="javascript:location.href='<%=cp%>/adnoticont.action?noti_cd=${update.noti_cd}'">취소하기</button>
                             </div>
                         </div>
+                    </form>
                     </section>
                 </main>
             </div>
@@ -119,7 +141,7 @@
 </div>
 
 
-
+<%-- 
 <!-- modal 만들기 -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal"
 aria-hidden="true">
@@ -134,19 +156,40 @@ aria-hidden="true">
             </div>
         
             <div class="modal-body" style="text-align : center;">
-                <form>
+                <img src="./img3/register.png" width="50%;">
+                  <form id="updateform">
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" onclick="update()">확인</button>
+                   	
+                   		<input type="hidden" name="noti_cd" id="noti_cd" value="${update.noti_cd}" /> 
+                        <input type="hidden" name="noti_title" id="noti_title" value="${update.noti_title}" /> 
+                   		<input type="hidden" name="noti_cont" id="noti_cont" value="${update.noti_cont}" /> 
+                   		
+                    </div>
+                  </form>  
+
+					"adnotiupdate.action?noti_cd=" + ${update.noti_cd} + "?noti_title=" + ${update.noti_title} +
+	 									 "?noti_pin=" + noti_pin + "?noti_cont=" + ${update.noti_cont} );
+
+                 <form>
                     <img src="./img3/register.png" width="50%;">
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/adnotiupdate.action">확인</button>
+                    
+
+                        <input type="hidden" name="noti_pin" id="noti_pin" value="noti_pin" /> 
+                        
+                        
                     </div>
                     
                 </form>
+               
             </div>
         </div>
     </div>
 </div>
-	
+	 --%>
 	<script src="./js/jquery-3.2.1.min.js"></script>
 	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>

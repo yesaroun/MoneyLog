@@ -70,7 +70,7 @@
 		                			<tr>
 			                			<td scope="row" class="mobile" style="text-align:center;">${adNoti.rownum }</td>
 			                			<td><a href="./adnoticont.action?noti_cd=${adNoti.noti_cd }" style="color: #000000;">${adNoti.noti_title }</a></td>
-			                			<td class="mobile" style="text-align:center;">${adNoti.noti_title }</td>
+			                			<td class="mobile" style="text-align:center;">${adNoti.ad_id }</td>
 			                			<td class="mobile" style="text-align:center;">
 			                				<fmt:parseDate value="${adNoti.noti_date }" var="noti_date" pattern="yyyy-mm-dd" />
 											<fmt:formatDate value="${noti_date}" pattern="yyyy-mm-dd" />
@@ -85,7 +85,7 @@
                         </div>
                         <div class="row">	
                             <div class="col-12">
-                                <button type="button" class="btn btn-success write-btn" onclick="location.href='./adnotireg.action'">작성하기</button>
+                                <button type="button" class="btn btn-success write-btn" onclick="location.href='./adnotiregform.action'">작성하기</button>
                             </div>
                         </div>
                         <div class="row">

@@ -12,6 +12,40 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	
+	$(function()
+	{
+
+		
+		$("#regBtn").click(function()
+		{	
+			// 데이터 검사(공란이 있는지 없는지에 대한 여부 확인)
+			$("#err1").css("display", "none");
+			$("#err2").css("display", "none");
+							
+			if ( $("#noti_title").val()=="")
+				{
+					$("#errForm").css("display" ,"inline");
+					$("#noti_title").focus();
+					return;
+				} 
+			
+			if ( $("#noti_cont").val()=="")
+			{
+				$("#err2").css("display", "inline");
+				$("#noti_cont").focus();
+				return;
+			}
+							
+				$("#adNotiInsert").submit();
+						
+		});
+		
+	});
+
+</script>
 </head>
 <body>
 
@@ -29,6 +63,7 @@
             </div>
             <div class="span10">
                 <main id="adNotiReg">
+                <form action="adNotiInsert" method="get">
                     <section>
                         <div class="row">
                             <div class="col-12 notice-title">
@@ -50,13 +85,15 @@
                                 <tr>    
                                     <th>제목</th>
                                     <td>
-                                        <input type="text" class="table-title" placeholder="제목을 입력해주세요.">
+                                        <input type="text" id="noti_title" name="noti_title" class="table-title" placeholder="제목을 입력해주세요.">
+                                    	<span id="err1" style="color: red; display: none;">※ 제목을 입력하세요.</span>	
                                     </td>
                                 </tr>  
                                 <tr>    
                                     <th>내용</th>
                                     <td>
-                                        <textarea class="table-content" name="content" rows="10" cols="60" placeholder="내용을 입력해주세요."></textarea>
+                                        <textarea class="table-content" id="noti_cont" name="noti_cont"  rows="10" cols="60" placeholder="내용을 입력해주세요."></textarea>
+                                    	<span id="err2" style="color: red; display: none;">※ 내용을 입력하세요.</span>	
                                     </td>    
                                 </tr>
                             </table>
@@ -66,13 +103,16 @@
                         <div class="row">
                             <div class="col-12" style="margin-top: 20px;">
                                 <button type="submit" class="btn btn-secondary return-btn"
-                                onclick="javascript:location.href='<%=cp%>/AdNotiList.jsp'">돌아가기</button>
+                                onclick="javascript:location.href='<%=cp%>/adnotilist.action'">돌아가기</button>
 
-                                <button type="submit" class="btn btn-primary reg-btn"
-                                data-toggle="modal" data-target="#modal">등록하기</button>
+                                <button type="button" id="regBtn" class="btn btn-primary reg-btn">등록하기</button>          		
+                            		
+                            	<!-- <button type="button" id="regBtn" class="btn btn-primary reg-btn"
+                                data-toggle="modal" data-target="#modal">등록하기</button> -->
                             </div>
                         </div>
                     </section>
+                </form>
                 </main>
             </div>
         </div>
@@ -84,7 +124,7 @@
 	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 
-
+<%-- 
 <!-- modal 만들기 -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal"
 aria-hidden="true">
@@ -111,7 +151,7 @@ aria-hidden="true">
         </div>
     </div>
 </div>
-	
+ --%>	
 
 
 </body>
