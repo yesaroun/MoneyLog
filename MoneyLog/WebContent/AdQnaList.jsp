@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -59,69 +61,28 @@
                                         <th>제목</th>
                                         <th>답변처리</th>
                                         <th>등록일자</th>
-                                    </tr>	
-                                    <tr>
-                                        <td>38</td>
-                                        <td><a href="AdQnaAnswer.jsp">홈페이지 활용 방법을 모르겠어요</a> </td>
-                                        <td> - </td>
-                                        <td>2022.05.17</td>					      	
                                     </tr>
-                                        
-                                    <tr>
-                                        <td>37</td>
-                                        <td><a href="AdQnaAnswer.jsp">가계부 입력 모르겠어요</a></td>
-                                        <td> - </td>
-                                        <td>2022.05.10</td>	
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>36</td>
-                                        <td><a href="AdQnaAnswer.jsp">머니의 전당이 뭔가요</a></td>
-                                        <td>완료</td>
-                                        <td>2022.05.01</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>35</td>
-                                        <td><a href="AdQnaAnswer.jsp">마이페이지가 어디있나요</a></td>
-                                        <td>완료</td>
-                                        <td>2022.04.23</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>34</td>
-                                        <td>머니로그 광고 문의드려요</td>
-                                        <td>완료</td>
-                                        <td>2022.04.18</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>33</td>
-                                        <td>가계부를 어떻게 작성하죠</td>
-                                        <td>완료</td>
-                                        <td>2022.04.11</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>32</td>
-                                        <td>이것 저것 물어보는 곳인가요?</td>
-                                        <td>완료</td>
-                                        <td>2022.04.08</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>31</td>
-                                        <td>이용자 신고는 어디서 하죠</td>
-                                        <td>완료</td>
-                                        <td>2022.04.01</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td>30</td>
-                                        <td>분석하기 문의</td>
-                                        <td>완료</td>
-                                        <td>2022.03.25</td>
-                                    </tr>
+
+                                    <c:if test="${empty adQnaList}">
+									<tr>
+										<td colspan="5" style="text-align: center;">등록된 공지사항이 없습니다.</td>
+									</tr>
+									</c:if>
+									
+									<c:if test="${not empty adQnaList}">
+		                			<c:forEach var="adQna" items="${adQnaList }" varStatus="status">
+		                			<tr>
+			                			<td scope="row" class="mobile" style="text-align:center;">${adQna.rownum }</td>
+			                			<td><a href="AdQnaCont.jsp" style="color: #000000;">${adQna.qna_title }</a></td>
+			                			<td class="mobile" style="text-align:center;">${adQna.ad_ansr }</td>
+			                			<td class="mobile" style="text-align:center;">
+			                				<fmt:parseDate value="${adQna.qna_date }" var="qna_date" pattern="yyyy-mm-dd" />
+											<fmt:formatDate value="${qna_date}" pattern="yyyy-mm-dd" />
+			                			</td>
+									</tr>
+									</c:forEach>
+									</c:if>
+
                                 </table>
                                 <div class="row">
                                     <div class="col" style="place-items: center; display: grid;">

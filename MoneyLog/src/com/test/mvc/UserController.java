@@ -1011,8 +1011,7 @@ public class UserController
 		
 		return result;
 	}
-	
-	
+
 	
 	// 고객센터 문의하기 버튼 클릭시 문의하기 폼으로 이동              //-- 쿼리 필요없음 이름은 세션으로, 날짜는 날짜 클래스로 조회
 	@RequestMapping(value="/userqnareg.action", method=RequestMethod.GET)

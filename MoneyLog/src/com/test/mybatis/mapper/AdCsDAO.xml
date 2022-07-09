@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.mvc.IAdCsDAO">
+	
+	<!-- ▼ 공지사항 ▼ -->
+	
+	<!-- 	
+	공지사항 페이징 - 전체 공지사항 개수
+	<select id="adNotiCount" resultType="com.test.mvc.AdCsDTO">
+		SELECT COUNT(*) AS COUNT
+		FROM NOTI
+	</select>
+	 -->
+	
+	<!-- 공지사항 리스트 출력 - 상단고정글(우선순위)과 최신글(차순위) 순서로) -->
+	<select id="adNotiList" resultType="com.test.mvc.AdCsDTO">
+		SELECT ROWNUM, A.NOTI_CD, A.NOTI_TITLE, A.AD_ID, A.NOTI_DATE, A.NOTI_VIEW, A.NOTI_PIN
+		FROM
+		(
+		    SELECT N.NOTI_CD, N.NOTI_TITLE, AI.AD_ID, N.NOTI_DATE, N.NOTI_VIEW, N.NOTI_PIN
+		    FROM NOTI N LEFT JOIN AD_INFO AI
+		    ON N.AD_CD = AI.AD_CD
+		    ORDER BY (CASE WHEN NOTI_PIN = 'Y' THEN 1 ELSE 2 END) DESC, NOTI_DATE ASC
+		)A
+		ORDER BY ROWNUM DESC
+	</select>
+	
+	
+	<!-- 공지사항 조회 - 게시물 기본 내용 -->
+	<select id="adNotiView" resultType="com.test.mvc.AdCsDTO">
+		SELECT N.NOTI_CD, N.NOTI_DATE, AI.AD_ID, N.NOTI_PIN, N.NOTI_TITLE, N.NOTI_CONT
+		FROM NOTI N LEFT JOIN AD_INFO AI
+		ON N.AD_CD = AI.AD_CD
+		WHERE N.NOTI_CD = #{noti_cd }
+	</select>
+	
+	<!-- 공지사항 - 수정 -->
+	<update id="modify">
+		UPDATE NOTI
+		SET NOTI_TITLE = #{noti_title }, NOTI_CONT = #{noti_cont }, NOTI_PIN = #{noti_pin}
+		WHERE NOTI_CD=#{noti_cd }
+	</update>
+	
+	<!-- 	
+	공지사항 등록
+
+
+	공지사항 - 삭제
+	-->
+
+	<!-- ▼ 문의글 ▼ -->
+	
+
+	<!-- 문의글 리스트 출력 -->
+	<select id="adQnaList" resultType="com.test.mvc.AdCsDTO">
+	SELECT ROWNUM, QA.QNA_TITLE, QA.AD_ANSR, QA.USER_NAME, QA.QNA_DATE, QA.QNA_VIEW
+	FROM
+	(
+	    SELECT Q.QNA_TITLE, DECODE(AA.AD_ANSR_CD, NULL , '-', '완료') "AD_ANSR"
+	         , UI.USER_NAME, Q.QNA_DATE, Q.QNA_VIEW
+	    FROM QNA Q LEFT JOIN AD_ANSR AA
+	    ON Q.QNA_CD = AA.QNA_CD
+	    LEFT JOIN USER_INFO UI
+	    ON Q.USER_DSTN_CD = UI.USER_DSTN_CD
+	    ORDER BY (CASE WHEN AD_ANSR = '완료' THEN 2 ELSE 1 END) DESC, QNA_DATE ASC
+	) QA
+	ORDER BY ROWNUM DESC
+	</select>
+	
+	<!-- 
+	문의글 상세정보
+
+	
+	문의글 페이징 - 전체 문의글 개수
+	
+	
+	문의 답변 - 등록
+	
+	
+	문의 답변 - 수정
+	
+	
+	문의 답변 - 삭제
+	-->
+</mapper>

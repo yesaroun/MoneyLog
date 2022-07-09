@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -12,6 +13,39 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
+<script type="text/javascript">
+
+/* --> 진행중
+		$(function()
+		{
+			// 체크박스를 클릭할 때 작동
+			$('input[name="pin"]').change(function()
+			{
+				//alert("확인");
+				
+				//var value = $(this).val();
+				//var checked = $(this).prop('checked', 1);
+				
+				// $("#pin1") 체크박스를 건드리면 noti_pin 은 Y 로 바뀌어야 함
+				if($("#pin1"))
+				{
+					// value 1 을 줄 것이고, 1일 경우에 컨트롤러에서 update 쿼리가 noti_pin 이 y 로 바뀌는 메소드 실행
+					$("#pin1").prop("value", 1);
+				}
+				// $("#pin2") 체크박스를 건드리면 noti_pin 은 N 로 바뀌어야 함
+				else
+				{
+					// value 1 을 줄 것이고, 1일 경우에 컨트롤러에서 update 쿼리가 noti_pin 이 y 로 바뀌는 메소드 실행
+					$("#pin2").prop("value", 0);
+				}
+			});
+			
+		});
+ */
+ 
+</script>
 </head>
 <body>
 
@@ -45,28 +79,36 @@
                                 <tr>
                                     <th>공지유형</th>
                                     <td>
-                                        <label for="pin"><input type="checkbox" id="pin" name="pin" checked> 상단고정</label>
+                                        <c:choose>
+                                        	<c:when test="${UpdateForm.noti_pin eq 'N'}">
+                                        		<label for="pin"><input type="checkbox" id="pin1" name="pin"> 상단고정</label>
+                                        	</c:when>
+                                        	<c:otherwise>
+                                        		<label for="pin"><input type="checkbox" id="pin2" name="pin" checked="checked"> 상단고정</label>
+                                        	</c:otherwise>
+                                        </c:choose>
                                     <td>
                                 </tr>
                                 <tr>
                                     <th>제목</th>
                                     <td>
-                                        <input class="table-title" type="text" value="원래 공지했던 제목">
+                                        <input class="table-title" type="text" value="${UpdateForm.noti_title}">
                                     <td>
                                 </tr>
                                 <tr>    
                                     <th>내용</th>
                                     <td>
-                                        <textarea class="table-content" name="content" rows="10" cols="60">원래 공지했던 내용들</textarea>
+                                        <textarea class="table-content" name="content" rows="10" cols="60">${UpdateForm.noti_cont}</textarea>
                                     </td>    
                                 </tr>
                             </table>
+
                         </div>
                         <div class="row">
                             <div class="col-12" style="margin-top: 20px;">	
                                 <button type="submit" class="btn btn-primary reg-btn" data-toggle="modal" data-target="#modal">등록하기</button>
-                                <button type="submit" class="btn btn-secondary return-btn"
-                                onclick="javascript:location.href='<%=cp%>/AdNotiCont.jsp'">돌아가기</button>
+                                <button type="button" class="btn btn-secondary return-btn"
+                                onclick="javascript:location.href='<%=cp%>/adnoticont.action?noti_cd=${UpdateForm.noti_cd}'">취소하기</button>
                             </div>
                         </div>
                     </section>
@@ -96,7 +138,7 @@ aria-hidden="true">
                     <img src="./img3/register.png" width="50%;">
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/AdNotiCont.jsp'">확인</button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/adnotiupdate.action">확인</button>
                     </div>
                     
                 </form>

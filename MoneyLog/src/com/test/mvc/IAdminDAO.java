@@ -18,4 +18,5 @@ public interface IAdminDAO
 	
 	// 게시글 신고처리 리스트
 	public ArrayList<PostReptDTO> postReptList();
+	
 }

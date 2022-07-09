@@ -31,7 +31,7 @@
 			<div class="navbar-nav mr-sm-2">
 				<a class="nav-item nav-link" href="AdUserList.jsp">통합관리</a>
 				<a class="nav-item nav-link" href="./adpostlist.action?pageNum=1">머니리뷰</a>
-				<a class="nav-item nav-link" href="AdNotiList.jsp">고객지원</a>
+				<a class="nav-item nav-link" href="./adnotilist.action">고객지원</a>
 				<a class="nav-item nav-link" href="AdLogin.jsp">로그아웃</a>
 			</div>
 		</div>
