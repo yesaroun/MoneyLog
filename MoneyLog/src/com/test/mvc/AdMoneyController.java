@@ -352,22 +352,21 @@ public class AdMoneyController
 	}
 	
 	// 머니리뷰 게시글 조회 (관리자)
-	/*
 	@RequestMapping(value = "/admoneypost.action", method = RequestMethod.GET)
 	public ModelAndView moneypost(HttpSession session, MoneyDTO money)
 	{
 		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
 		
-		//String user_dstn_cd = (String)session.getAttribute("user_dstn_cd");
+		session.removeAttribute("user_dstn_cd");
+		
 		String ad_cd = (String)session.getAttribute("ad_cd");
 		
 		ModelAndView mv = new ModelAndView();
-		//mv.addObject("user_dstn_cd", user_dstn_cd);
+		mv.addObject("user_dstn_cd", -1);
 		mv.addObject("ad_cd", ad_cd);
 		mv.setViewName("/MoneyPost.jsp");
 		mv.addObject("postFind", dao.postFind(money));
-		//mv.addObject("postCount", dao.postCount(user_dstn_cd));
-		//mv.addObject("postCount", dao.postCount(ad_cd));
+		mv.addObject("postCount", -1);
 		mv.addObject("inOutList", dao.inOutList(money));
 		mv.addObject("inOutData", dao.inOutData(money));
 		
@@ -383,7 +382,7 @@ public class AdMoneyController
 		mv.addObject("cmntList", dao.cmntList(money));
 		
 		return mv;
-	}*/
+	}
 
 
 

@@ -153,6 +153,9 @@ public class MoneyController
 	{
 		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
 		
+		session.removeAttribute("ad_cd");
+    	session.removeAttribute("ad_id");
+		
 		String user_dstn_cd = (String)session.getAttribute("user_dstn_cd");
 		
 		ModelAndView mv = new ModelAndView();

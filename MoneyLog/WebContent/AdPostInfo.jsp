@@ -92,7 +92,7 @@
                                                     
                                                      
                                                     <tr>
-                                                        <td colspan="3" style="text-align: center;"><a href="./boardView.html" style="color: #000000;">${info.post_cd}</a></td>
+                                                        <td colspan="3" style="text-align: center;">${info.post_cd}</td>
                                                         <td colspan="3" style="text-align: center;">
                                                         	<fmt:parseDate value="${info.post_date}" var="post_date" pattern="yyyy-MM-dd" />
 						                       				<fmt:formatDate value="${post_date}" pattern="yyyy-MM-dd" />

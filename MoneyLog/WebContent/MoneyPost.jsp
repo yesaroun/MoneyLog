@@ -15,7 +15,6 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script type="text/javascript">
 
-	
 	// 해당 게시글의 작성자, 게시글 코드 가져오기
 	<c:forEach var="post" items="${postFind }">
   		var user_dstn_cd = ${post.user_dstn_cd}
@@ -81,10 +80,16 @@
 		window.location.href = "./userpostlist.action?pageNum="+1;
 	}
 	
+	// 게시글 목록으로 이동
+	function adPostList()
+	{
+		window.location.href = "./adpostlist.action?pageNum="+1;
+	}
+	
 	
 	// 페이지 열리면 바로 실행
 	$(document).ready(function(){
-		
+	
 		// 본인에게 이모티콘 했을때
 		$('#emtcbtnSelf1').click(function()
 		{
@@ -105,6 +110,29 @@
 		$('#emtcbtnSelf5').click(function()
 		{
 			alert("[부자될 예정] 본인에게 평가는 불가능합니다!")
+		});
+		
+		
+		// 관리자가 이모티콘 했을때
+		$('#emtcbtnAdmin1').click(function()
+		{
+			alert("[텅장될 예정] 관리자는 평가가 불가능합니다!")
+		});
+		$('#emtcbtnAdmin2').click(function()
+		{
+			alert("[안사면 0원] 관리자는 평가가 불가능합니다!")
+		});
+		$('#emtcbtnAdmin3').click(function()
+		{
+			alert("[이대로만 쭉] 관리자는 평가가 불가능합니다!")
+		});
+		$('#emtcbtnAdmin4').click(function()
+		{
+			alert("[티끌모아 태산] 관리자는 평가가 불가능합니다!")
+		});
+		$('#emtcbtnAdmin5').click(function()
+		{
+			alert("[부자될 예정] 관리자는 평가가 불가능합니다!")
 		});
 		
 		
@@ -201,36 +229,7 @@
             </div>
       </div>
     </div>
-    
-    
-	<!-- 데이터 잘 왔는지 테스트용 - 통합시 삭제하기 -->
-	<!-- 
-	로그인된 코드 : ${user_dstn_cd }<br>
-	<c:set var="writer_flag" value="false" />
-	<c:if test="${not writer_flag }">
-		<c:forEach var="post" items="${postFind }">
-			<c:if test="${post.user_dstn_cd eq user_dstn_cd }">
-				
-				글작성자 코드 : ${post.user_dstn_cd}<br>
-				<b>글작성자 본인 게시물</b><br>
-				
-				<c:set var="writer_flag" value="true" />
-			</c:if>
-		</c:forEach>
-	</c:if>
-	<c:if test="${not writer_flag }">
-		
-		글작성자 코드 : ${post.user_dstn_cd}<br>
-		다른 사람 게시물<br>
-		
-	</c:if>
-	
-	내가 올린 머니리뷰 갯수 : ${postCount }<br>
-	총수입 : ${totalIn }<br>
-	총지출 : ${totalOut }<br>
-	 -->
-	<!------------------------------------------------->
-
+ 
 
     <div class="container-fluid">
     	<div class="row">
@@ -527,7 +526,7 @@
 							</c:if>
 							
 							<!-- 글작성자가 아닐때 - 게시글 신고버튼 -->
-							<c:if test="${not writer_flag}">
+							<c:if test="${not writer_flag and empty ad_cd}">
 								<div class="float-left">
 									<br><br>
 									<button class="btn" style="width: 100px;" onclick="postReport()">신고</button>
@@ -539,7 +538,15 @@
 								<br><br>
 								<button class="btn" style="width: 100px;">이전 글</button>
 								<button class="btn" style="width: 100px;">다음 글</button>
-								<button class="btn" style="width: 100px;" onclick="userPostList()">목록</button>
+								
+								<c:if test="${user_dstn_cd != -1}">
+									<button class="btn" style="width: 100px;" onclick="userPostList()">목록</button>
+								</c:if>
+								
+								<c:if test="${not empty ad_cd}">
+									<button class="btn" style="width: 100px;" onclick="adPostList()">목록</button>
+								</c:if>
+								
 			               </div>
 			               
             			</div>
@@ -609,7 +616,7 @@
 									</c:if>
 									
 									<!-- ☆ 이모티콘 가능 - 글작성자가 아닐 경우 -->
-									<c:if test="${not writer_flag }">
+									<c:if test="${not writer_flag and empty ad_cd }">
 									
 										<!-- ① 이모티콘1 등록여부 -->
 										<c:set var="check_flag" value="true" ></c:set>
@@ -783,6 +790,54 @@
 										</c:if>
 									</c:if>
 								</c:forEach>
+								
+								<!-- 이모티콘 불가능 - 관리자 -->
+								<c:if test="${not empty ad_cd }">
+									
+									<div class="item" style="width: 200px;">
+								    	<button type="button" class="emtcbtn" id="emtcbtnAdmin1" style="border: none; background-color: white;">
+								    		<img src="./img/emtc1.png">
+								    	</button>
+								    	<h3>${count.emtc1}</h3>
+										<h5>텅장될 예정</h5>
+									</div>
+									
+									<div class="item" style="width: 200px;">
+										<button type="button" class="emtcbtn" id="emtcbtnAdmin2" style="border: none; background-color: white;">
+								    	<img src="./img/emtc2.png">
+								    	</button>
+								    	<h3>${count.emtc2}</h3>
+										<h5>안사면 0원</h5>
+									</div>
+									
+									<div class="item" style="width: 200px;">
+								    	<button type="button" class="emtcbtn" id="emtcbtnAdmin3" style="border: none; background-color: white;">
+								    	<img src="./img/emtc3.png">
+								    	</button>
+								    	<h3>${count.emtc3}</h3>
+										<h5>이대로만 쭉</h5>
+									</div>
+									
+									<div class="item" style="width: 200px;">
+								    	<button type="button" class="emtcbtn" id="emtcbtnAdmin4" style="border: none; background-color: white;">
+								    	<img src="./img/emtc4.png">
+								    	</button>
+								    	<h3>${count.emtc4}</h3>
+										<h5>티끌모아 태산</h5>
+									</div>
+									
+									<div class="item" style="width: 200px;">
+								    	<button type="button" class="emtcbtn" id="emtcbtnAdmin5" style="border: none; background-color: white;">
+								    	<img src="./img/emtc5.png">
+								    	</button>
+								    	<h3>${count.emtc5}</h3>
+										<h5>부자될 예정</h5>
+									</div>
+									
+									<c:set var="writer_flag" value="true" />
+								</c:if>
+								
+								
 							</div>
 							<br><br>
 							<div class="list-group-item">
@@ -832,13 +887,20 @@
 									
 									<!-- 등록개수 >= 3 -->
 									<!-- 3개 미만 등록 -->
-									<c:if test="${not postCount_flag }">
+									<c:if test="${not postCount_flag and empty ad_cd }">
 											<form action="cmntadd.action" method="get">
 										 		<input type="text" id="user_dstn_cd" name="user_dstn_cd" value="${user_dstn_cd }"  style="display: none;">
 										 		<c:forEach var="post" items="${postFind }">
 										 		<input type="text" id="post_cd" name="post_cd" value="${post.post_cd}" style="display: none;">
 										 		</c:forEach>
 												<textarea class="form-control" name="cmnt_cont" rows="3" disabled="disabled"> 머니리뷰를 3번 이상 공유한 사람만 피드백을 작성할 수 있습니다. </textarea>
+											</form>
+									</c:if>
+									
+									<!-- 관리자는 댓글 불가 -->
+									<c:if test="${not empty ad_cd }">
+											<form action="cmntadd.action" method="get">
+												<textarea class="form-control" name="cmnt_cont" rows="3" disabled="disabled"> 관리자는 피드백을 작성할 수 없습니다. </textarea>
 											</form>
 									</c:if>
 								 	
@@ -918,7 +980,7 @@
 										</c:if>
 								 		
 								 		<!-- 댓글 작성자가 아닐경우 -->
-								 		<c:if test="${not loop_flag }">
+								 		<c:if test="${not loop_flag and empty ad_cd }">
 									 		
 									 		<!-- 댓글 1개 (작성자아닌) -->
 									 		<li class="list-group-item list-group-item-action">
@@ -941,6 +1003,18 @@
 													</button>
 													
 												</div>
+											</li>
+										</c:if>
+										
+										<!-- 관리자일 경우 (수정, 삭제, 신고 모두 불가능) -->
+								 		<c:if test="${not empty ad_cd }">
+									 		
+									 		<!-- 댓글 1개 (작성자아닌) -->
+									 		<li class="list-group-item list-group-item-action">
+						                		
+												<span class="cmntCont" id="cmntCont${cmnt.cmnt_cd}">
+													${cmnt.cmnt_cont}
+												</span>
 											</li>
 										</c:if>
 					                </c:forEach>
