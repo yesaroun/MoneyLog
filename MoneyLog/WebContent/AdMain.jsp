@@ -6,7 +6,6 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
-
 <%
 		// 월 신규 회원 수
 		int data1 = 434;
@@ -78,21 +77,21 @@
                                                 <!-- 이미지 -->
                                                 <div class="col-md-4 text-center p-5">
                                                     <a href="AdPostReptList.jsp"><img src="./img/event.svg"></a>
-                                                    <h3>${countPostRept }</h3>
+                                                    <h3>13</h3>
                                                     <h5>미처리된 게시글 신고</h5>
                                                 </div>
                                                 
                                                 <!-- 이미지 -->
                                                 <div class="col-md-4 text-center p-5">
                                                     <a href="AdCmntReptList.jsp"><img src="./img/event.svg"></a>
-                                                    <h3>${countCmntRept }</h3>
+                                                    <h3>31</h3>
                                                     <h5>미처리된 댓글 신고</h5>
                                                 </div>
             
                                                 <!-- 이미지 -->
                                                 <div class="col-md-4 text-center p-5">
                                                     <a href="AdQnaList.jsp"><img src="./img/edit.svg"></a>
-                                                    <h3>${countQna }</h3>
+                                                    <h3>21</h3>
                                                     <h5>미답변된 문의</h5>
                                                 </div>
                                             </div>

@@ -38,8 +38,8 @@
                     <img style="width: 20px;" src="./img/user.svg"><span class="d-none d-md-inline ml-1"> 고객지원</span>
                 </a>
                 <div class="collapse" id="cs">
-                    <a href="AdNotiList.jsp" class="list-group-item" data-parent="#sidebar">공지사항</a>
-                    <a href="AdQnaList.jsp" class="list-group-item" data-parent="#sidebar">문의글</a>
+                    <a href="./adnotilist.action" class="list-group-item" data-parent="#sidebar">공지사항</a>
+                    <a href="./adqnalist.action" class="list-group-item" data-parent="#sidebar">문의글</a>
                 </div>
                 
             </div> 
