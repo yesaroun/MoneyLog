@@ -37,19 +37,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE N.NOTI_CD = #{noti_cd }
 	</select>
 	
-	<!-- 공지사항 - 수정 -->
-	<update id="modify">
+	<!-- 공지사항 수정 -->
+	<update id="adNotiModify">
 		UPDATE NOTI
-		SET NOTI_TITLE = #{noti_title }, NOTI_CONT = #{noti_cont }, NOTI_PIN = #{noti_pin}
-		WHERE NOTI_CD=#{noti_cd }
+		SET NOTI_TITLE = #{noti_title}, NOTI_CONT = #{noti_cont }, NOTI_PIN = #{noti_pin}
+		WHERE NOTI_CD = #{noti_cd }
 	</update>
 	
-	<!-- 	
-	공지사항 등록
-
-
-	공지사항 - 삭제
-	-->
+	<!-- 공지사항 삭제 -->
+	<delete id="adNotiDelete">
+		DELETE
+		FROM NOTI
+		WHERE NOTI_CD = #{noti_cd }
+	</delete>
+	
+	<!-- 공지사항 등록 -->
+	<insert id="adNotiInsert">
+		INSERT INTO NOTI(NOTI_CD, AD_CD, NOTI_TITLE, NOTI_CONT, NOTI_VIEW, NOTI_PIN)
+		VALUES(NOTI_SEQ.NEXTVAL, #{ad_cd}, #{noti_title}, #{noti_cont}, #{noti_view}, #{noti_pin})
+	</insert>
 
 	<!-- ▼ 문의글 ▼ -->
 	

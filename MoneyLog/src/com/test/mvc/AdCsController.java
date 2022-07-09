@@ -71,14 +71,14 @@ public class AdCsController
 		String noti_cd = request.getParameter("noti_cd");
 		
 		// noti_cd 로 dao 쿼리 실행 후 얻은 문의글 조회 결과를 addAttribute()로 key UpdateForm 에 담아 전송
-		model.addAttribute("UpdateForm", dao.adNotiView(noti_cd));
+		model.addAttribute("update", dao.adNotiView(noti_cd));
 		
 		result = "/AdNotiUpdate.jsp";
 		
 		return result;
 	}
 	
-	// 공지사항 수정하기
+	// 수정한 공지사항 정보를 AdNotiCont.jsp 로 전송
 	@RequestMapping(value="/adnotiupdate.action", method=RequestMethod.GET)
 	public String adNotiUpdate(Model model, HttpServletRequest request, HttpServletResponse response, AdCsDTO dto) throws SQLException
 	{
@@ -87,10 +87,26 @@ public class AdCsController
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
+		// 공지코드와 수정된 공지제목, 상단고정 여부, 내용 데이터 수신
+		String noti_cd = request.getParameter("noti_cd");
+		String noti_title = request.getParameter("noti_title");
+		String noti_cont = request.getParameter("noti_cont");
+		String noti_pin = request.getParameter("noti_pin");
 		
+		// dto 에 수정된 데이터 넣어주기
+		dto.setNoti_cd(noti_cd);
+		dto.setNoti_title(noti_title);
+		dto.setNoti_pin(noti_pin);
+		dto.setNoti_cont(noti_cont);
 		
+		// dao 의 수정 메소드 실행
+		dao.adNotiModify(dto);
+		
+		// 수정된 데이터의 내용을 조회하는 메소드 실행 결과를 key-value에 담기
+		model.addAttribute("update", dao.adNotiView(noti_cd));
+		
+		// 데이터 전송
 		result = "/AdNotiUpdate.jsp";
-		
 		return result;
 	}
 	
@@ -103,16 +119,42 @@ public class AdCsController
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
-
+		// 이전 페이지에서 데이터 수신
+		String noti_cd = request.getParameter("noti_cd");
 		
-		result = "/AdNotiList.jsp";
+		// 공지 삭제 메소드 실행
+		dao.adNotiDelete(noti_cd);
+		
+		result = "redirect:adnotilist.action";
 		
 		return result;
 	}
 	
-	// 공지사항 작성하기 
-	@RequestMapping(value="./adnotireg.action", method=RequestMethod.GET)
-	public String adNotiReg(Model model, HttpServletRequest request, HttpServletResponse response, AdCsDTO dto) throws SQLException
+	// 공지사항 작성 폼으로 이동
+	@RequestMapping(value="/adnotiregform.action", method=RequestMethod.GET)
+	public String adNotiRegForm(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
+	{
+		String result = null;
+		
+		// 고객지원 dao 
+		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
+		
+		// 세션에 있는 관리자코드, 아이디 받기
+		String ad_cd = (String)session.getAttribute("ad_cd");
+		String ad_id = (String)session.getAttribute("ad_id");
+		
+		// 다음 페이지로 
+		model.addAttribute("ad_cd", ad_cd);
+		model.addAttribute("ad_id", ad_id);
+		
+		result = "/AdNotiReg.jsp";
+		
+		return result;
+	}
+	
+	// 공지사항 등록
+	@RequestMapping(value="/adnotireg.action", method=RequestMethod.GET)
+	public String adNotiReg(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
 	{
 		String result = null;
 		
@@ -121,7 +163,7 @@ public class AdCsController
 		
 
 		
-		result = "/AdNotiList.jsp";
+		result = "/.jsp";
 		
 		return result;
 	}

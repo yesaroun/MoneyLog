@@ -17,10 +17,6 @@
 <script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
 <script type="text/javascript">
 
-	function notiDelete()
-	{
-		window.location.href = "./notidelete.action"
-	}
 	
 </script>
 
@@ -141,7 +137,8 @@
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" style="background-color: blue;" data-dismiss="modal">취소하기</button>
-                        <button type="button" class="btn btn-primary" onclick="notiDelete()">삭제하기</button>
+                        <button type="button" class="btn btn-primary" 
+                        onclick="javascript:location.href='<%=cp%>/notidelete.action?noti_cd=${adNotiView.noti_cd}'">삭제하기</button>
                     </div>
                 </form>
             </div>
