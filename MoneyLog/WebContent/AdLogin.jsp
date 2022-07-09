@@ -56,9 +56,12 @@
                 <div class="row pt-2" >
                     <div id="loginForm">
                         <form action="adlogin.action" method="POST" id="adLoginForm"> 
-                            <input type="text" id="ad_id" name="ad_id" class="text-field form-control" placeholder="아이디" />
+                            <input type="text" id="ad_id" name="ad_id" class="text-field form-control" value="${cookie.id.value}" placeholder="아이디" />
                             <input type="password" id="ad_pw" name="ad_pw" class="text-field form-control" placeholder="비밀번호" />
                             <button type="button" class="btn btn-primary" id="loginBtn">관리자 로그인</button>
+                            <div>
+								<label><input type="checkbox" name="rememberId" ${empty cookie.id.value ? "" : "checked"}> 아이디 저장</label>
+							</div>
                 			<span id="err" style="color: red; display: none;"></span>
                         </form>
                     </div>
@@ -68,7 +71,6 @@
     </div>
 	
 	<script src="./js/jquery-3.2.1.min.js"></script>
-	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 </body>
 </html>

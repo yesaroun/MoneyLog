@@ -2,6 +2,7 @@ package com.test.mvc;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,7 +30,7 @@ public class AdminController
 
 	// 관리자 로그인 
 	@RequestMapping(value = "/adlogin.action", method = RequestMethod.POST)
-	public String adLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
+	public String adLogin(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto, boolean rememberId) throws SQLException 
 	{ 
 		String result = null;
 	 
@@ -51,6 +52,20 @@ public class AdminController
 			// 세션에 값 저장하기
 			session.setAttribute("ad_cd", dto.getAd_cd());
 			session.setAttribute("ad_id", ad_id);
+			
+			if (rememberId) {
+	            //      1. 쿠키를 생성
+	            Cookie cookie = new Cookie("id", ad_id);
+	            //      2. 응답에 저장
+	            response.addCookie(cookie);
+
+	        } else {
+	            // 쿠키를 삭제
+	            Cookie cookie = new Cookie("id", ad_id);
+	            cookie.setMaxAge(0);    // 쿠키를 삭제
+	            //      2. 응답에 저장
+	            response.addCookie(cookie);
+	        }
 			 
 			result = "/admain.action";
 		} 
