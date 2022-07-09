@@ -3,6 +3,7 @@ package com.test.mvc;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -47,7 +48,7 @@ public class UserController
 
 	// 로그인 처리
 	@RequestMapping(value = "/login.action", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model) throws SQLException 
+	public String login(HttpServletRequest request, HttpServletResponse response,HttpSession session, Model model, boolean rememberId) throws SQLException 
 	{ 
 		String result = null;
 	 
@@ -72,13 +73,29 @@ public class UserController
 			session.setAttribute("user_dstn_cd", dto.getUser_dstn_cd());
 			session.setAttribute("user_id", user_id);
 			session.setAttribute("user_name", dto.getUser_name());
-			 
+			
+			if (rememberId) {
+	            //      1. 쿠키를 생성
+	            Cookie cookie = new Cookie("id", user_id);
+	            //      2. 응답에 저장
+	            response.addCookie(cookie);
+
+	        } else {
+	            // 쿠키를 삭제
+	            Cookie cookie = new Cookie("id", user_id);
+	            cookie.setMaxAge(0);    // 쿠키를 삭제
+	            //      2. 응답에 저장
+	            response.addCookie(cookie);
+	        }
+			
 			result = "/fstcalendar.action";
 		} 
 		else 
 		{ 
 			// 로그인 실패
 			request.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			
+			
 			result = "/UserLogin.jsp";
 		}
 		 	return result; 
