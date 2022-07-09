@@ -41,4 +41,6 @@ public interface IAdminDAO
 	
 	
 	
+	// ==========================================윤태 추가 
+	public ArrayList<AdminDTO> mainNotiList(AdminDTO dto);
 }
