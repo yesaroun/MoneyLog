@@ -18,8 +18,11 @@ public class UserDTO
     , noti_cd, noti_title, noti_cont, noti_view, noti_date, noti_pin
     , ad_ansr_cd, ad_cd, ad_ansr_cont, ad_ansr_date;
 	
-	private int prevNum, nextNum;
-    
+	// 페이징 처리용
+	private int pageNum;
+	private int rnum;
+	private int start, end;
+
 	
 	// getter / setter 구성
 	public String getNoti_cd()
@@ -732,26 +735,44 @@ public class UserDTO
 		this.leave_date = leave_date;
 	}
 
-	public int getPrevNum()
+	public int getStart()
 	{
-		return prevNum;
+		return start;
 	}
 
-	public void setPrevNum(int prevNum)
+	public void setStart(int start)
 	{
-		this.prevNum = prevNum;
+		this.start = start;
 	}
 
-	public int getNextNum()
+	public int getEnd()
 	{
-		return nextNum;
+		return end;
 	}
 
-	public void setNextNum(int nextNum)
+	public void setEnd(int end)
 	{
-		this.nextNum = nextNum;
+		this.end = end;
 	}
-	
-	
+
+	public int getPageNum()
+	{
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum)
+	{
+		this.pageNum = pageNum;
+	}
+
+	public int getRnum()
+	{
+		return rnum;
+	}
+
+	public void setRnum(int rnum)
+	{
+		this.rnum = rnum;
+	}
 	
 }
