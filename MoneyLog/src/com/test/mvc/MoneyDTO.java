@@ -11,7 +11,7 @@ public class MoneyDTO
 	int post_cd;
 	int post_count;
 	String year, month;
-
+	String sysdate;
 	
 	// 머니리뷰 소비/지출 내역
 	String inout_cont, acnt_date, cate_fst_name, cate_sec_name, acnt_dtl_cont;
@@ -89,6 +89,14 @@ public class MoneyDTO
 	
 	
 	
+	public String getSysdate()
+	{
+		return sysdate;
+	}
+	public void setSysdate(String sysdate)
+	{
+		this.sysdate = sysdate;
+	}
 	public String getCmnt_rept_detail()
 	{
 		return cmnt_rept_detail;

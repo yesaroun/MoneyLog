@@ -95,11 +95,14 @@ public interface IMoneyDAO
 	// 머니리뷰 댓글 삭제
 	public int cmntDel(MoneyDTO dto);
 	
-	// 게시글 신고 - 게시글 번호 구하기
-	public int postReptRnum(String post_cd);
+	// 게시글 신고 - rnum 으로 구하기
+	public ArrayList<MoneyDTO> postReptRnum(String post_cd);
 	
-	// 게시글 신고 - 게시글 작성자 구하기
-	public String postReptUser (String post_cd);
+	// 게시글 신고
+	public int postRept (MoneyDTO dto);
+	
+	// 게시글 신고 (기타)
+	public int postReptDtl (MoneyDTO dto);
 	
 	// =========================== 머니리뷰 끝
 	
