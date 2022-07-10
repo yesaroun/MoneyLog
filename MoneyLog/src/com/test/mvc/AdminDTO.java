@@ -3,59 +3,59 @@ package com.test.mvc;
 public class AdminDTO
 {
 	// 관리자 계정
-	public String ad_cd, ad_id, ad_pw, ad_date;
+	private String ad_cd, ad_id, ad_pw, ad_date;
 	
 	// 이용자 정보
-	public String user_dstn_cd, user_id, user_name, user_tel, user_date, leave_date
+	private String user_dstn_cd, user_id, user_name, user_tel, user_date, leave_date
 	, ssn, mrg_cd, mrg_yn, child_cd, child_num, fml_cd, fml_num
 	, pet_cd, pet_num, car_cd, car_num, house_cd, house_type
 	, area_fst_cd, area_fst_name, area_sec_cd, area_sec_name
 	, job_fst_cd, job_fst_name, job_sec_cd, job_sec_name;
 	
 	// 공지사항 등록
-	public String rownum, noti_cd, noti_title, noti_cont, noti_date, noti_view, noti_pin;
+	private String rownum, noti_cd, noti_title, noti_cont, noti_date, noti_view, noti_pin;
 	
 	// 이용자 문의글 등록
-	public String qna_cd, qna_title, qna_cont, qna_view, qna_date;
+	private String qna_cd, qna_title, qna_cont, qna_view, qna_date;
 	
 	// 관리자 문의글 답변
-	public String ad_ansr_cd, ad_ansr, ad_ansr_cont, ad_ansr_date;
+	private String ad_ansr_cd, ad_ansr, ad_ansr_cont, ad_ansr_date;
 	
 	// 게시글 등록
-	public String post_cd, dtl_select_cd, acnt_ym, post_title, opinion, post_view, post_date;
+	private String post_cd, dtl_select_cd, acnt_ym, post_title, opinion, post_view, post_date;
 	
 	// 신고 카테고리 분류 
-	public String rept_cate_cd, rept_cate_name;
+	private String rept_cate_cd, rept_cate_name;
 	
 	// 게시글 신고등록 
-	public String post_rept_cd, post_rept_date;
+	private String post_rept_cd, post_rept_date;
 	
 	// 게시글 신고세부사유
-	public String post_rept_dtl_cd, post_rept_dtl_cont;
+	private String post_rept_dtl_cd, post_rept_dtl_cont;
 	
 	// 관리자 게시글 신고처리
-	public String ad_post_rept_cd, ad_post_rept_date;
+	private String ad_post_rept_cd, ad_post_rept_date;
 	
 	// 승인 여부
-	public String cnfm_cd, cnfm_yn;
+	private String cnfm_cd, cnfm_yn;
 	
 	// 댓글 등록
-	public String cmnt_cd, cmnt_cont, cmnt_date;
+	private String cmnt_cd, cmnt_cont, cmnt_date;
 	
 	// 댓글 신고등록
-	public String cmnt_rept_cd, cmnt_rept_date;
+	private String cmnt_rept_cd, cmnt_rept_date;
 	
 	// 댓글 신고세부사유
-	public String cmnt_rept_dtl_cd, cmnnt_rept_dtl_cont;
+	private String cmnt_rept_dtl_cd, cmnnt_rept_dtl_cont;
 	
 	// 관리자 댓글 신고처리
-	public String ad_cmnt_rept_cd, ad_cmnt_rept_date;
+	private String ad_cmnt_rept_cd, ad_cmnt_rept_date;
 	
 	// 게시글 이용자 영구정지
-	public String post_ban_cd, post_ban_date;
+	private String post_ban_cd, post_ban_date;
 	
 	// 댓글 이용자 영구정지
-	public String cmnt_ban_cd, cmnt_ban_date;
+	private String cmnt_ban_cd, cmnt_ban_date;
 	
 	
 	// getter / setter 구성
@@ -142,6 +142,246 @@ public class AdminDTO
 	public String getNoti_view()
 	{
 		return noti_view;
+	}
+
+	public String getUser_tel()
+	{
+		return user_tel;
+	}
+
+	public void setUser_tel(String user_tel)
+	{
+		this.user_tel = user_tel;
+	}
+
+	public String getUser_date()
+	{
+		return user_date;
+	}
+
+	public void setUser_date(String user_date)
+	{
+		this.user_date = user_date;
+	}
+
+	public String getLeave_date()
+	{
+		return leave_date;
+	}
+
+	public void setLeave_date(String leave_date)
+	{
+		this.leave_date = leave_date;
+	}
+
+	public String getSsn()
+	{
+		return ssn;
+	}
+
+	public void setSsn(String ssn)
+	{
+		this.ssn = ssn;
+	}
+
+	public String getMrg_cd()
+	{
+		return mrg_cd;
+	}
+
+	public void setMrg_cd(String mrg_cd)
+	{
+		this.mrg_cd = mrg_cd;
+	}
+
+	public String getMrg_yn()
+	{
+		return mrg_yn;
+	}
+
+	public void setMrg_yn(String mrg_yn)
+	{
+		this.mrg_yn = mrg_yn;
+	}
+
+	public String getChild_cd()
+	{
+		return child_cd;
+	}
+
+	public void setChild_cd(String child_cd)
+	{
+		this.child_cd = child_cd;
+	}
+
+	public String getChild_num()
+	{
+		return child_num;
+	}
+
+	public void setChild_num(String child_num)
+	{
+		this.child_num = child_num;
+	}
+
+	public String getFml_cd()
+	{
+		return fml_cd;
+	}
+
+	public void setFml_cd(String fml_cd)
+	{
+		this.fml_cd = fml_cd;
+	}
+
+	public String getFml_num()
+	{
+		return fml_num;
+	}
+
+	public void setFml_num(String fml_num)
+	{
+		this.fml_num = fml_num;
+	}
+
+	public String getPet_cd()
+	{
+		return pet_cd;
+	}
+
+	public void setPet_cd(String pet_cd)
+	{
+		this.pet_cd = pet_cd;
+	}
+
+	public String getPet_num()
+	{
+		return pet_num;
+	}
+
+	public void setPet_num(String pet_num)
+	{
+		this.pet_num = pet_num;
+	}
+
+	public String getCar_cd()
+	{
+		return car_cd;
+	}
+
+	public void setCar_cd(String car_cd)
+	{
+		this.car_cd = car_cd;
+	}
+
+	public String getCar_num()
+	{
+		return car_num;
+	}
+
+	public void setCar_num(String car_num)
+	{
+		this.car_num = car_num;
+	}
+
+	public String getHouse_cd()
+	{
+		return house_cd;
+	}
+
+	public void setHouse_cd(String house_cd)
+	{
+		this.house_cd = house_cd;
+	}
+
+	public String getHouse_type()
+	{
+		return house_type;
+	}
+
+	public void setHouse_type(String house_type)
+	{
+		this.house_type = house_type;
+	}
+
+	public String getArea_fst_cd()
+	{
+		return area_fst_cd;
+	}
+
+	public void setArea_fst_cd(String area_fst_cd)
+	{
+		this.area_fst_cd = area_fst_cd;
+	}
+
+	public String getArea_fst_name()
+	{
+		return area_fst_name;
+	}
+
+	public void setArea_fst_name(String area_fst_name)
+	{
+		this.area_fst_name = area_fst_name;
+	}
+
+	public String getArea_sec_cd()
+	{
+		return area_sec_cd;
+	}
+
+	public void setArea_sec_cd(String area_sec_cd)
+	{
+		this.area_sec_cd = area_sec_cd;
+	}
+
+	public String getArea_sec_name()
+	{
+		return area_sec_name;
+	}
+
+	public void setArea_sec_name(String area_sec_name)
+	{
+		this.area_sec_name = area_sec_name;
+	}
+
+	public String getJob_fst_cd()
+	{
+		return job_fst_cd;
+	}
+
+	public void setJob_fst_cd(String job_fst_cd)
+	{
+		this.job_fst_cd = job_fst_cd;
+	}
+
+	public String getJob_fst_name()
+	{
+		return job_fst_name;
+	}
+
+	public void setJob_fst_name(String job_fst_name)
+	{
+		this.job_fst_name = job_fst_name;
+	}
+
+	public String getJob_sec_cd()
+	{
+		return job_sec_cd;
+	}
+
+	public void setJob_sec_cd(String job_sec_cd)
+	{
+		this.job_sec_cd = job_sec_cd;
+	}
+
+	public String getJob_sec_name()
+	{
+		return job_sec_name;
+	}
+
+	public void setJob_sec_name(String job_sec_name)
+	{
+		this.job_sec_name = job_sec_name;
 	}
 
 	public void setNoti_view(String noti_view)
