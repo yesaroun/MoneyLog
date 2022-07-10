@@ -101,7 +101,7 @@ public class AdminController
 		// 공지사항
 		model.addAttribute("mainNotiList", dao.mainNotiList(dto));
 		
-		// 회원 현황
+		// 회원 현황   --> 함수 하나 추가해서 문자 반복문으로 돌리기
 		model.addAttribute("data1", dao.mainMonthUserCount("01"));
 		model.addAttribute("data2", dao.mainMonthUserCount("02"));
 		model.addAttribute("data3", dao.mainMonthUserCount("03"));
