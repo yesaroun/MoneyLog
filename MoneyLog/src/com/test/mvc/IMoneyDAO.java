@@ -104,6 +104,15 @@ public interface IMoneyDAO
 	// 게시글 신고 (기타)
 	public int postReptDtl (MoneyDTO dto);
 	
+	// 댓글 신고 - rnum 으로 구하기
+	public ArrayList<MoneyDTO> cmntReptRnum(String cmnt_cd);
+	
+	// 게시글 신고
+	public int cmntRept (MoneyDTO dto);
+	
+	// 게시글 신고 (기타)
+	public int cmntReptDtl (MoneyDTO dto);
+	
 	// =========================== 머니리뷰 끝
 	
 	// ▼ 관리자

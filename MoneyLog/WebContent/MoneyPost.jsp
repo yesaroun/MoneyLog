@@ -31,7 +31,7 @@
 	function cmntReport(cmnt_cd)
 	{
 		//alert(cmnt_cd);
-		window.location.href = "./postreportform.action?post_cd="+post_cd;
+		window.location.href = "./cmntreportform.action?cmnt_cd="+cmnt_cd;
 	}
 	
 	// 댓글 삭제
