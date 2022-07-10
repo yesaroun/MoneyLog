@@ -170,11 +170,4 @@ public class Paging
 		return strList.toString();
 		
 	}
-	
-	
-	
-	
-	
-	
-	
 }
