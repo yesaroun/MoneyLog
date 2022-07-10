@@ -21,11 +21,11 @@ h3, h4{font-weight: 700;}
 h5, h6{font-weight: 500;}
 
 header {position: fixed; top: 0; z-index: 100; width: 100vw;}
-/*·Î±×ÀÎ½ºÅ¸ÀÏ*/
+/*ï¿½Î±ï¿½ï¿½Î½ï¿½Å¸ï¿½ï¿½*/
 section > .container {margin-top: 55px}
-/*¸ÞÀÎ½ºÅ¸ÀÏ*/
+/*ï¿½ï¿½ï¿½Î½ï¿½Å¸ï¿½ï¿½*/
 main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
-/*¹öÆ° ½ºÅ¸ÀÏ*/
+/*ï¿½ï¿½Æ° ï¿½ï¿½Å¸ï¿½ï¿½*/
 .btn {background-color: #FF9B85; border: none;}
 .btn:hover {background-color: #EF6E6B; border-radius: 4px; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);}
 
@@ -43,31 +43,31 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 .navbar-brand { margin-left: 10px; font-weight: 700;}
 
 /*Sidebar*/
-/*½ÇÁúÀûÀÎ °¢ ³»ºñ°ÔÀÌ¼Ç ¸Þ´ºµéÀÇ »ö»ó µîÀ» Á¤ÀÇ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 #sidebar .list-group-item  { background-color: #F7EDE2; color: #000000; border: none; white-space: nowrap;  }
-/*³»ºñ°ÔÀÌ¼Ç ¾Æ·¡ ³¡±îÁö ³ª¿­*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½Æ·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 #sidebar .list-group  { background-color: #F7EDE2;  min-height: 100vh; }
-/*¸Þ´º¸¦ ¼±ÅÃÇßÀ» ¶§ ºÎ¸ð ¿ä¼ÒÀÇ »ö»óÀ» º¯°æÇØÁÜ*/
+/*ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 #sidebar .list-group .list-group-item[aria-expanded="true"]  { background-color: #F7EDE2; }
-/*¸Þ´º¸¦ ¼±ÅÃÇßÀ» ¶§ ÀÚ½Ä ¿ä¼ÒÀÇ »ö»óÀ» º¯°æÇØÁÜ*/
+/*ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 #sidebar .list-group .list-group-item:not(.collapsed)  { background-color: #F7EDE2; }
 
-/*ºÎ°¡ ¼³Á¤*/
+/*ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 #sidebar { overflow: hidden; z-index: 2; }
 @media (max-width: 768px) 
 {
     .span10 main {margin-left: 30px; margin-top: 40px; margin-right: 5px;}
-    /*»çÀÌµå¹Ù ³Êºñ¸¦ Á¤ÇØÁø Å©±â ¼³Á¤*/
+    /*ï¿½ï¿½ï¿½Ìµï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
     #sidebar  { min-width: 35px; max-width: 40px; overflow-y: auto; overflow-x: visible;  transition: all 0.25s ease; transform: translateX(0px); position: fixed; }
-    /*»çÀÌµå¹ÙÀÇ ¼­ºê ¸Þ´º¸¦ ¿­¾úÀ» ¶§ ±ÛÀÚ°¡ º¸ÀÌµµ·Ï ÇÔ */
+    /*ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ï¿½ï¿½ ï¿½ï¿½ */
     #sidebar, #sidebar .list-group { min-width: 35px; overflow: visible; }
-    /*»çÀÌµå¹Ù¿¡¼­ ¼­ºê ¸Þ´º¸¦ ³Êºñ ¼³Á¤*/
+    /*ï¿½ï¿½ï¿½Ìµï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½Êºï¿½ ï¿½ï¿½ï¿½ï¿½*/
     #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing { position: relative; z-index: 1; width: 190px; top: 0; }
-    /* ¾ÆÀÌÄÜÀ» Á¤·Ä*/
+    /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½*/
     #sidebar .list-group > .list-group-item { text-align: center; padding: .75rem .5rem; }
     #sidebar::-webkit-scrollbar { width: 0px; }
 }
-/* mobileÅ¬·¡½º */
+/* mobileÅ¬ï¿½ï¿½ï¿½ï¿½ */
 @media (max-width: 990px)
 {
     .mobile { display: none; }
@@ -175,11 +175,11 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adCmntReptList .wid-150-col {width: 150px;}
 #adCmntReptList .content-title {text-align: left;}
 
-/*È°¼ºÈ­µÈ ¹öÆ°*/
+/*È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½Æ°*/
 .unactivate-btn {width:100px; background-color: #F7EDE2; color: #000000;}
 .unactivate-btn:hover { background-color: #F7EDE2; color: #000000;}
 
-/*ºñÈ°¼ºÈ­ ¹öÆ°*/
+/*ï¿½ï¿½È°ï¿½ï¿½È­ ï¿½ï¿½Æ°*/
 .activate-btn {width:100px; background-color: #F5CAC3; color: #000000;}
 .activate-btn {background-color: #F5CAC3; color: #000000;}
 
@@ -196,6 +196,8 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adPostList table {text-align: center;}
 #adPostList table th {font-weight: 700; background-color: #F7EDE2; }
 #adPostList .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
+#adPostList .dropdown-selected {background-color: #F5CAC3; border: none;}
+#adPostList .paging-div {place-items: center; display: grid;}
 
 /*AdPostOpen.jsp*/
 #adPostOpen table {text-align: center;}
@@ -232,7 +234,7 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adCmntInfo table th {font-weight: 700; background-color: #F7EDE2; }
 #adCmntInfo .list-group-item {border-radius: 4px; margin-top: 8px; margin-bottom: 20px;}
 
-/*°øÁö»çÇ× div*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ div*/
 .notice-title {margin-top: 30px}
 
 /*AdNotiList.jsp*/
@@ -274,13 +276,13 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 #adNotiUpdate .reg-btn {background-color: skyblue; float: right;}
 #adNotiUpdate .return-btn {background-color: #F5CAC3; float: right;}
 
-/*°Ô½ÃÆÇ ÀÛ¼º Æ÷¸Ë*/
+/*ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½ï¿½*/
 .table2 { border-collapse: collapse; border-top: 3px solid #036; border-bottom: 3px solid #036;  margin-left: 15px; }
 .table2 th { border: 1px clear; border-left: 50px; border-right: 0px; width: 25%; font-size: 18px; font-weight: bold; line-height: 150%; padding-top: 20px; }
 .table2 td { border: 1px clear; border-left: 50px; border-right: 0px; font-size: 12px; font-size: 12pt; line-height: 150%; text-align: left; padding-left:20px; padding-top: 20px; padding-bottom: 10px; }
 
 
-/* ¸ð´Þ(ÆË¾÷°°Àº°Å)ÀÌ Áß¾Ó¿¡ ¶ßµµ·Ï  */
+/* ï¿½ï¿½ï¿½(ï¿½Ë¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ß¾Ó¿ï¿½ ï¿½ßµï¿½ï¿½ï¿½  */
 .modal
 {
     -webkit-transform: translate(0,-50%);

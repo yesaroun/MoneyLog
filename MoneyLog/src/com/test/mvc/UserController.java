@@ -991,15 +991,35 @@ public class UserController
 		
 		IUserDAO dao =sqlSession.getMapper(IUserDAO.class);
 		
-		
 		model.addAttribute("userNotiList", dao.userNotiList());      
-	
 		
 		result = "/UserNotiList.jsp";
 		
 		return result;
 		
 	}
+	
+	// 현수 추가 ================================================================================================
+	
+	// 공지사항 항목 이동      
+	@RequestMapping(value="/usernotiselect.action", method=RequestMethod.GET)
+	public ModelAndView UserNotiSelect(HttpServletRequest request, HttpServletResponse response, UserDTO dto)
+	{
+		ModelAndView mv = new ModelAndView();
+
+		IUserDAO dao =sqlSession.getMapper(IUserDAO.class);
+		
+	 	String noti_cd = request.getParameter("noti_cd");
+	 	
+	 	dto.setNoti_cd(noti_cd);
+
+		mv.setViewName("/UserNotiCont.jsp");
+		mv.addObject("userNotiSelect", dao.userNotiSelect(dto)); 
+
+		return mv;
+	}
+	//=======================================================================================================
+	
 	
 	// 고객센터 사이드바에서 문의하기 클릭시 문의글 리스트       
 	@RequestMapping(value="/userqnalist.action", method=RequestMethod.GET)

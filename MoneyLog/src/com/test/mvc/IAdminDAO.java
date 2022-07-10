@@ -47,4 +47,10 @@ public interface IAdminDAO
 	public int mainCountQna();
 		
 	public ArrayList<AdminDTO> mainNotiList(AdminDTO dto);
+	
+	public int mainUserCount();
+	
+	public int mainNewUserCount();
+	
+	public int mainLeaveUserCount();
 }

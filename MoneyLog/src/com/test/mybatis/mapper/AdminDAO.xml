@@ -98,8 +98,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="mainNotiList" resultType="com.test.mvc.UserDTO">
 		SELECT NOTI_CD, NOTI_TITLE, NOTI_DATE
 		FROM NOTI
-	    ORDER BY NOTI_PIN DESC, NOTI_DATE DESC
+		WHERE NOTI_PIN LIKE 'Y' 
+		ORDER BY NOTI_PIN DESC, NOTI_DATE DESC
 	</select>
+	
+	<!-- 전체 회원 조회 -->
+	<select id="mainUserCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM USER_INFO
+	</select>
+	
+	<!-- 금일 신규 회원 조회 -->
+	<select id="mainNewUserCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM USER_INFO
+		WHERE TO_CHAR(USER_DATE, 'YYYY-MM-DD')=TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+	<!-- 금일 탈퇴 회원 조회 -->
+	<select id="mainLeaveUserCount" resultType="java.lang.Integer">
+		SELECT COUNT(*)
+		FROM LEAVE_INFO
+		WHERE TO_CHAR(LEAVE_DATE, 'YYYY-MM-DD')=TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	
+	
 	
 
 	<!-- 관리자 로그인  -->  

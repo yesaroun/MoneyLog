@@ -88,7 +88,6 @@
 			    	 </thead>
 			         <tbody>
 			            
-
 		             
 						<c:if test="${empty userQnaList}">
 						<tr>

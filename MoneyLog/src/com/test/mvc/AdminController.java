@@ -93,11 +93,20 @@ public class AdminController
 	 	dto.setAd_cd((String)session.getAttribute("ad_cd"));
 	 	dto.setAd_id((String)session.getAttribute("ad_id"));
 	 	 
+	 	// 오늘의 할일
 		model.addAttribute("countPostRept", dao.mainCountPostRept());
 		model.addAttribute("countCmntRept", dao.mainCountCmntRept());
 		model.addAttribute("countQna", dao.mainCountQna());
 		
-		model.addAttribute("get", dao.mainNotiList(dto));
+		// 공지사항
+		model.addAttribute("mainNotiList", dao.mainNotiList(dto));
+		
+		// 신규회원 현황
+		model.addAttribute("userCount", dao.mainUserCount());
+		model.addAttribute("newUserCount", dao.mainNewUserCount());
+		model.addAttribute("leaveUserCount", dao.mainLeaveUserCount());
+		
+		
 		
 		result = "/AdMain.jsp";
 		return result;
