@@ -49,16 +49,14 @@
 	{
 		var cate = document.getElementById("postReptCate");
 		var rept_cate_cd = cate.options[cate.selectedIndex].value;
+		var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
+		
 		if (rept_cate_cd == 5)
 		{
-			//alert(cateId);
-			var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
 			postReptDtlCont.style.display='inline';
 		}
 		else if (rept_cate_cd != 5)
 		{
-			//alert(cateId);
-			var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
 			postReptDtlCont.style.display='none';
 		} 
 	}
