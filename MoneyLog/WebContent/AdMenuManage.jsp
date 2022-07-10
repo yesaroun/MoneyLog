@@ -19,7 +19,7 @@
 		
                 <h4 class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><span class="d-none d-md-inline ml-1"> 통합관리</span></h4>
 		
-                <a href="AdUserList.jsp" class="list-group-item d-inline-block collapsed"  data-parent="#sidebar">
+                <a href="./aduserlist.action" class="list-group-item d-inline-block collapsed"  data-parent="#sidebar">
                     <img style="width: 20px;" src="./img2/user.svg"><span class="d-none d-md-inline ml-1"> 회원목록</span>
                 </a>
                 

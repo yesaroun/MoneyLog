@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class AdminController
@@ -123,6 +125,24 @@ public class AdminController
     	result = "/adloginform.action";
     	return result;
 	}
+	
+	// 관리자 회원관리
+	@RequestMapping(value = "/aduserlist.action", method = RequestMethod.GET)
+	public ModelAndView adUserList(AdminDTO dto) throws SQLException 
+	{
+		ModelAndView mv = new ModelAndView();
+		
+		IAdminDAO dao =sqlSession.getMapper(IAdminDAO.class);
+		 
+		mv.addObject("adUserList", dao.adUserList());
+
+		mv.setViewName("/AdUserList.jsp");
+		
+		return mv;
+		
+	}
+	
+	// 관리자 회원 정보 조회
 
 
 }

@@ -21,7 +21,7 @@
                     <img style="width: 20px;" src="./img/edit.svg"><span class="d-none d-md-inline ml-1"> 통합관리</span>
                 </a>
                 <div class="collapse" id="admanage">
-                    <a href="AdUserList.jsp" class="list-group-item" data-parent="#sidebar">회원 목록</a>
+                    <a href="./aduserlist.action" class="list-group-item" data-parent="#sidebar">회원 목록</a>
                     <a href="AdBan.jsp" class="list-group-item" data-parent="#sidebar">영구정지회원</a>
                     <a href="AdPostReptList.jsp" class="list-group-item" data-parent="#sidebar">신고처리</a>
                 </div>

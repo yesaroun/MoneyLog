@@ -22,26 +22,30 @@ public interface IAdminDAO
 	public ArrayList<PostReptDTO> postReptList();
 	
 	
-	// ==========================================현지 추가 
-	
-	// 미처리된 신고 게시글 카운트
-	public int mainCountPostRept();
-		
-	// 댓글 신고 미처리건 카운트
-	public int mainCountCmntRept();
-		
-	// 문의글 미처리건 카운트
-	public int mainCountQna();
-	
-	
+
 	// ==========================================현지 추가 
 	
 	// 관리자 로그인
 	public AdminDTO adLogin(@Param("ad_id") String ad_id, @Param("ad_pw") String ad_pw);
 	
+	// 회원 목록 리스트
+	public ArrayList<AdminDTO> adUserList();
+	
+	// 회원 정보 조회
+	// public AdminDTO adUserInfo(AdminDTO dto); 
 	
 	
 	// ==========================================윤태 추가 
+	
+	// 미처리된 신고 게시글 카운트
+	public int mainCountPostRept();
+			
+	// 댓글 신고 미처리건 카운트
+	public int mainCountCmntRept();
+		
+	// 문의글 미처리건 카운트
+	public int mainCountQna();
+		
 	public ArrayList<AdminDTO> mainNotiList(AdminDTO dto);
 	
 	public int mainUserCount();
