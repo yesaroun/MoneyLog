@@ -101,12 +101,43 @@ public class AdminController
 		// 공지사항
 		model.addAttribute("mainNotiList", dao.mainNotiList(dto));
 		
+		// 회원 현황
+		model.addAttribute("data1", dao.mainMonthUserCount("01"));
+		model.addAttribute("data2", dao.mainMonthUserCount("02"));
+		model.addAttribute("data3", dao.mainMonthUserCount("03"));
+		model.addAttribute("data4", dao.mainMonthUserCount("04"));
+		model.addAttribute("data5", dao.mainMonthUserCount("05"));
+		model.addAttribute("data6", dao.mainMonthUserCount("06"));
+		model.addAttribute("data7", dao.mainMonthUserCount("07"));
+		model.addAttribute("data8", dao.mainMonthUserCount("08"));
+		model.addAttribute("data9", dao.mainMonthUserCount("09"));
+		model.addAttribute("data10", dao.mainMonthUserCount("10"));
+		model.addAttribute("data11", dao.mainMonthUserCount("11"));
+		model.addAttribute("data12", dao.mainMonthUserCount("12"));
+		
+		model.addAttribute("ldata1", dao.mainMonthLeaveUserCount("01"));
+		model.addAttribute("ldata2", dao.mainMonthLeaveUserCount("02"));
+		model.addAttribute("ldata3", dao.mainMonthLeaveUserCount("03"));
+		model.addAttribute("ldata4", dao.mainMonthLeaveUserCount("04"));
+		model.addAttribute("ldata5", dao.mainMonthLeaveUserCount("05"));
+		model.addAttribute("ldata6", dao.mainMonthLeaveUserCount("06"));
+		model.addAttribute("ldata7", dao.mainMonthLeaveUserCount("07"));
+		model.addAttribute("ldata8", dao.mainMonthLeaveUserCount("08"));
+		model.addAttribute("ldata9", dao.mainMonthLeaveUserCount("09"));
+		model.addAttribute("ldata10", dao.mainMonthLeaveUserCount("10"));
+		model.addAttribute("ldata11", dao.mainMonthLeaveUserCount("11"));
+		model.addAttribute("ldata12", dao.mainMonthLeaveUserCount("12"));
+				
 		// 신규회원 현황
 		model.addAttribute("userCount", dao.mainUserCount());
 		model.addAttribute("newUserCount", dao.mainNewUserCount());
 		model.addAttribute("leaveUserCount", dao.mainLeaveUserCount());
 		
-		
+		// 머니로그 현황
+		model.addAttribute("contentCount", dao.mainContentCount());
+		model.addAttribute("newContentCount", dao.mainNewContentCount());
+		model.addAttribute("reptContentCount", dao.mainReptContentCount());
+		model.addAttribute("reptCmntCount", dao.mainReptCmntCount());
 		
 		result = "/AdMain.jsp";
 		return result;
