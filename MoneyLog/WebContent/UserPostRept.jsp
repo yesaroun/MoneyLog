@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -17,44 +20,45 @@
 
 	function postRept()
 	{
-		//confirm("신고가 완료되었습니다.");
-		
-		var post_empt_cd;
-		var post_cd=${rnum };
-		
-		var cate = document.getElementById("postReptCate");
-		var cateId = cate.options[cate.selectedIndex].value;
-		
-		var ReptDtlCont =  document.getElementById("postReptDtlCont");
-		var postReptDtlCont =  ReptDtlCont.value;
+		// 신고자
 		var user_dstn_cd = ${user_dstn_cd};
 		
-		if (cateId == 5)
+		// 신고 카테고리
+		var cate = document.getElementById("postReptCate");
+		var rept_cate_cd = cate.options[cate.selectedIndex].value;
+		
+		// 신고 내용 (기타)
+		var ReptDtlCont =  document.getElementById("postReptDtlCont");
+		var post_rept_dtl_cont =  ReptDtlCont.value;
+		
+		if (rept_cate_cd == 5)
 		{
 			// 카테고리 기타일때
-			window.location.href = "./userpostlist.action?pageNum="+1;
+			window.location.href = "./userpostrept5.action?post_cd="+${post_cd}+"&user_dstn_cd="+user_dstn_cd+"&rept_cate_cd="+rept_cate_cd+"&post_rept_dtl_cont="+post_rept_dtl_cont;
+			
 		}
-		else if (cateId != 5)
+		else if (rept_cate_cd != 5)
 		{
 			// 그 외
-			window.location.href = "./userpostlist.action?pageNum="+1;
+			window.location.href = "./userpostrept.action?post_cd="+${post_cd}+"&user_dstn_cd="+user_dstn_cd+"&rept_cate_cd="+rept_cate_cd;
 		} 
 	}
 	
+	// 기타 선택시 텍스트 쓸 수 있게
 	function postReptDtlContBox()
 	{
 		var cate = document.getElementById("postReptCate");
-		var cateId = cate.options[cate.selectedIndex].value;
-		if (cateId == 5)
+		var rept_cate_cd = cate.options[cate.selectedIndex].value;
+		if (rept_cate_cd == 5)
 		{
 			//alert(cateId);
-			var postReptDtlCont = document.getElementById("postReptDtlCont");
+			var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
 			postReptDtlCont.style.display='inline';
 		}
-		else if (cateId != 5)
+		else if (rept_cate_cd != 5)
 		{
 			//alert(cateId);
-			var postReptDtlCont = document.getElementById("postReptDtlCont");
+			var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
 			postReptDtlCont.style.display='none';
 		} 
 	}
@@ -79,14 +83,17 @@
 				</div>
 			</div>
 		</div>
-	
+        
+		
+		
 		<div class="container">
 				<div class="row">
+					<c:forEach var="rept" items="${postRept }">
 						<table id="cont" class="table2 col-12">
 						     <tr>
 						         <th>게시글번호</th><!-- value 확인 -->
 						      	 <td>
-						      	 	<input type="text" value="${rnum }" style="padding-left:15px; width: 500px; height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
+						      	 	<input type="text" value="${rept.rnum}" style="padding-left:15px; width: 500px; height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
 						      	 <td>
 						     <tr>    
 						         <th>신고구분</th>
@@ -109,10 +116,15 @@
 						     <tr>    
 						         <th>신고일자</th><!-- value 확인 -->
 						      	 <td>
-						      	 	<input type="text" value="2022.06.20" style="padding-left:15px; width:500px;height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
+						      	 	<input type="text"
+						      	 	 value="${rept.sysdate}"
+									 style="padding-left:15px; width:500px;height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
 						      	 </td>
-						      </tr>	
+						      </tr>
+						      
+						    	
 						</table>
+					</c:forEach>
 				</div>
 				<div class="row">
 					<div class="col-12" style="margin-top: 20px;">

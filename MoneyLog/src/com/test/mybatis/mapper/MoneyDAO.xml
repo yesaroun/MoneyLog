@@ -287,28 +287,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND INOUT_CONT='지출'
 	</select>
 	
-	<!-- 게시글 신고 ① 게시글 번호 구하기 -->
-	<select id="postReptRnum" resultType="java.lang.Integer">
-		SELECT RNUM
-		FROM
-		(SELECT P.POST_CD, P.POST_TITLE, ROW_NUMBER() OVER(ORDER BY  P.POST_CD DESC) AS RNUM
-		, (SELECT COUNT(C.CMNT_CD) FROM CMNT C LEFT JOIN CMNT_REPT CR ON C.CMNT_CD = CR.CMNT_CD
-		WHERE CR.CMNT_REPT_CD IS NULL AND C.POST_CD = P.POST_CD) "COUNT_CMNT"
-		, P.POST_DATE, P.POST_VIEW
-		FROM POST P 
-		LEFT JOIN POST_REPT RP
-		ON P.POST_CD = RP.POST_CD
-		WHERE RP.POST_REPT_CD IS NULL
-		ORDER BY P.POST_CD DESC)
-	    WHERE POST_CD=#{post_cd}
-	</select>
-	
-	<!-- 게시글 신고 ② 글 작성자 구하기 -->
-	<select id="postReptUser" resultType="java.lang.String">
-		SELECT USER_DSTN_CD
-		FROM POST
-		WHERE POST_CD=#{post_cd }
-	</select>
 	
 	<!-- 나중에 얘 어떻게 더 깔끔하게 해버리기 ^_^ -->
 	<!-- 머니리뷰 통계용 데이터 -->
@@ -894,6 +872,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	ON CR.CMNT_REPT_CD = CRD.CMNT_REPT_CD
 	WHERE C.CMNT_CD=#{cmnt_cd}
 	</select>
+	
+	
+	
+	<!-- 게시글 신고 ① 게시글 번호 구하기 -->
+	<select id="postReptRnum" resultType="com.test.mvc.MoneyDTO">
+		SELECT RNUM, SYSDATE
+		FROM
+		(SELECT P.POST_CD, P.POST_TITLE, ROW_NUMBER() OVER(ORDER BY  P.POST_CD) AS RNUM
+		, (SELECT COUNT(C.CMNT_CD) FROM CMNT C LEFT JOIN CMNT_REPT CR ON C.CMNT_CD = CR.CMNT_CD
+		WHERE CR.CMNT_REPT_CD IS NULL AND C.POST_CD = P.POST_CD) "COUNT_CMNT"
+		, P.POST_DATE, P.POST_VIEW
+		, NVL2(RP.POST_REPT_CD, '비공개', '공개') AS POST_CHECK
+		, UI.USER_ID
+		FROM POST P 
+		LEFT JOIN POST_REPT RP
+		ON P.POST_CD = RP.POST_CD
+		JOIN USER_INFO UI
+		ON P.USER_DSTN_CD = UI.USER_DSTN_CD
+		WHERE RP.POST_REPT_CD IS NULL
+		ORDER BY P.POST_CD)
+	    WHERE POST_CD=#{post_cd}
+	</select>
+	
+	<!-- 게시글 신고 -->
+	<insert id="postRept">
+		INSERT INTO POST_REPT(POST_REPT_CD, USER_DSTN_CD, POST_CD, REPT_CATE_CD, POST_REPT_DATE)
+		VALUES(POST_REPT_SEQ.NEXTVAL, #{user_dstn_cd}, #{post_cd}, #{rept_cate_cd}, SYSDATE)
+	</insert>
+	
+	<!-- 게시글 신고 - 기타 -->
+	<insert id="postReptDtl">
+		INSERT INTO POST_REPT_DTL(POST_REPT_DTL_CD, POST_REPT_DTL_CONT, POST_REPT_CD)
+		VALUES(POST_REPT_DTL_SEQ.NEXTVAL, #{post_rept_dtl_cont}
+		, (SELECT POST_REPT_CD
+		FROM POST_REPT
+		WHERE POST_CD=#{post_cd} AND USER_DSTN_CD=#{user_dstn_cd}))
+	</insert>
 	
 	
 </mapper>

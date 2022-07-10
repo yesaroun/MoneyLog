@@ -262,10 +262,42 @@ public class MoneyController
 		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
 
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("postRept", dao.postReptRnum(post_cd));
 		mv.addObject("post_cd", post_cd);
-		mv.addObject("rnum", dao.postReptRnum(post_cd));
-		mv.addObject("user_dstn_cd", dao.postReptUser(post_cd));
 		mv.setViewName("UserPostRept.jsp");
+		
+		return mv;
+	}
+	
+	// 머니리뷰 게시글 신고 ( 카테 1 ~ 4 )
+	@RequestMapping(value = "/userpostrept.action", method = RequestMethod.GET)
+	public ModelAndView postReport(MoneyDTO money)
+	{
+		
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+
+		ModelAndView mv = new ModelAndView();
+		
+		dao.postRept(money);
+		
+		mv.setViewName("/userpostlist.action?pageNum=1");
+		
+		return mv;
+	}
+	
+	// 머니리뷰 게시글 신고 ( 카테 5 기타 )
+	@RequestMapping(value = "/userpostrept5.action", method = RequestMethod.GET)
+	public ModelAndView postReportDtl(MoneyDTO money)
+	{
+		
+		IMoneyDAO dao = sqlSession.getMapper(IMoneyDAO.class);
+
+		ModelAndView mv = new ModelAndView();
+		
+		dao.postRept(money);
+		dao.postReptDtl(money);
+		
+		mv.setViewName("/userpostlist.action?pageNum=1");
 		
 		return mv;
 	}
