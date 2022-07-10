@@ -536,9 +536,10 @@
 							<!-- ★★★ 이전글 다음글 미구현 ★★★ -->
 							<div class="float-right">
 								<br><br>
+								<!-- 
 								<button class="btn" style="width: 100px;">이전 글</button>
 								<button class="btn" style="width: 100px;">다음 글</button>
-								
+								 -->
 								<c:if test="${user_dstn_cd != -1}">
 									<button class="btn" style="width: 100px;" onclick="userPostList()">목록</button>
 								</c:if>
@@ -546,7 +547,6 @@
 								<c:if test="${not empty ad_cd}">
 									<button class="btn" style="width: 100px;" onclick="adPostList()">목록</button>
 								</c:if>
-								
 			               </div>
 			               
             			</div>

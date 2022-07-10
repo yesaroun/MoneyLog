@@ -44,6 +44,12 @@
 		} 
 	}
 	
+	// 신고 취소하기
+	function reptCancel()
+	{
+		window.location.href ="./userpostlist.action?pageNum=1";
+	}
+	
 	// 기타 선택시 텍스트 쓸 수 있게
 	function postReptDtlContBox()
 	{
@@ -127,7 +133,7 @@
 				<div class="row">
 					<div class="col-12" style="margin-top: 20px;">
 						<button type="reset" class="btn btn-primary" style="background-color: #1fa766; float: right; padding-left: 10px;"
-						onclick="postRept()">취소하기</button>
+						onclick="reptCancel()">취소하기</button>
 						
 						<button type="submit" id="postReptBtn1" class="btn btn-secondary"
 						style="background-color: skyblue; float: right;"  data-toggle="modal" data-target="#modal">신고하기</button>
