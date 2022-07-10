@@ -142,7 +142,30 @@ public class AdminController
 		
 	}
 	
-	// 관리자 회원 정보 조회
+	// 관리자 회원 정보 조회 adUserInfo
+	@RequestMapping(value="/aduserinfo.action", method=RequestMethod.GET)
+	public String userQnaSelect(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	    // adUserList 에서 user_dstn_cd 받기
+	 	String user_dstn_cd = request.getParameter("user_dstn_cd");
+	   	
+	    // set
+	 	dto.setUser_dstn_cd(user_dstn_cd);
 
+	 	// user_dstn_cd로 dao 에 있는 select 쿼리 실행후 dto 에 set
+	 	dto = dao.adUserInfo(dto);
+
+	 	// → model.add 후 AdUserInfo.jsp에서 el 사용
+	 	model.addAttribute("adUserInfo", dao.adUserInfo(dto));
+        
+        result = "/AdUserInfo.jsp";
+		
+		return result;
+	}
+	
 
 }

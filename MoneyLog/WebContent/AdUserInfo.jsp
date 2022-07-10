@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -8,19 +11,17 @@
 <head>
 <title>커뮤니티 웹 사이트</title>
 
-<script type="text/javascript">
-	function newPage()
-	{
-	    window.location.href = "./adUserList.jsp"
-	}
-</script>
-
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- 부트스트랩 CSS 추가하기 -->
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -46,7 +47,7 @@
                                 <div class="btn-group float-left">
                                     <button type="button" class="btn dropdown-toggle info-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 상세 정보</button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="./AdUserInfo.jsp" style="background-color: #F0B1A8;">상세 정보</a>
+                                        <a class="dropdown-item" href="./aduserinfo.action?user_dstn_cd=${adUserInfo.user_dstn_cd }" style="background-color: #F0B1A8;">상세 정보</a>
                                         <a class="dropdown-item" href="./AdUserPostList.jsp">게시글 내역</a>
                                         <a class="dropdown-item" href="./AdUserCmntList.jsp">댓글 내역</a>
                                     </div>
@@ -74,11 +75,14 @@
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td >001001</td>
-                                                        <td >이윤윤</td>
-                                                        <td class="mobile" >test@test.com</td>
-                                                        <td class="mobile" >010-0000-0000</td>
-                                                        <td class="mobile" >2022-06-05</td>
+                                                        <td >${adUserInfo.user_dstn_cd }</td>
+                                                        <td >${adUserInfo.user_name }</td>
+                                                        <td class="mobile" >${adUserInfo.user_id }</td>
+                                                        <td class="mobile" >${adUserInfo.user_tel }</td>
+                                                        <td class="mobile" >
+                                                        	<fmt:parseDate value="${adUserInfo.user_date }" var="user_date" pattern="yyyy-mm-dd" />
+                                                        	<fmt:formatDate value="${user_date}" pattern="yyyy-mm-dd" />
+                                                        </td>
                                                     </tr>
                                             
                                                 </tbody>
@@ -112,13 +116,13 @@
                                                     </tr>
                                                     
                                                     <tr>
-                                                        <td >990304-2</td>
-                                                        <td class="mobile">2</td>
-                                                        <td class="mobile">미혼</td>
-                                                        <td class="mobile">0</td>
-                                                        <td class="mobile">1</td>
-                                                        <td class="mobile">1</td>
-                                                        <td class="mobile">전세</td>
+                                                        <td >${adUserInfo.ssn }</td>
+                                                        <td class="mobile">${adUserInfo.pet_num }</td>
+                                                        <td class="mobile">${adUserInfo.mrg_yn }</td>
+                                                        <td class="mobile">${adUserInfo.child_num }</td>
+                                                        <td class="mobile">${adUserInfo.fml_num }</td>
+                                                        <td class="mobile">${adUserInfo.car_num }</td>
+                                                        <td class="mobile">${adUserInfo.house_type }</td>
                                                     </tr>
                                                     <tr>
                                                         <th colspan="2" >지역 1차</th>
@@ -128,10 +132,10 @@
                                                     </tr>
                                                             
                                                     <tr>
-                                                        <td colspan="2" >서울</td>
-                                                        <td class="mobile" colspan="2" >성동구</td>
-                                                        <td colspan="2" >IT/개발</td>
-                                                        <td class="mobile" colspan="2" >프론트엔드</td>
+                                                        <td colspan="2" >${adUserInfo.area_fst_name }</td>
+                                                        <td class="mobile" colspan="2" >${adUserInfo.area_sec_name }</td>
+                                                        <td colspan="2" >${adUserInfo.job_fst_name }</td>
+                                                        <td class="mobile" colspan="2" >${adUserInfo.job_sec_name }</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -147,7 +151,7 @@
                             <div class="col-md-12">
                                 <br>
                                 <div class="list-group">
-                                    <h4>신고내역<small> 선택한 영구정지 회원의 지난 6개월 내 신고내역 입니다.</small></h4>
+                                    <h4>신고내역<small> 선택한 회원의 지난 6개월 내 신고내역 입니다.</small></h4>
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table">

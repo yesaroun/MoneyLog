@@ -124,7 +124,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-
+	<!-- ===============================================현지 추가 -->
+	
 	<!-- 관리자 로그인  -->  
 	<select id="adLogin" resultType="com.test.mvc.AdminDTO" parameterType="java.lang.String">      
      SELECT AD_CD, AD_ID
@@ -136,9 +137,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-	
-	<!-- ===============================================현지 추가 -->
-	
 	<!-- 회원 목록 조회 (탈퇴 회원 제외)-->
 	<select id="adUserList" resultType="com.test.mvc.AdminDTO">
 	SELECT UI.USER_DSTN_CD, UI.USER_NAME, UI.USER_ID, UI.USER_DATE 
@@ -148,16 +146,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	ORDER BY UI.USER_DSTN_CD DESC
 	</select>
 	
-	<!-- 회원 정보 조회 -->
-	<!--  
+	
+	<!-- 회원 정보 조회 -->  
 	<select id="adUserInfo" resultType="com.test.mvc.AdminDTO">
-	SELECT UI.USER_DSTN_CD, UI.USER_NAME, UI.USER_ID, UI.USER_DATE 
-	FROM USER_INFO UI LEFT JOIN LEAVE_INFO LI
-	  ON UI.USER_DSTN_CD = LI.USER_DSTN_CD
-	WHERE LI.USER_DSTN_CD IS NULL
-	ORDER BY UI.USER_DSTN_CD DESC
+	SELECT USER_DSTN_CD, USER_NAME, USER_ID, USER_TEL, USER_DATE
+     , SSN, PET_NUM, MRG_YN, CHILD_NUM, FML_NUM, CAR_NUM, HOUSE_TYPE
+     , AREA_FST_NAME, AREA_SEC_NAME, JOB_FST_NAME, JOB_SEC_NAME
+	FROM USER_VIEW
+	WHERE USER_DSTN_CD = #{user_dstn_cd}
 	</select>
-	 -->
+	
+	<!-- 회원 신고 내역 조회 -->  
+	<!-- 
+	<select id="userReptHistory" resultType="com.test.mvc.AdminDTO">
+	ad_post_rept, ad_post_cmnt 승인 내역이랑 이용자 코드 조인해서 조회
+	</select>
+ 	-->
 	
 	
 	

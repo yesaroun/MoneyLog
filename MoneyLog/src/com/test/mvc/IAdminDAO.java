@@ -32,7 +32,10 @@ public interface IAdminDAO
 	public ArrayList<AdminDTO> adUserList();
 	
 	// 회원 정보 조회
-	// public AdminDTO adUserInfo(AdminDTO dto); 
+	public AdminDTO adUserInfo(AdminDTO dto); 
+	
+	// 회원 신고내역 조회
+	// public AdminDTO userReptHistory(AdminDTO dto); 
 	
 	
 	// ==========================================윤태 추가 
