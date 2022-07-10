@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -15,11 +18,48 @@
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
 <script type="text/javascript">
 
-	function postRept()
+	function cmntRept()
 	{
-		alert("신고 처리가 완료되었습니다.");
-		//window.location.href = "http://localhost:8090/WEB/UserPostList.jsp"; // ★ 수정
+		// 신고자
+		var user_dstn_cd = ${user_dstn_cd};
+		
+		// 신고 카테고리
+		var cate = document.getElementById("cmntReptCate");
+		var rept_cate_cd = cate.options[cate.selectedIndex].value;
+		
+		// 신고 내용 (기타)
+		var ReptDtlCont =  document.getElementById("cmntReptDtlCont");
+		var cmnt_rept_dtl_cont =  ReptDtlCont.value;
+		
+		if (rept_cate_cd == 5)
+		{
+			// 카테고리 기타일때
+			window.location.href = "./usercmntrept5.action?cmnt_cd="+${cmnt_cd}+"&user_dstn_cd="+user_dstn_cd+"&rept_cate_cd="+rept_cate_cd+"&cmnt_rept_dtl_cont="+cmnt_rept_dtl_cont;
+			
+		}
+		else if (rept_cate_cd != 5)
+		{
+			// 그 외
+			window.location.href = "./usercmntrept.action?cmnt_cd="+${cmnt_cd}+"&user_dstn_cd="+user_dstn_cd+"&rept_cate_cd="+rept_cate_cd;
+		} 
 	}
+	
+	// 기타 선택시 텍스트 쓸 수 있게
+	function cmntReptDtlContBox()
+	{
+		var cate = document.getElementById("cmntReptCate");
+		var rept_cate_cd = cate.options[cate.selectedIndex].value;
+		var cmnt_rept_dtl_cont = document.getElementById("cmntReptDtlCont");
+		if (rept_cate_cd == 5)
+		{
+			cmntReptDtlCont.style.display='inline';
+		}
+		else if (rept_cate_cd != 5)
+		{
+			cmntReptDtlCont.style.display='none';
+		} 
+	}
+	
 	
 
 </script>
@@ -43,42 +83,47 @@
 	
 		<div class="container">
 				<div class="row">
+					<c:forEach var="rept" items="${cmntRept }">
 						<table id="reptCont" class="table2 col-12">
 						     <tr>
 						         <th>댓글 내용</th>
 						      	 <td>
-						      	 	<input type="text" value="홍대 메가커피 위층으로 놀러오세요" style="padding-left:15px; width: 500px; height:35px; background-color: #EAE7E7; border:0 solid black" readonly="readonly">
+						      	 	<input type="text" value="${rept.cmnt_cont}" style="padding-left:15px; width: 500px; height:35px; background-color: #EAE7E7; border:0 solid black" readonly="readonly">
 						      	 <td>
 						     </tr>
 						     <tr>
 						         <th>게시글번호</th><!-- value 확인 -->
 						      	 <td>
-						      	 	<input type="text" value="412365" style="padding-left:15px; width: 500px; height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
+						      	 	<input type="text" value="${rept.rnum}" style="padding-left:15px; width: 500px; height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
 						      	 <td>
 						     </tr>
 						     <tr>    
 						         <th>신고구분</th>
 						         <td>
-						         	<select name="postReptCate" class="" style="padding-left:15px; width:500px;height:35px;">
-						               <option value="" selected="selected">욕설</option>
-						               <option value="">음란물</option>
-						               <option value="">기타</option>
+						         	<select id="cmntReptCate" name="cmntReptCate" class="" style="padding-left:15px; width:500px;height:35px;" onchange="cmntReptDtlContBox()">
+						               <option value="1" selected="selected">홍보/도배글</option>
+						               <option value="2">음란물</option>
+						               <option value="3">명예훼손/사생활침해</option>
+						               <option value="4">욕설/생명경시/혐오/차별</option>
+						               <option value="5">기타</option>
 						            </select>
 						         </td>
 						     </tr>
 						     <tr>    
-						         <th>내용</th>
+						         <th><div style="display: none;">내용</div></th>
 						         <td>
-						         	<textarea name="content" cols="60" rows="7"></textarea>
+						         	<textarea name="content" cols="60" rows="7"
+						         	 id="cmntReptDtlCont" style="display: none;"></textarea>
 						     	</td>    
 						     </tr>
 						     <tr>    
 						         <th>신고일자</th><!-- value 확인 -->
 						      	 <td>
-						      	 	<input type="text" value="2022.06.08" style="padding-left:15px; width:500px;height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
+						      	 	<input type="text" value="${rept.sysdate}" style="padding-left:15px; width:500px;height:35px; background-color: #EAE7E7; border:0 solid black;" readonly="readonly">
 						      	 </td>
 						     </tr>	
 						</table>
+					</c:forEach>
 				</div>
 				<div class="row">
 						<div class="col-12" style="margin-top: 20px;">
@@ -119,7 +164,7 @@
                   
                   <div class="modal-footer">
                      <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                     <button type="button" class="btn btn-primary" onclick="postRept()">신고하기</button>
+                     <button type="button" class="btn btn-primary" onclick="cmntRept()">신고하기</button>
                   </div>
                   
                </form>
