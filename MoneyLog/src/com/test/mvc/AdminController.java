@@ -95,7 +95,7 @@ public class AdminController
 		model.addAttribute("countCmntRept", dao.mainCountCmntRept());
 		model.addAttribute("countQna", dao.mainCountQna());
 		
-		model.addAttribute("get", dao.mainNotiList(dto));
+		model.addAttribute("mainNotiList", dao.mainNotiList(dto));
 		
 		result = "/AdMain.jsp";
 		return result;

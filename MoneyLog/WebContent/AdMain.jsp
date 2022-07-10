@@ -127,7 +127,6 @@
 														</tr>
 														</c:if>
 														
-														<!-- 구문 이거 맞나???? -->
 														<c:if test="${not empty mainNotiList}">
 										                <c:forEach var="mainNoti" items="${mainNotiList }" varStatus="status">
 										                <tr>
@@ -135,7 +134,7 @@
 											                <td><a href="./boardView.html">${mainNoti.noti_title }</a></td>
 											                <td class="mobile">
 											                	<fmt:parseDate value="${mainNoti.noti_date }" var="noti_date" pattern="yyyy-mm-dd" />
-																<fmt:formatDate value="${mainNoti.noti_date}" pattern="yyyy-mm-dd" />
+																<fmt:formatDate value="${noti_date}" pattern="yyyy-mm-dd" />
 											                </td>
 														</tr>
 														</c:forEach>
