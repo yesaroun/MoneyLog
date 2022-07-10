@@ -52,6 +52,13 @@
 								 </td>
 						     </tr>
 						     <tr>    
+						         <th>조회수</th>
+						         <td>
+						         	<input type="text" id="noti_view" name="noti_view" value="${userNotiSelect.noti_view }">
+						         </td>
+						     </tr>  
+						     <tr>    
+						     <tr>    
 						         <th>제목</th>
 						         <td>
 						         	<input type="text" id="noti_title" name="noti_title" value="${userNotiSelect.noti_title }">

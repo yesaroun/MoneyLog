@@ -12,6 +12,9 @@ public interface IMoneyDAO
 	// 머니리뷰 리스트 가져오기
 	public ArrayList<MoneyDTO> getPostList(MoneyDTO dto);
 	
+ 	// 머니리뷰 조회수 증가
+ 	public Integer postViewPlus(MoneyDTO dto);
+ 	
 	
 	// 마이태그 가져오기
 	public String myTag(MoneyDTO dto);

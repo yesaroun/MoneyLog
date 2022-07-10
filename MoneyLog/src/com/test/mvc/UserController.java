@@ -1012,6 +1012,7 @@ public class UserController
 	 	String noti_cd = request.getParameter("noti_cd");
 	 	
 	 	dto.setNoti_cd(noti_cd);
+	 	dao.notiViewPlus(dto);
 
 		mv.setViewName("/UserNotiCont.jsp");
 		mv.addObject("userNotiSelect", dao.userNotiSelect(dto)); 

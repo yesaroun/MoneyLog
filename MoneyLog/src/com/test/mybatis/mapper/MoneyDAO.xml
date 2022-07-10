@@ -36,6 +36,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ORDER BY RNUM DESC
 	</select>
 	
+	<!-- 머니리뷰 조회수 증가 쿼리문 -->
+	<update id="postViewPlus">
+ 	UPDATE POST
+	SET POST_VIEW = POST_VIEW+1
+	WHERE POST_CD=#{post_cd}
+	</update>
+	
 	<!-- 머니리뷰 조회 - 게시물 기본 내용 -->
 	<select id="postFind" resultType="com.test.mvc.MoneyDTO">
 		SELECT POST_CD, USER_DSTN_CD, SUBSTR(ACNT_YM,0,4) AS YEAR, DECODE(SUBSTR(ACNT_YM,5,1),0,SUBSTR(ACNT_YM,6),1,SUBSTR(ACNT_YM,5)) AS MONTH, ACNT_YM, DTL_SELECT_CD, SUBSTR(POST_TITLE,6) AS POST_TITLE, OPINION, POST_VIEW, POST_DATE

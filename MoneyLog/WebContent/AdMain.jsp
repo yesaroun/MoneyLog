@@ -7,34 +7,9 @@
 	String cp = request.getContextPath();
 %>
 <%
-		// 월 신규 회원 수
-		int data1 = 434;
-		int data2 = 534;
-		int data3 = 734;
-		int data4 = 934;
-		int data5 = 1134;
-		int data6 = 1334;
-		int data7 = 1634;
-		int data8 = 1734;
-		int data9 = 1634;
-		int data10 = 1434;
-		int data11 = 2134;
-		int data12 = 2934;
 		
-		// 월 탈퇴 회원 수
-		int ldata1 = 44;
-		int ldata2 = 34;
-		int ldata3 = 74;
-		int ldata4 = 34;
-		int ldata5 = 34;
-		int ldata6 = 134;
-		int ldata7 = 34;
-		int ldata8 = 734;
-		int ldata9 = 634;
-		int ldata10 = 434;
-		int ldata11 = 134;
-		int ldata12 = 34;
 	
+		
 %>
 
 <!DOCTYPE html>
@@ -218,10 +193,10 @@
                                                         </tr>
                                                         
                                                         <tr>
-                                                            <td class="post-column" >3,302</td>
-                                                            <td class="post-column mobile" >21</td>
-                                                            <td class="post-column mobile" >33</td>
-                                                            <td class="post-column mobile" >33</td>
+                                                            <td class="post-column" >${contentCount }</td>
+                                                            <td class="post-column mobile" >${newContentCount }</td>
+                                                            <td class="post-column mobile" >${reptContentCount }</td>
+                                                            <td class="post-column mobile" >${reptCmntCount }</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -243,7 +218,34 @@
 	<script src="./js/mdb.min.js"></script>
 	
 	<script>
+		// 월 신규 회원 수
+		var data1 = ${data1};
+		var data2 = ${data2};
+		var data3 = ${data3};
+		var data4 = ${data4};
+		var data5 = ${data5};
+		var data6 = ${data6};
+		var data7 = ${data7};
+		var data8 = ${data8};
+		var data9 = ${data9};
+		var data10 = ${data10};
+		var data11 = ${data11};
+		var data12 = ${data12};
 		
+		// 월 탈퇴 회원 수
+		var ldata1 = ${ldata1};
+		var ldata2 = ${ldata2};
+		var ldata3 = ${ldata3};
+		var ldata4 = ${ldata4};
+		var ldata5 = ${ldata5};
+		var ldata6 = ${ldata6};
+		var ldata7 = ${ldata7};
+		var ldata8 = ${ldata8};
+		var ldata9 = ${ldata9};
+		var ldata10 = ${ldata10};
+		var ldata11 = ${ldata11};
+		var ldata12 = ${ldata12};	
+	
 		var ctxL = document.getElementById("lineChart").getContext('2d');
 		var myLineChart = new Chart(ctxL,
 		{
@@ -260,7 +262,7 @@
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(220,220,220,1)",
-					data : [ <%=data1%>, <%=data2%>, <%=data3%>, <%=data4%>, <%=data5%>, <%=data6%>, <%=data7%>, <%=data8%>, <%=data9%>, <%=data10%>, <%=data11%>, <%=data12%> ]
+					data : [ data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12 ]
 				},
 				{
 					label : "탈퇴 회원 수",
@@ -270,7 +272,7 @@
 					pointStrokeColor : "#fff",
 					pointHighlightFill : "#fff",
 					pointHighlightStroke : "rgba(151,187,205,1)",
-					data : [ <%=ldata1%>, <%=ldata2%>, <%=ldata3%>, <%=ldata4%>, <%=ldata5%>, <%=ldata6%>, <%=ldata7%>, <%=ldata8%>, <%=ldata9%>, <%=ldata10%>, <%=ldata11%>, <%=ldata12%> ]
+					data : [ ldata1, ldata2, ldata3, ldata4, ldata5, ldata6, ldata7, ldata8, ldata9, ldata10, ldata11, ldata12 ]
 				} ]
 			},
 			options :

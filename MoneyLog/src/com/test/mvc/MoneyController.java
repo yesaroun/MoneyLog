@@ -157,6 +157,7 @@ public class MoneyController
     	session.removeAttribute("ad_id");
 		
 		String user_dstn_cd = (String)session.getAttribute("user_dstn_cd");
+	 	dao.postViewPlus(money);
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("user_dstn_cd", user_dstn_cd);
