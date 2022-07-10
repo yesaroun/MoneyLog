@@ -136,7 +136,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 
-=======
+
 	<!-- 비공개 게시글 수 조회 -->
 	<select id="mainReptContentCount" resultType="java.lang.Integer">
 		SELECT COUNT(*)
@@ -171,7 +171,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND TO_CHAR(LEAVE_DATE, 'MM')=#{month}
 	</select>
 
->>>>>>> 710c8912c2a4facffbbdbda048f4d674e8154185
+
 	<!-- 관리자 로그인  -->  
 	<select id="adLogin" resultType="com.test.mvc.AdminDTO" parameterType="java.lang.String">      
      SELECT AD_CD, AD_ID
@@ -182,6 +182,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             WHERE AD_ID = #{ad_id}) = #{ad_pw}
 	</select>
 	
+	<!-- 윤태 끝========================================================================================-->
+	
+	<!-- 현지 추가=======================================================================================-->
 	
 	<!-- 회원 목록 조회 (탈퇴 회원 제외)-->
 	<select id="adUserList" resultType="com.test.mvc.AdminDTO">
@@ -208,6 +211,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	ad_post_rept, ad_post_cmnt 승인 내역이랑 이용자 코드 조인해서 조회
 	</select>
  	-->
+ 	<!-- 현지 끝=======================================================================================-->
 	
 	
 	
