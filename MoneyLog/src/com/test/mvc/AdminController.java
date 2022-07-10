@@ -192,6 +192,7 @@ public class AdminController
 
 	 	// → model.add 후 AdUserInfo.jsp에서 el 사용
 	 	model.addAttribute("adUserInfo", dao.adUserInfo(dto));
+	 	// 추가하기 --> 신고내역 조회
         
         result = "/AdUserInfo.jsp";
 		
