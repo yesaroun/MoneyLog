@@ -83,6 +83,8 @@ main { margin-left: 250px; margin-top: 55px; margin-right: 100px;}
 .ad-main-table .post-column {text-align: center;}
 
 /*AdUserList.jsp*/
+#adUserList table {text-align: center;}
+#adUserList table th {font-weight: 700; background-color: #F7EDE2; }
 .ad-user-list-table th, tr {text-align: center;}
 .ad-user-list-table th .number-column { width: 60px; }
 .ad-user-list-table th .user-code-column { width: 120px;}

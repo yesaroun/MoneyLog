@@ -11,16 +11,19 @@
 <head>
 <title>회원목록</title>
 
+<script type="text/javascript">
+	/*
+	function newPage()
+	{
+	    window.location.href = "./adUserInfo.jsp"
+	}
+	*/
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
 </head>
-
-<script type="text/javascript">
-
-</script>
-
 <body>
     <div class="wrap">
         <!-- ○ 상단 네비게이션 include -->
@@ -82,21 +85,19 @@
             </div>
             
             <div class="span10">
-                <main>
+                <main id="adUserList">
                     <section>
                         <div class="row">
                 
                             <!-- 회원 리스트 -->
                             <div class="col-md-12">
-                
                                 <div class="list-group">
-                                    <br><br>
+                                    <br>
                                     <h4>회원 목록<small> 회원들을 관리하세요</small></h4>
-        
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table ad-user-list-table">
-                                                
+                                             	<tbody>
                                                     <!-- class="mobile" 는 화면이 990픽셀 이하로 작아지면 안보이게 처리 (모바일용)-->
                                                     <!-- 회원 목록 (화면 작아지면 번호, 이름, 상세정보만 뜨도록)  -->
                                                     <tr>
@@ -119,6 +120,7 @@
                                                         </td>
                                                     </tr>
                                                     -->
+                                                    
                                                     <c:if test="${empty adUserList }">
 													<tr>
 														<td colspan="6" style="text-align: center;">머니리뷰에 가입한 회원이 없습니다.</td>
@@ -143,6 +145,8 @@
                                                     </tr>
                                                     </c:forEach>
 													</c:if>
+													 
+												</tbody>
                                             </table>
                                         </div>
                                     </div>
