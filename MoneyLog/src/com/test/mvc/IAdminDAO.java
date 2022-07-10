@@ -43,4 +43,10 @@ public interface IAdminDAO
 	
 	// ==========================================윤태 추가 
 	public ArrayList<AdminDTO> mainNotiList(AdminDTO dto);
+	
+	public int mainUserCount();
+	
+	public int mainNewUserCount();
+	
+	public int mainLeaveUserCount();
 }
