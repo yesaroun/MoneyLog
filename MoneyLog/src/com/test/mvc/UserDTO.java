@@ -17,7 +17,8 @@ public class UserDTO
     
     , noti_cd, noti_title, noti_cont, noti_view, noti_date, noti_pin
     , ad_ansr_cd, ad_cd, ad_ansr_cont, ad_ansr_date;
-    
+	
+	private int prevNum, nextNum;
     
 	
 	// getter / setter 구성
@@ -730,4 +731,27 @@ public class UserDTO
 	{
 		this.leave_date = leave_date;
 	}
+
+	public int getPrevNum()
+	{
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum)
+	{
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum()
+	{
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum)
+	{
+		this.nextNum = nextNum;
+	}
+	
+	
+	
 }

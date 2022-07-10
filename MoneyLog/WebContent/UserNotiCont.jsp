@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -46,20 +47,21 @@
 						     <tr>
 						         <th>작성일</th>
 						      	 <td>
-						      	 	2022.05.17
-						      	 <td>
+									<fmt:parseDate value="${userNotiSelect.noti_date }" var="noti_date" pattern="yyyy-mm-dd" />
+									<fmt:formatDate value="${noti_date}" pattern="yyyy-mm-dd" />						      	 <td>
+								 </td>
 						     </tr>
 						     <tr>    
 						         <th>제목</th>
 						         <td>
-						         	서비스 이용약관 변경 안내
+						         	<input type="text" id="noti_title" name="noti_title" value="${userNotiSelect.noti_title }">
 						         </td>
 						     </tr>  
 						     <tr>    
 						         <th>내용</th>
 						         <td>
-						         	<textarea name="content" rows="10" cols="60" readonly="readonly" placeholder="이렇게 저렇게 변경했습니다."></textarea>
-						     	</td>    
+						         	<textarea name="content" rows="10" cols="60" readonly="readonly">${userNotiSelect.noti_cont }</textarea>
+						     	 </td>    
 						     </tr>
 						</table>
 				</div>			
@@ -68,7 +70,7 @@
 					<div class="col-12" style="margin-top: 10px; padding-left: 30px;">				
 						<table class="table3">
 							<tr>
-								<td>이전글 : (104) 머니로그 가계부 관련 공지사항입니다.</td>
+								<td>이전글 : (${userNotiSelect.noti_cd}) 머니로그 가계부 관련 공지사항입니다.</td>
 							</tr>
 						</table>
 					</div>
@@ -77,7 +79,7 @@
 					<div class="col-12" style="margin-top: 10px; padding-left: 30px;">				
 						<table class="table3">
 							<tr>
-								<td>다음글 : (105) 머니리뷰 관련 공지사항입니다.</td>
+								<td>다음글 : (${userNotiSelect.noti_cd}) 머니리뷰 관련 공지사항입니다.</td>
 							</tr>
 						</table>
 					</div>
@@ -86,7 +88,7 @@
 				<div class="row">
 						<div class="col-12" style="margin-top: 20px;">
 								<button type="submit" class="btn btn-primary" style="background-color: #1fa766; float: right;"
-								onclick="javascript:location.href='<%=cp%>/NotiList.jsp'">목록</button>
+								onclick="javascript:location.href='<%=cp%>/usernotilist.action'">목록</button>
 						</div>
 				</div>
 

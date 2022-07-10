@@ -98,6 +98,9 @@ public interface IUserDAO
  	// 이용자 문의글 등록
  	public int userQnaReg(UserDTO dto);
  	
+ 	// 공지사항 한 건 조회
+ 	public UserDTO userNotiSelect(UserDTO dto); 
+ 	
  	// 문의하기 등록글 한 건 조회
  	public UserDTO userQnaSelect(UserDTO dto); 
  	
