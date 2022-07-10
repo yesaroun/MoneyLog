@@ -36,10 +36,8 @@
 <div class="wrap">
     <!-- ○ 상단 네비게이션 include -->
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavMoney.jsp"></jsp:include>
-        </header>
+		<!-- ○ 상단 네비게이션 include -->
+		<jsp:include page="./AdNavMoney.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -54,11 +52,10 @@
                         <div class="row">
                             <div class="col-sm-10 m-3">
                                 <div class="btn-group float-left">
-                                    <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F5CAC3; color: #000000;" onclick="location.href='./adpostlist.action?pageNum=1'">게시글</button>
-                                    <button type="submit" class="btn btn-primary" style="width:100px; background-color: #F7EDE2; color: #000000;" onclick="location.href='./adcmntlist.action?pageNum=1'">댓글</button>
+                                    <button type="submit" class="btn btn-primary activate-btn" onclick="location.href='./adpostlist.action?pageNum=1'">게시글</button>
+                                    <button type="submit" class="btn btn-primary unactivate-btn" onclick="location.href='./adcmntlist.action?pageNum=1'">댓글</button>
                                 </div>
                                 <div class="btn-group float-right">
-                                
                                 
                                 	<c:if test="${empty postListCheck}">
 										<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,7 +73,7 @@
                                         전체
 	                                    </button>
 	                                    <div class="dropdown-menu">
-	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1" style="background-color: #F5CAC3; border: none;">전체</a>
+	                                        <a class="dropdown-item dropdown-selected" href="./adpostlist.action?pageNum=1">전체</a>
 	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1">공개</a>
 	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1">비공개</a>
 	                                    </div>
@@ -88,7 +85,7 @@
 	                                    </button>
 	                                    <div class="dropdown-menu">
 	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1">전체</a>
-	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1" style="background-color: #F5CAC3; border: none;">공개</a>
+	                                        <a class="dropdown-item dropdown-selected" href="./adpostlistOpen.action?pageNum=1">공개</a>
 	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1">비공개</a>
 	                                    </div>
 									</c:if>
@@ -100,7 +97,7 @@
 	                                    <div class="dropdown-menu">
 	                                        <a class="dropdown-item" href="./adpostlist.action?pageNum=1">전체</a>
 	                                        <a class="dropdown-item" href="./adpostlistOpen.action?pageNum=1">공개</a>
-	                                        <a class="dropdown-item" href="./adpostlistPrivate.action?pageNum=1" style="background-color: #F5CAC3; border: none;">비공개</a>
+	                                        <a class="dropdown-item dropdown-selected" href="./adpostlistPrivate.action?pageNum=1">비공개</a>
 	                                    </div>
 									</c:if>
                                     
@@ -132,13 +129,13 @@
                                             <table class="table table-striped" style="max-width: 1080px;">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="mobile" style="width:50px; text-align:center;">no</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">게시글 코드</th>
-                                                        <th scope="col" class="mobile" style="width:200px; text-align:center;">게시글 제목</th>
-                                                        <th scope="col" class="mobile" style="width:150px; text-align:center;">작성자</th>
-                                                        <th scope="col" class="mobile" style="width:150px; text-align:center;">날짜</th>
-                                                        <th scope="col" style="width:150px; text-align:center;">공개여부</th>
-                                                        <th scope="col" style="width:100px; text-align:center;">상세정보</th>
+                                                        <th scope="col" class="mobile" style="width:50px;" >no</th>
+                                                        <th scope="col" style="width:150px;">게시글 코드</th>
+                                                        <th scope="col" class="mobile" style="width:200px;">게시글 제목</th>
+                                                        <th scope="col" class="mobile" style="width:150px;">작성자</th>
+                                                        <th scope="col" class="mobile" style="width:150px;">날짜</th>
+                                                        <th scope="col" style="width:150px;">공개여부</th>
+                                                        <th scope="col" style="width:100px;">상세정보</th>
                                                     </tr>
                                                 </thead>
                                                 
@@ -153,11 +150,11 @@
 													 	
 												 	<c:forEach var="list" items="${getPostList }" varStatus="loop">
 												 		<tr>
-															<td scope="row" class="mobile" style="text-align:center;">
+															<td scope="row" class="mobile" >
 																${list.rnum }
 																<%-- ${fn:length(getPostList) - loop.index } --%>
 															</td>
-												  			<td scope="row" style="text-align:center;">
+												  			<td scope="row">
 												  				${list.post_cd}
 												  			</td>
 												  			
@@ -165,25 +162,25 @@
 												  				<a href="./admoneypost.action?post_cd=${list.post_cd}">${list.post_title}</a>
 												  			</td>
 												  		
-												  			<td class="mobile" scope="row" style="text-align:center;">
+												  			<td class="mobile" scope="row">
 												  				<c:if test="${empty getPostList}">
 																	탈퇴회원
 																</c:if>
 												  				${list.user_id}
 												  			</td>
 												  			
-												  			<td class="mobile" style="text-align:center;">
+												  			<td class="mobile">
 												  				<fmt:parseDate value="${list.post_date}" var="post_date" pattern="yyyy-MM-dd" />
 						                       					<fmt:formatDate value="${post_date}" pattern="yyyy-MM-dd" />
 												  			</td>
 												  		
-												  			<td scope="row" style="text-align:center;">
+												  			<td scope="row">
 												  				${list.post_check}
 												  			</td>
 												  		
-												  			<td style="text-align: center;">
+												  			<td >
                                                             	<button type="button" class="btn btn-success" onclick="adPostInfoAction(${list.post_cd})">보기</button>
-                                                       		</td>
+	                                                   		</td>
 												  		</tr>
 													</c:forEach>
                                                 </tbody>
@@ -196,7 +193,7 @@
                     </section>
                     
                     <div class="row">
-						<div class="col-12" style="place-items: center; display: grid;">
+						<div class="col-12 paging-div">
 							<div id="paging">
 								<p>${strList }${start }${end }</p>		
 							</div>	
@@ -211,7 +208,6 @@
 </div>
 
 	<script src="./js/jquery-3.2.1.min.js"></script>
-	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 
 </body>
