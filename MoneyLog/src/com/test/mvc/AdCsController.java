@@ -23,13 +23,16 @@ public class AdCsController
 	
 	// 공지사항 리스트 출력
 	@RequestMapping(value="/adnotilist.action", method = RequestMethod.GET)
-	public String adNotiList(Model model) throws SQLException
+	public String adNotiList(Model model, HttpSession session) throws SQLException
 	{
 		String result = null;
 		
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
+		String ad_cd = (String)session.getAttribute("ad_cd");
+		String ad_id = (String)session.getAttribute("ad_id");
+	
 		// dao 쿼리 실행 후 얻은 리스트 결과를 addAttribute()로 key adNotiList 에 담아 전송
 		model.addAttribute("adNotiList", dao.adNotiList());
 		
@@ -58,7 +61,7 @@ public class AdCsController
 		return result;
 	}
 	
-	// 공지사항 수정하기 클릭 > 기존 데이터 가지고 업데이트 페이지 가기
+	// 공지사항 수정하기 클릭 > 기존 데이터 가지고 수정폼페이지 가기
 	@RequestMapping(value="/adnotiupdateform.action", method=RequestMethod.GET)
 	public String adNotiUpdateForm(Model model, HttpServletRequest request, HttpServletResponse response, AdCsDTO dto) throws SQLException
 	{
@@ -78,9 +81,9 @@ public class AdCsController
 		return result;
 	}
 	
-	// 수정한 공지사항 정보를 AdNotiCont.jsp 로 전송
+	// 수정한 공지사항 정보를 리스트 페이지로 전송
 	@RequestMapping(value="/adnotiupdate.action", method=RequestMethod.GET)
-	public String adNotiUpdate(Model model, HttpServletRequest request, HttpServletResponse response, AdCsDTO dto) throws SQLException
+	public String adNotiUpdate(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
 	{
 		String result = null;
 		
@@ -106,7 +109,7 @@ public class AdCsController
 		model.addAttribute("update", dao.adNotiView(noti_cd));
 		
 		// 데이터 전송
-		result = "/AdNotiUpdate.jsp";
+		result = "/adnoticont.action";
 		return result;
 	}
 	
@@ -143,7 +146,11 @@ public class AdCsController
 		String ad_cd = (String)session.getAttribute("ad_cd");
 		String ad_id = (String)session.getAttribute("ad_id");
 		
-		// 다음 페이지로 
+		// DTO SET 해주기
+		dto.setAd_cd(ad_cd);
+		dto.setAd_id(ad_id);
+		
+		// 다음 페이지로 전송
 		model.addAttribute("ad_cd", ad_cd);
 		model.addAttribute("ad_id", ad_id);
 		
@@ -161,9 +168,22 @@ public class AdCsController
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
-
+		// 필요로한 것 : ad_cd(받아와야해) / noti_title / noti_cont / noti_view(0) / noti_pin
 		
-		result = "/.jsp";
+		// 관리자가 입력한 데이터 수신
+		String noti_pin = request.getParameter("noti_pin");
+		String noti_title = request.getParameter("noti_title");
+		String noti_cont = request.getParameter("noti_cont");
+
+		// dto set 해주기
+		dto.setNoti_pin(noti_pin);
+		dto.setNoti_title(noti_title);
+		dto.setNoti_cont(noti_cont);
+		
+		// dao의 등록 메소드 실행
+		dao.adNotiInsert(dto);
+		
+		result = "/adnotilist.action";
 		
 		return result;
 	}
