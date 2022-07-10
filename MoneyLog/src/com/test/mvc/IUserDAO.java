@@ -88,18 +88,22 @@ public interface IUserDAO
     public int userBackUp(UserDTO dto);
     
     //-------------------------------------------------고객센터 추가
+    
     // 공지사항 리스트 확인
  	public ArrayList<UserDTO> userNotiList();
  	
+ 	// 공지사항 한 건 조회
+ 	public UserDTO userNotiSelect(UserDTO dto); 
+ 	
+ 	// 공지사항 조회수 증가
+ 	public Integer notiViewPlus(UserDTO dto);
+ 	
+ 	
  	// 문의하기 리스트 확인
  	public ArrayList<UserDTO> userQnaList();
-    
  	
  	// 이용자 문의글 등록
  	public int userQnaReg(UserDTO dto);
- 	
- 	// 공지사항 한 건 조회
- 	public UserDTO userNotiSelect(UserDTO dto); 
  	
  	// 문의하기 등록글 한 건 조회
  	public UserDTO userQnaSelect(UserDTO dto); 
@@ -109,7 +113,6 @@ public interface IUserDAO
  	
  	// 이용자 문의글 삭제
  	public int userQnaDelete(UserDTO dto);
- 	
  	
  	
 	

@@ -469,7 +469,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE QNA_CD = #{qna_cd}
 	</delete>
 
- 
+	<!-- 공지사항 조회수 증가 쿼리문 -->
+	<update id="notiViewPlus">
+ 	UPDATE NOTI
+	SET NOTI_VIEW = NOTI_VIEW+1
+	WHERE NOTI_CD=#{noti_cd}
+	</update>
 	
 	
 	<!-- 
