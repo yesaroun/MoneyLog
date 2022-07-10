@@ -98,7 +98,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="mainNotiList" resultType="com.test.mvc.UserDTO">
 		SELECT NOTI_CD, NOTI_TITLE, NOTI_DATE
 		FROM NOTI
-	    ORDER BY NOTI_PIN DESC, NOTI_DATE DESC
+		WHERE NOTI_PIN LIKE 'Y' 
+		ORDER BY NOTI_PIN DESC, NOTI_DATE DESC
 	</select>
 	
 
