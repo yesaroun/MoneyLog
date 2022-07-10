@@ -44,9 +44,32 @@ public interface IAdminDAO
 	// ==========================================윤태 추가 
 	public ArrayList<AdminDTO> mainNotiList(AdminDTO dto);
 	
+	// 전체 이용자 수 조회
 	public int mainUserCount();
 	
+	// 금일 신규 이용자 수 조회
 	public int mainNewUserCount();
 	
+	// 금일 탈퇴 이용자 수 조회
 	public int mainLeaveUserCount();
+	
+	// 전체 게시글 수 조회
+	public int mainContentCount();
+	
+	// 금일 신규 게시글 수 조회
+	public int mainNewContentCount();
+	
+	// 비공개 게시글 수 조회 
+	public int mainReptContentCount();
+	
+	// 비공개 댓글 수 조회
+	public int mainReptCmntCount();
+	
+	// 월별 신규 회원 수 조회
+	public int mainMonthUserCount(String month);
+	
+	// 월별 탈퇴 회원 수 조회
+	public int mainMonthLeaveUserCount(String month);
+	
+	//==================================================
 }
