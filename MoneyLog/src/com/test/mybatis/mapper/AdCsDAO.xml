@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 공지사항 등록 -->
 	<insert id="adNotiInsert">
 		INSERT INTO NOTI(NOTI_CD, AD_CD, NOTI_TITLE, NOTI_CONT, NOTI_VIEW, NOTI_PIN)
-		VALUES(NOTI_SEQ.NEXTVAL, #{ad_cd}, #{noti_title}, #{noti_cont}, #{noti_view}, #{noti_pin})
+		VALUES(NOTI_SEQ.NEXTVAL, #{ad_cd}, #{noti_title}, #{noti_cont}, 0, #{noti_pin})
 	</insert>
 
 	<!-- ▼ 문의글 ▼ -->
