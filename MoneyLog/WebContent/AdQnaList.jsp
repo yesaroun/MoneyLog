@@ -83,7 +83,7 @@
 			                					<td><a href="./adqnacont.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
 			                				</c:when>
 			                				<c:otherwise>
-			                					<td><a href="./reganswer.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
+			                					<td><a href="./reganswerform.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
 			                				</c:otherwise>
 			                			</c:choose>
 			                		 

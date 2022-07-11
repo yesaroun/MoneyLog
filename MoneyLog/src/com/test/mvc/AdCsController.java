@@ -197,7 +197,6 @@ public class AdCsController
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
 		//String ad_id = (String)session.getAttribute("ad_id");
-		
 		//model.addAttribute("ad_id", ad_id);
 		
 		model.addAttribute("adQnaList", dao.adQnaList());
@@ -207,7 +206,7 @@ public class AdCsController
 		return result;
 	}
 	
-	// 문의글 보기
+	// 문의글 리스트 > 답변이 없는 문의글폼 페이지로 안내 (문의글 답변 등록 수행 위함)
 	@RequestMapping(value="/adqnacont.action", method=RequestMethod.GET)
 	public String adQnaCont(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
 	{
@@ -217,7 +216,6 @@ public class AdCsController
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
 		// 이전 페이지에서 ad_id 와 qna_cd 수신
-		String ad_id = request.getParameter("ad_id");
 		String qna_cd = request.getParameter("qna_cd");
 		
 		dto.setQna_cd(qna_cd);
@@ -231,38 +229,37 @@ public class AdCsController
 		
 		return result;
 	}
-	/*
-	// 문의글 답변 작성 폼으로 이동
-	@RequestMapping(value="/adqnaregform.action", method=RequestMethod.GET)
+
+	// 문의글 리스트 > 답변이 있는 문의글폼 페이지로 안내
+	@RequestMapping(value="/reganswerform.action", method=RequestMethod.GET)
 	public String adQnaRegForm(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
 	{
 		String result = null;
-		
+			
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
-		
-		// 이전페이지로부터 문의글 코드 받기
-		String qna_cd = request.getParameter("qna_cd");
-		
-		// 세션에 있는 관리자코드, 아이디 받기
+			
+		// 세션으로부터 관리자코드 데이터 수신
 		String ad_cd = (String)session.getAttribute("ad_cd");
-		String ad_id = (String)session.getAttribute("ad_id");
+
+		// 이전 페이지로부터 데이터 수신
+		String qna_cd = request.getParameter("qna_cd");
+
+		//System.out.println(qna_cd);
+		//System.out.println(ad_cd);
 		
-		// DTO SET 해주기
+		// dto set 해주기
 		dto.setAd_cd(ad_cd);
-		dto.setAd_id(ad_id);
 		dto.setQna_cd(qna_cd);
-		
-		// 다음 페이지로 전송
-		model.addAttribute("ad_cd", ad_cd);
-		model.addAttribute("ad_id", ad_id);
-		model.addAttribute("qna_cd", qna_cd);
-		
+			
+		// 뷰페이지에 보낼 문의글 관련 데이터 key-value 에 담기
+		model.addAttribute("adQnaView", dao.adQnaView(qna_cd));
+			
+		// 뷰페이지에 전송
 		result = "/AdQnaReg.jsp";
-		
 		return result;
 	}
-	*/
+	
 	// 문의글 답변 등록 --> 보류(ajax 처리해야하나 고민) / 폼페이지를 만들어서 분기 / 지금 방식에서 수정
 	@RequestMapping(value="/reganswer.action", method=RequestMethod.GET)
 	public String adQnaReg(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
@@ -272,50 +269,37 @@ public class AdCsController
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
-		// 필요로한 것 : AD_CD, AD_ANSR_CD, QNA_CD, AD_ANSR_CONT
+		// 필요로한 것 : AD_CD, QNA_CD, AD_ANSR_CONT
 		
 		// 세션으로부터 관리자코드 데이터 수신
 		String ad_cd = (String)session.getAttribute("ad_cd");
 
 		// 이전 페이지로부터 데이터 수신
-		String ad_id = request.getParameter("ad_id");
 		String qna_cd = request.getParameter("qna_cd");
 		String ad_ansr_cont = request.getParameter("ad_ansr_cont");
 
 		System.out.println(qna_cd);
-		System.out.println(ad_id);
+		System.out.println(ad_cd);
 		System.out.println(ad_ansr_cont);
 	
-		
 		// dto set 해주기
-		dto.setAd_ansr_cd(ad_id);
-		dto.setAd_cd(ad_cd);
 		dto.setQna_cd(qna_cd);
+		dto.setAd_cd(ad_cd);
 		dto.setAd_ansr_cont(ad_ansr_cont);
-
-		/* ad_id 로 ad_cd 도출시키는 메소드 실행
-		dao.findAdcd(ad_id);
 		
-		// dto ad_cd set 해주기
-		dto.setAd_cd(ad_id);
-		*/
 		// dao 의 등록 메소드 실행
 		dao.adQnaInsert(dto);
-		
-		//dto = dao.adQnaView(qna_cd);
 		
 		// 뷰페이지에 보낼 문의글 관련 데이터 key-value 에 담기
 		model.addAttribute("adQnaView", dao.adQnaView(qna_cd));
 		
 		// 뷰페이지에 전송
-		result = "/AdQnaReg.jsp";
+		result = "/reganswerform.action";
 		return result;
 	}
 	
-	// 문의글 답변 수정하기 --> 보류(ajax 처리해야하나 고민) / adqnaupdateform.action & adqnaupdate.action
-	
 	// 문의글 수정하기 클릭 > 기존 데이터 가지고 수정폼페이지 가기
-	@RequestMapping(value="/adqnaupdate.action", method=RequestMethod.GET)
+	@RequestMapping(value="/adqnaupdateform.action", method=RequestMethod.GET)
 	public String adQnaUpdateForm(Model model, HttpServletRequest request, HttpServletResponse response, AdCsDTO dto) throws SQLException
 	{
 		String result = null;
@@ -323,19 +307,24 @@ public class AdCsController
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
-		// 이전 페이지에서 noti_cd 수신
+		// 이전 페이지에서 qna_cd, ad_ansr_cd 수신
 		String qna_cd = request.getParameter("qna_cd");
+		String ad_ansr_cd = request.getParameter("ad_ansr_cd");
 		
-		// noti_cd 로 dao 쿼리 실행 후 얻은 문의글 조회 결과를 addAttribute()로 key UpdateForm 에 담아 전송
+		// 수신한 qna_cd, ad_ansr_cd 를 뷰페이지에 전달하기 위해 set
+		request.setAttribute("qna_cd", qna_cd);
+		request.setAttribute("ad_ansr_cd", ad_ansr_cd);
+		
+		// qna_cd 로 dao 쿼리 실행 후 얻은 문의글 조회 결과를 addAttribute()로 key UpdateForm 에 담아 전송
 		model.addAttribute("update", dao.adQnaView(qna_cd));
 		
-		result = "/AdNotiUpdateForm.jsp";
+		result = "/AdQnaUpdate.jsp";
 		
 		return result;
 	}
 	
 	// 수정한 문의글 답변을 반영한 문의글 페이지로 전송
-	@RequestMapping(value="/adnotiupdatefffff.action", method=RequestMethod.GET)
+	@RequestMapping(value="/adnotiupdate.action", method=RequestMethod.GET)
 	public String adQnaUpdate(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
 	{
 		String result = null;
@@ -376,12 +365,18 @@ public class AdCsController
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
 		// 이전 페이지에서 데이터 수신
-		String noti_cd = request.getParameter("noti_cd");
+		String ad_ansr_cd = request.getParameter("ad_ansr_cd");
+		String qna_cd = request.getParameter("qna_cd");
+		
+		System.out.println(ad_ansr_cd);
+		
+		// 답변 삭제 후 불리는 adQnaCont.jsp 의 필수요소 qna_cd를 전달
+		request.setAttribute("qna_cd", qna_cd);
 		
 		// 공지 삭제 메소드 실행
-		dao.adNotiDelete(noti_cd);
+		dao.adQnaDelete(ad_ansr_cd);
 		
-		result = "redirect:adnotilist.action";
+		result = "/adqnacont.action";
 		
 		return result;
 	}
