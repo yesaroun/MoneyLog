@@ -22,13 +22,13 @@ public class AdminDTO
 	private String ad_ansr_cd, ad_ansr, ad_ansr_cont, ad_ansr_date;
 	
 	// 게시글 등록
-	private String post_cd, dtl_select_cd, acnt_ym, post_title, opinion, post_view, post_date;
+	private String post_cd, dtl_select_cd, acnt_ym, post_title, opinion, post_view, post_date, post_reg_user;
 	
 	// 신고 카테고리 분류 
 	private String rept_cate_cd, rept_cate_name;
 	
 	// 게시글 신고등록 
-	private String post_rept_cd, post_rept_date;
+	private String post_rept_cd, post_rept_date, rept_user_dstn_cd;
 	
 	// 게시글 신고세부사유
 	private String post_rept_dtl_cd, post_rept_dtl_cont;
@@ -37,28 +37,79 @@ public class AdminDTO
 	private String ad_post_rept_cd, ad_post_rept_date;
 	
 	// 승인 여부
-	private String cnfm_cd, cnfm_yn;
+	private String cnfm_cd, cnfm_result;
 	
 	// 댓글 등록
-	private String cmnt_cd, cmnt_cont, cmnt_date;
+	private String cmnt_cd, cmnt_cont, cmnt_date, count_cmnt;
 	
 	// 댓글 신고등록
 	private String cmnt_rept_cd, cmnt_rept_date;
-	
+
 	// 댓글 신고세부사유
-	private String cmnt_rept_dtl_cd, cmnnt_rept_dtl_cont;
-	
+	private String cmnt_rept_dtl_cd, cmnt_rept_dtl_cont;
+
 	// 관리자 댓글 신고처리
 	private String ad_cmnt_rept_cd, ad_cmnt_rept_date;
 	
 	// 게시글 이용자 영구정지
-	private String post_ban_cd, post_ban_date;
-	
+	private String post_ban_cd, post_ban_date, ban_date;
+
 	// 댓글 이용자 영구정지
 	private String cmnt_ban_cd, cmnt_ban_date;
 	
 	
 	// getter / setter 구성
+	
+	public String getBan_date()
+	{
+		return ban_date;
+	}
+
+	public void setBan_date(String ban_date)
+	{
+		this.ban_date = ban_date;
+	}
+	
+	public String getPost_reg_user()
+	{
+		return post_reg_user;
+	}
+
+	public String getCount_cmnt()
+	{
+		return count_cmnt;
+	}
+
+	public void setCount_cmnt(String count_cmnt)
+	{
+		this.count_cmnt = count_cmnt;
+	}
+
+	public void setPost_reg_user(String post_reg_user)
+	{
+		this.post_reg_user = post_reg_user;
+	}
+	
+	public String getRept_user_dstn_cd()
+	{
+		return rept_user_dstn_cd;
+	}
+
+	public void setRept_user_dstn_cd(String rept_user_dstn_cd)
+	{
+		this.rept_user_dstn_cd = rept_user_dstn_cd;
+	}
+
+	public String getCnfm_result()
+	{
+		return cnfm_result;
+	}
+
+	public void setCnfm_result(String cnfm_result)
+	{
+		this.cnfm_result = cnfm_result;
+	}
+	
 	public String getUser_dstn_cd()
 	{
 		return user_dstn_cd;
@@ -649,15 +700,6 @@ public class AdminDTO
 		this.cnfm_cd = cnfm_cd;
 	}
 
-	public String getCnfm_yn()
-	{
-		return cnfm_yn;
-	}
-
-	public void setCnfm_yn(String cnfm_yn)
-	{
-		this.cnfm_yn = cnfm_yn;
-	}
 
 	public String getCmnt_cd()
 	{
@@ -719,14 +761,14 @@ public class AdminDTO
 		this.cmnt_rept_dtl_cd = cmnt_rept_dtl_cd;
 	}
 
-	public String getCmnnt_rept_dtl_cont()
+	public String getCmnt_rept_dtl_cont()
 	{
-		return cmnnt_rept_dtl_cont;
+		return cmnt_rept_dtl_cont;
 	}
 
-	public void setCmnnt_rept_dtl_cont(String cmnnt_rept_dtl_cont)
+	public void setCmnt_rept_dtl_cont(String cmnt_rept_dtl_cont)
 	{
-		this.cmnnt_rept_dtl_cont = cmnnt_rept_dtl_cont;
+		this.cmnt_rept_dtl_cont = cmnt_rept_dtl_cont;
 	}
 
 	public String getAd_cmnt_rept_cd()

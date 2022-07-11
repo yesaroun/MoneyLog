@@ -34,8 +34,19 @@ public interface IAdminDAO
 	// 회원 정보 조회
 	public AdminDTO adUserInfo(AdminDTO dto); 
 	
-	// 회원 신고내역 조회
-	// public AdminDTO userReptHistory(AdminDTO dto); 
+	// 회원 신고내역리스트 조회
+	public ArrayList<AdminDTO> userReptHistory(AdminDTO dto); 
+	
+	// 회원 게시글리스트 조회
+	public ArrayList<AdminDTO> adUserPostList(AdminDTO dto);
+	
+	// 회원 댓글 리스트 조회
+	public ArrayList<AdminDTO> adUserCmntList(AdminDTO dto);
+	
+	// 영구정지회원 리스트 조회
+	public ArrayList<AdminDTO> adBanList();
+	
+	// 영구정지회원 정보 조회
 	
 	
 	// ==========================================윤태 추가 

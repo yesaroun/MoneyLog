@@ -91,7 +91,7 @@
                             <div class="col-md-12">
                                 <div class="list-group">
                                     <br>
-                                    <h4>회원 목록<small> 회원들을 관리하세요</small></h4>
+                                    <h4>회원 목록<small> 머니로그를 이용중인 회원입니다.</small></h4>
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table ad-user-list-table">

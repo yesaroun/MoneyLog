@@ -186,13 +186,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 현지 추가=======================================================================================-->
 	
-	<!-- 회원 목록 조회 (탈퇴 회원 제외)-->
+	<!-- 회원 목록 조회 (탈퇴, 영구정지회원 제외)-->
 	<select id="adUserList" resultType="com.test.mvc.AdminDTO">
-	SELECT UI.USER_DSTN_CD, UI.USER_NAME, UI.USER_ID, UI.USER_DATE 
+	SELECT UI.USER_DSTN_CD, UI.USER_NAME, UI.USER_ID, UI.USER_DATE
 	FROM USER_INFO UI LEFT JOIN LEAVE_INFO LI
 	  ON UI.USER_DSTN_CD = LI.USER_DSTN_CD
-	WHERE LI.USER_DSTN_CD IS NULL
-	ORDER BY UI.USER_DSTN_CD DESC
+	LEFT JOIN POST_BAN PB
+	  ON UI.USER_ID = PB.USER_ID
+    LEFT JOIN CMNT_BAN CB
+      ON UI.USER_ID = CB.USER_ID
+    WHERE LI.USER_DSTN_CD IS NULL
+     AND PB.POST_BAN_CD IS NULL
+     AND CB.CMNT_BAN_CD IS NULL
+    ORDER BY UI.USER_DSTN_CD DESC
 	</select>
 	
 	
@@ -205,12 +211,66 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	WHERE USER_DSTN_CD = #{user_dstn_cd}
 	</select>
 	
-	<!-- 회원 신고 내역 조회 -->  
-	<!-- 
+	<!-- 회원 신고 내역 리스트 조회 -->   
 	<select id="userReptHistory" resultType="com.test.mvc.AdminDTO">
-	ad_post_rept, ad_post_cmnt 승인 내역이랑 이용자 코드 조인해서 조회
+	SELECT AD_POST_REPT_CD, AD_POST_REPT_DATE "AD_POST_REPT_DATE"
+     , POST_CD, USER_DSTN_CD, USER_DSTN_CD "POST_REG_USER"
+	FROM POST_REPT_VIEW
+	WHERE USER_DSTN_CD = #{user_dstn_cd}
+	  AND AD_POST_REPT_DATE >= (ADD_MONTHS(SYSDATE, -6))
+	UNION ALL
+	SELECT AD_CMNT_REPT_CD, AD_CMNT_REPT_DATE
+	     , POST_CD, USER_DSTN_CD, POST_REG_USER
+	FROM CMNT_REPT_VIEW
+	WHERE USER_DSTN_CD = #{user_dstn_cd}
+	  AND AD_CMNT_REPT_DATE >= (ADD_MONTHS(SYSDATE, -6))
+	ORDER BY AD_POST_REPT_DATE DESC
 	</select>
- 	-->
+	
+	<!-- 회원 게시글 리스트 조회 (블라인드 포함)--> 
+	<select id="adUserPostList" resultType="com.test.mvc.AdminDTO">
+	SELECT POST_CD, POST_TITLE
+	     , (SELECT COUNT(C.CMNT_CD) 
+            FROM CMNT C LEFT JOIN CMNT_REPT CR 
+              ON C.CMNT_CD = CR.CMNT_CD
+            WHERE CR.CMNT_REPT_CD IS NULL 
+              AND C.POST_CD = POST_CD) "COUNT_CMNT"
+         , POST_DATE, POST_VIEW, USER_DSTN_CD
+    FROM POST  
+    WHERE USER_DSTN_CD = #{user_dstn_cd}
+    ORDER BY POST_CD DESC
+ 	</select>
+ 	
+ 	<!-- 회원 댓글 리스트 조회 (블라인드 포함) -->
+ 	<select id="adUserCmntList" resultType="com.test.mvc.AdminDTO">
+	SELECT POST_CD, CMNT_CONT, CMNT_DATE, USER_DSTN_CD
+	FROM CMNT 
+	WHERE USER_DSTN_CD = #{user_dstn_cd}
+	ORDER BY CMNT_CD DESC
+	</select>
+	
+	<!-- 영구정지회원 목록 조회 (탈퇴 회원 제외)-->
+	<select id="adBanList" resultType="com.test.mvc.AdminDTO">
+	SELECT UI.USER_DSTN_CD, UI.USER_NAME, UI.USER_ID, UI.USER_TEL
+	     , UI.USER_DATE, PB.POST_BAN_DATE "BAN_DATE"
+	FROM USER_INFO UI LEFT JOIN LEAVE_INFO LI
+	  ON UI.USER_DSTN_CD = LI.USER_DSTN_CD
+	LEFT JOIN POST_BAN PB
+	  ON UI.USER_ID = PB.USER_ID
+    WHERE LI.USER_DSTN_CD IS NULL
+     AND PB.POST_BAN_CD IS NOT NULL
+    UNION ALL
+    SELECT UI.USER_DSTN_CD, UI.USER_NAME, UI.USER_ID
+	     , UI.USER_TEL, UI.USER_DATE, CB.CMNT_BAN_DATE
+	FROM USER_INFO UI LEFT JOIN LEAVE_INFO LI
+	  ON UI.USER_DSTN_CD = LI.USER_DSTN_CD
+	LEFT JOIN CMNT_BAN CB
+	  ON UI.USER_ID = CB.USER_ID
+    WHERE LI.USER_DSTN_CD IS NULL
+     AND CB.CMNT_BAN_CD IS NOT NULL
+	ORDER BY BAN_DATE DESC
+	</select>
+ 	
  	<!-- 현지 끝=======================================================================================-->
 	
 	

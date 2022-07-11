@@ -48,8 +48,8 @@
                                     <button type="button" class="btn dropdown-toggle info-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 상세 정보</button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="./aduserinfo.action?user_dstn_cd=${adUserInfo.user_dstn_cd }" style="background-color: #F0B1A8;">상세 정보</a>
-                                        <a class="dropdown-item" href="./AdUserPostList.jsp">게시글 내역</a>
-                                        <a class="dropdown-item" href="./AdUserCmntList.jsp">댓글 내역</a>
+                                        <a class="dropdown-item" href="./aduserpostlist.action?user_dstn_cd=${adUserInfo.user_dstn_cd }">게시글 내역</a>
+                                        <a class="dropdown-item" href="./adusercmntlist.action?user_dstn_cd=${adUserInfo.user_dstn_cd }">댓글 내역</a>
                                     </div>
                                 </div>
                             </div>
@@ -151,39 +151,49 @@
                             <div class="col-md-12">
                                 <br>
                                 <div class="list-group">
-                                    <h4>신고내역<small> 6개월 내의 신고처리내역 입니다.</small></h4>
+                                    <h4>신고내역<small> 선택한 회원의 지난 6개월 내 신고내역 입니다.</small></h4>
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table">
                                                 <tbody>
                                                     <tr>
                                                         <th>신고처리코드</th>
-                                                        <th >신고처리일자</th>
+                                                        <th>신고처리일자</th>
                                                     </tr>
-          										   <!--                                        
+          										    <!--                                        
                                                     <tr>
                                                         <td><a href="">게시글122030</a></td>
                                                         <td>2022/05/29</td>
                                                      </tr>  
                                                      -->  
-                                                        
-                                                    <c:if test="${empty adUserList }">
-													<tr>
-														<td colspan="2" style="text-align: center;">신고 처리 내역이 없습니다.</td>
-													</tr>
-													</c:if>
+                                                    
 													
-													<c:if test="${not empty adUserList }">
-									                <c:forEach var="adUser" items="${adUserList }" varStatus="status">
-                                                    <tr>
-                                                        <td><a href="">게시글122030</a></td>
-                                                        <td>2022/05/29
-										                	<fmt:parseDate value="${adUser.user_date}" var="user_date" pattern="yyyy-mm-dd" />
-															<fmt:formatDate value="${user_date}" pattern="yyyy-mm-dd" />
-										                </td>
-                                                    </tr>
-                                                    </c:forEach>
-													</c:if>       
+													<c:choose>
+													   <c:when test="${not empty userReptHistory }">
+												         <c:forEach var="userRept" items="${userReptHistory}" varStatus="status">
+												           <tr>
+												             <td>									               
+												               <c:set var ="post_reg_user" value="${userRept.post_reg_user}"/>
+												               <c:if test="${userRept.user_dstn_cd == post_reg_user}"><a href="">[게시글] ${userRept.ad_post_rept_cd }</a></c:if>
+												               <c:if test="${userRept.user_dstn_cd != post_reg_user}"><a href="">[댓글] ${userRept.ad_post_rept_cd }</a></c:if>
+												             </td>
+												             <td>${userRept.ad_post_rept_date}</td>
+												            <%-- 
+												             <td>
+                                                        	     ${userRept.ad_post_rept_date}
+											                	 <fmt:parseDate value="${userRept.ad_post_rept_date}" var="ad_post_rept_date" pattern="yyyy-MM-dd" />
+																 <fmt:formatDate value="${ad_post_rept_date}" pattern="yyyy-MM-dd" />
+											                 </td>
+											                 --%>
+												           </tr>
+												         </c:forEach> 
+												       </c:when>
+												       <c:otherwise>
+												         <tr>
+												        	 <td colspan="2" style="text-align: center;">신고내역이 없습니다.</td>
+												         </tr>
+													   </c:otherwise>
+												   </c:choose>
                                                         
                                                 </tbody>
                                             </table>
