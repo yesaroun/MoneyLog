@@ -19,10 +19,8 @@
 
 <div class="wrap">
     <header>
-        <header>
             <!-- ○ 상단 네비게이션 include -->
 	        <jsp:include page="./AdNavCs.jsp"></jsp:include>
-        </header>
     </header>
 
     <div class="container-fluid">
@@ -85,7 +83,7 @@
                                             <span class="input-group-btn">
                                                     <button class="btn btn-default" type="button" style="background-color: skyblue; color: white;" data-toggle="modal" data-target="#modalUpdate">수정</button>
                                                     <button class="btn btn-default" type="button" style="background-color: #F5CAC3; color: white;" data-toggle="modal" data-target="#modalDelete">삭제</button>
-                                                    <button class="btn btn-default" type="button" style="background-color: lightgray; color: white;" onclick="javascript:location.href='<%=cp%>/AdQnaList.jsp'">목록</button>
+                                                    <button class="btn btn-default" type="button" style="background-color: lightgray; color: white;" onclick="javascript:location.href='<%=cp%>/adqnalist.action'">목록</button>
                                             </span>
                                     </div>
                                 </div><!-- /.col-sm-8 -->

@@ -6,9 +6,6 @@
 %>
 <%
 	String qna_cd = request.getParameter("qna_cd");
-	//String ad_ansr_cd = "${ad_ansr_cd}";
-	//String qna_cd = "${qna_cd}";
-	//String ad_ansr_cont = "${ad_ansr_cont}";
 %>
 <!DOCTYPE html>
 <html>
@@ -28,7 +25,6 @@
 	var ad_ansr_cd = '<c:out value="${adQnaView.ad_ansr_cd}"/>';
 	var qna_cd = '<c:out value="${adQnaView.qna_cd}"/>';
 	var ad_ansr_cont = '<c:out value="${adQnaView.ad_ansr_cont}"/>';
-	
 	 
 	$(function()
 	{
@@ -57,8 +53,6 @@
 	{
 		$(function()
 		{
-			//alert(qna_cd);
-			
 			var ad_ansr_cont = $("#newAnswer").val();
 			
 			// 답변 내용을 입력하지 않았을 때
@@ -71,12 +65,8 @@
 			}
 			else
 			{
-				// FORM.SUBMIT();
 				//alert( ad_ansr_cont );
-				window.location.href = "./reganswer.action?ad_ansr_cont="+ad_ansr_cont+"&qna_cd="+qna_cd;
-			
-				//$("#regQna").submit();
-				
+				window.location.href = "./reganswer.action?ad_ansr_cont="+ad_ansr_cont+"?qna_cd"+qna_cd;
 			}
 		});
 		
@@ -129,7 +119,7 @@
                 <jsp:include page="./AdMenuCs.jsp"></jsp:include>
             </div>
             <div class="span10">
-              <form > <!-- action="/reganswer.action" method="get" id="regQna" -->
+              <form>
                 <main id="adNotiList">
                     <section>
                         <div class="row">
@@ -179,8 +169,7 @@
                             <div class="col-8" style="margin-top: 20px; margin-bottom: 20px;" >
                                 <div class="input-group">
                                 
-                                
-                                <input type="text" id="newAnswer" class="form-control" style="height: 70px; border: 1px solid;" placeholder="내용을 입력해주세요.">
+                                <input type="text" id="newAnswer" class="form-control" style="height: 70px; border: 1px solid;" value="${adQnaView.ad_ansr_cont }">
                                 <%-- 
                                      <c:choose>
                                         <c:when test="${empty adQnaView.ad_ansr_cd }">
@@ -205,11 +194,10 @@
                                     </c:choose>
                                      --%>
                                      	<button class="btn btn-default" type="button" id="QnaRegBtn" style="background-color: skyblue; color: white;" onclick="regAnswer()">답변</button>
+                                     	
                                         <button class="btn btn-default" type="button" style="background-color: #F5CAC3; color: white;" onclick="javascript:location.href='<%=cp%>/adqnaupdateform.action?qna_cd=<%=qna_cd%>'"> 수정</button>
                                         <button class="btn btn-default" type="button" style="background-color: lightgray; color: white;" onclick="javascript:location.href='<%=cp%>/adqnalist.action'">목록</button>
-                                    	
-                                    	<input type="hidden" id="qna_cd" name="qna_cd" value=<%=qna_cd %> />
-                                    	
+                                    
                                     </span>
                                 </div>
                             </div><!-- /.col-sm-8 -->

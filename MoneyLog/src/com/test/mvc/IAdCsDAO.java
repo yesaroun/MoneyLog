@@ -26,6 +26,21 @@ public interface IAdCsDAO
  	
  	// ▼ 관리자 문의글 ▼
  	
+ 	// 관리자 아이디로 관리자 코드 조회
+ 	public String findAdcd(String ad_id);
+ 	
  	// 문의하기 리스트 확인
  	public ArrayList<AdCsDTO> adQnaList();
+ 	
+ 	// 문의글 리스트 확인
+ 	public AdCsDTO adQnaView(String qna_cd);
+
+ 	// 문의글 답변 등록하기
+ 	public int adQnaInsert(AdCsDTO dto);
+ 	
+ 	// 문의글 답변 수정하기
+ 	public int adQnaModify(AdCsDTO dto);
+ 	
+ 	// 문의글 답변 삭제하기
+ 	public int adQnaDelete(String ad_ansr_cd);
 }
