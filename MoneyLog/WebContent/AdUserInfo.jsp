@@ -160,14 +160,7 @@
                                                         <th>신고처리코드</th>
                                                         <th>신고처리일자</th>
                                                     </tr>
-          										    <!--                                        
-                                                    <tr>
-                                                        <td><a href="">게시글122030</a></td>
-                                                        <td>2022/05/29</td>
-                                                     </tr>  
-                                                     -->  
-                                                    
-													
+          			
 													<c:choose>
 													   <c:when test="${not empty userReptHistory }">
 												         <c:forEach var="userRept" items="${userReptHistory}" varStatus="status">
