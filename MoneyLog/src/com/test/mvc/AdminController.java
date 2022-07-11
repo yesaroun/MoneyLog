@@ -173,9 +173,9 @@ public class AdminController
 		
 	}
 	
-	// 관리자 회원 정보 조회 adUserInfo
+	// 회원 정보 조회 (신고내역까지)
 	@RequestMapping(value="/aduserinfo.action", method=RequestMethod.GET)
-	public String userQnaSelect(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	public String adUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
 	{
 		String result = null;
 		
@@ -187,17 +187,104 @@ public class AdminController
 	    // set
 	 	dto.setUser_dstn_cd(user_dstn_cd);
 
-	 	// user_dstn_cd로 dao 에 있는 select 쿼리 실행후 dto 에 set
-	 	dto = dao.adUserInfo(dto);
-
+	    // dao 에 있는 select 쿼리 실행
 	 	// → model.add 후 AdUserInfo.jsp에서 el 사용
 	 	model.addAttribute("adUserInfo", dao.adUserInfo(dto));
-	 	// 추가하기 --> 신고내역 조회
-        
+
+	 	model.addAttribute("userReptHistory", dao.userReptHistory(dto));
+
+	 	 
         result = "/AdUserInfo.jsp";
 		
 		return result;
 	}
 	
+	// 관리자 회원 게시글 리스트 조회
+	@RequestMapping(value="/aduserpostlist.action", method=RequestMethod.GET)
+	public String adUserPostList(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	    // adUserList 에서 user_dstn_cd 받기
+	 	String user_dstn_cd = request.getParameter("user_dstn_cd");
+	   	
+	    // set
+	 	dto.setUser_dstn_cd(user_dstn_cd);
+
+	    // dao 에 있는 select 쿼리 실행
+	 	// → model.add 후 AdUserPostList.jsp에서 el 사용
+	 	model.addAttribute("adUserPostList", dao.adUserPostList(dto));
+	 	
+
+        result = "/AdUserPostList.jsp";
+        
+		
+		return result;
+	}
+	
+	// 관리자 회원 댓글 리스트 조회
+	@RequestMapping(value="/adusercmntlist.action", method=RequestMethod.GET)
+	public String adUserCmntList(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	    // adUserList 에서 user_dstn_cd 받기
+	 	String user_dstn_cd = request.getParameter("user_dstn_cd");
+	   	
+	    // set
+	 	dto.setUser_dstn_cd(user_dstn_cd);
+
+	    // dao 에 있는 select 쿼리 실행
+	 	// → model.add 후 AdUserCmntList.jsp에서 el 사용
+	 	model.addAttribute("adUserCmntList", dao.adUserCmntList(dto));
+
+        result = "/AdUserCmntList.jsp";
+		
+		return result;
+	}
+	
+	// 영구정지 회원 리스트 조회
+	@RequestMapping(value = "/adbanlist.action", method = RequestMethod.GET)
+	public String adBanList( Model model, AdminDTO dto) throws SQLException 
+	{	
+		String result = null;
+		
+		IAdminDAO dao =sqlSession.getMapper(IAdminDAO.class);
+		 
+		model.addAttribute("adBanList", dao.adBanList());
+		
+		result = "/AdBan.jsp";
+		
+		return result;
+		
+	}
+	
+	// 영구정지 회원 정보 조회
+	@RequestMapping(value="/adbaninfo.action", method=RequestMethod.GET)
+	public String adBanInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	    // adBan 에서 user_dstn_cd 받기
+	 	String user_dstn_cd = request.getParameter("user_dstn_cd");
+	   	
+	    // set
+	 	dto.setUser_dstn_cd(user_dstn_cd);
+
+	    // dao 에 있는 select 쿼리 실행
+	 	// → model.add 후 AdBanInfo.jsp에서 el 사용
+	 	model.addAttribute("adUserInfo", dao.adUserInfo(dto));
+	 	model.addAttribute("userReptHistory", dao.userReptHistory(dto));
+
+        result = "/AdBanInfo.jsp";
+		
+		return result;
+	}
 
 }
