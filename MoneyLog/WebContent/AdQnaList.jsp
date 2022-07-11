@@ -5,6 +5,9 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+<%
+	String ad_id = (String)request.getAttribute("ad_id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -73,7 +76,17 @@
 		                			<c:forEach var="adQna" items="${adQnaList }" varStatus="status">
 		                			<tr>
 			                			<td scope="row" class="mobile" style="text-align:center;">${adQna.rownum }</td>
-			                			<td><a href="AdQnaCont.jsp" style="color: #000000;">${adQna.qna_title }</a></td>
+			                			<%-- <td><a href="./adqnacont.action?qna_cd=${adQna.qna_cd }"" style="color: #000000;">${adQna.qna_title }</a></td> --%>
+												                			
+			                			<c:choose>
+			                				<c:when test="${adQna.ad_ansr eq '-'}">
+			                					<td><a href="./adqnacont.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
+			                				</c:when>
+			                				<c:otherwise>
+			                					<td><a href="./reganswer.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
+			                				</c:otherwise>
+			                			</c:choose>
+			                		 
 			                			<td class="mobile" style="text-align:center;">${adQna.ad_ansr }</td>
 			                			<td class="mobile" style="text-align:center;">
 			                				<fmt:parseDate value="${adQna.qna_date }" var="qna_date" pattern="yyyy-mm-dd" />
