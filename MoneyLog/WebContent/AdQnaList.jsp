@@ -31,10 +31,8 @@
 
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavCs.jsp"></jsp:include>
-        </header>
+    	<!-- ○ 상단 네비게이션 include -->
+        <jsp:include page="./AdNavCs.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
