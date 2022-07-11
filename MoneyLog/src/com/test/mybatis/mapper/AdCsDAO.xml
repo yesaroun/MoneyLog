@@ -103,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="adQnaDelete">
 		DELETE
 		FROM AD_ANSR
-		WHERE AD_ANSR_CD = #{ad_ansr_cd };
+		WHERE AD_ANSR_CD = #{ad_ansr_cd }
 	</delete>
 	
 	<!-- 

@@ -6,9 +6,6 @@
 %>
 <%
 	String qna_cd = request.getParameter("qna_cd");
-	//String ad_ansr_cd = "${ad_ansr_cd}";
-	//String qna_cd = "${qna_cd}";
-	//String ad_ansr_cont = "${ad_ansr_cont}";
 %>
 <!DOCTYPE html>
 <html>
@@ -29,28 +26,6 @@
 	var qna_cd = '<c:out value="${adQnaView.qna_cd}"/>';
 	var ad_ansr_cont = '<c:out value="${adQnaView.ad_ansr_cont}"/>';
 	
-	 
-	$(function()
-	{
-		/*
-		$("#QnaRegBtn").click(function()
-		{
-			$("#err1").css("display", "none");
-			
-			if( $("#qnaInsert").val()!="" )
-			{
-				// ajax 처리할 것
-				
-			}
-			else
-			{
-				$("#err1").css("display" ,"inline");
-				$("#qnainsert").focus();
-				return false;
-			}
-		});
-		*/
-	});
 	
 	// 답변 버튼을 눌렀을 때
 	function regAnswer()
@@ -71,46 +46,13 @@
 			}
 			else
 			{
-				// FORM.SUBMIT();
-				//alert( ad_ansr_cont );
+				// 컨트롤러의 문의글 답변 등록 메소드로 이동
 				window.location.href = "./reganswer.action?ad_ansr_cont="+ad_ansr_cont+"&qna_cd="+qna_cd;
-			
-				//$("#regQna").submit();
-				
 			}
 		});
 		
-		
-		/*
-		//alert(ad_ansr_cd);
-		
-		if( ad_ansr_cd == "" )
-		{
-			//window.location.href = "./reganswer.action.action?ad_ansr_cd="+ad_ansr_cd+"?ad_ansr_cont="+ad_ansr_cont+"?qna_cd"+qna_cd;
-			
-			$("#qnaInsert").attr("disabled", false); //disabled 속성 해제
-			$("#qnaOk").attr("disabled", true); 	//disabled 속성 설정
-			
-		}
-		else
-		{
-			alert("답변이 이미 등록되어 있습니다.");
-			return false;
-		}
-		*/
-		
-		
-		
 	}
 	
-	// //$('#modalUpdate').modal();-- 밑에 만들어둔 부트스트랩 모달팝업 띄우기
-	/*
-	function answerDelete()
-	{
-		confirm("삭제되었습니다.");
-		window.location.href = "http://localhost:8090/WEB/AdQnaCont.jsp";
-	}
-	*/
 </script>
 </head>
 <body>
@@ -165,7 +107,7 @@
                                     <tr>    
                                         <th>내용</th>
                                         <td>
-                                        <textarea name="content" rows="10" cols="60" class="textarea">${adQnaView.qna_cont }</textarea>
+                                        <textarea name="content" rows="10" cols="60" class="textarea" readonly="readonly">${adQnaView.qna_cont }</textarea>
                                     </td>    
                                     </tr>
                             </table>
@@ -181,31 +123,9 @@
                                 
                                 
                                 <input type="text" id="newAnswer" class="form-control" style="height: 70px; border: 1px solid;" placeholder="내용을 입력해주세요.">
-                                <%-- 
-                                     <c:choose>
-                                        <c:when test="${empty adQnaView.ad_ansr_cd }">
-                                        	<input type="text" id="qnaInsert" class="form-control" style="height: 70px; border: 1px solid;" placeholder="내용을 입력해주세요." >
-                                        	<input type="text" id="newAnswer" class="form-control" style="height: 70px; border: 1px solid; display: none;" value="${adQnaView.ad_ansr_cont }" >
-                                        	<span id="err1" style="color: red; display: none;">※ 답변 내용을 입력해야 등록이 가능합니다.</span>	
-                                        </c:when>
-                                        <c:otherwise>
-                                        	<input type="text" id="qnaOk" class="form-control" style="height: 70px; border: 1px solid;" value="${adQnaView.ad_ansr_cont }">
-                                        </c:otherwise>
-                                     </c:choose>
-                                --%>
                                     <span class="input-group-btn">
-									<%--                                     
-                                    <c:choose>
-                                        <c:when test="${empty adQnaView.ad_ansr_cd }">
-                                        	<button class="btn btn-default" type="button" id="QnaRegBtn" style="background-color: skyblue; color: white;" onclick="regAnswer()">답변</button>
-                                        </c:when>
-                                        <c:otherwise>
-                                        	<button class="btn btn-default" type="button" style="background-color: skyblue; color: white;" disabled="disabled">답변</button>
-                                        </c:otherwise>
-                                    </c:choose>
-                                     --%>
-                                     	<button class="btn btn-default" type="button" id="QnaRegBtn" style="background-color: skyblue; color: white;" onclick="regAnswer()">답변</button>
-                                        <button class="btn btn-default" type="button" style="background-color: #F5CAC3; color: white;" onclick="javascript:location.href='<%=cp%>/adqnaupdateform.action?qna_cd=<%=qna_cd%>'"> 수정</button>
+                                     	<button class="btn btn-default" type="button" id="QnaRegBtn" style="background-color: skyblue; color: white;" data-toggle="modal" data-target="#modal">답변</button>
+                                        <button class="btn btn-default" type="button" style="background-color: #F5CAC3; color: white;" disabled> 수정</button>
                                         <button class="btn btn-default" type="button" style="background-color: lightgray; color: white;" onclick="javascript:location.href='<%=cp%>/adqnalist.action'">목록</button>
                                     	
                                     	<input type="hidden" id="qna_cd" name="qna_cd" value=<%=qna_cd %> />
@@ -235,36 +155,9 @@
 	<script src="./js/bootstrap.min.js"></script>
 
 
-<!-- modal 만들기 -->
-<div class="modal fade" id="modalDelete" tabindex="-1" aria-labelledby="modal"
-aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">정말 삭제하시겠습니까?</h4>
-                
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidde="true">&times;</span>
-                </button>
-            </div>
-            
-            <div class="modal-body" style="text-align : center;">
-                <form>
-                    <img src="./img3/warning.png" width="50%;">
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="answerDelete()">확인</button>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
-<%-- 
 <!-- modal 만들기 -->
-<div class="modal fade" id="modalReg" tabindex="-1" aria-labelledby="modal"
+<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal"
 aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -278,10 +171,10 @@ aria-hidden="true">
             
             <div class="modal-body" style="text-align : center;">
                 <form>
-                    <img src="./img3/warning.png" width="50%;">
+                    <img src="./img3/register.png" width="50%;">
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/AdQnaCont.jsp'">확인</button>
+                        <button type="button" class="btn btn-primary" onclick="regAnswer()">확인</button>
                     </div>
                     
                 </form>
@@ -289,6 +182,6 @@ aria-hidden="true">
         </div>
     </div>
 </div>
- --%>
+
 </body>
 </html>
