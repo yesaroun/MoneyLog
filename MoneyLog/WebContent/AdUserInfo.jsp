@@ -151,16 +151,16 @@
                             <div class="col-md-12">
                                 <br>
                                 <div class="list-group">
-                                    <h4>신고내역<small> 선택한 회원의 지난 6개월 내 신고내역 입니다.</small></h4>
+                                    <h4>신고내역<small>선택한 회원의 지난 6개월 내 신고내역 입니다.</small></h4>
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table">
                                                 <tbody>
-                                                    <tr>
-                                                        <th>신고처리코드</th>
-                                                        <th>신고처리일자</th>
+                                                    <tr>                                 
+                                                        <th>신고처리코드</th>  
+														<th>신고처리일자</th>    
                                                     </tr>
-          			
+
 													<c:choose>
 													   <c:when test="${not empty userReptHistory }">
 												         <c:forEach var="userRept" items="${userReptHistory}" varStatus="status">
@@ -187,8 +187,8 @@
 												         </tr>
 													   </c:otherwise>
 												   </c:choose>
-                                                        
-                                                </tbody>
+												   
+												 </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -199,8 +199,7 @@
                 </main>
             </div>
         </div>
-        
-        
+    
     </div>
 </div>
     
