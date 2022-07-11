@@ -6,6 +6,9 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+<%
+	String qna_cd = (String)request.getParameter("qna_cd");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,7 +105,7 @@
 							<div class="list-group">
 								<form action="userqnacont.action" id="qnaContForm">
 									
-	            					<b>제목</b>
+	            					<b>제목<%=qna_cd %></b>
 	            					<input type="text" id="qna_title" name="qna_title" style="padding-left:15px; width: 500px; height:35px;">
 	            					<span id="err1" style="color: red; display: none;">※ 제목을 입력하세요.</span>	
 	            					<br><br>

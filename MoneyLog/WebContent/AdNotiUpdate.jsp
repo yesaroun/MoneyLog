@@ -52,7 +52,7 @@
 				{
 					$("#err1").css("display" ,"inline");
 					$("#noti_title").focus();
-							return false;
+					return false;
 				} 
 						
 				if ( $("#noti_cont").val()=="")

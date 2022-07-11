@@ -53,7 +53,7 @@
                             <div class="col-12">
                                 <table id="cont" class="table2">
                                     <tr>
-                                        <th>제목${adNotiView.noti_cd }</th>
+                                        <th>제목</th>
                                         <td>
                                             ${adNotiView.noti_title }
                                         </td>

@@ -14,6 +14,9 @@ public class AdCsDTO
 	// 관리자 문의글 답변
 	public String ad_ansr_cd, ad_ansr, ad_ansr_cont, ad_ansr_date;
 
+	// 쿼리에 필요한 이용자 정보
+	public String user_name, user_id;
+	
 	// getter / setter 구성
 	public String getAd_cd()
 	{
@@ -24,7 +27,7 @@ public class AdCsDTO
 	{
 		this.ad_cd = ad_cd;
 	}
-
+	
 	public String getAd_id()
 	{
 		return ad_id;
@@ -224,6 +227,27 @@ public class AdCsDTO
 	{
 		this.ad_ansr_date = ad_ansr_date;
 	}
+
+	public String getUser_name()
+	{
+		return user_name;
+	}
+
+	public void setUser_name(String user_name)
+	{
+		this.user_name = user_name;
+	}
+
+	public String getUser_id()
+	{
+		return user_id;
+	}
+
+	public void setUser_id(String user_id)
+	{
+		this.user_id = user_id;
+	}
+	
 	
 	
 }
