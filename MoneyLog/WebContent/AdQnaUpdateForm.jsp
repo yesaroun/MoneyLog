@@ -19,7 +19,19 @@
 <link rel="stylesheet" href="./css/admin.css">
 <link rel="stylesheet" type="text/css" href="<%=cp %>/css/board.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-<script type="text/javascript" src="<%=cp%>/js/jquery-ui.js"></script>
+<script>
+
+	function update()
+	{
+		$(function()
+		{
+			var ad_ansr_cont = $("#answerUpdate").val();
+
+			window.location.href = "./adqnaupdate.action?ad_ansr_cont="+ad_ansr_cont+"&qna_cd="+<%=qna_cd%>+"&ad_ansr_cd="+<%=ad_ansr_cd%>;
+		});
+	}
+	
+</script>
 </head>
 <body>
 
@@ -37,7 +49,7 @@
                 <jsp:include page="./AdMenuCs.jsp"></jsp:include>
             </div>
             <div class="span10">
-              <form id="adQnaUpdate">
+              <form>
                 <main id="adNotiList">
                     <section>
                         <div class="row">
@@ -136,9 +148,10 @@
                 <form>
                     <img src="./img3/register.png" width="50%;">
                     
-                    <div class="modal-footer">														
-                    	<button type="button" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/adqnaupdate.action?qna_cd=${update.qna_cd }&ad_ansr_cd=${update.ad_ansr_cd }&ad_ansr_cont=${update.ad_ansr_cont }'">확인</button> --%>
+                    <div class="modal-footer">														<!-- 필요한 것 : AD_ANSR_CD / AD_CD / AD_ANSR_CONT -->
+                        <button type="button" class="btn btn-primary" onclick="update()">확인</button>
                     </div>
+                    
                 </form>
                 </div>
             </div>
@@ -162,7 +175,7 @@
                     <img src="./img3/warning.png" width="50%;">
                     
 					<div class="modal-footer">
-                        <button type="button" id="checkBtn" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/qnadelete.action?ad_ansr_cd=<%=ad_ansr_cd %>&qna_cd=<%=qna_cd %>'" >확인</button>
+                        <button type="button" class="btn btn-primary" onclick="javascript:location.href='<%=cp%>/qnadelete.action?ad_ansr_cd=<%=ad_ansr_cd %>&qna_cd=<%=qna_cd %>'" >확인</button>
                     </div>
                     
                 </form>

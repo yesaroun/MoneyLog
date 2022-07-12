@@ -278,9 +278,9 @@ public class AdCsController
 		String qna_cd = request.getParameter("qna_cd");
 		String ad_ansr_cont = request.getParameter("ad_ansr_cont");
 
-		System.out.println(qna_cd);
-		System.out.println(ad_cd);
-		System.out.println(ad_ansr_cont);
+		//System.out.println(qna_cd);
+		//System.out.println(ad_cd);
+		//System.out.println(ad_ansr_cont);
 	
 		// dto set 해주기
 		dto.setQna_cd(qna_cd);
@@ -318,13 +318,13 @@ public class AdCsController
 		// qna_cd 로 dao 쿼리 실행 후 얻은 문의글 조회 결과를 addAttribute()로 key UpdateForm 에 담아 전송
 		model.addAttribute("update", dao.adQnaView(qna_cd));
 		
-		result = "/AdQnaUpdate.jsp";
+		result = "/AdQnaUpdateForm.jsp";
 		
 		return result;
 	}
 	
 	// 수정한 문의글 답변을 반영한 문의글 페이지로 전송
-	@RequestMapping(value="/adnotiupdate.action", method=RequestMethod.GET)
+	@RequestMapping(value="/adqnaupdate.action", method=RequestMethod.GET)
 	public String adQnaUpdate(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
 	{
 		String result = null;
@@ -332,26 +332,29 @@ public class AdCsController
 		// 고객지원 dao 
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
-		// 공지코드와 수정된 공지제목, 상단고정 여부, 내용 데이터 수신
-		String noti_cd = request.getParameter("noti_cd");
-		String noti_title = request.getParameter("noti_title");
-		String noti_cont = request.getParameter("noti_cont");
-		String noti_pin = request.getParameter("noti_pin");
+		// 필요한 것 : AD_ANSR_CD / AD_CD / AD_ANSR_CONT 
+
+		// 관리자 코드와 수정된 관리자 답변코드, 관리자 답변내용 데이터 수신
+		String qna_cd = request.getParameter("qna_cd");
+		String ad_cd = (String)session.getAttribute("ad_cd");
+		String ad_ansr_cd = request.getParameter("ad_ansr_cd");
+		String ad_ansr_cont = request.getParameter("ad_ansr_cont");
 		
 		// dto 에 수정된 데이터 넣어주기
-		dto.setNoti_cd(noti_cd);
-		dto.setNoti_title(noti_title);
-		dto.setNoti_pin(noti_pin);
-		dto.setNoti_cont(noti_cont);
+		dto.setQna_cd(qna_cd);
+		dto.setAd_cd(ad_cd);
+		dto.setAd_ansr_cd(ad_ansr_cd);
+		dto.setAd_ansr_cont(ad_ansr_cont);
 		
 		// dao 의 수정 메소드 실행
-		dao.adNotiModify(dto);
+		//dao.adQnaModify(dto);
 		
 		// 수정된 데이터의 내용을 조회하는 메소드 실행 결과를 key-value에 담기
-		model.addAttribute("update", dao.adNotiView(noti_cd));
+		model.addAttribute("update", dao.adQnaModify(dto));
+		model.addAttribute("update", dao.adQnaView(qna_cd));
 		
 		// 데이터 전송
-		result = "/adqnaupdateform.action";
+		result = "/AdQnaUpdate.jsp";
 		return result;
 	}
 	
