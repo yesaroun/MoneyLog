@@ -9,194 +9,15 @@
 	String cp = request.getContextPath();
 %>
 <%
-	// 데이터 수신
-	String sYear = request.getParameter("defaultYear");
-	String sMonth = request.getParameter("defaultMonth");
-	// String dayIntot = request.getParameter("dayIntot");
-	// String dayOutTot = request.getParameter("dayOutTot");
 	
-	// Calendar 객체 생성
-	Calendar cal = Calendar.getInstance();
-	
-	// 현재 날짜
-	int nowYear = cal.get(Calendar.YEAR);
-	int nowMonth = cal.get(Calendar.MONTH)+1;
-	int nowDay = cal.get(Calendar.DAY_OF_MONTH);
-	
-	int selectYear = nowYear;
-	int selectMonth = nowMonth;
-	
-	if(sYear != null || sMonth != null)
-	{
-		selectYear = Integer.parseInt(sYear);
-		selectMonth = Integer.parseInt(sMonth);
-	}
-	
-	String yOptions = "";
-	for(int year=(selectYear-2); year<=(selectYear+2); year++)
-	{
-		if(sYear==null && year==nowYear)
-			yOptions += "<option value='" + year + "'selected='selected'>" + year + "</option>";
-		else if (sYear!=null && Integer.parseInt(sYear)==year)
-			yOptions += "<option value='" + year + "'selected='selected'>" + year + "</option>";
-		else
-			yOptions += "<option value='" + year + "'>" + year + "</option>";
-	}
-	
-	String mOptions = "";
-	for (int month=1; month<=12; month++)
-	{
-		if(sMonth==null && month==nowMonth)
-			mOptions += "<option value='" + month + "' selected='selected'>" + month + "</option>";
-		else if(sMonth!=null && Integer.parseInt(sMonth)==month)
-			mOptions += "<option value='" + month + "' selected='selected'>" + month + "</option>";
-		else
-			mOptions += "<option value='" + month + "'>" + month + "</options>";
-	}
-	
-	// 월별 날짜
-	int[] months = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	
-	if (selectYear%4==0 && selectYear%100!=0 || selectYear%400==0)
-		months[1] = 29;
-	
-	// 총 날 수 누적 변수
-	int nalsu;
-	
-	// 요일
-	String[] weekNames = {"일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"};
-	
-	nalsu = (selectYear-1)*365 + (selectYear-1)/4 - (selectYear-1)/100 + (selectYear-1)/400;
-	
-	for(int i=0; i<selectMonth-1; i++)
-		nalsu += months[i];
-	nalsu++;
-	int week = nalsu%7;
-	int lastDay = months[selectMonth-1];
-	
-	// 달력 그리기
-	String calStr = "";
-	calStr += "<table border='1'  class='col-12' id='calendar'>";
-	
-	// 요일 이름 발생
-	calStr += "<tr>";
-	for (int i=0; i<weekNames.length; i++)
-	{
-		if(i==0)									// 일요일
-			calStr += "<th style='font-weight:bold; text-align:center; color:red;'>" + weekNames[i] + "</th>";
-		else if(i==6)								// 토요일
-			calStr += "<th style='font-weight:bold; text-align:center; color:blue;'>" + weekNames[i] + "</th>";
-		else										// 평일
-			calStr += "<th style='font-weight:bold; text-align:center;'>" + weekNames[i] + "</th>";
-	}
-	calStr += "</tr>";
-	// 빈 칸 공백 td 발생
-	calStr += "<tr>";
-	for (int i=1; i<=week; i++)
-		calStr += "<td></td>";
+	// 여기 삭제
 
-	// 날짜 td 발생
-	for (int i=1; i<=lastDay; i++)
-	{
-		week++;								//-- 날짜가 하루씩 찍힐 때 마다(구성이 이루어질 때 마다) 요일도 함께 1씩 증가~!!!	check~!!!
-		
-		/* if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==0) //-- 토요일인 오늘
-			calStr += "<td id="+i+" class='nowSat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
-		else if (selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==1) //-- 일요일인 오늘
-			calStr += "<td id="+i+" class='nowSun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
-		else if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay)		//-- 평일인 오늘
-			calStr += "<td id="+i+" class='now'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
-		else if (week%7==0)															//-- 오늘이 아닌 토요일
-			calStr += "<td id="+i+" class='sat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
-		else if (week%7==1)															//-- 오늘이 아닌 일요일
-			calStr += "<td id="+i+" class= 'sun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
-		else																		//-- 오늘이 아닌 평일
-			calStr += "<td id="+i+"><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
-			
-		if(week%7 == 0)
-			calStr += "</tr><tr>"; */
-			
-		if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==0) //-- 토요일인 오늘
-			calStr += "<td id="+i+" class='nowSat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
-		else if (selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==1) //-- 일요일인 오늘
-			calStr += "<td id="+i+" class='nowSun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
-		else if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay)		//-- 평일인 오늘
-			calStr += "<td id="+i+" class='now'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
-		else if (week%7==0)															//-- 오늘이 아닌 토요일
-			calStr += "<td id="+i+" class='sat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
-		else if (week%7==1)															//-- 오늘이 아닌 일요일
-			calStr += "<td id="+i+" class= 'sun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
-		else																		//-- 오늘이 아닌 평일
-			calStr += "<td id="+i+"><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
-			
-		if(week%7 == 0)
-			calStr += "</tr><tr>";
-			
-	}
-	
-	// 빈칸 공백 td 발생
-	for (int i=0 ; i<=week; i++, week++)
-	{
-		if (week%7==0)
-			break;
-		calStr += "<td></td>";
-	}
-	
-	if (week%7!=0)
-		calStr += "</tr>";
-	
-	calStr += "</table>";
-	
-	if(selectYear != 0 || selectMonth != 0)
-	{
-		String year = String.valueOf(selectYear);
-		String month = String.valueOf(selectMonth);
-		session.setAttribute("year", year);
-		session.setAttribute("month", month);
-	}
-	else
-	{
-		String year = String.valueOf(sYear);
-		String month = String.valueOf(sMonth);
-		session.setAttribute("year", year);
-		session.setAttribute("month", month);
-	}
-	
-	
 	// 세션에서 이용자활용정보코드 가져오기
     String user_dstn_cd = (String)session.getAttribute("user_dstn_cd");
 	
 %>
 <%
-	/* 1번째 방법)
-	int pigTotCount = (int)request.getAttribute("pigTotCount");
-	int pigMonthCount = (int)request.getAttribute("pigMonthCount");
-	
-	int result1 = pigTotCount > 60 ? 60 : pigTotCount;
-	int result2 = pigMonthCount > 60 ? 60 : pigTotCount;
-	
-	double pigCount = (result1+result2)/(double)120;
-	// double pigCount = ((result1+result2)/(double)60)/2*100;
-	// double pigCount = Math.floor(((result1+result2)/(double)60)/2*100);
-	*/
 
-	/* 2번째 방법)
-	String pigTotCountStr = (String)request.getAttribute("pigTotCount");
-	String pigMonthCountStr = (String)request.getAttribute("pigMonthCount");
-	
-	int pigTotCount = 0;
-	if (pigTotCountStr != null)
-	{
-		pigTotCount = Integer.parseInt(pigTotCountStr);
-	}
-	
-	int pigMonthCount = 0;
-	if (pigMonthCountStr != null)
-	{
-		pigMonthCount = Integer.parseInt(pigMonthCountStr);
-	}
-	*/
-	
 	// 3번째 방법
 	int pigTotCount = request.getAttribute("pigTotCount") != null ? (Integer)request.getAttribute("pigTotCount") : 0;
 	int pigMonthCount = request.getAttribute("pigMonthCount") != null ? (Integer)request.getAttribute("pigMonthCount") : 0;
@@ -212,37 +33,56 @@
 <head>
 <meta charset="UTF-8">
 <title>내 가계부</title>
+<style type="text/css">
+	td {width: 14%; height: 100px;}
+	.in {color: blue;}
+	.out {color: red;}
+	
+	.now, .nowSat, .nowSun {background-color: #fff8c7; }
+	.past {background-color: white;}
+	.future {background-color: #fffdf2;}
+	.blank {background-color: #f5f5f5;}
+</style>
+
+
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
 <link rel="stylesheet" href="./css/main.css" />
 
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script type="text/javascript">
-	function formCalendar(obj)
+	function formCalendar()
 	{
-		obj.submit();
+		//obj.submit();
 		//alert(obj.value);
 		//alert(document.getElementById("defaultyear").value);
-		//var year = document.getElementById("defaultyear").value
-		//var month = document.getElementById("defaultMonth").value
-		//window.location.href = "./calendar.action?year="+year+"&month="+month;
-		
+		var year = document.getElementById("defaultyear").value
+		var month = document.getElementById("defaultMonth").value
+		window.location.href = "./calendar.action?year="+year+"&month="+month;	
 	}
+	
+	
 	function moveMonthIn()
 	{
-		window.location.href = "./monthinlist.action";
+		var year = document.getElementById("defaultyear").value
+		var month = document.getElementById("defaultMonth").value
+		window.location.href = "./monthinlist.action?year="+year+"&month="+month;
 	}
 	function moveMonthOut()
 	{
-		window.location.href = "./monthoutlist.action";
+		var year = document.getElementById("defaultyear").value
+		var month = document.getElementById("defaultMonth").value
+		window.location.href = "./monthoutlist.action?year="+year+"&month="+month;
 	}
+	
 	function movePostReg()
 	{
-		<%-- window.location.href = "./moneypostreg.action?user_dstn_cd="+<%=user_dstn_cd%>; --%>
-		window.location.href = "./moneypostreg.action?user_dstn_cd="+<%=user_dstn_cd%>;
+		window.location.href="./moneypostreg.action?user_dstn_cd="+<%=user_dstn_cd%>;
 	}
 	function moveAnalysis()
 	{
-		window.location.href = "./analysis.action";
+		var year = document.getElementById("defaultyear").value
+		var month = document.getElementById("defaultMonth").value
+		window.location.href = "./analysis.action?year="+year+"&month="+month;
 	}
 	
 	// 페이지가 열릴때 삽입
@@ -252,13 +92,12 @@
 		
 		for (var i = 0; i <= 31; i++)
 		{
-			url = "<a href=\'useracntdaylist.action?day="+i;
-			url += "\' style=\'text-decoration:none\'>"+i+"<br><span class='mobile'>";
+			url = "<a href=\'useracntdaylist.action?day="+i+"\'>"+i+"<br>";
 			
 			<c:forEach var="in" items="${inTot }">
 				if (i==${in.day})
 				{
-					url += "수입 : "+${in.tot}+" 원<br>";
+					url += "<span class='in'>수입 : "+${in.tot}+" 원</span><br>";
 				}
 			</c:forEach>
 			
@@ -266,24 +105,14 @@
 			
 				if (i==${out.day})
 				{
-					url += "지출 : "+${out.tot}+" 원<br>";
+					url += "<span class='out'>지출 : "+${out.tot}+" 원</span><br>";
 				}
 			</c:forEach>
 	
-			url += "</span></a>";
+			url += "</a>";
 			
 			$('#'+i).html(url);
 		}
-		/* 
-		<c:forEach var="in" items="${inTot }">
-		<c:forEach var="out" items="${outTot }">
-			var url = "<a href=\'useracntdaylist.action?day="+${out.day}+"\' style=\'text-decoration:none\'>"+${out.day}
-			+"<br><span class='mobile'>수입 : "+${in.tot}+" 원<br>지출 : "+${out.tot}+" 원</span></a>"
-			$('#${out.day}').html(url)
-		</c:forEach>
-		</c:forEach>
-			 */
-			
 			
 	});
 	
@@ -298,21 +127,13 @@
 			<div class="col-12">
 				<div>
 					<span>날짜 선택 &nbsp;</span>                     
-					<%-- <form action="calendar.action" method="post">
-						<select id="defaultyear" name="defaultYear" onchange="formCalendar(this.form)">
-							<%=yOptions%>
-						</select> 년
-						<select id="defaultMonth" name="defaultMonth" onchange="formCalendar(this.form)">
-							<%=mOptions%>
-						</select> 월
-					</form> --%>
 					
-					<form action="calendar.action" method="post">
-						<select id="defaultyear" name="defaultYear" onchange="formCalendar(this.form)">
-							<%=yOptions%>
+					<form>
+						<select id="defaultyear" name="defaultYear" onchange="formCalendar()">
+							${yOptions}
 						</select> 년
-						<select id="defaultMonth" name="defaultMonth" onchange="formCalendar(this.form)">
-							<%=mOptions%>
+						<select id="defaultMonth" name="defaultMonth" onchange="formCalendar()">
+							${mOptions}
 						</select> 월
 					</form>
 				</div>
@@ -321,7 +142,8 @@
 		
 		<div class="row">
 			<div class="col-12 m-2" style="text-align: center;">
-				<%=selectYear %>년 <%=selectMonth %>월<br />
+				${year } 년 ${month } 월<br />
+				
 				<div class="page-header">
 					<h1>내 가계부</h1>
 				</div>
@@ -377,7 +199,8 @@
 			<!-- <div class="col-12" id="calendar"> -->
 			<!-- 달력 -->
 			
-			<%=calStr %>
+			<%-- <%=calStr %> --%>
+			${calStr}
 		</div>
 
 	</div>
@@ -445,7 +268,7 @@
 		</div>
 		<div class="row mt-3">
 			<div class="col-12">
-				<button type="submit" class="btn" style="background-color: #1fa766; width: 100%; color: white;" onclick="moveAnalysis()">
+				<button type="button" class="btn" style="background-color: #1fa766; width: 100%; color: white;" onclick="moveAnalysis()">
 					이번달 분석하기
 				</button>
 			</div>

@@ -10,21 +10,25 @@
 <title>커뮤니티 웹 사이트</title>
 
 <script type="text/javascript">
+
+	var year = ${year}
+	var month = ${month}
+
 	function moveCalendar()
 	{
-		window.location.href = "./calendar.action";
+		window.location.href = "./calendar.action?year="+year+"&month="+month;
 	}
 	function moveAnalysis()
 	{
-		window.location.href = "./analysis.action";
+		window.location.href = "./analysis.action?year="+year+"&month="+month;
 	}
 	function moveAnalysisIn()
 	{
-		window.location.href = "./analysisIn.action";
+		window.location.href = "./analysisIn.action?year="+year+"&month="+month;
 	}
 	function moveAnalysisOut()
 	{
-		window.location.href = "./analysisOut.action";
+		window.location.href = "./analysisOut.action?year="+year+"&month="+month;
 	}
 </script>
 
