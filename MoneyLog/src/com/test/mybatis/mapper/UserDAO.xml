@@ -498,7 +498,35 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE INOUT_CD=#{inout_cd}
 	</select>
 	-->
-	 
+	
+	<!-- 태형 추가 -->
+	
+	
+	<!-- 해당 년월 일별 수입 총합 -->
+	<select id="calendarInTot" resultType="com.test.mvc.UserDTO" parameterType="com.test.mvc.UserDTO">
+		SELECT TO_CHAR(ACNT_DATE, 'DD') "DAY", SUM(AMNT) "TOT"
+		FROM ACNT A JOIN CATE_SEC CS
+		ON A.CATE_SEC_CD = CS.CATE_SEC_CD
+		JOIN CATE_FST CF
+		ON CS.CATE_FST_CD = CF.CATE_FST_CD
+		WHERE A.USER_DSTN_CD=#{user_dstn_cd}
+		AND FN_YEAR(ACNT_DATE)=#{year} AND FN_MON(ACNT_DATE)=#{month}
+		AND CF.INOUT_CD=1
+		GROUP BY ACNT_DATE
+	</select>
+	
+	<!-- 해당 년월 일별 지출 총합 -->
+	<select id="calendarOutTot" resultType="com.test.mvc.UserDTO" parameterType="com.test.mvc.UserDTO">
+		SELECT TO_CHAR(ACNT_DATE, 'D') "DAY", SUM(AMNT) "TOT"
+		FROM ACNT A JOIN CATE_SEC CS
+		ON A.CATE_SEC_CD = CS.CATE_SEC_CD
+		JOIN CATE_FST CF
+		ON CS.CATE_FST_CD = CF.CATE_FST_CD
+		WHERE A.USER_DSTN_CD=#{user_dstn_cd}
+		AND FN_YEAR(ACNT_DATE)=#{year} AND FN_MON(ACNT_DATE)=#{month}
+		AND CF.INOUT_CD=2
+		GROUP BY ACNT_DATE
+	</select>
 
 
 </mapper>

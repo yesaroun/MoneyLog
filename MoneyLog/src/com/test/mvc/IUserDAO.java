@@ -115,6 +115,8 @@ public interface IUserDAO
  	public int userQnaDelete(UserDTO dto);
  	
  	
-	
+	// ▼ 태형추가 ------------------------------------------------------
+ 	public ArrayList<UserDTO> calendarInTot(UserDTO dto); 
+ 	public ArrayList<UserDTO> calendarOutTot(UserDTO dto); 
 	
 }
