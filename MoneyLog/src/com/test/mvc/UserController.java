@@ -305,10 +305,6 @@ public class UserController
 		dto.setUser_dstn_cd(session_user_dstn_cd);
 		dto.setUser_name(session_user_name);
 		
-		mv.addObject("monthInTotFst", dao.monthInTotFst(dto)); 
-		mv.addObject("monthOutTotFst", dao.monthOutTotFst(dto)); 
-		mv.addObject("nowRemain", dao.nowRemain(dto)); 
-		
 		// 태형 추가
 		MoneyCalendar moneyCalendar = new MoneyCalendar();
 		
@@ -323,7 +319,7 @@ public class UserController
 		String mOptions = moneyCalendar.getmOptions(nowMonth);
 		String calStr = moneyCalendar.getCalendar(nowYear, nowMonth);
 		
-		// 몇년 몇월 출력
+		// 몇년 몇월 출력 (오늘)
 		mv.addObject("year", nowYear);
 		mv.addObject("month", nowMonth);
 		
@@ -334,12 +330,15 @@ public class UserController
 		dto.setYear(Integer.toString(nowYear));
 		dto.setMonth(Integer.toString(nowMonth));
 		
+		mv.addObject("monthInTot", dao.monthInTot(dto)); 
+		mv.addObject("monthOutTot", dao.monthOutTot(dto)); 
+		mv.addObject("nowRemain", dao.nowRemain(dto)); 
 		mv.addObject("inTot", dao.calendarInTot(dto)); 
 		mv.addObject("outTot", dao.calendarOutTot(dto));
 		
 		request.setAttribute("pigTotCount", dao.pigTotCount(dto));
 		request.setAttribute("pigMonthCount", dao.pigMonthCount(dto));
-		
+				
 		mv.setViewName("/UserAcntCalendar.jsp");
 		return mv;
 	}

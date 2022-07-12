@@ -152,7 +152,7 @@
 			<table class="col-6" style="text-align: center;">
 				<tr>
 					<th>
-						<button type="button" class="btn btn-primary" style="background-color: #f79900; font-size: 20px" onclick="moveMonthIn()">
+						<button type="button" class="btn btn-primary" style="width: 200px; height:200px; border-radius:100px; background-color: #f79900; font-size: 20px" onclick="moveMonthIn()">
 							수입<br />
 							<span style="font-size: 17px;">
 								<fmt:formatNumber value="${monthInTot }" groupingUsed="true"></fmt:formatNumber> 원
@@ -167,7 +167,7 @@
 			<table class="col-6" style="text-align: center;">
 				<tr>
 					<th>
-						<button type="button" class="btn btn-primary" style="background-color: #03a313; font-size: 20px" onclick="moveMonthOut()">
+						<button type="button" class="btn btn-primary" style="width: 200px; height:200px; border-radius:100px; background-color: #03a313; font-size: 20px" onclick="moveMonthOut()">
 							지출 <br />
 							<span style="font-size: 17px;">
 								<fmt:formatNumber value="${monthOutTot }" groupingUsed="true"></fmt:formatNumber> 원
