@@ -99,7 +99,7 @@
 								<!-- 그래프가 들어가는 곳 -->
 								<div class="list-group mt-3">
 									<div class="list-group-item" >
-										<canvas id="myChart" style="height: 400px;"></canvas>
+										<canvas id="myChart2" style="height: 400px;"></canvas>
 									</div>
 								</div>
 				
@@ -141,7 +141,7 @@
 										 	  <tr>
 											   	<td style="text-align: center;">
 											   		<fmt:parseDate value="${monInList.acnt_date}" var="acntDate" pattern="yyyy-MM-dd" />
-											   		<fmt:formatDate value="${acnt_date}" pattern="MM-dd" />
+											   		<fmt:formatDate value="${acntDate}" pattern="MM-dd" />
 											   	</td>
 										   	    <td style="text-align: center;">${monInList.cate_fst_name }</td>
 							                    <td style="text-align: center;">${monInList.cate_sec_name }</td>
@@ -182,48 +182,65 @@
 	<script>
     
 	
-	// 카테고리별 값 담기!!
-    var data1 = 2000000;
-	var data2 = 600000;
-	var data3 = 700000;
-
-	var hap = data1+data2+data3;
+	<!-- 모든 카테고리별 총합 데이터 수신 -->
+	<c:forEach var="data" items="${inOutData }">
+		var idata1 = ${data.cate_fst_1};
+		var idata2 =${data.cate_fst_2};
+		var idata3 =${data.cate_fst_3};
+	    /* var data1 = ${data.cate_fst_4};
+	    var data2 = ${data.cate_fst_5};
+	    var data3 = ${data.cate_fst_6};
+	    var data4 = ${data.cate_fst_7};
+	    var data5 = ${data.cate_fst_8};
+	    var data6 = ${data.cate_fst_9};
+	    var data7 = ${data.cate_fst_10};
+	    var data8 = ${data.cate_fst_11};
+	    var data9 = ${data.cate_fst_12};
+	    var data10= ${data.cate_fst_13};
+	    var data11= ${data.cate_fst_14};
+	    var data12= ${data.cate_fst_15};
+	    var data13= ${data.cate_fst_16};
+	    var data14= ${data.cate_fst_17};
+	    var data15= ${data.cate_fst_18};
+	    var data16= ${data.cate_fst_19}; */
+	</c:forEach>
 	
-
-	var ctxP = document.getElementById('myChart').getContext('2d');
-	var myChart = new Chart(ctxP, {
+	// 지출합
+	//var hap = data1+data2+data3+data4+data5+data6+data7+data8+data9+data10+data11+data12+data13+data14+data15+data16;
+	
+	// 수입합
+	var hap2 = idata1+idata2+idata3;
+	
+	// 수입 그래프
+	var ctxP = document.getElementById('myChart2').getContext('2d');
+	var myChart2 = new Chart(ctxP, {
 		type : 'doughnut',
 		data : {
-			labels : [ "주수입" + " : "+data1+" [ "+ (data1/hap*100).toFixed(3) + " %" +" ]"
-				, "부수입" + " : "+data2+" [ "+ (data2/hap*100).toFixed(3) + " %" +" ]"
-				, "저축" + " : "+data3+" [ "+ (data3/hap*100).toFixed(3) + " %" +" ]"
+			labels : [ "주수입" + " : "+idata1+" [ "+ (idata1/hap2*100).toFixed(3) + " %" +" ]"
+				, "부수입" + " : "+idata2+" [ "+ (idata2/hap2*100).toFixed(3) + " %" +" ]"
+				, "저축" + " : "+idata3+" [ "+ (idata3/hap2*100).toFixed(3) + " %" +" ]"
 				],
 			datasets : [
 				{
-					data : [ data1, data2, data3],
+					data : [ idata1, idata2, idata3],
 					backgroundColor : [ "#FFDF00", "#FF88B9", "#00D3C5"],
 					hoverBackgroundColor : []
 				} 
 			]
 		},
 		options : {
-			
 			responsive: true,
-			//maintainAspectRatio : false ,
 			legend : {
 				display : true,
 				position: "right",
 				labels:{
 					fontSize: 18,
-					boxWidth: 50,
-					padding: 40,
+					boxWidth: 40,
+					padding: 30,
 					usePointStyle: true,
-					PointStyle: "circle",
-					
+					PointStyle: "circle"
 				}
 			}}
-			
-		
 	});
 	
     </script>

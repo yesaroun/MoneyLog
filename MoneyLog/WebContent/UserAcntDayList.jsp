@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -18,6 +19,15 @@
 <link rel="stylesheet" href="./css/main.css" />
 <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
+
+
+	var year = ${year}
+	var month = ${month}
+
+	function moveCalendar()
+	{
+	  window.location.href = "./calendar.action?year="+year+"&month="+month;
+	}
 
 	// 유효성검사
 	$(document).ready(function()
@@ -105,9 +115,11 @@
      <div class="container mt-3">
       	<div class="row">
       		<div class="col-12" style="text-align: center;">
-    			<h2>${sessionScope.month}월 ${day}일 가계부</h2>
+      			<h1>${year }</h1><br>
+    			<h2>${month}월 ${day}일 가계부</h2>
     		</div>
 	    </div>
+	    
 		<form class="row mt-3" action="acntreg.action" method="post" id="enterAcnt">
 				<table class="col-12">
 					<tbody>
@@ -123,6 +135,8 @@
 								</select>
 							</td>
 							<td>
+							
+							 
 								<select name="cate_fst_cd" id="cate_fst_cd" style="width: 100%;">
 									<option value="" selected>1차카테고리</option>
 									<c:if test="${not empty fstCateList}">
@@ -131,6 +145,9 @@
 									</c:forEach>
 									</c:if>
 								</select>
+								
+								
+								
 								<%-- 
 								<select name="fstCate" id="fstCate" style="width: 100%;">
 									<option value="" selected>1차카테고리</option>
@@ -154,6 +171,8 @@
 								--%>
 							</td>
 							<td>
+							
+							
 								<select name="cate_sec_cd" id="cate_sec_cd" style="width: 100%;">
 									<option value="" selected>2차카테고리</option>
 									<c:if test="${not empty secCateList}">
@@ -162,6 +181,9 @@
 									</c:forEach>
 									</c:if>
 								</select>
+								
+								
+								
 							</td>
 							<td>
 								<input type="text" style="width: 100%;" id="acnt_dtl_cont" name="acnt_dtl_cont" placeholder="상세내역 입력">
@@ -194,6 +216,8 @@
 			            </tr>
 			        </thead>
 			        <tbody>
+			        
+			        	<%--
 			        	<c:if test="${empty dayInoutList}">
 						<tr>
 							<td colspan="5" style="text-align: center;">등록 내역이 없습니다.</td>
@@ -201,7 +225,9 @@
 						</c:if>
 						
 						<c:if test="${not empty dayInoutList}">
-						<c:forEach var="dayList" items="${dayInoutList }">
+						--%>
+
+						<c:forEach var="dayList" items="${dayInoutList}">
 					 	<tr>
 							<td class="mobile" style="text-align: center;">${dayList.inout_cont}</td>
 							<td class="mobile" style="text-align: center;">${dayList.cate_fst_name}</td>
@@ -212,7 +238,8 @@
 		                	</td>
 						</tr>
 					 	</c:forEach>	
-					 	</c:if>
+					 	
+					 	
 			        </tbody>
 			    </table>	
 	    	</div>
@@ -220,8 +247,7 @@
 		<div class="row">
 			<div class="col-12">
 				<div class="text-center" style="margin-right: auto; margin-left: auto;">
-					<a href="calendar.action" class="btn btn-primary"
-	         		style="background-color: #1fa766;">내 가계부로 돌아가기</a>
+	         		<button type="button" class="btn btn-success" onclick="moveCalendar()"> 돌아가기 </button>
 				</div>
 			</div>
 		</div>
