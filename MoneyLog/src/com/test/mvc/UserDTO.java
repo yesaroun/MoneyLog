@@ -19,8 +19,21 @@ public class UserDTO
     , ad_ansr_cd, ad_cd, ad_ansr_cont, ad_ansr_date;
 	
 	private int prevNum, nextNum;
-    
 	
+	// 태형 추가 (캘린더 총합)
+	private int tot;
+	
+	
+	public int getTot()
+	{
+		return tot;
+	}
+
+	public void setTot(int tot)
+	{
+		this.tot = tot;
+	}
+
 	// getter / setter 구성
 	public String getNoti_cd()
 	{

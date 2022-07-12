@@ -308,6 +308,10 @@ public class UserController
 		mv.addObject("monthOutTotFst", dao.monthOutTotFst(dto)); 
 		mv.addObject("nowRemain", dao.nowRemain(dto)); 
 		
+		// 태형 추가
+		//mv.addObject("inTot", dao.calendarInTot(dto)); 
+		//mv.addObject("outTot", dao.calendarOutTot(dto)); 
+		
 		request.setAttribute("pigTotCount", dao.pigTotCount(dto));
 		request.setAttribute("pigMonthCount", dao.pigMonthCount(dto));
 		
@@ -336,9 +340,13 @@ public class UserController
 		
 		mv.addObject("monthInTot", dao.monthInTot(dto)); 
 		mv.addObject("monthOutTot", dao.monthOutTot(dto)); 
-		mv.addObject("nowRemain", dao.nowRemain(dto)); 
+		mv.addObject("nowRemain", dao.nowRemain(dto));
 		// mv.addObject("dayInTot", dao.dayInTot(dto));
 		// mv.addObject("dayOutTot", dao.dayOutTot(dto));
+		
+		// 태형 추가
+		mv.addObject("inTot", dao.calendarInTot(dto)); 
+		mv.addObject("outTot", dao.calendarOutTot(dto)); 
 		
 		request.setAttribute("pigTotCount", dao.pigTotCount(dto));
 		request.setAttribute("pigMonthCount", dao.pigMonthCount(dto));

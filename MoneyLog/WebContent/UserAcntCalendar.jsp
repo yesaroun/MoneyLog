@@ -2,7 +2,8 @@
 <%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -94,27 +95,43 @@
 	for (int i=1; i<=week; i++)
 		calStr += "<td></td>";
 
-		
 	// 날짜 td 발생
 	for (int i=1; i<=lastDay; i++)
 	{
 		week++;								//-- 날짜가 하루씩 찍힐 때 마다(구성이 이루어질 때 마다) 요일도 함께 1씩 증가~!!!	check~!!!
 		
-		if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==0) //-- 토요일인 오늘
-			calStr += "<td class='nowSat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+		/* if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==0) //-- 토요일인 오늘
+			calStr += "<td id="+i+" class='nowSat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
 		else if (selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==1) //-- 일요일인 오늘
-			calStr += "<td class='nowSun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+			calStr += "<td id="+i+" class='nowSun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
 		else if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay)		//-- 평일인 오늘
-			calStr += "<td class='now'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+			calStr += "<td id="+i+" class='now'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
 		else if (week%7==0)															//-- 오늘이 아닌 토요일
-			calStr += "<td class='sat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+			calStr += "<td id="+i+" class='sat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
 		else if (week%7==1)															//-- 오늘이 아닌 일요일
-			calStr += "<td class= 'sun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+			calStr += "<td id="+i+" class= 'sun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
 		else																		//-- 오늘이 아닌 평일
-			calStr += "<td><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+			calStr += "<td id="+i+"><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'>수입 : 12,000원<br>지출 : 12,000원</span></a></td>";
+			
+		if(week%7 == 0)
+			calStr += "</tr><tr>"; */
+			
+		if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==0) //-- 토요일인 오늘
+			calStr += "<td id="+i+" class='nowSat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
+		else if (selectYear==nowYear && selectMonth == nowMonth && i==nowDay && week%7==1) //-- 일요일인 오늘
+			calStr += "<td id="+i+" class='nowSun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
+		else if(selectYear==nowYear && selectMonth == nowMonth && i==nowDay)		//-- 평일인 오늘
+			calStr += "<td id="+i+" class='now'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
+		else if (week%7==0)															//-- 오늘이 아닌 토요일
+			calStr += "<td id="+i+" class='sat'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
+		else if (week%7==1)															//-- 오늘이 아닌 일요일
+			calStr += "<td id="+i+" class= 'sun'><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
+		else																		//-- 오늘이 아닌 평일
+			calStr += "<td id="+i+"><a href=\'useracntdaylist.action?day=" + i + "\' style=\'text-decoration:none\'>" + i + "<br><span class='mobile'><br><br></span></a></td>";
 			
 		if(week%7 == 0)
 			calStr += "</tr><tr>";
+			
 	}
 	
 	// 빈칸 공백 td 발생
@@ -197,10 +214,18 @@
 <title>내 가계부</title>
 <link rel="stylesheet" href="./css/bootstrap.min.css" />
 <link rel="stylesheet" href="./css/main.css" />
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script type="text/javascript">
 	function formCalendar(obj)
 	{
 		obj.submit();
+		//alert(obj.value);
+		//alert(document.getElementById("defaultyear").value);
+		//var year = document.getElementById("defaultyear").value
+		//var month = document.getElementById("defaultMonth").value
+		//window.location.href = "./calendar.action?year="+year+"&month="+month;
+		
 	}
 	function moveMonthIn()
 	{
@@ -219,6 +244,49 @@
 	{
 		window.location.href = "./analysis.action";
 	}
+	
+	// 페이지가 열릴때 삽입
+	$(document).ready(function(){
+		
+		var url = "";
+		
+		for (var i = 0; i <= 31; i++)
+		{
+			url = "<a href=\'useracntdaylist.action?day="+i;
+			url += "\' style=\'text-decoration:none\'>"+i+"<br><span class='mobile'>";
+			
+			<c:forEach var="in" items="${inTot }">
+				if (i==${in.day})
+				{
+					url += "수입 : "+${in.tot}+" 원<br>";
+				}
+			</c:forEach>
+			
+			<c:forEach var="out" items="${outTot }">
+			
+				if (i==${out.day})
+				{
+					url += "지출 : "+${out.tot}+" 원<br>";
+				}
+			</c:forEach>
+	
+			url += "</span></a>";
+			
+			$('#'+i).html(url);
+		}
+		/* 
+		<c:forEach var="in" items="${inTot }">
+		<c:forEach var="out" items="${outTot }">
+			var url = "<a href=\'useracntdaylist.action?day="+${out.day}+"\' style=\'text-decoration:none\'>"+${out.day}
+			+"<br><span class='mobile'>수입 : "+${in.tot}+" 원<br>지출 : "+${out.tot}+" 원</span></a>"
+			$('#${out.day}').html(url)
+		</c:forEach>
+		</c:forEach>
+			 */
+			
+			
+	});
+	
 </script>
 </head>
 <body>
@@ -230,6 +298,15 @@
 			<div class="col-12">
 				<div>
 					<span>날짜 선택 &nbsp;</span>                     
+					<%-- <form action="calendar.action" method="post">
+						<select id="defaultyear" name="defaultYear" onchange="formCalendar(this.form)">
+							<%=yOptions%>
+						</select> 년
+						<select id="defaultMonth" name="defaultMonth" onchange="formCalendar(this.form)">
+							<%=mOptions%>
+						</select> 월
+					</form> --%>
+					
 					<form action="calendar.action" method="post">
 						<select id="defaultyear" name="defaultYear" onchange="formCalendar(this.form)">
 							<%=yOptions%>
@@ -241,6 +318,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<div class="row">
 			<div class="col-12 m-2" style="text-align: center;">
 				<%=selectYear %>년 <%=selectMonth %>월<br />
@@ -298,6 +376,7 @@
 		<div class="row">
 			<!-- <div class="col-12" id="calendar"> -->
 			<!-- 달력 -->
+			
 			<%=calStr %>
 		</div>
 
