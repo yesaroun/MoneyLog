@@ -69,71 +69,77 @@
 <script src="./js/userTerms.js"></script>
 </head>
 <body>
-	<!-- ○ 상단 네비게이션 include -->
-	<jsp:include page="./GuestNavTerm.jsp"></jsp:include>
-
-    <!-- 회원가입 상단 아이콘 -->
-	<div class="container-fixed m-4">
-        <div class="row sign-up-form">
-            <h2 id="sign-up-intro">회원가입<span id="sign-up-moneylog">MONEYLOG</span></h2>
-        </div>
-        <div class="row sign-up-form">
-            <div class="sign-up-process col-12">
-                <div class="row">
-                    <div class="col-3 text-center bg-light p-3">
-                        <img src="./img2/file-text-white.svg" alt="약관동의아이콘">
-                        <br>
-                        약관동의
-                    </div>
-                    <div class="col-3 text-center bg-light p-3">
-                        <img src="./img2/search-black.svg" alt="본인인증아이콘">
-                        <br>
-                        본인인증
-                    </div>
-                    <div class="col-3 text-center bg-light p-3">
-                        <img src="./img2/user-plus-white.svg" alt="회원정보입력">
-                        <br>
-                        회원정보 입력
-                    </div>
-                    <div class="col-3 text-center bg-light p-3">
-                        <img src="./img2/user-check-white.svg" alt="">
-                        <br>
-                        회원가입 완료
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row bg-light sign-up-form mt-3">
-			<div class="sign-up-process col-12">
-                <form action="UserSuInfoInput.jsp" method="post" id="phoneForm"class="pt-3 md-3" style="max-width: 720px">
-					<div class="row form-group">
-						<div class="col-8">
-							<label>휴대폰 번호</label>
-							<input type="text" id="user_tel" name="user_tel" class="form-control" required placeholder="휴대폰 번호를 입력해주세요.">
-						</div>
-						<div class="col-4">
+	<div class="wrap">
+		<header>
+			<!-- ○ 상단 네비게이션 include -->
+			<jsp:include page="./GuestNavTerm.jsp"></jsp:include>
+		</header>
+	
+		<main id="userSuCertified">
+			<!-- 회원가입 상단 아이콘 -->
+			<div class="container-fixed m-4">
+		        <div class="row sign-up-form">
+		            <h2 id="sign-up-intro">회원가입<span id="sign-up-moneylog">MONEYLOG</span></h2>
+		        </div>
+		        <div class="row sign-up-form">
+		            <div class="sign-up-process col-12">
+		                <div class="row">
+		                    <div class="col-3 sign-up-icon">
+		                        <img src="./img2/file-text-white.svg" alt="약관동의아이콘">
+		                        <br>
+		                        약관동의
+		                    </div>
+		                    <div class="col-3 sign-up-icon">
+		                        <img src="./img2/search-black.svg" alt="본인인증아이콘">
+		                        <br>
+		                        본인인증
+		                    </div>
+		                    <div class="col-3 sign-up-icon">
+		                        <img src="./img2/user-plus-white.svg" alt="회원정보입력">
+		                        <br>
+		                        회원정보 입력
+		                    </div>
+		                    <div class="col-3 sign-up-icon">
+		                        <img src="./img2/user-check-white.svg" alt="화원가입완료">
+		                        <br>
+		                        회원가입 완료
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		
+		        <div class="row bg-light sign-up-form mt-3">
+					<div class="sign-up-process col-12">
+		                <form action="UserSuInfoInput.jsp" method="post" id="phoneForm"class="su-input-form">
+							<div class="row form-group">
+								<div class="col-8">
+									<label>휴대폰 번호</label>
+									<input type="text" id="user_tel" name="user_tel" class="form-control" required placeholder="휴대폰 번호를 입력해주세요.">
+								</div>
+								<div class="col-4">
+									<br>
+									<button type="submit" id="goSMS" name="goSMS" class="btn btn-primary">sms 전송</button>
+								</div>
+							</div>
+							<div class="row form-group">
+								<div class="col-8">
+									<label>인증번호</label>
+									<input type="text" class="form-control" required placeholder="SMS로 수신된 인증 번호 5자리를 입력해주세요.">
+								</div>
+								<div class="col-4">
+									<br>
+									<button type="button" id="confirmBnt" name="confirmBnt"  class="btn btn-primary" >인증</button>
+								</div>
+							</div>
 							<br>
-							<button type="submit" id="goSMS" name="goSMS" class="btn btn-primary mt-2" style="background-color: #EFD345; float: right; min-width: 90px;">sms 전송</button>
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-8">
-							<label>인증번호</label>
-							<input type="text" class="form-control" required placeholder="SMS로 수신된 인증 번호 5자리를 입력해주세요.">
-						</div>
-						<div class="col-4">
-							<br>
-							<button type="button" id="confirmBnt" name="confirmBnt"  class="btn btn-primary mt-2" style="background-color: #EFD345; float: right; min-width: 90px;">인증</button>
-						</div>
-					</div>
-					<br>
-					<button type="submit" id="prePage" name="prePage"  class="btn btn-primary mb-3" style="background-color: #9b9b9b; float: left;" onclick="newPage()">이전</button>
-					<button id="nextBtn" name="" type="submit" class="btn btn-primary mb-3" style="background-color: #1fa766; float: right;">다음</button>
-				</form>
-            </div>
-		</div>
-    </div>
+							<button type="submit" id="prePage" name="prePage" class="btn btn-primary" onclick="newPage()">이전</button>
+							<button id="nextBtn" type="submit" class="btn btn-primary">다음</button>
+						</form>
+		            </div>
+				</div>
+		    </div>
+		</main>
+	</div>
 
     <script src="./js/jquery-3.2.1.min.js"></script>
 	<script src="./js/popper.min.js"></script>

@@ -28,6 +28,11 @@ h5, h6{font-weight: 500;}
 .navbar { background-color: #FFD97D;}
 .navbar-brand { margin-left: 10px;}
 
+/*버튼*/
+.btn:hover {box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);}
+.btn:active { font-weight: 600; }
+.btn{border: 0;}
+
 #header
 {
     color: #ffffff;
@@ -227,36 +232,21 @@ h5, h6{font-weight: 500;}
     text-align: center;
 }
 
-/*
-회원가입
-*/
+/* 회원가입 */
 #sign-up-intro { font-size: 20px; text-align: left; }
 #sign-up-moneylog { font-size: 18px; color: #EFD345;}
 .sign-up-form { max-width: 600px; margin-left: auto; margin-right: auto; }
 #sign-up-info { font-size: 18px; text-align: left;}
-.sign-up-icon { text-align: center; padding: 17px; background-color: #E2E2E2; }
-/*
-이용약관
-userSuTerms
-*/
+.sign-up-icon { text-align: center; padding: 17px; background-color: #f8f9fa; margin-top: 5px;}
+
+/* 이용약관
+userSuTerms */
 /*회원가입 상단 아이콘*/
-.sign-up-process ul
-{
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-.sign-up-process li
-{
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-    border : 0;
-    float: left;
-}
-/*
-    동의 약관
-   userSuTerms
-*/
+.sign-up-process ul { list-style:none; margin:0; padding:0; }
+.sign-up-process li { margin: 0 0 0 0; padding: 0 0 0 0; border : 0; float: left; }
+
+/* 동의 약관
+   userSuTerms */
 #joinForm *{ margin: 0; padding:0; box-sizing:border-box; }
 #joinForm body { background-color:#f7f7f7; }
 #joinForm ul li, .checkBox ul li { list-style:none }
@@ -277,13 +267,51 @@ ul .join_box { border: 1px solid #ddd; background-color: #fff; }
 .fpmgBt1:hover { box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); font-weight: 600;}
 .fpmgBt2:hover { box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); font-weight: 600;}
 .check-detail { min-height: 200px; }
-/*
-    회원가입 정보입력
-*/
-.sign-up-title
-{
-    font-weight: 900;
-}
+
+/* userSuCertified.jsp */
+#userSuCertified .su-input-form { padding-top: 15px; margin-bottom: 15px; max-width: 720px; }
+#userSuCertified #goSMS {background-color: #F5CAC3; float: right; min-width: 90px;}
+#userSuCertified #confirmBnt { background-color: #F5CAC3; float: right; min-width: 90px; }
+#userSuCertified #prePage { margin-bottom: 15px; background-color: #9b9b9b; float: left; }
+#userSuCertified #nextBtn { background-color: #92B4EC; float: right; }
+
+/* userSuInfoInput.jsp */
+#userSuInfoInput .progress { max-width: 600px; background-color:#9b9b9b; }
+#userSuInfoInput .progress-bar { font-size: 17pt; width: 33%; }
+#userSuInfoInput .form-control {max-width: 500px; margin-bottom: 10px;}
+#userSuInfoInput .form-group label { font-weight: 600; }
+#userSuInfoInput #nextBtn { width: 80px; height: 30px; background-color: #92B4EC; float: right; margin: 20px 40px; }
+#userSuInfoInput .alert { max-width: 500px; margin-bottom: 5px; }
+
+/* 회원가입 정보입력 */
+.sign-up-title { font-weight: 900; }
+
+/* userSuPlusInputFst.jsp */
+#userSuPlusInputFst .table th, td {text-align: center;}
+#userSuPlusInputFst .progress {max-width: 600px; background-color:#9b9b9b;}
+#userSuPlusInputFst .progress-bar {font-size: 17pt; width: 66%;}
+#userSuPlusInputFst .sign-up-title { margin-bottom: 10px; }
+#userSuPlusInputFst .form-control {text-align: center;}
+#userSuPlusInputFst .pre-btn {margin-bottom: 20px; background-color: #9b9b9b; float: left;}
+#userSuPlusInputFst #next-btn { margin-bottom: 20px; background-color: #92B4EC; float: right;}
+
+/* userSuPlusInputSec.jsp */
+#userSuPlusInputSec .progress { max-width: 600px; background-color:#9b9b9b; }
+#userSuPlusInputSec .progress-bar { font-size: 17pt; width: 100%; }
+#userSuPlusInputSec .table>tbody>tr>th {text-align: center;}
+#userSuPlusInputSec .table td {text-align: center;}
+#userSuPlusInputSec #preBtn { margin-bottom: 15px; background-color: #9b9b9b; float: left; }
+#userSuPlusInputSec #nextBtn { margin-bottom: 15px; background-color: #92B4EC; float: right; }
+#userSuPlusInputSec #errMsg { color: red; display: none; }
+
+/* userSuOk.jsp */
+#userSuOk .sign-up-form {border-radius: 3px; margin-top: 15px; background-color: #f8f9fa;}
+#userSuOk #joinOk { max-width: 720px; margin: 15px 0; }
+#userSuOk #joinOk>div{text-align: center;}
+#userSuOk #joinOk>div>img { width: 50px; }
+#userSuOk #joinOk>div h4 { font-size: 24px; margin-top: 10px; }
+#userSuOk #joinOk:last-child {text-align: center; margin-top: 20px;}
+#userSuOk #joinOk button { margin-bottom: 15px; background-color: #92B4EC; }
 
 /*
 	달력
