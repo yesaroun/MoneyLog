@@ -217,27 +217,26 @@
 			        </thead>
 			        <tbody>
 			        
-			        	<%--
+			        	
 			        	<c:if test="${empty dayInoutList}">
-						<tr>
-							<td colspan="5" style="text-align: center;">등록 내역이 없습니다.</td>
-						</tr>
+							<tr>
+								<td colspan="5" style="text-align: center;">등록 내역이 없습니다.</td>
+							</tr>
 						</c:if>
 						
 						<c:if test="${not empty dayInoutList}">
-						--%>
-
-						<c:forEach var="dayList" items="${dayInoutList}">
-					 	<tr>
-							<td class="mobile" style="text-align: center;">${dayList.inout_cont}</td>
-							<td class="mobile" style="text-align: center;">${dayList.cate_fst_name}</td>
-			                <td style="text-align: center;">${dayList.cate_sec_name}</td>
-			                <td style="text-align: center;">${dayList.acnt_dtl_cont}</td>
-			                <td class="mobile" style="text-align: center;">
-				                <fmt:formatNumber value="${dayList.amnt}" groupingUsed="true"></fmt:formatNumber>
-		                	</td>
-						</tr>
-					 	</c:forEach>	
+							<c:forEach var="dayList" items="${dayInoutList}">
+						 	<tr>
+								<td class="mobile" style="text-align: center;">${dayList.inout_cont}</td>
+								<td class="mobile" style="text-align: center;">${dayList.cate_fst_name}</td>
+				                <td style="text-align: center;">${dayList.cate_sec_name}</td>
+				                <td style="text-align: center;">${dayList.acnt_dtl_cont}</td>
+				                <td class="mobile" style="text-align: center;">
+					                <fmt:formatNumber value="${dayList.amnt}" groupingUsed="true"></fmt:formatNumber>
+			                	</td>
+							</tr>
+						 	</c:forEach>	
+					 	</c:if>
 					 	
 					 	
 			        </tbody>
