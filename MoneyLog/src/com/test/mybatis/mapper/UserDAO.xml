@@ -517,7 +517,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 해당 년월 일별 지출 총합 -->
 	<select id="calendarOutTot" resultType="com.test.mvc.UserDTO" parameterType="com.test.mvc.UserDTO">
-		SELECT TO_CHAR(ACNT_DATE, 'D') "DAY", SUM(AMNT) "TOT"
+		SELECT TO_CHAR(ACNT_DATE, 'DD') "DAY", SUM(AMNT) "TOT"
 		FROM ACNT A JOIN CATE_SEC CS
 		ON A.CATE_SEC_CD = CS.CATE_SEC_CD
 		JOIN CATE_FST CF

@@ -25,7 +25,7 @@
 	    </div>
 	    <div class="row">
 	    	<div class="col-12">
-	    		${sessionScope.year}년 ${sessionScope.month}월 지출 합계 : <fmt:formatNumber value="${monthOutTot }" groupingUsed="true"></fmt:formatNumber> 원
+	    		${year}년 ${month}월 지출 합계 : <fmt:formatNumber value="${monthOutTot }" groupingUsed="true"></fmt:formatNumber> 원
 	    	</div>
 	    </div>
 	    <div class="row mt-3" >
@@ -69,7 +69,7 @@
 	    </div>
 	    <div class="row">
 	    	<div class="col-12">
-	    		<a href="calendar.action" class="btn btn-primary float-right"
+	    		<a href="calendar.action?year=${year }&month=${month}" class="btn btn-primary float-right"
 	         	style="background-color: #1fa766;">내 가계부로 돌아가기</a>
 	    	</div>
 	    </div>
