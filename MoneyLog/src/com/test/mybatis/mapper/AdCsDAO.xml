@@ -106,13 +106,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE AD_ANSR_CD = #{ad_ansr_cd }
 	</delete>
 	
-	<!-- 
-	문의글 상세정보
-
+	<!-- 문의 답변 - 수정 -->
+	<update id="adQnaModify">
+		UPDATE AD_ANSR
+		SET AD_CD = #{ad_cd }, AD_ANSR_CONT = #{ad_ansr_cont }
+		WHERE AD_ANSR_CD = #{ad_ansr_cd }
+	</update>
 	
-	문의글 페이징 - 전체 문의글 개수
-
+	<!-- 문의글 페이징 - 전체 문의글 개수 -->
 	
-	문의 답변 - 수정
-	-->
 </mapper>
