@@ -52,9 +52,6 @@
 <script type="text/javascript">
 	function formCalendar()
 	{
-		//obj.submit();
-		//alert(obj.value);
-		//alert(document.getElementById("defaultyear").value);
 		var year = document.getElementById("defaultyear").value
 		var month = document.getElementById("defaultMonth").value
 		window.location.href = "./calendar.action?year="+year+"&month="+month;	
@@ -89,10 +86,12 @@
 	$(document).ready(function(){
 		
 		var url = "";
+		var year = document.getElementById("defaultyear").value;
+		var month = document.getElementById("defaultMonth").value;
 		
 		for (var i = 0; i <= 31; i++)
 		{
-			url = "<a href=\'useracntdaylist.action?day="+i+"\'>"+i+"<br>";
+			url = "<a href=\'useracntdaylist.action?year="+year+"&month="+month+"&day="+i+"\'>"+i+"<br>";
 			
 			<c:forEach var="in" items="${inTot }">
 				if (i==${in.day})

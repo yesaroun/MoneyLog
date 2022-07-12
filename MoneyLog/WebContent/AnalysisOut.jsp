@@ -137,7 +137,7 @@
 											 	<tr>
 													<td style="text-align: center;">
 														<fmt:parseDate value="${monOutList.acnt_date}" var="acntDate" pattern="yyyy-MM-dd" />
-														<fmt:formatDate value="${acnt_date}" pattern="yyyy-MM-dd" />
+														<fmt:formatDate value="${acntDate}" pattern="MM-dd" />
 													</td>
 													<td style="text-align: center;">${monOutList.cate_fst_name }</td>
 									                <td style="text-align: center;">${monOutList.cate_sec_name }</td>
@@ -180,34 +180,42 @@
 	
 	<script>
     
-    var data1 = 214278;
-	var data2 = 157052;
-	var data3 = 109126;
-	var data4 = 525070;
-	var data5 = 415200;
-	var data6 = 315200;
-	var data7 = 15200;
-	var data8 = 215200;
-	var data9 = 200200;
-	var data10 = 319200;
-	var data11 = 118200;
-	var data12 = 117200;
-	var data13 = 96500;
-	var data14 = 85200;
-	var data15 = 44800;
-	var data16 = 0;
+	<!-- 모든 카테고리별 총합 데이터 수신 -->
+	<c:forEach var="data" items="${inOutData }">
+		/* var idata1 = ${data.cate_fst_1};
+		var idata2 =${data.cate_fst_2};
+		var idata3 =${data.cate_fst_3}; */
+	    var data1 = ${data.cate_fst_4};
+	    var data2 = ${data.cate_fst_5};
+	    var data3 = ${data.cate_fst_6};
+	    var data4 = ${data.cate_fst_7};
+	    var data5 = ${data.cate_fst_8};
+	    var data6 = ${data.cate_fst_9};
+	    var data7 = ${data.cate_fst_10};
+	    var data8 = ${data.cate_fst_11};
+	    var data9 = ${data.cate_fst_12};
+	    var data10= ${data.cate_fst_13};
+	    var data11= ${data.cate_fst_14};
+	    var data12= ${data.cate_fst_15};
+	    var data13= ${data.cate_fst_16};
+	    var data14= ${data.cate_fst_17};
+	    var data15= ${data.cate_fst_18};
+	    var data16= ${data.cate_fst_19};
+	</c:forEach>
 	
-	//arrayData=[data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12, data13, data14, data15, data16];
-	//arrayLabel=["식비", "카페/간식", "통신/구독", "쇼핑/생활", "뷰티/미용","교통", "자동차", "주거", "의료/건강", "금융", "문화/여가", "여행/숙박", "교육/학습", "자녀/육아", "반려동물", "경조/선물"];
-
+	// 지출합
 	var hap = data1+data2+data3+data4+data5+data6+data7+data8+data9+data10+data11+data12+data13+data14+data15+data16;
 	
+	// 수입합
+	//var hap2 = idata1+idata2+idata3;
 
+	// 지출 그래프
 	var ctxP = document.getElementById('myChart').getContext('2d');
 	var myChart = new Chart(ctxP, {
 		type : 'doughnut',
 		data : {
-			labels : [ "식비" + " : "+data1+" [ "+ (data1/hap*100).toFixed(3) + " %" +" ]"
+			labels : [ 
+				 "식비" + " : "+data1+" [ "+ (data1/hap*100).toFixed(3) + " %" +" ]"
 				, "카페/간식" + " : "+data2+" [ "+ (data2/hap*100).toFixed(3) + " %" +" ]"
 				, "통신/구독" + " : "+data3+" [ "+ (data3/hap*100).toFixed(3) + " %" +" ]"
 				, "쇼핑/생활" + " : "+data4+" [ "+ (data4/hap*100).toFixed(3) + " %" +" ]"
@@ -233,24 +241,20 @@
 			]
 		},
 		options : {
-			
 			responsive: true,
-			//maintainAspectRatio : false ,
 			legend : {
 				display : true,
 				position: "right",
 				labels:{
 					fontSize: 18,
-					boxWidth: 50,
-					padding: 40,
+					boxWidth: 40,
+					padding: 30,
 					usePointStyle: true,
-					PointStyle: "circle",
-					
+					PointStyle: "circle"
 				}
 			}}
-			
-		
 	});
+
 	
     </script>
 

@@ -450,7 +450,7 @@ public class UserController
 	
 	// 당일 가계부 리스트 출력
 	@RequestMapping(value="/useracntdaylist.action", method = {RequestMethod.GET, RequestMethod.POST})	// 원래 GET 처리!!!!
-	public ModelAndView acntDayInoutList(String day, UserDTO dto, HttpSession session)
+	public ModelAndView acntDayInoutList(UserDTO dto, HttpSession session)
 	{
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 		
@@ -458,20 +458,30 @@ public class UserController
 
 		String session_user_dstn_cd = (String)session.getAttribute("user_dstn_cd");  //session 객체에서 세션으로 set된 값 get으로 가져오기
 		String session_user_name = (String)session.getAttribute("user_name"); 		//session 객체에서 세션으로 set된 값 get으로 가져오기
-		String session_year = (String)session.getAttribute("year");
-		String session_month = (String)session.getAttribute("month");
+		//String session_year = (String)session.getAttribute("year");
+		//String session_month = (String)session.getAttribute("month");
 		
 		dto.setUser_dstn_cd(session_user_dstn_cd);
 		dto.setUser_name(session_user_name);
-		dto.setYear(session_year);
-		dto.setMonth(session_month);
-		dto.setDay(day);
+		
+		String year = dto.getYear();
+		String month = dto.getMonth();
+		String day = dto.getDay();
+		String yearMonthDay = year+"-"+month+"-"+day;
+		
+		dto.setYearMonthDay(yearMonthDay);
 
 		mv.addObject("inoutCateList", dao.inoutCateList());			// 구분(수입/지출) 카테고리 출력
 		// ajax 처리(1차, 2차 카테고리)
 		
-		mv.addObject("day", day);
-		mv.addObject("dayInoutList", dao.dayInoutList(dto));		// 당일 수입지출 리스트
+		// 년월일
+		mv.addObject("year", dto.getYear());
+		mv.addObject("month", dto.getMonth());
+		mv.addObject("day", dto.getDay());
+		
+		// 당일 수입지출 리스트
+		mv.addObject("dayInoutList", dao.dayInoutList(dto));
+		
 		mv.addObject("fstCateList", dao.fstCateList());
 		mv.addObject("secCateList", dao.secCateList());
 		// mv.addObject("fstCateListOne", dao.fstCateListOne(dto));
@@ -610,6 +620,9 @@ public class UserController
 		mv.addObject("year", dto.getYear());
 		mv.addObject("month", dto.getMonth());
 		
+		// 그래프
+		mv.addObject("inOutData", dao.inOutData(dto));
+	
 		mv.setViewName("/AnalysisIn.jsp");	
 		
 		return mv;
@@ -637,6 +650,9 @@ public class UserController
 		// 몇년 몇월 출력
 		mv.addObject("year", dto.getYear());
 		mv.addObject("month", dto.getMonth());
+		
+		// 그래프
+		mv.addObject("inOutData", dao.inOutData(dto));
 		
 		mv.addObject("monthOutTot", dao.monthOutTot(dto)); 
 		mv.addObject("monthOutList", dao.monthOutList(dto));

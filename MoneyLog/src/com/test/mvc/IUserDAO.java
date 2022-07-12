@@ -118,5 +118,6 @@ public interface IUserDAO
 	// ▼ 태형추가 ------------------------------------------------------
  	public ArrayList<UserDTO> calendarInTot(UserDTO dto); 
  	public ArrayList<UserDTO> calendarOutTot(UserDTO dto); 
+ 	public ArrayList<UserDTO> inOutData(UserDTO dto); 
 	
 }
