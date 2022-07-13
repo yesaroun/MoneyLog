@@ -212,15 +212,17 @@
 				<div class="list-group">
 
 					<!-- 머니리뷰 달성 현황(현 오리바) -->
-					<div class="progress" style="background-color: white;">
+					<div class="progress" style="background-color: white; height: 150px;">
 
 						<div
 							class="progress-bar progress-bar bg-white progress-bar-animated"
 							role="progressbar" 
-							style="width: <%=(pigCount*100)-5%>%;"
+							style="width: <%=(pigCount*100)-10%>%;"
 							aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
 						</div>
-						<img style="width: 100px;" src="./img2/duck.gif">
+						
+						<img style=";" src="./img2/moneypig.gif">
+						
 					</div>
 				</div>
 			</div>

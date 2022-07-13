@@ -95,12 +95,30 @@
 								<br><br>
 								<h4> 지출 <small> ${user_name} 님의 ${month }월 지출 분석 </small> </h4>
 								
-								<!-- 그래프가 들어가는 곳 -->
+								<c:forEach var="data" items="${inOutData }">
+									<!-- 지출이 0원인지 -->
+									<c:if test="${(data.cate_fst_4+data.cate_fst_5+data.cate_fst_6+data.cate_fst_7+data.cate_fst_8+data.cate_fst_9
+									+data.cate_fst_10+data.cate_fst_11+data.cate_fst_12+data.cate_fst_13+data.cate_fst_14+data.cate_fst_15
+									+data.cate_fst_16+data.cate_fst_17+data.cate_fst_18+data.cate_fst_19)==0}">
+										<div class="col-md-12">
+											<div class="list-group">
+												<br><br><br><br>
+												<h4 style="text-align: center;"><img src="./img/noData.png"><br><small> 지출 내역이 없습니다! </small> </h4>
+											</div>
+										</div>
+										<c:set var="writer_flag" value="true" />
+									</c:if>
+								</c:forEach>
+								
+								
+								<c:if test="${not writer_flag }">
+									<!-- 그래프가 들어가는 곳 -->
 								<div class="list-group mt-3">
 									<div class="list-group-item" >
 										<canvas id="myChart" style="height: 400px;"></canvas>
 									</div>
 								</div>
+								</c:if>
 				
 							</div>
 						</div>
