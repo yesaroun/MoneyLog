@@ -190,47 +190,15 @@ h5, h6{font-weight: 500;}
 
 
 
-/*userLogin
-
-이거 배경색좀 바꿔야겠음
-*/
-#login-main
-{
-    text-align: center;
-    color: #1fa766;
-    margin: 30px;
-}
-#login-form 
-{
-	width: 300px;
-	background-color: #fff7e0;
-	color: #9b9b9b;
-	border-radius: 5px;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 20px;
-}
-.text-field 
-{
-	width: 100%;
-	font-size: 14px;
-	margin-bottom: 10px;
-	padding: 10px;
-	border-radius: 5px;
-}
-#login-btn
-{
-    width: 260px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-}
-#login-links
-{
-    font-size: 15px;
-    color: #9b9b9b;
-    text-align: center;
-}
+/*userLogin.jsp*/
+#login-main { text-align: center; color: #FF9B85; margin: 30px; font-size: 50px; font-weight: 900; }
+#login-form { width: 300px; background-color: #FFD97D; color: #9b9b9b; border-radius: 5px; margin-left: auto; margin-right: auto; padding: 20px; place-items: center; display: grid; }
+.text-field  { width: 100%; font-size: 14px; margin-bottom: 10px; padding: 10px; border-radius: 5px; }
+#login-btn { width: 260px; margin-bottom: 10px; padding: 10px; border-radius: 5px; background-color: #FF9B85; border: none; }
+#userLogin .login-banner { padding-top: 40px; place-items: center; display: grid; }
+#userLogin .lgoin-banner>div {text-align: center;}
+#userLogin #login-links {margin-top: 10px;}
+#userLogin #err {color: red; display: none;}
 
 /* 회원가입 */
 #sign-up-intro { font-size: 20px; text-align: left; }
