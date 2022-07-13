@@ -14,11 +14,7 @@ address, em, i {font-style: normal;}
 a:focus {outline: none}
 button:focus {outline: none}
 
-*
-{
-    font-family: 'Noto Sans KR', sans-serif;
-    font-weight: 400;
-}
+* { font-family: 'Noto Sans KR', sans-serif; font-weight: 400; }
 body {font-family: 'Noto Sans KR', sans-serif; font-weight: 400;}
 h1, h2{font-weight: 900;}
 h3, h4{font-weight: 700;}
@@ -33,161 +29,52 @@ h5, h6{font-weight: 500;}
 .btn:active { font-weight: 600; }
 .btn{border: 0;}
 
-#header
-{
-    color: #ffffff;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-}
-#header small
-{
-    color: #cccccc;
-}
-.info
-{
-    margin-top: 3px;
-}
-.dropdown-toggle::after
-{
-    content: none;
-}
+.info { margin-top: 3px; }
+.dropdown-toggle::after { content: none; }
 
 
 /*실질적인 각 내비게이션 메뉴들의 색상 등을 정의*/
-#sidebar .list-group-item 
-{
-    background-color: #fff7e0;
-    color: #000000;
-    border-color: #d8d6d6;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
-    border: none;
-    white-space: nowrap;
-}
+#sidebar .list-group-item  { background-color: #fff7e0; color: #000000; border-color: #d8d6d6; border-left: 0; border-right: 0; border-radius: 0; border: none; white-space: nowrap; }
 /*내비게이션 아래 끝까지 나열*/
-#sidebar .list-group 
-{
-    background-color: #fff7e0;
-    min-height: 100vh;
-}
+#sidebar .list-group  { background-color: #fff7e0; min-height: 100vh; }
 /*메뉴를 선택했을 때 부모 요소의 색상을 변경해줌*/
-#sidebar .list-group .list-group-item[aria-expanded="true"] 
-{
-    background-color: #ffebb1;
-}
+#sidebar .list-group .list-group-item[aria-expanded="true"]  { background-color: #ffebb1; }
 /*메뉴를 선택했을 때 자식 요소의 색상을 변경해줌*/
-#sidebar .list-group .list-group-item:not(.collapsed) 
-{
-    background-color: #ffebb1;
-}
+#sidebar .list-group .list-group-item:not(.collapsed)  { background-color: #ffebb1; }
+
 /*부가 설정*/
-/* 작은 화면일 때 아이콘 선택을 가능케 함 */
-#sidebar 
-{
-    overflow: hidden;
-    z-index: 2;
-}
-@media (max-width: 768px) 
-{
+#sidebar  { overflow: hidden; z-index: 2; }
+@media (max-width: 768px) {
     /*작은 화면에서는 왼쪽 내비게이션 너비를 정해진 크기 설정*/
-    #sidebar 
-    {
-        min-width: 35px;
-        max-width: 40px;
-        overflow-y: auto;
-        overflow-x: visible;
-        transition: all 0.25s ease;
-        /*트랜지션은 네비게이션바 에니메이션을 조금더 부드럽게 만듬*/
-        transform: translateX(0px);
-        position: fixed;
-    }
-    /*작은 화면에서 서브 메뉴를 열었을 때 글자가 보이도록 함 (사이드바 넘어서 나옴)*/
-    #sidebar, #sidebar .list-group
-    {
-        min-width: 35px;
-        overflow: visible;
-    }
-    /*작은 화면에서 서브 메뉴를 열였을 때 정해진 너비로 보이게 함*/
-    #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing
-    {
-        position: relative;
-        /*상대적 위치에 들어가게 하는거임*/
-        z-index: 1;
-        width: 190px;
-        top: 0;
-    }
-    /* 작아졌을 때 아이콘을 가운데로 정렬해 줌*/
-    #sidebar .list-group > .list-group-item
-    {
-        text-align: center;
-        padding: .75rem .5rem;
-    }
-    #sidebar::-webkit-scrollbar
-    {
-        width: 0px;
-    }
+    #sidebar { min-width: 35px; max-width: 40px; overflow-y: auto; overflow-x: visible; transition: all 0.25s ease; transform: translateX(0px); position: fixed; }
+    /*작은 화면에서 서브 메뉴를 열었을 때 글자가 보이도록 */
+    #sidebar, #sidebar .list-group { min-width: 35px; overflow: visible; }
+    /*작은 화면에서 서브 메뉴를 열였을 때 정해진 너비로*/
+    #sidebar .list-group .collapse.show, #sidebar .list-group .collapsing { position: relative; z-index: 1; width: 190px; top: 0; }
+    /* 작아졌을 때 아이콘을 가운데로 정렬*/
+    #sidebar .list-group > .list-group-item { text-align: center; padding: .75rem .5rem; }
+    #sidebar::-webkit-scrollbar { width: 0px; }
 }
 
-#main
-{
-    height: 100vh;
-    /*너비가 큰 경우 scroll이 생기는 태그임*/
-    overflow-x: scroll;
+#main { height: 100vh; overflow-x: scroll; }
+@media (max-width: 768px) {
+    #main { margin-left: 38px; }
 }
-@media (max-width: 768px)
-{
-    #main
-    {
-        margin-left: 38px;
-    }
+/* 990  */
+@media (max-width: 990px) {
+    .mobile { display: none; }
 }
-
-/* 990 픽셀 아래로 내려가면 mobile 클래스는 안보임 */
-@media (max-width: 990px)
-{
-  .mobile
-  {
-    display: none;
-  }
-  
+/*560px*/
+@media (max-width: 560px) {
+    .mobile{ display: none; }
 }
 
-/*너비가 560px이하면 안보임(mobile 클래스 있는 것들 중)*/
-@media (max-width: 560px)
-{
-    .mobile
-    {
-        display: none;
-    }
-}
-.boardTitle
-{
-    background-color: #efefef;
-    padding: 6px;
-}
-.boardContent
-{
-    background-color: #efefef;
-    padding: 6px;
-    height: 320px;
-    overflow-y: scroll;
-}
+.boardTitle { background-color: #efefef; padding: 6px; }
+.boardContent { background-color: #efefef; padding: 6px; height: 320px; overflow-y: scroll; }
 
 
-/* 모달(팝업같은거)이 중앙에 뜨도록 + 어떤 브라우저에서도 가능하게   */
-.modal
-{
-  -webkit-transform: translate(0,-50%);
-   -o-transform: translate(0,-50%);
-   transform: translate(0,-50%);
-   top: 50%;
-   margin: 0 auto;
-   height: 720px;
-}
-
-
+/* 모달 중앙 정렬 + 어떤 브라우저에서도 가능하게   */
+.modal { -webkit-transform: translate(0,-50%); -o-transform: translate(0,-50%); transform: translate(0,-50%); top: 50%; margin: 0 auto; height: 720px; }
 
 
 /*userLogin.jsp*/
@@ -281,27 +168,46 @@ ul .join_box { border: 1px solid #ddd; background-color: #fff; }
 #userSuOk #joinOk:last-child {text-align: center; margin-top: 20px;}
 #userSuOk #joinOk button { margin-bottom: 15px; background-color: #92B4EC; }
 
-/*
-	달력
-*/
-.calendar-border
-{
-	border: 1px solid black;
-}
-/* 990 픽셀 아래로 내려가면 mobile 클래스는 안보임 */
-@media (max-width: 990px)
-{
-    .mobile
-    {
-        display: none;
-    }
-}
+/* userIdCertified.jsp */
+#userIdCertified .sign-up-form { width: 560px; }
+#userIdCertified .id-find {border-radius: 3px; margin-top: 15px; background-color: #f8f9fa;}
+#userIdCertified #idForm { max-width: 720px; padding-top: 15px; margin-bottom: 15px; }
+#userIdCertified #goSMS { margin-top: 5px; background-color: #F5CAC3; float: right; min-width: 100px; }
+#userIdCertified #confirmBnt { margin-top: 5px; background-color: #F5CAC3; float: right; min-width: 100px;  }
+#userIdCertified #nextBtn { margin-bottom: 18px; background-color: #92B4EC; float: right; }
 
-/*너비가 560px이하면 안보임(mobile 클래스 있는 것들 중)*/
-@media (max-width: 560px)
-{
-    .mobile
-    {
-        display: none;
-    }
-}
+/* userIdCertifiedOk.jsp */
+#userIdCertifiedOk > div { margin: 25px; }
+#userIdCertifiedOk .sign-up-form { margin-top: 15px; border-radius: 3px; }
+#userIdCertifiedOk .sign-up-form form {padding-top: 15px; margin-bottom: 15px; max-width: 720px; }
+#userIdCertifiedOk .sign-up-form form img { width: 50px; margin-bottom: 15px; }
+#userIdCertifiedOk .text-center {margin-top: 15px;}
+#userIdCertifiedOk .text-center > button { margin-bottom: 15px; background-color: #92B4EC; }
+
+/* userIdNo */
+#userIdNo > div { margin: 25px; }
+#userIdNo .sign-up-form { border-radius: 3px; }
+#userIdNo .sign-up-form form { padding-top: 15px; margin-bottom: 15px; max-width: 720px }
+#userIdNo .sign-up-form .form-group { text-align: center; }
+#userIdNo .sign-up-form .form-group > img { width: 50px; margin-bottom: 15px; }
+#userIdNo #btn-div { text-align: center; margin-top: 15px; }
+#userIdNo #btn-div .btn { margin-bottom: 15px; background-color:  #92B4EC; }
+
+/*달력*/
+.calendar-border { border: 1px solid black; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
