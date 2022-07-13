@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
@@ -10,21 +11,25 @@
 <title>커뮤니티 웹 사이트</title>
 
 <script type="text/javascript">
+
+	var year = ${year}
+	var month = ${month}
+
 	function moveCalendar()
 	{
-		window.location.href = "./calendar.action";
+		window.location.href = "./calendar.action?year="+year+"&month="+month;
 	}
 	function moveAnalysis()
 	{
-		window.location.href = "./analysis.action";
+		window.location.href = "./analysis.action?year="+year+"&month="+month;
 	}
 	function moveAnalysisIn()
 	{
-		window.location.href = "./analysisIn.action";
+		window.location.href = "./analysisIn.action?year="+year+"&month="+month;
 	}
 	function moveAnalysisOut()
 	{
-		window.location.href = "./analysisOut.action";
+		window.location.href = "./analysisOut.action?year="+year+"&month="+month;
 	}
 </script>
 
@@ -96,50 +101,66 @@
 									<small style="color: #f79900;">■ 수입</small> <small
 										style="color: #03a313;">■ 지출</small>
 								</h4>
-
-
-								<!-- 나의 수입대비지출 프로그레스바 -->
-								<div class="progress"
-									style="height: 50px; background-color: white;">
-
-									<div
-										class="progress-bar progress-bar bg-warning progress-bar-animated"
-										role="progressbar"
-										style="font-size: 17pt; width: ${monthInTot/(monthInTot+monthOutTot)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber type="percent" value="${monthInTot/(monthInTot+monthOutTot)}"  pattern="0.0%"/>
+								
+								
+								<!-- 수입총 + 지출총이 0원인지 -->
+								<c:if test="${(monthInTot+monthOutTot)==0}">
+									<div class="col-md-12">
+										<div class="list-group">
+											<br><br><br><br>
+											<h4 style="text-align: center;"><img src="./img/noData.png"><br><small> 내역이 없습니다! </small> </h4>
+										</div>
 									</div>
-
-									<div
-										class="progress-bar progress-bar bg-success progress-bar-animated"
-										role="progressbar"
-										style="font-size: 17pt; width: ${monthOutTot/(monthInTot+monthOutTot)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber type="percent" value="${monthOutTot/(monthInTot+monthOutTot)}"  pattern="0.0%"/>
+									<c:set var="writer_flag" value="true" />
+								</c:if>
+								
+								
+								<c:if test="${not writer_flag }">
+								
+									<!-- 나의 수입대비지출 프로그레스바 -->
+									<div class="progress"
+										style="height: 50px; background-color: white;">
+	
+										<div
+											class="progress-bar progress-bar bg-warning progress-bar-animated"
+											role="progressbar"
+											style="font-size: 17pt; width: ${monthInTot/(monthInTot+monthOutTot)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber type="percent" value="${monthInTot/(monthInTot+monthOutTot)}"  pattern="0.0%"/>
+										</div>
+	
+										<div
+											class="progress-bar progress-bar bg-success progress-bar-animated"
+											role="progressbar"
+											style="font-size: 17pt; width: ${monthOutTot/(monthInTot+monthOutTot)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber type="percent" value="${monthOutTot/(monthInTot+monthOutTot)}"  pattern="0.0%"/>
+										</div>
+	
 									</div>
-
-								</div>
-
-								<div class="progress"
-									style="height: 50px; background-color: white;">
-
-									<div
-										class="progress-bar progress-bar bg-white progress-bar-animated"
-										role="progressbar"
-										style=";font-size: 13pt; color: #f79900; width: ${monthInTot/(monthInTot+monthOutTot)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber value="${monthInTot}" groupingUsed="true"></fmt:formatNumber> 원
+	
+									<div class="progress"
+										style="height: 50px; background-color: white;">
+	
+										<div
+											class="progress-bar progress-bar bg-white progress-bar-animated"
+											role="progressbar"
+											style=";font-size: 13pt; color: #f79900; width: ${monthInTot/(monthInTot+monthOutTot)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber value="${monthInTot}" groupingUsed="true"></fmt:formatNumber> 원
+										</div>
+	
+										<div
+											class="progress-bar progress-bar bg-white progress-bar-animated"
+											role="progressbar"
+											style="font-size: 13pt; color: #03a313; width: ${monthOutTot/(monthInTot+monthOutTot)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber value="${monthOutTot}" groupingUsed="true"></fmt:formatNumber> 원
+										</div>
+	
 									</div>
+								</c:if>
 
-									<div
-										class="progress-bar progress-bar bg-white progress-bar-animated"
-										role="progressbar"
-										style="font-size: 13pt; color: #03a313; width: ${monthOutTot/(monthInTot+monthOutTot)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber value="${monthOutTot}" groupingUsed="true"></fmt:formatNumber> 원
-									</div>
-
-								</div>
 
 								<!-- <h5 class="mt-2">이번달, 수입에 비해 [ 60% ] 지출하였습니다. </h5> -->
 
@@ -156,13 +177,26 @@
 								<h4>
 									수입 / 지출 <small> ${user_name} 님의 평균 수입·지출 금액을 비교해봤어요! </small>
 								</h4>
-		
-								<!-- 막대 그래프가 들어가는 곳 -->
-								<div class="list-group mt-3">
-									<div class="list-group-item">
-										<canvas id="barChart"></canvas>
+								
+								<!-- 수입총+지출총이 0원인지 -->
+								<c:if test="${(monthInTot+monthOutTot)==0}">
+									<div class="col-md-12">
+										<div class="list-group">
+											<br><br><br><br>
+											<h4 style="text-align: center;"><img src="./img/noData.png"><br><small> 내역이 없습니다! </small> </h4>
+										</div>
 									</div>
-								</div>
+									<c:set var="writer_flag" value="true" />
+								</c:if>
+								
+								<c:if test="${not writer_flag }">
+									<!-- 막대 그래프가 들어가는 곳 -->
+									<div class="list-group mt-3">
+										<div class="list-group-item">
+											<canvas id="barChart"></canvas>
+										</div>
+									</div>
+								</c:if>
 							</div>
 						</div>
 		
@@ -180,46 +214,61 @@
 									<small style="color: rgba(163, 207, 255, 1);">■ 수입</small> <small
 										style="color: rgba(255, 200, 234, 1);">■ 지출</small>
 								</h4>
-		
-								<!-- 나와 비슷한 사람의 평균 프로그레스바 -->
-								<div class="progress"
-									style="height: 50px; background-color: white;">
-		
-									<div class="progress-bar progress-bar-animated"
-										role="progressbar"
-										style="background-color:rgba(163, 207, 255, 1); font-size: 17pt; width: ${similarInAvg/(similarInAvg+similarOutAvg)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber type="percent" value="${similarInAvg/(similarInAvg+similarOutAvg)}"  pattern="0.0%"/>
+								
+								<!-- 수입총+지출총이 0원인지 -->
+								<c:if test="${(monthInTot+monthOutTot)==0}">
+									<div class="col-md-12">
+										<div class="list-group">
+											<br><br><br><br>
+											<h4 style="text-align: center;"><img src="./img/noData.png"><br><small> 내역이 없습니다! </small> </h4>
+										</div>
 									</div>
-		
-									<div class="progress-bar progress-bar-animated"
-										role="progressbar"
-										style="background-color:rgba(255, 200, 234, 1); font-size: 17pt; width: ${similarOutAvg/(similarInAvg+similarOutAvg)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber type="percent" value="${similarOutAvg/(similarInAvg+similarOutAvg)}"  pattern="0.0%"/>
+									<c:set var="writer_flag" value="true" />
+								</c:if>
+								
+								<c:if test="${not writer_flag }">
+									<!-- 나와 비슷한 사람의 평균 프로그레스바 -->
+									<div class="progress"
+										style="height: 50px; background-color: white;">
+			
+										<div class="progress-bar progress-bar-animated"
+											role="progressbar"
+											style="background-color:rgba(163, 207, 255, 1); font-size: 17pt; width: ${similarInAvg/(similarInAvg+similarOutAvg)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber type="percent" value="${similarInAvg/(similarInAvg+similarOutAvg)}"  pattern="0.0%"/>
+										</div>
+			
+										<div class="progress-bar progress-bar-animated"
+											role="progressbar"
+											style="background-color:rgba(255, 200, 234, 1); font-size: 17pt; width: ${similarOutAvg/(similarInAvg+similarOutAvg)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber type="percent" value="${similarOutAvg/(similarInAvg+similarOutAvg)}"  pattern="0.0%"/>
+										</div>
+			
 									</div>
-		
-								</div>
-		
-								<div class="progress"
-									style="height: 50px; background-color: white;">
-		
-									<div
-										class="progress-bar progress-bar bg-white progress-bar-animated"
-										role="progressbar"
-										style=";font-size: 13pt; color: rgba(163, 207, 255, 1); width: ${similarInAvg/(similarInAvg+similarOutAvg)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber value="${similarInAvg }" groupingUsed="true"></fmt:formatNumber> 원
+			
+									<div class="progress"
+										style="height: 50px; background-color: white;">
+			
+										<div
+											class="progress-bar progress-bar bg-white progress-bar-animated"
+											role="progressbar"
+											style=";font-size: 13pt; color: rgba(163, 207, 255, 1); width: ${similarInAvg/(similarInAvg+similarOutAvg)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber value="${similarInAvg }" groupingUsed="true"></fmt:formatNumber> 원
+										</div>
+			
+										<div
+											class="progress-bar progress-bar bg-white progress-bar-animated"
+											role="progressbar"
+											style="font-size: 13pt; color: rgba(255, 200, 234, 1); width: ${similarOutAvg/(similarInAvg+similarOutAvg)*100}%;"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+											<fmt:formatNumber value="${similarOutAvg }" groupingUsed="true"></fmt:formatNumber> 원 
+										</div>
 									</div>
+								</c:if>
 		
-									<div
-										class="progress-bar progress-bar bg-white progress-bar-animated"
-										role="progressbar"
-										style="font-size: 13pt; color: rgba(255, 200, 234, 1); width: ${similarOutAvg/(similarInAvg+similarOutAvg)*100}%;"
-										aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-										<fmt:formatNumber value="${similarOutAvg }" groupingUsed="true"></fmt:formatNumber> 원 
-									</div>
-								</div>
+								
 							</div>
 						</div>
 					</div>

@@ -10,7 +10,6 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- 부트스트랩 CSS 추가하기 -->
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/main.css">
 </head>
@@ -18,7 +17,9 @@
 
 <!-- 네비게이션바 ===================================================== -->
 	<nav class="navbar navbar-expand-lg navbar-dark">
-		<a class="navbar-brand" href="moneylogwelcome.action">MONEYLOG</a>
+		<a class="navbar-brand" href="moneylogwelcome.action">
+			<img src="./img/banner-white.png" alt="배너" style="width: 120px; height: 27px;" />
+		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar" aria-controls="navbar" aria-expanded="false"
 			aria-label="Toggle navigation">
