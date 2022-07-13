@@ -24,7 +24,7 @@
 
 	<!-- 네비게이션바 ===================================================== -->
 	<nav class="navbar navbar-expand-lg navbar-dark">
-		<a class="navbar-brand" href="./admain.action">MONEYLOG</a>
+		<a class="navbar-brand" href="./admain.action"><img src="./img/banner-white.png" alt="배너" style="width: 120px; height: 27px;" /></a>
 		<ol class="breadcrumb mobile" style="height: 30px; background: #FFD97D;">
             <li class="active"> 안녕하세요. [ ${ad_id } ] 관리자님 반갑습니다.</li>
         </ol>
