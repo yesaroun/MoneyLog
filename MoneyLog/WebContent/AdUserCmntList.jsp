@@ -48,9 +48,9 @@
                                     <div class="btn-group float-left ">
                                         <button type="button" class="btn info-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 댓글 내역 </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="./aduserinfo.action?user_dstn_cd=${adUserCmnt.user_dstn_cd }">상세 정보</a>
-                                            <a class="dropdown-item" href="./aduserpostlist.action?user_dstn_cd=${adUserCmnt.user_dstn_cd }">게시글 내역</a>
-                                            <a class="dropdown-item" href="./adusercmntlist.action?user_dstn_cd=${adUserCmnt.user_dstn_cd }" style="background-color: #F0B1A8;">댓글 내역</a>
+                                            <a class="dropdown-item" href="./aduserinfo.action?user_dstn_cd=${param.user_dstn_cd }">상세 정보</a>
+                                            <a class="dropdown-item" href="./aduserpostlist.action?user_dstn_cd=${param.user_dstn_cd }">게시글 내역</a>
+                                            <a class="dropdown-item" href="./adusercmntlist.action?user_dstn_cd=${param.user_dstn_cd }" style="background-color: #F0B1A8;">댓글 내역</a>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                 <!-- 댓글 내역 -->
                                 <div class="col-md-12">
                                     <div class="list-group">
-                                        <h4>댓글 내역<small> 해당 회원이 등록한 댓글입니다.</small></h4>
+                                        <h4>댓글 내역<small> 선택한 회원이 등록한 모든 댓글입니다.</small></h4>
                                         <div class="list-group-item">
                                             <div class="list-group">
                                                 <table class="table table-striped">
@@ -88,7 +88,7 @@
                                                             <td scope="row" class="mobile" >
                                                                 <a href="admoneypost.action?post_cd=${adUserCmnt.post_cd }" >${adUserCmnt.post_cd }</a>
                                                             </td>
-                                                            <td>${adUserCmnt.cmnt_cont }</td>
+                                                            <td><a href="admoneypost.action?post_cd=${adUserCmnt.post_cd }" >${adUserCmnt.cmnt_cont }</a></td>
                                                             <td class="mobile" style="text-align:center;">
 												               <fmt:parseDate value="${adUserCmnt.cmnt_date }" var="cmnt_date" pattern="yyyy-MM-dd" />
 															   <fmt:formatDate value="${cmnt_date}" pattern="yyyy-MM-dd" />
