@@ -20,89 +20,261 @@
 <script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
-
+	var user_dstn_cd = ${user_dstn_cd}
 	var year = ${year}
 	var month = ${month}
+	var day = ${day}
 
 	function moveCalendar()
 	{
 	  window.location.href = "./calendar.action?year="+year+"&month="+month;
 	}
+	
+	function acntreg()
+	{
+		if ($("#inout_cd").val()=="")
+		{
+			$("#inout_cd").focus();
+			alert("구분을 선택해주세요");
+			return;
+		}
+		
+		if ($("#cate_fst_cd").val()=="")
+		{
+			$("#cate_fst_cd").focus();
+			alert("1차 카테고리를 선택해주세요");
+			return;
+		}
+		
+		if ($("#cate_sec_cd").val()=="")
+		{
+			$("#cate_sec_cd").focus();
+			alert("2차 카테고리를 선택해주세요");
+			return;
+		}
+		
+		if ($("#acnt_dtl_cont").val()=="")
+		{
+			$("#acnt_dtl_cont").focus();
+			alert("상세내역을 입력해주세요");
+			return;
+		}
+		
+		if ($("#amnt").val()=="")
+		{
+			$("#amnt").focus();
+			alert("금액을 입력해주세요");
+			return;
+		}
+		
+		if (isNaN($("#amnt").val()))
+		{
+			$("#amnt").focus();
+			alert("숫자만 입력이 가능합니다");
+			return;
+		}
+		
+		var cate2 = document.getElementById("cate_sec_cd");
+		var cate2_cd = cate2.options[cate2.selectedIndex].value;
+		
+		var acnt_dtl_cont = document.getElementById("acnt_dtl_cont").value;
+		var amnt = document.getElementById("amnt").value;
+		
+		window.location.href = "./acntreg.action?user_dstn_cd="+user_dstn_cd+"&year="+year+"&month="+month+"&day="+day+"&cate_sec_cd="+cate2_cd+"&acnt_dtl_cont="+acnt_dtl_cont+"&amnt="+amnt;
+		
+	}
 
 	// 유효성검사
 	$(document).ready(function()
 	{
-		$("#next-btn").click(function()
-		{
-			if ($("#inout_cd").val()=="")
-			{
-				$("#inout_cd").focus();
-				return;
-			}
-			if ($("#cate_fst_cd").val()=="")
-			{
-				$("#cate_fst_cd").focus();
-				return;
-			}
-			if ($("#cate_sec_cd").val()=="")
-			{
-				$("#cate_sec_cd").focus();
-				return;
-			}
-			if ($("#acnt_dtl_cont").val()=="")
-			{
-				// $("#acnt_dtl_cont").val("상세내역을 입력하세요~!!!");
-				$("#acnt_dtl_cont").focus();
-				return;
-			}
-			if ($("#amnt").val()=="")
-			{
-				// $("#amnt").val("상세내역을 입력하세요~!!!");
-				$("#amnt").focus();
-				return;
-			}
-			$("#enterAcnt").submit();
-		});
-			
 		
 		// 추천검색어
 		$("#acnt_dtl_cont").keyup(function()
 		{	
-			alert("확인");
-			/* 
-			if ($("#acnt_dtl_cont").val() == "" || $("#acnt_dtl_cont").val() == " ")
-			{
-				String result = "<ul>검색결과 없음</ul>"
-				$("#searchResult").append(result);
-			}
-			*/
+			//alert("확인");
 		});
 		
 		
 		// 타이용자 평균금액 비교
 		$("#amnt").keyup(function()
 		{	
-			ajaxRequest();
-
-			if ( parseInt($("#amnt").text()) > parseInt($("#").val()) )	
+			/* if ( parseInt($("#amnt").text()) > parseInt($("#").val()) )	
 			{
 				$("#err").html("입력하신 기본급이 최소 기본급보다 작습니다.");
 				$("#err").css("display", "inline");
-				return;								//-- submit 액션 처리 중단
-			}
+				return;
+			} */
 		});
 	});
 	
-	function ajaxRequest()
+	// 1차 카테고리 선택시
+	function selectFst()
 	{
-		// 수정하기!!!!
-		/* 
-		$.post("ajax.action", {positionId: $("#positionId").val()}, function(data)
+		
+		var inout = document.getElementById("inout_cd");
+		var inout_cd = inout.options[inout.selectedIndex].value;
+		
+		var cate1 = document.getElementById("cate_fst_cd");
+		var cate1_cd = cate1.options[cate1.selectedIndex].value;
+		
+		var cate2 = document.getElementById("cate_sec_cd");
+		var cate2_cd = cate2.options[cate2.selectedIndex].value;
+		//var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
+		
+		if (cate1_cd == 1)
 		{
-			$("#minBasicPay").html(data);
+			// 주수입	
+			inout.selectedIndex=1;
+		
+			//cate2.selectedIndex=30;
+			//selectSec();
 			
-		});
-		*/
+			//cate1.options[1].remove();
+			
+		}
+		else if (cate1_cd == 2)
+		{
+			// 부수입	
+			inout.selectedIndex=1;
+			//cate2.selectedIndex=2;
+		}
+
+		
+	}
+	
+	// 2차 카테고리 선택시
+	function selectSec()
+	{
+		
+		var inout = document.getElementById("inout_cd");
+		var inout_cd = inout.options[inout.selectedIndex].value;
+		
+		var cate1 = document.getElementById("cate_fst_cd");
+		var cate1_cd = cate1.options[cate1.selectedIndex].value;
+		
+		var cate2 = document.getElementById("cate_sec_cd");
+		var cate2_cd = cate2.options[cate2.selectedIndex].value;
+		//var post_rept_dtl_cont = document.getElementById("postReptDtlCont");
+		
+		if (cate2_cd >= 1 && cate2_cd <= 5)
+		{
+			// 주수입	
+			inout.selectedIndex=1;
+			cate1.selectedIndex=1;
+		}
+		else if (cate2_cd >= 6 && cate2_cd <= 10)
+		{
+			// 부수입	
+			inout.selectedIndex=1;
+			cate1.selectedIndex=2;
+		}
+		else if (cate2_cd >= 11 && cate2_cd <= 14)
+		{
+			// 저축	
+			inout.selectedIndex=1;
+			cate1.selectedIndex=3;
+		}
+		else if (cate2_cd >= 15 && cate2_cd <= 19)
+		{
+			// 식비
+			inout.selectedIndex=2;
+			cate1.selectedIndex=4;
+		}
+		else if (cate2_cd >= 20 && cate2_cd <= 23)
+		{
+			// 카페/간식
+			inout.selectedIndex=2;
+			cate1.selectedIndex=5;
+		}
+		else if (cate2_cd >= 24 && cate2_cd <= 29)
+		{
+			// 통신/구독	
+			inout.selectedIndex=2;
+			cate1.selectedIndex=6;
+		}
+		else if (cate2_cd >= 30 && cate2_cd <= 35)
+		{
+			// 쇼핑/생활	
+			inout.selectedIndex=2;
+			cate1.selectedIndex=7;
+		}
+		else if (cate2_cd >= 36 && cate2_cd <= 40)
+		{
+			// 뷰티/미용	
+			inout.selectedIndex=2;
+			cate1.selectedIndex=8;
+		}
+		else if (cate2_cd >= 41 && cate2_cd <= 45)
+		{
+			// 교통	
+			inout.selectedIndex=2;
+			cate1.selectedIndex=9;
+		}
+		else if (cate2_cd >= 46 && cate2_cd <= 54)
+		{
+			// 자동차	
+			inout.selectedIndex=2;
+			cate1.selectedIndex=10;
+		}
+		else if (cate2_cd >= 55 && cate2_cd <= 61)
+		{
+			// 주거
+			inout.selectedIndex=2;
+			cate1.selectedIndex=11;
+		}
+		else if (cate2_cd >= 62 && cate2_cd <= 66)
+		{
+			// 의료/건강
+			inout.selectedIndex=2;
+			cate1.selectedIndex=12;
+		}
+		else if (cate2_cd >= 67 && cate2_cd <= 72)
+		{
+			// 금융	
+			inout.selectedIndex=2;
+			cate1.selectedIndex=13;
+		}
+		else if (cate2_cd >= 73 && cate2_cd <= 82)
+		{
+			// 문화/여가
+			inout.selectedIndex=2;
+			cate1.selectedIndex=14;
+		}
+		else if (cate2_cd >= 83 && cate2_cd <= 87)
+		{
+			// 여행/숙박
+			inout.selectedIndex=2;
+			cate1.selectedIndex=15;
+		}
+		else if (cate2_cd >= 88 && cate2_cd <= 92)
+		{
+			// 교육/학습
+			inout.selectedIndex=2;
+			cate1.selectedIndex=16;
+		}
+		else if (cate2_cd >= 93 && cate2_cd <= 97)
+		{
+			// 자녀/육아
+			inout.selectedIndex=2;
+			cate1.selectedIndex=17;
+		}
+		else if (cate2_cd >= 98 && cate2_cd <= 101)
+		{
+			// 반려동물
+			inout.selectedIndex=2;
+			cate1.selectedIndex=18;
+		}
+		else if (cate2_cd >= 102 && cate2_cd <= 108)
+		{
+			// 경조/선물
+			inout.selectedIndex=2;
+			cate1.selectedIndex=19;
+		}
+		else
+		{
+			inout.selectedIndex=0;
+			cate1.selectedIndex=0;
+		} 
 	}
 
 </script>
@@ -135,9 +307,7 @@
 								</select>
 							</td>
 							<td>
-							
-							 
-								<select name="cate_fst_cd" id="cate_fst_cd" style="width: 100%;">
+								<select name="cate_fst_cd" id="cate_fst_cd" onchange="selectFst()" style="width: 100%;">
 									<option value="" selected>1차카테고리</option>
 									<c:if test="${not empty fstCateList}">
 									<c:forEach var="fstCate" items="${fstCateList }" varStatus="status">
@@ -145,35 +315,9 @@
 									</c:forEach>
 									</c:if>
 								</select>
-								
-								
-								
-								<%-- 
-								<select name="fstCate" id="fstCate" style="width: 100%;">
-									<option value="" selected>1차카테고리</option>
-								</select>
-								<select name="fstCate_1" id="fstCate_1" style="width: 100%; display: none">
-									<option value="" selected>1차카테고리</option>
-									<c:if test="${not empty fstCateList}">
-									<c:forEach var="fstCate" items="${fstCateListOne }" varStatus="status">
-										<option value="${fstCate.cate_fst_cd }">${fstCate.cate_fst_name }</option>
-									</c:forEach>
-									</c:if>
-								</select>
-								<select name="fstCate_2" id="fstCate_2" style="width: 100%; display: none">
-									<option value="" selected>1차카테고리</option>
-									<c:if test="${not empty fstCateList}">
-									<c:forEach var="fstCate" items="${fstCateListTwo }" varStatus="status">
-										<option value="${fstCate.cate_fst_cd }">${fstCate.cate_fst_name }</option>
-									</c:forEach>
-									</c:if>
-								</select> 
-								--%>
 							</td>
 							<td>
-							
-							
-								<select name="cate_sec_cd" id="cate_sec_cd" style="width: 100%;">
+								<select name="cate_sec_cd" id="cate_sec_cd" onchange="selectSec()" style="width: 100%;">
 									<option value="" selected>2차카테고리</option>
 									<c:if test="${not empty secCateList}">
 									<c:forEach var="secCate" items="${secCateList }" varStatus="status">
@@ -181,8 +325,6 @@
 									</c:forEach>
 									</c:if>
 								</select>
-								
-								
 								
 							</td>
 							<td>
@@ -194,7 +336,7 @@
 								<input type="text"style="width: 100%;" id="amnt" name="amnt" placeholder="금액 입력">
 							</td>
 							<td>
-								<button id="next-btn" type="button" class="btn btn-primary" style="background-color: #1fa766; width: 100%;">등록</button>
+								<button id="next-btn" type="button" class="btn btn-primary" onclick="acntreg()" style="background-color: #1fa766; width: 100%;">등록</button>
 							</td>
 							<td>
 								<img src="img2/icon.png" alt="아이콘" style="width: 35px;">
