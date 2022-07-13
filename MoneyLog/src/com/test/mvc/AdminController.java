@@ -190,8 +190,11 @@ public class AdminController
 	    // dao 에 있는 select 쿼리 실행
 	 	// → model.add 후 AdUserInfo.jsp에서 el 사용
 	 	model.addAttribute("adUserInfo", dao.adUserInfo(dto));
+	 
 
 	 	model.addAttribute("userReptHistory", dao.userReptHistory(dto));
+	 	
+	 	
 
 	 	 
         result = "/AdUserInfo.jsp";
@@ -276,15 +279,89 @@ public class AdminController
 	   	
 	    // set
 	 	dto.setUser_dstn_cd(user_dstn_cd);
-
-	    // dao 에 있는 select 쿼리 실행
-	 	// → model.add 후 AdBanInfo.jsp에서 el 사용
-	 	model.addAttribute("adUserInfo", dao.adUserInfo(dto));
-	 	model.addAttribute("userReptHistory", dao.userReptHistory(dto));
+	 	
+	 	try
+		{
+	 		model.addAttribute("adUserInfo", dao.adUserInfo(dto));
+	 		model.addAttribute("userReptHistory", dao.userReptHistory(dto));
+	 		
+	 		if (dto.getAd_post_rept_date().equals("-"))
+			{
+				result = "/AdBan.jsp";
+				return result;
+			}
+		 	
+		} catch (Exception e)
+		{
+			System.out.println(e.toString());
+		}
 
         result = "/AdBanInfo.jsp";
 		
 		return result;
 	}
+	
+	
+	// 게시글신고접수 내역 리스트 조회
+	@RequestMapping(value = "/adpostreptlist.action", method = RequestMethod.GET)
+	public String adPostReptList( Model model, AdminDTO dto) throws SQLException 
+	{	
+		String result = null;
+		
+		IAdminDAO dao =sqlSession.getMapper(IAdminDAO.class);
+		 
+		model.addAttribute("adPostReptList", dao.adPostReptList());
+		
+		result = "/AdPostReptList.jsp";
+		
+		return result;
+		
+	}
+	
+	
+	// 게시글 신고내용 조회
+	@RequestMapping(value="/adpostrept.action", method=RequestMethod.GET)
+	public String adPostRept(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	    // AdPostReptList 에서 post_rept_cd 받기
+	 	String post_rept_cd = request.getParameter("post_rept_cd");
+	 	
+	    // set
+	 	dto.setPost_rept_cd(post_rept_cd);
+
+		model.addAttribute("adPostRept", dao.adPostRept(dto));
+		
+	 	result = "/AdPostRept.jsp";
+	 	
+		return result;
+	}
+	
+	
+	// 게시글 신고 미처리건 승인/반려 처리
+	@RequestMapping(value="/adpostreptok.action", method=RequestMethod.GET)
+	public String adPostReptOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	    // AdPostRept.jsp 에서 post_rept_cd, cnfm_cd받기
+	 	String post_rept_cd = request.getParameter("post_rept_cd");
+	 	String cnfm_cd = request.getParameter("cnfm_cd");
+	 	
+	    // set
+	 	dto.setPost_rept_cd(post_rept_cd);
+	 	dto.setCnfm_cd(cnfm_cd);
+		// model.addAttribute("adPostRept", dao.adPostRept(dto));
+	 	
+	 	result = "/AdPostRept.jsp";
+	 	
+		return result;
+	}
+	
 
 }

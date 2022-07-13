@@ -44,7 +44,7 @@
                                 <!-- 영구정지 회원 리스트 -->
                                 <div class="col-md-12 mt-3 mb-3">
                                     <div class="list-group">
-                                        <h4>영구정지 회원 목록<small> 영구정지된 회원들을 관리하세요</small></h4>
+                                        <h4>영구정지 회원 목록<small> 영구정지 처리된 회원입니다.</small></h4>
                                         <div class="list-group-item">
                                             <div class="list-group">
                                                 <table class="table">
