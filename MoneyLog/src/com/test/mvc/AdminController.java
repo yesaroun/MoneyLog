@@ -175,7 +175,7 @@ public class AdminController
 	
 	// 회원 정보 조회 (신고내역까지)
 	@RequestMapping(value="/aduserinfo.action", method=RequestMethod.GET)
-	public String adUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	public String adUserInfo(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
 	{
 		String result = null;
 		
@@ -194,9 +194,7 @@ public class AdminController
 
 	 	model.addAttribute("userReptHistory", dao.userReptHistory(dto));
 	 	
-	 	
-
-	 	 
+	
         result = "/AdUserInfo.jsp";
 		
 		return result;
@@ -204,7 +202,7 @@ public class AdminController
 	
 	// 관리자 회원 게시글 리스트 조회
 	@RequestMapping(value="/aduserpostlist.action", method=RequestMethod.GET)
-	public String adUserPostList(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	public String adUserPostList(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
 	{
 		String result = null;
 		
@@ -229,7 +227,7 @@ public class AdminController
 	
 	// 관리자 회원 댓글 리스트 조회
 	@RequestMapping(value="/adusercmntlist.action", method=RequestMethod.GET)
-	public String adUserCmntList(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	public String adUserCmntList(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
 	{
 		String result = null;
 		
@@ -251,7 +249,7 @@ public class AdminController
 	}
 	
 	// 영구정지 회원 리스트 조회
-	@RequestMapping(value = "/adbanlist.action", method = RequestMethod.GET)
+	@RequestMapping(value = "/adbanlist.action", method = RequestMethod.GET) 
 	public String adBanList( Model model, AdminDTO dto) throws SQLException 
 	{	
 		String result = null;
@@ -283,19 +281,19 @@ public class AdminController
 	 	try
 		{
 	 		model.addAttribute("adUserInfo", dao.adUserInfo(dto));
-	 		model.addAttribute("userReptHistory", dao.userReptHistory(dto));
-	 		
-	 		if (dto.getAd_post_rept_date().equals("-"))
+		 	model.addAttribute("userReptHistory", dao.userReptHistory(dto));
+		 		
+	 		if (dto.getAd_post_rept_cd().equals("-"))
 			{
 				result = "/AdBan.jsp";
 				return result;
 			}
-		 	
+			
 		} catch (Exception e)
 		{
 			System.out.println(e.toString());
-		}
-
+		}	
+		
         result = "/AdBanInfo.jsp";
 		
 		return result;
@@ -304,7 +302,7 @@ public class AdminController
 	
 	// 게시글신고접수 내역 리스트 조회
 	@RequestMapping(value = "/adpostreptlist.action", method = RequestMethod.GET)
-	public String adPostReptList( Model model, AdminDTO dto) throws SQLException 
+	public String adPostReptList( Model model, AdminDTO dto)
 	{	
 		String result = null;
 		
@@ -321,7 +319,7 @@ public class AdminController
 	
 	// 게시글 신고내용 조회
 	@RequestMapping(value="/adpostrept.action", method=RequestMethod.GET)
-	public String adPostRept(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	public String adPostRept(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
 	{
 		String result = null;
 		
@@ -342,25 +340,145 @@ public class AdminController
 	
 	
 	// 게시글 신고 미처리건 승인/반려 처리
-	@RequestMapping(value="/adpostreptok.action", method=RequestMethod.GET)
-	public String adPostReptOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto)
+	@RequestMapping(value="/adpostreptdone.action", method=RequestMethod.GET)
+	public String adPostReptDone(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	    
+	    // 세션에 저장된 ad_cd 
+	    String ad_cd = (String)session.getAttribute("ad_cd");
+	  	
+	    // AdPostRept.jsp → post_rept_cd, cnfm_cd
+	 	String post_rept_cd = request.getParameter("post_rept_cd");
+	 	String cnfm_cd = request.getParameter("cnfm_cd");
+	 	
+	    // set
+	 	dto.setAd_cd(ad_cd);
+	 	dto.setPost_rept_cd(post_rept_cd);
+	 	dto.setCnfm_cd(cnfm_cd);
+	 	
+	 	// insert 쿼리 실행
+	 	dao.adPostReptOk(dto);
+	 	
+	 	request.setAttribute("msg", "해당 게시글에 대한 신고처리가 완료되었습니다.");
+	 		
+	 	result = "/adpostreptlist.action";
+		return result;
+	}
+	
+	
+	// 댓글 신고접수 내역 리스트 조회
+	@RequestMapping(value = "/adcmntreptlist.action", method = RequestMethod.GET)
+	public String adCmntReptList( Model model, AdminDTO dto) throws SQLException 
+	{	
+		String result = null;
+		
+		IAdminDAO dao =sqlSession.getMapper(IAdminDAO.class);
+		 
+		model.addAttribute("adCmntReptList", dao.adCmntReptList());
+		
+		result = "/AdCmntReptList.jsp";
+		
+		return result;
+		
+	}
+	
+	
+	// 댓글 신고내용 조회
+	@RequestMapping(value="/adcmntrept.action", method=RequestMethod.GET)
+	public String adCmntRept(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
 	{
 		String result = null;
 		
 	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
 	  	
-	    // AdPostRept.jsp 에서 post_rept_cd, cnfm_cd받기
-	 	String post_rept_cd = request.getParameter("post_rept_cd");
+	    // AdCmntReptList 에서 cmnt_rept_cd 받기
+	 	String cmnt_rept_cd = request.getParameter("cmnt_rept_cd");
+	 	
+	    // set
+	 	dto.setCmnt_rept_cd(cmnt_rept_cd);
+
+		model.addAttribute("adCmntRept", dao.adCmntRept(dto));
+		
+	 	result = "/AdCmntRept.jsp";
+	 	
+		return result;
+	}
+	
+	
+	// 댓글 신고 미처리건 승인/반려 처리
+	@RequestMapping(value="/adcmntreptdone.action", method=RequestMethod.GET)
+	public String adCmntReptDone(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	    
+	    // 세션에 저장된 ad_cd 
+	    String ad_cd = (String)session.getAttribute("ad_cd");
+	  	
+	    // AdCmntRept.jsp → cmnt_rept_cd, cnfm_cd
+	 	String cmnt_rept_cd = request.getParameter("cmnt_rept_cd");
 	 	String cnfm_cd = request.getParameter("cnfm_cd");
 	 	
 	    // set
-	 	dto.setPost_rept_cd(post_rept_cd);
+	 	dto.setAd_cd(ad_cd);
+	 	dto.setCmnt_rept_cd(cmnt_rept_cd);
 	 	dto.setCnfm_cd(cnfm_cd);
-		// model.addAttribute("adPostRept", dao.adPostRept(dto));
 	 	
-	 	result = "/AdPostRept.jsp";
+	 	// insert 쿼리 실행
+	 	dao.adCmntReptOk(dto);
 	 	
+	 	request.setAttribute("msg", "해당 댓글에 대한 신고처리가 완료되었습니다.");
+	 		
+	 	result = "/adcmntreptlist.action";
 		return result;
+	}
+	
+	// 승인된 게시글 신고 상세내역 조회 (회원정보 조회시 사용)
+	@RequestMapping(value="/adpostreptok.action", method=RequestMethod.GET)
+	public String adPostReptOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	 	// post_rept_cd 
+	 	String post_rept_cd = request.getParameter("post_rept_cd");
+	 	 	
+	 	// set
+	 	dto.setPost_rept_cd(post_rept_cd);
+
+	 	model.addAttribute("adPostRept", dao.adPostRept(dto));
+	 		
+	 	result = "/AdPostReptOk.jsp";
+	 	 	
+	 	return result;
+	 		
+	}
+	
+	// 승인된 댓글 신고 상세내역 조회 (회원정보 조회시 사용)
+	@RequestMapping(value="/adcmntreptok.action", method=RequestMethod.GET)
+	public String adCmnttReptOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model, AdminDTO dto) throws SQLException 
+	{
+		String result = null;
+		
+	    IAdminDAO dao = sqlSession.getMapper(IAdminDAO.class);
+	  	
+	 	// post_rept_cd (union all 사용해서 post_rept_cd 수신)
+	 	String cmnt_rept_cd = request.getParameter("cmnt_rept_cd");
+	 	 	
+	 	// set
+	 	dto.setCmnt_rept_cd(cmnt_rept_cd);
+
+	 	model.addAttribute("adCmntRept", dao.adCmntRept(dto));
+	 		
+	 	result = "/AdCmntReptOk.jsp";
+	 	 	
+	 	return result;
+	 		
 	}
 	
 

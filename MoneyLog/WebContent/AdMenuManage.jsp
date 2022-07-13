@@ -32,7 +32,7 @@
                 </a>
                 <div class="collapse" id="rept">
                     <a href="./adpostreptlist.action" class="list-group-item" data-parent="#sidebar">게시글 신고처리</a>
-                    <a href="AdCmntReptList.jsp" class="list-group-item" data-parent="#sidebar">댓글 신고처리</a>
+                    <a href="./adcmntreptlist.action" class="list-group-item" data-parent="#sidebar">댓글 신고처리</a>
                 </div>
                 
             </div> 

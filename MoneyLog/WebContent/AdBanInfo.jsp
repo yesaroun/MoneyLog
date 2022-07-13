@@ -95,7 +95,7 @@
                             <div class="col-md-12">
                                 <br>
                                 <div class="list-group">
-                                    <h4>신고내역<small> 선택한 영구정지 회원의 지난 6개월 내 신고내역 입니다.</small></h4>
+                                    <h4>신고 처리 내역<small> 선택한 영구정지 회원의 지난 6개월 내 처리된 신고내역 입니다.</small></h4>
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table">
@@ -118,8 +118,8 @@
 												           <tr>
 												             <td>									               
 												               <c:set var ="post_reg_user" value="${userRept.post_reg_user}"/>
-												               <c:if test="${userRept.user_dstn_cd == post_reg_user}"><a href="">[게시글] ${userRept.ad_post_rept_cd }</a></c:if>
-												               <c:if test="${userRept.user_dstn_cd != post_reg_user}"><a href="">[댓글] ${userRept.ad_post_rept_cd }</a></c:if>
+												               <c:if test="${userRept.user_dstn_cd == post_reg_user}"><a href="./adpostreptok.action?post_rept_cd=${userRept.post_rept_cd }">[게시글] ${userRept.ad_post_rept_cd }</a></c:if>
+												               <c:if test="${userRept.user_dstn_cd != post_reg_user}"><a href="./adcmntreptok.action?cmnt_rept_cd=${userRept.post_rept_cd }">[댓글] ${userRept.ad_post_rept_cd }</a></c:if>
 												             </td>
 												             <td>
 											                	 <fmt:parseDate value="${userRept.ad_post_rept_date}" var="ad_post_rept_date" pattern="yyyy-MM-dd" />
@@ -131,7 +131,7 @@
 												       </c:when>
 												       <c:otherwise>
 												         <tr>
-												        	 <td colspan="2" style="text-align: center;">신고내역이 없습니다.</td>
+												        	 <td colspan="2" style="text-align: center;">신고 처리 내역이 없습니다.</td>
 												         </tr>
 													   </c:otherwise>
 												   </c:choose>

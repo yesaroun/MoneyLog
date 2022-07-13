@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>게시글신고처리목록</title>
+<title>게시글 신고처리 목록</title>
 
 <meta charset="utf-8">
 <meta name="viewport"
@@ -17,6 +17,16 @@
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+	var msg = "<c:out value='${msg}'/>";      
+	if(!msg=="")
+	{
+		// 게시글 신고처리 후 다시 게시글신고리스트 페이지로 돌아올 때 메세지 출력
+		alert(msg);
+	}
+
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -104,7 +114,7 @@
                                                         <td scope="row" >${postReptList.cnfm_result }</td>     
 														
                                                         <td>
-                                                            <button type="button" class="btn btn-success" name="user_dstn_cd"
+                                                            <button type="button" class="btn btn-success" 
                                                             onclick="location.href='./adpostrept.action?post_rept_cd=${postReptList.post_rept_cd }'">보기</button>
                                                         </td>
                                                     </tr>

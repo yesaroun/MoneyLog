@@ -53,9 +53,16 @@ public interface IAdminDAO
 	public AdminDTO adPostRept(AdminDTO dto);
 	
 	// 게시글 신고 승인 처리  -- insert
-	// public int adPostReptOk(AdminDTO dto);
+	public int adPostReptOk(AdminDTO dto);
 	
+	// 댓글신고접수 내역 리스트 조회
+	public ArrayList<AdminDTO> adCmntReptList();
 	
+	// 댓글 신고 내용 조회
+	public AdminDTO adCmntRept(AdminDTO dto);
+	
+	// 댓글 신고 승인 처리 -- insert
+	public int adCmntReptOk(AdminDTO dto);
 	
 	// ==========================================윤태 추가 
 	
