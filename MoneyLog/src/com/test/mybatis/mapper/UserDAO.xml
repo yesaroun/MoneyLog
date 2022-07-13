@@ -233,24 +233,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM INOUT
 	</select>
 	
-	<!-- 1차 카테고리 출력(지출 선택) -->
+	<!-- 1차 카테고리 출력(전체) -->
 	<select id="fstCateList" resultType="com.test.mvc.UserDTO">
 		SELECT CATE_FST_CD, CATE_FST_NAME, INOUT_CD
 		FROM CATE_FST
-		WHERE INOUT_CD=2
 	</select>
 	
-	<!-- 2차 카테고리 출력(지출 전체 출력) -->
+	<!-- 2차 카테고리 출력(전체 출력) -->
 	<select id="secCateList" resultType="com.test.mvc.UserDTO">
 		SELECT CATE_SEC_CD, CATE_SEC_NAME, CATE_FST_CD
 		FROM CATE_SEC
-		WHERE CATE_FST_CD BETWEEN 4 AND 19
 	</select>
 	
 	<!-- 가계부 등록 -->
 	<insert id="acntReg">
 		INSERT INTO ACNT(ACNT_CD, USER_DSTN_CD, ACNT_DATE, CATE_SEC_CD, ACNT_DTL_CONT, AMNT) 
-		VALUES(ACNT_SEQ.NEXTVAL, #{user_dstn_cd}, TO_DATE(#{year}||FN_TWONUM(#{month})||'20', 'YYYY-MM-DD')
+		VALUES(ACNT_SEQ.NEXTVAL, #{user_dstn_cd}, TO_DATE( #{yearMonthDay}, 'YYYY-MM-DD')
 			 , #{cate_sec_cd} , #{acnt_dtl_cont}, #{amnt})
 	</insert>
 	<!-- 

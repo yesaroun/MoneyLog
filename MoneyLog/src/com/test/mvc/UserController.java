@@ -493,30 +493,26 @@ public class UserController
 		
 	
 	// 가계부 등록 처리
-	@RequestMapping(value="acntreg.action", method = RequestMethod.POST)
+	@RequestMapping(value="acntreg.action", method = RequestMethod.GET)
 	public ModelAndView acntReg(UserDTO dto, HttpServletRequest request, HttpServletResponse response,  HttpSession session)
 	{
 		IUserDAO dao = sqlSession.getMapper(IUserDAO.class);
 		
 		ModelAndView mv = new ModelAndView();
-
-		String session_user_dstn_cd = (String)session.getAttribute("user_dstn_cd");  //session 객체에서 세션으로 set된 값 get으로 가져오기
-		String session_year = (String)session.getAttribute("year");
-		String session_month = (String)session.getAttribute("month");
 		
-		String cate_sec_cd = request.getParameter("cate_sec_cd");
-		String acnt_dtl_cont = request.getParameter("acnt_dtl_cont");
-		String amnt = request.getParameter("amnt");
+		String year = dto.getYear();
+		String month = dto.getMonth();
+		String day = dto.getDay();
+		String yearMonthDay = year+"-"+month+"-"+day;
 		
-		dto.setUser_dstn_cd(session_user_dstn_cd);
+		dto.setYearMonthDay(yearMonthDay);
 		
-		dto.setYear(session_year);
-		dto.setMonth(session_month);
-		dto.setCate_sec_cd(cate_sec_cd);
-		dto.setAcnt_dtl_cont(acnt_dtl_cont);
-		dto.setAmnt(amnt);
+		dao.acntReg(dto);
 		
-		mv.addObject("acntReg", dao.acntReg(dto));			// 구분(수입/지출) 카테고리 출력
+		// 년월일
+		mv.addObject("year", dto.getYear());
+		mv.addObject("month", dto.getMonth());
+		mv.addObject("day", dto.getDay());
 		
 		mv.setViewName("/useracntdaylist.action");
 		
