@@ -121,14 +121,11 @@
 												               <c:if test="${userRept.user_dstn_cd == post_reg_user}"><a href="">[게시글] ${userRept.ad_post_rept_cd }</a></c:if>
 												               <c:if test="${userRept.user_dstn_cd != post_reg_user}"><a href="">[댓글] ${userRept.ad_post_rept_cd }</a></c:if>
 												             </td>
-												             <td>${userRept.ad_post_rept_date}</td>
-												            <%-- 
 												             <td>
-                                                        	     ${userRept.ad_post_rept_date}
 											                	 <fmt:parseDate value="${userRept.ad_post_rept_date}" var="ad_post_rept_date" pattern="yyyy-MM-dd" />
 																 <fmt:formatDate value="${ad_post_rept_date}" pattern="yyyy-MM-dd" />
 											                 </td>
-											                 --%>
+												            <%-- <td>${userRept.ad_post_rept_date}</td> --%>
 												           </tr>
 												         </c:forEach> 
 												       </c:when>

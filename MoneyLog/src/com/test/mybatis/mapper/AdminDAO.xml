@@ -270,6 +270,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
      AND CB.CMNT_BAN_CD IS NOT NULL
 	ORDER BY BAN_DATE DESC
 	</select>
+	
+	<!-- 게시글 신고내역 리스트 조회 -->
+	<select id="adPostReptList" resultType="com.test.mvc.AdminDTO">
+	SELECT POST_REPT_CD, OPINION, REPT_CATE_NAME, POST_REPT_DATE
+	    , CNFM_RESULT, USER_DSTN_CD
+	FROM POST_REPT_VIEW
+	ORDER BY POST_REPT_CD DESC
+	</select>
+	
+	<!-- 게시글 신고내용 조회 -->
+	<select id="adPostRept" resultType="com.test.mvc.AdminDTO">
+	SELECT POST_REPT_CD, POST_REPT_DATE, POST_CD, REPT_USER_DSTN_CD
+        , CNFM_CD, CNFM_RESULT, AD_CD, AD_POST_REPT_CD, AD_POST_REPT_DATE
+        , OPINION, REPT_CATE_CD, REPT_CATE_NAME, POST_REPT_DTL_CONT
+        , USER_DSTN_CD, POST_TITLE, POST_DATE
+	FROM POST_REPT_VIEW
+	WHERE POST_REPT_CD = #{post_rept_cd}   
+	</select>
+	
+	
  	
  	<!-- 현지 끝=======================================================================================-->
 	

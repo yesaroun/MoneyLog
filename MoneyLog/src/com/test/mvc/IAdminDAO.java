@@ -46,7 +46,15 @@ public interface IAdminDAO
 	// 영구정지회원 리스트 조회
 	public ArrayList<AdminDTO> adBanList();
 	
-	// 영구정지회원 정보 조회
+	// 게시글신고접수 내역 리스트 조회
+	public ArrayList<AdminDTO> adPostReptList();
+	
+	// 게시글 신고 내용 조회
+	public AdminDTO adPostRept(AdminDTO dto);
+	
+	// 게시글 신고 승인 처리  -- insert
+	// public int adPostReptOk(AdminDTO dto);
+	
 	
 	
 	// ==========================================윤태 추가 
