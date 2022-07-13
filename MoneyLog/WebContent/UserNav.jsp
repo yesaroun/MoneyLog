@@ -17,7 +17,7 @@
 
 <!-- 네비게이션바  -->
 	<nav class="navbar navbar-expand-lg navbar-dark">
-		<a class="navbar-brand" href="calendar.action">MONEYLOG</a>
+		<a class="navbar-brand" href="calendar.action"><img src="./img/banner-white.png" alt="배너" style="width: 120px; height: 27px;" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbar" aria-controls="navbar" aria-expanded="false"
 			aria-label="Toggle navigation">
