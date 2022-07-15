@@ -17,6 +17,9 @@ public class AdCsDTO
 	// 쿼리에 필요한 이용자 정보
 	public String user_name, user_id;
 	
+ 	// 페이징에 필요한 정보
+	public int pageNum, start, end, count;
+	
 	// getter / setter 구성
 	public String getAd_cd()
 	{
@@ -247,7 +250,46 @@ public class AdCsDTO
 	{
 		this.user_id = user_id;
 	}
-	
-	
+
+	public int getPageNum()
+	{
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum)
+	{
+		this.pageNum = pageNum;
+	}
+
+	public int getStart()
+	{
+		return start;
+	}
+
+	public void setStart(int start)
+	{
+		this.start = start;
+	}
+
+	public int getEnd()
+	{
+		return end;
+	}
+
+	public void setEnd(int end)
+	{
+		this.end = end;
+	}
+
+	public int getCount()
+	{
+		return count;
+	}
+
+	public void setCount(int count)
+	{
+		this.count = count;
+	}
+
 	
 }

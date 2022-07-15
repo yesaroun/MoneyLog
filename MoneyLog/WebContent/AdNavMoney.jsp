@@ -38,7 +38,7 @@
 			<div class="navbar-nav mr-sm-2">
 				<a class="nav-item nav-link" href="./aduserlist.action">통합관리</a>
 				<a class="nav-item nav-link active" href="./adpostlist.action?pageNum=1">머니리뷰</a>
-				<a class="nav-item nav-link" href="./adnotilist.action">고객지원</a>
+				<a class="nav-item nav-link" href="./adnotilist.action?pageNum=1">고객지원</a>
 				<a class="nav-item nav-link" href="./adminlogout.action">로그아웃</a>
 			</div>
 		</div>

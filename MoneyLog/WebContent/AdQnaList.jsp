@@ -17,14 +17,6 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
-<script type="text/javascript">
-
-	function sendIt()
-	{
-		alert("검색");
-	}
-	
-</script>
 </head>
 <body>
 
@@ -98,7 +90,7 @@
                                 <div class="row">
                                     <div class="col" style="place-items: center; display: grid;">
                                         <div id="paging" class="mb-5">
-                                            <p>1 <span style="color: #F5CAC3;">Prev</span> 21 22 23 24 25 26 27 28 29 30 <span style="color: #92B4EC;">Next</span> 54</p>		
+                                           <p>${strList }${start }${end }</p>	
                                         </div>	
                                     </div>
                                 </div>

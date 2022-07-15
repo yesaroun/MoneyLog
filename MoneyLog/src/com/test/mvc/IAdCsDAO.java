@@ -7,13 +7,16 @@ public interface IAdCsDAO
 	// ▼ 관리자 공지사항 ▼
 	
 	// 공지사항 총 게시물 수
-	//public int adNotiCount();
+	public int adNotiCount();
 	
 	// 공지사항 리스트 확인
- 	public ArrayList<AdCsDTO> adNotiList();
+ 	public ArrayList<AdCsDTO> adNotiList(AdCsDTO dto);
  	
  	// 공지사항 글 보기
  	public AdCsDTO adNotiView(String noti_cd); 
+ 	
+ 	// 공지사항 게시물 조회수 증가
+ 	public int adNotiViewPlus(AdCsDTO dto);
  	
  	// 공지사항 수정하기
  	public int adNotiModify(AdCsDTO dto);
@@ -26,13 +29,13 @@ public interface IAdCsDAO
  	
  	// ▼ 관리자 문의글 ▼
  	
- 	// 관리자 아이디로 관리자 코드 조회
- 	public String findAdcd(String ad_id);
+	// 공지사항 총 게시물 수
+	public int adQnaCount();
  	
  	// 문의하기 리스트 확인
- 	public ArrayList<AdCsDTO> adQnaList();
+ 	public ArrayList<AdCsDTO> adQnaList(AdCsDTO dto);
  	
- 	// 문의글 리스트 확인
+ 	// 문의글 게시물 확인
  	public AdCsDTO adQnaView(String qna_cd);
 
  	// 문의글 답변 등록하기
