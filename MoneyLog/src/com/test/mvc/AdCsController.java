@@ -23,7 +23,7 @@ public class AdCsController
 	
 	// 공지사항 리스트 출력
 	@RequestMapping(value="/adnotilist.action", method = RequestMethod.GET)
-	public String adNotiList(Model model, HttpSession session) throws SQLException
+	public String adNotiList(Model model, HttpSession session, int pageNum) throws SQLException
 	{
 		String result = null;
 		
@@ -33,11 +33,45 @@ public class AdCsController
 		String ad_cd = (String)session.getAttribute("ad_cd");
 		String ad_id = (String)session.getAttribute("ad_id");
 		
-		// dao 쿼리 실행 후 얻은 리스트 결과를 addAttribute()로 key adNotiList 에 담아 전송
-		model.addAttribute("adNotiList", dao.adNotiList());
+		// ★ 페이징 처리 진행중 ★
+	
+		// 공지사항 전체 개수 구하기
+		model.addAttribute("allPostCount", dao.adNotiCount());
 		
+		// 페이징 객체 생성
+		Paging paging = new Paging();
+		
+		// 한 페이지당 게시글 개수
+		int numPerPage = 6;
+		
+		// 페이지 개수
+		int pageCount = paging.getPageCount(numPerPage, dao.adNotiCount());
+		
+		// 페이지 기본 url
+		String url = "./adnotilist.action";
+		
+		// 페이지 index
+		String strList = paging.pageIndexList(pageNum, pageCount, url);
+		
+		// start & end 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
+		int count = 0;
+		count = dao.adNotiCount();
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
+		
+		AdCsDTO dto = new AdCsDTO();
+		dto.setStart(start);
+		dto.setEnd(end);
+		dto.setCount(count);
+		dto.setPageNum(pageNum);
+		
+		// dao 쿼리 실행 후 얻은 리스트 결과를 addAttribute()로 key-value 에 담아 전송
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("strList", strList);
+		model.addAttribute("adNotiList", dao.adNotiList(dto));
+		//model.addAttribute("pageNum", pageNum);
+
 		result = "/AdNotiList.jsp";
-		
 		return result;
 	}
 	
@@ -52,6 +86,12 @@ public class AdCsController
 		
 		// 이전 페이지에서 noti_cd 수신
 		String noti_cd = request.getParameter("noti_cd");
+		
+		// dto set 해주기
+		dto.setNoti_cd(noti_cd);
+		
+		// 조회수 증가 메소드 실행
+		dao.adNotiViewPlus(dto);
 		
 		// noti_cd 로 dao 쿼리 실행 후 얻은 문의글 조회 결과를 addAttribute()로 key adNotiView 에 담아 전송
 		model.addAttribute("adNotiView", dao.adNotiView(noti_cd));
@@ -190,16 +230,46 @@ public class AdCsController
 	
 	// 문의글 리스트 출력
 	@RequestMapping(value="/adqnalist.action", method = RequestMethod.GET)
-	public String AdQnaList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto) throws SQLException
+	public String AdQnaList(Model model, HttpServletRequest request, HttpServletResponse response, HttpSession session, AdCsDTO dto, int pageNum) throws SQLException
 	{
 		String result = null;
 		
 		IAdCsDAO dao = sqlSession.getMapper(IAdCsDAO.class);
 		
-		//String ad_id = (String)session.getAttribute("ad_id");
-		//model.addAttribute("ad_id", ad_id);
-		
-		model.addAttribute("adQnaList", dao.adQnaList());
+		// 문의글 전체 개수 구하기
+		model.addAttribute("allPostCount", dao.adQnaCount());
+				
+		// 페이징 객체 생성
+		Paging paging = new Paging();
+				
+		// 한 페이지당 게시글 개수
+		int numPerPage = 8;
+				
+		// 페이지 개수
+		int pageCount = paging.getPageCount(numPerPage, dao.adQnaCount());
+				
+		// 페이지 기본 url
+		String url = "./adqnalist.action";
+				
+		// 페이지 index
+		String strList = paging.pageIndexList(pageNum, pageCount, url);
+				
+		// start & end 구하기 (해당 페이지에 어떤 게시글들이 들어갈지)
+		int count = 0;
+		count = dao.adQnaCount();
+		int start = count-((pageNum*numPerPage)-1);
+		int end = count-((pageNum-1)*numPerPage);
+
+		// dto 에 추출한 start / end set 해주기
+		dto.setStart(start);
+		dto.setEnd(end);
+		dto.setCount(count);
+		dto.setPageNum(pageNum);
+				
+		// dao 쿼리 실행 후 얻은 결과를 addAttribute()로 key-value 에 담아 전송
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("strList", strList);
+		model.addAttribute("adQnaList", dao.adQnaList(dto));
 		
 		result = "/AdQnaList.jsp";
 		
