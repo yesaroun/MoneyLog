@@ -184,7 +184,7 @@ ul .join_box { border: 1px solid #ddd; background-color: #fff; }
 #userIdCertifiedOk .text-center {margin-top: 15px;}
 #userIdCertifiedOk .text-center > button { margin-bottom: 15px; background-color: #92B4EC; }
 
-/* userIdNo */
+/* userIdNo.jsp */
 #userIdNo > div { margin: 25px; }
 #userIdNo .sign-up-form { border-radius: 3px; }
 #userIdNo .sign-up-form form { padding-top: 15px; margin-bottom: 15px; max-width: 720px }
@@ -192,6 +192,25 @@ ul .join_box { border: 1px solid #ddd; background-color: #fff; }
 #userIdNo .sign-up-form .form-group > img { width: 50px; margin-bottom: 15px; }
 #userIdNo #btn-div { text-align: center; margin-top: 15px; }
 #userIdNo #btn-div .btn { margin-bottom: 15px; background-color:  #92B4EC; }
+
+/* userPwCertified.jsp */
+#userPwCertified #findpw { padding-top: 15px; margin-bottom: 15px; max-width: 720px; }
+#userPwCertified #goSMS { margin-top: 3px; background-color: #F5CAC3; float: right; min-width: 90px; }
+#userPwCertified #confirmBnt { margin-top: 3px; background-color: #F5CAC3; float: right; min-width: 90px; }
+#userPwCertified #nextBtn { margin-bottom: 15px; background-color:  #92B4EC; float: right; }
+
+/* userPwCertifiedOk.jsp */
+#userPwCertifiedOk form { padding-top: 15px; margin-bottom: 15px; max-width: 720px; }
+#userPwCertifiedOk img { margin-bottom: 15px; width: 50px; }
+#userPwCertifiedOk .go-login { margin-top: 15px; }
+#userPwCertifiedOk .go-login > button { margin-bottom: 15px; background-color: #92B4EC; }
+
+/* userPwNo.jsp */
+#userPwNo form { padding-top: 15px; margin-bottom: 15px; max-width: 720px; }
+#userPwNo form img { margin-bottom: 15px; width: 50px; }
+#userPwNo .find-id-div {text-align: center; margin-top: 15px;}
+#userPwNo .find-id-btn {margin-bottom: 15px; background-color: #92B4EC; }
+#userPwNo .go-login-btn { margin-bottom: 15px; background-color: #92B4EC; }
 
 /*달력*/
 .calendar-border { border: 1px solid black; }
