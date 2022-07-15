@@ -32,8 +32,10 @@
 </script>
 </head>
 <body>
-	<!-- ○ 상단 네비게이션 include -->
-	<jsp:include page="./UserNavCs.jsp"></jsp:include>
+	<header>
+		<!-- ○ 상단 네비게이션 include -->
+		<jsp:include page="./UserNavCs.jsp"></jsp:include>
+	</header>
 
 	<!-- 여백이 없는 반응형 웹을 만들때 container-fluid 사용 -->
     <div class="container-fluid">
@@ -136,17 +138,9 @@
 </div>				
 
 	
-	<!-- 제이쿼리 자바스크립트 추가하기 -->
 	<script src="./js/jquery-3.2.1.min.js"></script>
-	<!-- Popper 자바스크립트 추가하기 -->
 	<script src="./js/popper.min.js"></script>
-	<!-- 부트스트랩 자바스크립트 추가하기 -->
 	<script src="./js/bootstrap.min.js"></script>
-	<!-- MDB 라이브러리 추가하기 <== chart!!!! **** -->
-	<script src="./js/mdb.min.js"></script>
-
-
-
 
 
 </body>

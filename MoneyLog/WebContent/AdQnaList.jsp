@@ -45,8 +45,8 @@
                 <main id="adNotiList">
                     <section>
                         <div class="row">
-                            <div class="col-12" style="margin-top: 30px;" >
-                                <div class="list_title">
+                            <div class="col-12" id="List_title" style="margin-top: 30px;" >
+                                <div class="list-title">
                                         문의사항
                                 </div>
                             </div>
