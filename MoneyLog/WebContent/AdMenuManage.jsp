@@ -23,17 +23,16 @@
                     <img style="width: 20px;" src="./img2/user.svg"><span class="d-none d-md-inline ml-1"> 회원목록</span>
                 </a>
                 
-                <a href="AdBan.jsp" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
+                <a href="./adbanlist.action" class="list-group-item d-inline-block collapsed" data-parent="#sidebar">
                     <img style="width: 20px;" src="./img2/user-check-black.svg"><span class="d-none d-md-inline ml-1"> 영구정지회원</span>
                 </a>
-                
                 <a href="#rept" class="list-group-item d-inline-block collapsed" data-toggle="collapse"
                 data-parent="#sidebar" aria-expanded="false">
                     <img style="width: 20px;" src="./img/edit.svg"><span class="d-none d-md-inline ml-1"> 신고처리</span>
                 </a>
                 <div class="collapse" id="rept">
-                    <a href="AdPostReptList.jsp" class="list-group-item" data-parent="#sidebar">게시글 신고처리</a>
-                    <a href="AdCmntReptList.jsp" class="list-group-item" data-parent="#sidebar">댓글 신고처리</a>
+                    <a href="./adpostreptlist.action" class="list-group-item" data-parent="#sidebar">게시글 신고처리</a>
+                    <a href="./adcmntreptlist.action" class="list-group-item" data-parent="#sidebar">댓글 신고처리</a>
                 </div>
                 
             </div> 

@@ -55,50 +55,56 @@
 <script src="./js/userTerms.js"></script>
 </head>
 <body>
-	<!-- ○ 상단 네비게이션 include -->
-	<jsp:include page="./GuestNav.jsp"></jsp:include>
-
-    <!-- 회원가입 상단 아이콘 -->
-	<div class="container-fixed m-4">
-        <div class="row sign-up-form">
-            <h2 id="sign-up-intro">아이디찾기 <span id="sign-up-moneylog">MONEYLOG</span></h2>
-        </div>
-
-        <div class="row bg-light sign-up-form mt-3">
-			<div class="sign-up-process col-12">
-                <form action="/MoneyLog/findid.action" method="post" id="idForm" class="pt-3 md-3" style="max-width: 720px">
-                    <div class="row form-group">
-						<div class="col-8">
-							<label>이름</label>
-							<input type="text" name="user_name" id="user_name" class="form-control" placeholder="이름을 입력해주세요.">
+<div class="wrap">
+	<header>
+		<!-- ○ 상단 네비게이션 include -->
+		<jsp:include page="./GuestNav.jsp"></jsp:include>
+	</header>
+	
+	<main id="userIdCertified">
+		<!-- 회원가입 상단 아이콘 -->
+		<div class="container-fixed m-4">
+	        <div class="row sign-up-form">
+	            <h2 id="sign-up-intro">아이디찾기 <span id="sign-up-moneylog">MONEYLOG</span></h2>
+	        </div>
+	
+	        <div class="row sign-up-form id-find">
+				<div class="sign-up-process col-12">
+	                <form action="/MoneyLog/findid.action" method="post" id="idForm">
+	                    <div class="row form-group">
+							<div class="col-8">
+								<label>이름</label>
+								<input type="text" name="user_name" id="user_name" class="form-control" placeholder="이름을 입력해주세요.">
+							</div>
 						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-8">
-							<label>휴대폰 번호</label><!-- oninput="autoHyphen(this)" -->
-							<input type="text" name="user_tel" id="user_tel" class="form-control" placeholder="휴대폰 번호를 입력해주세요."  maxlength="13">
+						<div class="row form-group">
+							<div class="col-8">
+								<label>휴대폰 번호</label><!-- oninput="autoHyphen(this)" -->
+								<input type="text" name="user_tel" id="user_tel" class="form-control" placeholder="휴대폰 번호를 입력해주세요."  maxlength="13">
+							</div>
+							<div class="col-4">
+								<br>
+								<button type="button" name="goSMS" id="goSMS" class="btn btn-primary">sms 전송</button>
+							</div>
 						</div>
-						<div class="col-4">
-							<br>
-							<button type="button" name="goSMS" id="goSMS" class="btn btn-primary mt-2" style="background-color: #EFD345; float: right; min-width: 90px;">sms 전송</button>
+						<div class="row form-group">
+							<div class="col-8">
+								<label>인증번호</label>
+								<input type="text" class="form-control" placeholder="SMS로 수신된 인증 번호 5자리를 입력해주세요.">
+							</div>
+							<div class="col-4">
+								<br>
+								<button type="button" name="confirmBnt" id="confirmBnt" class="btn btn-primary">인증</button>
+							</div>
 						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col-8">
-							<label>인증번호</label>
-							<input type="text" class="form-control" placeholder="SMS로 수신된 인증 번호 5자리를 입력해주세요.">
-						</div>
-						<div class="col-4">
-							<br>
-							<button type="button" name="confirmBnt" id="confirmBnt" class="btn btn-primary mt-2" style="background-color: #EFD345; float: right; min-width: 90px;">인증</button>
-						</div>
-					</div>
-					<br>
-					<button id="nextBtn" type="submit" class="btn btn-primary mb-3" style="background-color: #1fa766; float: right;">다음</button>
-				</form>
-            </div>
-		</div>
-    </div>
+						<br>
+						<button id="nextBtn" type="submit" class="btn btn-primary">다음</button>
+					</form>
+	            </div>
+			</div>
+	    </div>
+	</main>
+</div>
 
     <script src="./js/jquery-3.2.1.min.js"></script>
 	<script src="./js/popper.min.js"></script>

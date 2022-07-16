@@ -11,18 +11,16 @@
 <head>
 <title>회원목록</title>
 
-<script type="text/javascript">
-	/*
-	function newPage()
-	{
-	    window.location.href = "./adUserInfo.jsp"
-	}
-	*/
-</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
+<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	
+ 
+</script>
+
 </head>
 <body>
     <div class="wrap">
@@ -93,7 +91,7 @@
                             <div class="col-md-12">
                                 <div class="list-group">
                                     <br>
-                                    <h4>회원 목록<small> 회원들을 관리하세요</small></h4>
+                                    <h4>회원 목록<small> 머니로그를 이용중인 회원입니다.</small></h4>
                                     <div class="list-group-item">
                                         <div class="list-group">
                                             <table class="table ad-user-list-table">
@@ -140,7 +138,8 @@
 										                </td>
 										                
                                                         <td>
-                                                            <button type="button" class="btn btn-success" onclick="location.href='./aduserinfo.action'">보기</button>
+                                                            <button type="button" class="btn btn-success" name="user_dstn_cd"
+                                                            onclick="location.href='./aduserinfo.action?user_dstn_cd=${adUser.user_dstn_cd }'">보기</button>
                                                         </td>
                                                     </tr>
                                                     </c:forEach>

@@ -19,29 +19,10 @@
 <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	
-	$(function()
-	{	
-		// 승인 버튼 클릭 시 액션 처리
-		$("#cmntReptOk-btn").click(function()
-		{
-			alert("신고를 승인하시겠습니까? \n승인 시 해당 댓글은 계속해서 블라인드 처리됩니다.");
-			
-			$(location).attr("href", "adcmntreptdone.action?cmnt_rept_cd=${adCmntRept.cmnt_rept_cd }&cnfm_cd=1");
-			return;
-		
-		});
-	
-		// 반려 버튼 클릭 시 액션 처리
-		$("#cmntReptNo-btn").click(function()
-		{
-			
-			alert("신고를 반려하시겠습니까? \n반려 시 해당 댓글은 다시 공개 처리됩니다.");
-			
-			$(location).attr("href", "adcmntreptdone.action?cmnt_rept_cd=${adCmntRept.cmnt_rept_cd }&cnfm_cd=2");
-			return;
-				
-		});	
-	});
+	function back() 
+	{
+	 	history.back();
+	}
 	
 </script>
 </head>
@@ -127,22 +108,13 @@
                                             </tr>
                                             -->
                                             <tr>
-                                             	<!-- ad_cmnt_rept_cd 가 '-'인지 체크 -->
-                                             	<!-- 신고 미처리 상태 -->
-                                             	<c:if test="${adCmntRept.ad_cmnt_rept_cd eq '-'}">
-                                                	<td colspan="4">-</td>
-                                                 	<td colspan="4">-</td>
-                                                 	<td colspan="4" class="mobile">-</td>    
-                                                 </c:if>
-                                                 <!-- 신고 처리 완료 상태 -->
-                                                 <c:if test="${adCmntRept.ad_cmnt_rept_cd ne '-'}">
-                                               		<td colspan="4">${adCmntRept.cnfm_result }</td>
-                                                 	<td colspan="4">[ 관리자 ${adCmntRept.ad_cd } ]</td>
-                                                  	<td colspan="4" class="mobile">
-                                                  	    <fmt:parseDate value="${adCmntRept.ad_cmnt_rept_date }" var="adCmnt_rept_date" pattern="yyyy-mm-dd" />
-									  			    	<fmt:formatDate value="${adCmnt_rept_date}" pattern="yyyy-mm-dd" />
-								  			        </td>  
-								  		         </c:if>   
+                                             	
+                                            	<td colspan="4">${adCmntRept.cnfm_result }</td>
+                                                <td colspan="4">[ 관리자 ${adCmntRept.ad_cd } ]</td>
+                                                <td colspan="4" class="mobile">
+                                                  	<fmt:parseDate value="${adCmntRept.ad_cmnt_rept_date }" var="adCmnt_rept_date" pattern="yyyy-mm-dd" />
+									  			    <fmt:formatDate value="${adCmnt_rept_date}" pattern="yyyy-mm-dd" />
+								  			    </td>      
                                             </tr>
                                         </tbody>
                                     </table>
@@ -191,40 +163,15 @@
                         </div>
                     </section>
                     <section class="row">
-                        <!-- 신고4 -->
                         <div class="col-md-12">
                             <div class="list-group">
-                                <br><br>
-                                <h4>신고 처리<small></small></h4>
                                 <div class="list-group-item">
                                     <table class="table">
                                         <tbody>
-                                            <!-- 신고처리 -->
-                                            
-                                            <c:if test="${adCmntRept.ad_cmnt_rept_cd eq '-'}">
-                                            <tr>
-                                                <td colspan="12">
-                                                	<button class="btn approve-btn" id="cmntReptOk-btn">승인</button>
-                                                    <button class="btn deny-btn" id="cmntReptNo-btn">반려</button>
-                                                    <!-- <button type="button" class="btn approve-btn" data-toggle="modal" data-target="#modal" id="cmntReptOk-btn">승인</button>-->
-                                                    <!-- <button type="button" class="btn deny-btn" data-toggle="modal" data-target="#modal" id="cmntReptNo-btn">반려</button>-->
-                                                </td>
-                                            </tr>
-                                            </c:if>
-                                                
-                                            <c:if test="${adCmntRept.ad_cmnt_rept_cd ne '-'}">
-                                            <tr>
-                                                <td colspan="12">
-                                                    <button class="btn approve-btn" onclick="alert('이미 처리된 신고내역입니다.')">승인</button>
-                                                    <button class="btn deny-btn" onclick="alert('이미 처리된 신고내역입니다.')">반려</button>
-                                                </td>
-                                            </tr>
-                                            </c:if>
-                                            
                                             <!-- 돌아가기 버튼 -->
                                             <tr>
                                                 <td colspan="12">
-                                                    <button class="btn return-btn" onclick="location.href='./adcmntreptlist.action'">돌아가기</button>
+                                                    <button class="btn return-btn" data-toggle="modal" data-target="#modal" onclick="back()">돌아가기</button>
                                                 </td>
                                             </tr>
                                         </tbody>

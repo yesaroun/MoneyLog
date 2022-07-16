@@ -18,12 +18,234 @@ public class UserDTO
     , noti_cd, noti_title, noti_cont, noti_view, noti_date, noti_pin
     , ad_ansr_cd, ad_cd, ad_ansr_cont, ad_ansr_date;
 	
-	// 페이징 처리용
-	private int pageNum;
-	private int rnum;
-	private int start, end;
-
+	private int prevNum, nextNum, start, end;
 	
+	// 태형 추가 (캘린더 총합)
+	private int tot;
+	
+	// 통계용 데이터
+	private int cate_fst_1, cate_fst_2, cate_fst_3
+	, cate_fst_4, cate_fst_5, cate_fst_6
+	, cate_fst_7, cate_fst_8, cate_fst_9
+	, cate_fst_10, cate_fst_11, cate_fst_12
+	, cate_fst_13, cate_fst_14, cate_fst_15
+	, cate_fst_16, cate_fst_17, cate_fst_18, cate_fst_19;
+	
+	private String yearMonthDay;
+	
+	
+	
+	
+	public String getYearMonthDay()
+	{
+		return yearMonthDay;
+	}
+
+	public void setYearMonthDay(String yearMonthDay)
+	{
+		this.yearMonthDay = yearMonthDay;
+	}
+
+	public int getCate_fst_1()
+	{
+		return cate_fst_1;
+	}
+
+	public void setCate_fst_1(int cate_fst_1)
+	{
+		this.cate_fst_1 = cate_fst_1;
+	}
+
+	public int getCate_fst_2()
+	{
+		return cate_fst_2;
+	}
+
+	public void setCate_fst_2(int cate_fst_2)
+	{
+		this.cate_fst_2 = cate_fst_2;
+	}
+
+	public int getCate_fst_3()
+	{
+		return cate_fst_3;
+	}
+
+	public void setCate_fst_3(int cate_fst_3)
+	{
+		this.cate_fst_3 = cate_fst_3;
+	}
+
+	public int getCate_fst_4()
+	{
+		return cate_fst_4;
+	}
+
+	public void setCate_fst_4(int cate_fst_4)
+	{
+		this.cate_fst_4 = cate_fst_4;
+	}
+
+	public int getCate_fst_5()
+	{
+		return cate_fst_5;
+	}
+
+	public void setCate_fst_5(int cate_fst_5)
+	{
+		this.cate_fst_5 = cate_fst_5;
+	}
+
+	public int getCate_fst_6()
+	{
+		return cate_fst_6;
+	}
+
+	public void setCate_fst_6(int cate_fst_6)
+	{
+		this.cate_fst_6 = cate_fst_6;
+	}
+
+	public int getCate_fst_7()
+	{
+		return cate_fst_7;
+	}
+
+	public void setCate_fst_7(int cate_fst_7)
+	{
+		this.cate_fst_7 = cate_fst_7;
+	}
+
+	public int getCate_fst_8()
+	{
+		return cate_fst_8;
+	}
+
+	public void setCate_fst_8(int cate_fst_8)
+	{
+		this.cate_fst_8 = cate_fst_8;
+	}
+
+	public int getCate_fst_9()
+	{
+		return cate_fst_9;
+	}
+
+	public void setCate_fst_9(int cate_fst_9)
+	{
+		this.cate_fst_9 = cate_fst_9;
+	}
+
+	public int getCate_fst_10()
+	{
+		return cate_fst_10;
+	}
+
+	public void setCate_fst_10(int cate_fst_10)
+	{
+		this.cate_fst_10 = cate_fst_10;
+	}
+
+	public int getCate_fst_11()
+	{
+		return cate_fst_11;
+	}
+
+	public void setCate_fst_11(int cate_fst_11)
+	{
+		this.cate_fst_11 = cate_fst_11;
+	}
+
+	public int getCate_fst_12()
+	{
+		return cate_fst_12;
+	}
+
+	public void setCate_fst_12(int cate_fst_12)
+	{
+		this.cate_fst_12 = cate_fst_12;
+	}
+
+	public int getCate_fst_13()
+	{
+		return cate_fst_13;
+	}
+
+	public void setCate_fst_13(int cate_fst_13)
+	{
+		this.cate_fst_13 = cate_fst_13;
+	}
+
+	public int getCate_fst_14()
+	{
+		return cate_fst_14;
+	}
+
+	public void setCate_fst_14(int cate_fst_14)
+	{
+		this.cate_fst_14 = cate_fst_14;
+	}
+
+	public int getCate_fst_15()
+	{
+		return cate_fst_15;
+	}
+
+	public void setCate_fst_15(int cate_fst_15)
+	{
+		this.cate_fst_15 = cate_fst_15;
+	}
+
+	public int getCate_fst_16()
+	{
+		return cate_fst_16;
+	}
+
+	public void setCate_fst_16(int cate_fst_16)
+	{
+		this.cate_fst_16 = cate_fst_16;
+	}
+
+	public int getCate_fst_17()
+	{
+		return cate_fst_17;
+	}
+
+	public void setCate_fst_17(int cate_fst_17)
+	{
+		this.cate_fst_17 = cate_fst_17;
+	}
+
+	public int getCate_fst_18()
+	{
+		return cate_fst_18;
+	}
+
+	public void setCate_fst_18(int cate_fst_18)
+	{
+		this.cate_fst_18 = cate_fst_18;
+	}
+
+	public int getCate_fst_19()
+	{
+		return cate_fst_19;
+	}
+
+	public void setCate_fst_19(int cate_fst_19)
+	{
+		this.cate_fst_19 = cate_fst_19;
+	}
+
+	public int getTot()
+	{
+		return tot;
+	}
+
+	public void setTot(int tot)
+	{
+		this.tot = tot;
+	}
+
 	// getter / setter 구성
 	public String getNoti_cd()
 	{
@@ -735,6 +957,26 @@ public class UserDTO
 		this.leave_date = leave_date;
 	}
 
+	public int getPrevNum()
+	{
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum)
+	{
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum()
+	{
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum)
+	{
+		this.nextNum = nextNum;
+	}
+
 	public int getStart()
 	{
 		return start;
@@ -754,25 +996,7 @@ public class UserDTO
 	{
 		this.end = end;
 	}
-
-	public int getPageNum()
-	{
-		return pageNum;
-	}
-
-	public void setPageNum(int pageNum)
-	{
-		this.pageNum = pageNum;
-	}
-
-	public int getRnum()
-	{
-		return rnum;
-	}
-
-	public void setRnum(int rnum)
-	{
-		this.rnum = rnum;
-	}
+	
+	
 	
 }

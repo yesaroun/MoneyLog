@@ -26,32 +26,7 @@
 	var qna_cd = '<c:out value="${adQnaView.qna_cd}"/>';
 	var ad_ansr_cont = '<c:out value="${adQnaView.ad_ansr_cont}"/>';
 	
-	
-	// 답변 버튼을 눌렀을 때
-	function regAnswer()
-	{
-		$(function()
-		{
-			//alert(qna_cd);
-			
-			var ad_ansr_cont = $("#newAnswer").val();
-			
-			// 답변 내용을 입력하지 않았을 때
-			if ( ad_ansr_cont == "")
-			{
-				// 에러 메세지 표시
-				$("#err1").css("display" ,"inline");
-				$("#newAnswer").focus();
-				return false;
-			}
-			else
-			{
-				// 컨트롤러의 문의글 답변 등록 메소드로 이동
-				window.location.href = "./reganswer.action?ad_ansr_cont="+ad_ansr_cont+"&qna_cd="+qna_cd;
-			}
-		});
-		
-	}
+
 	
 </script>
 </head>
@@ -71,7 +46,7 @@
                 <jsp:include page="./AdMenuCs.jsp"></jsp:include>
             </div>
             <div class="span10">
-              <form > <!-- action="/reganswer.action" method="get" id="regQna" -->
+              <form>
                 <main id="adNotiList">
                     <section>
                         <div class="row">
@@ -121,15 +96,12 @@
                             <div class="col-8" style="margin-top: 20px; margin-bottom: 20px;" >
                                 <div class="input-group">
                                 
-                                
-                                <input type="text" id="newAnswer" class="form-control" style="height: 70px; border: 1px solid;" placeholder="내용을 입력해주세요.">
+                                <input type="text" id="newAnswer" class="form-control" style="height: 70px; border: 1px solid;" value="${adQnaView.ad_ansr_cont }" disabled>
+
                                     <span class="input-group-btn">
-                                     	<button class="btn btn-default" type="button" id="QnaRegBtn" style="background-color: skyblue; color: white;" data-toggle="modal" data-target="#modal">답변</button>
-                                        <button class="btn btn-default" type="button" style="background-color: #F5CAC3; color: white;" disabled> 수정</button>
+                                     	<button class="btn btn-default" type="button" id="QnaRegBtn" style="background-color: skyblue; color: white;" disabled>답변</button>
+                                        <button class="btn btn-default" type="button" style="background-color: #F5CAC3; color: white;" onclick="javascript:location.href='<%=cp%>/adqnaupdateform.action?qna_cd=<%=qna_cd%>&ad_ansr_cd=${adQnaView.ad_ansr_cd }'"> 수정</button>
                                         <button class="btn btn-default" type="button" style="background-color: lightgray; color: white;" onclick="javascript:location.href='<%=cp%>/adqnalist.action'">목록</button>
-                                    	
-                                    	<input type="hidden" id="qna_cd" name="qna_cd" value=<%=qna_cd %> />
-                                    	
                                     </span>
                                 </div>
                             </div><!-- /.col-sm-8 -->
@@ -154,34 +126,6 @@
 	<script src="./js/popper.min.js"></script>
 	<script src="./js/bootstrap.min.js"></script>
 
-
-
-<!-- modal 만들기 -->
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal"
-aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">등록되었습니다.</h4>
-                
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidde="true">&times;</span>
-                </button>
-            </div>
-            
-            <div class="modal-body" style="text-align : center;">
-                <form>
-                    <img src="./img3/register.png" width="50%;">
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="regAnswer()">확인</button>
-                    </div>
-                    
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 
 </body>
 </html>

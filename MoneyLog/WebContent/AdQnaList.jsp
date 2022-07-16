@@ -5,6 +5,9 @@
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
+<%
+	String ad_id = (String)request.getAttribute("ad_id");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,24 +17,14 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="stylesheet" href="./css/bootstrap.min.css">
 <link rel="stylesheet" href="./css/admin.css">
-<script type="text/javascript">
-
-	function sendIt()
-	{
-		alert("검색");
-	}
-	
-</script>
 </head>
 <body>
 
 
 <div class="wrap">
     <header>
-        <header>
-            <!-- ○ 상단 네비게이션 include -->
-	        <jsp:include page="./AdNavCs.jsp"></jsp:include>
-        </header>
+    	<!-- ○ 상단 네비게이션 include -->
+        <jsp:include page="./AdNavCs.jsp"></jsp:include>
     </header>
 
     <div class="container-fluid">
@@ -44,8 +37,8 @@
                 <main id="adNotiList">
                     <section>
                         <div class="row">
-                            <div class="col-12" style="margin-top: 30px;" >
-                                <div class="list_title">
+                            <div class="col-12" id="List_title" style="margin-top: 30px;" >
+                                <div class="list-title">
                                         문의사항
                                 </div>
                             </div>
@@ -73,7 +66,17 @@
 		                			<c:forEach var="adQna" items="${adQnaList }" varStatus="status">
 		                			<tr>
 			                			<td scope="row" class="mobile" style="text-align:center;">${adQna.rownum }</td>
-			                			<td><a href="AdQnaCont.jsp" style="color: #000000;">${adQna.qna_title }</a></td>
+			                			<%-- <td><a href="./adqnacont.action?qna_cd=${adQna.qna_cd }"" style="color: #000000;">${adQna.qna_title }</a></td> --%>
+												                			
+			                			<c:choose>
+			                				<c:when test="${adQna.ad_ansr eq '-'}">
+			                					<td><a href="./adqnacont.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
+			                				</c:when>
+			                				<c:otherwise>
+			                					<td><a href="./reganswerform.action?qna_cd=${adQna.qna_cd }" style="color: #000000;">${adQna.qna_title }</a></td>
+			                				</c:otherwise>
+			                			</c:choose>
+			                		 
 			                			<td class="mobile" style="text-align:center;">${adQna.ad_ansr }</td>
 			                			<td class="mobile" style="text-align:center;">
 			                				<fmt:parseDate value="${adQna.qna_date }" var="qna_date" pattern="yyyy-mm-dd" />
@@ -87,7 +90,7 @@
                                 <div class="row">
                                     <div class="col" style="place-items: center; display: grid;">
                                         <div id="paging" class="mb-5">
-                                            <p>1 <span style="color: #F5CAC3;">Prev</span> 21 22 23 24 25 26 27 28 29 30 <span style="color: #92B4EC;">Next</span> 54</p>		
+                                           <p>${strList }${start }${end }</p>	
                                         </div>	
                                     </div>
                                 </div>

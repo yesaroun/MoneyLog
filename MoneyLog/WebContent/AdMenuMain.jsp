@@ -22,24 +22,24 @@
                 </a>
                 <div class="collapse" id="admanage">
                     <a href="./aduserlist.action" class="list-group-item" data-parent="#sidebar">회원 목록</a>
-                    <a href="AdBan.jsp" class="list-group-item" data-parent="#sidebar">영구정지회원</a>
-                    <a href="AdPostReptList.jsp" class="list-group-item" data-parent="#sidebar">신고처리</a>
+                    <a href="./adbanlist.action" class="list-group-item" data-parent="#sidebar">영구정지회원</a>
+                    <a href="./adpostreptlist.action" class="list-group-item" data-parent="#sidebar">신고처리</a>
                 </div>
 
                 <a href="#moneyreview" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
                     <img style="width: 20px;" src="./img2/file-text-black.svg"><span class="d-none d-md-inline ml-1"> 머니리뷰</span>
                 </a>
                 <div class="collapse" id="moneyreview">
-                    <a href="AdPostList.jsp" class="list-group-item" data-parent="#sidebar">게시글 목록</a>
-                    <a href="AdCmntList.jsp" class="list-group-item" data-parent="#sidebar">댓글 목록</a>
+                    <a href="./adpostlist.action?pageNum=1" class="list-group-item" data-parent="#sidebar">게시글 목록</a>
+                    <a href="./adcmntlist.action?pageNum=1" class="list-group-item" data-parent="#sidebar">댓글 목록</a>
                 </div>
                 
                 <a href="#cs" class="list-group-item d-inline-block collapsed" data-toggle="collapse" data-parent="#sidebar" aria-expanded="false">
                     <img style="width: 20px;" src="./img/user.svg"><span class="d-none d-md-inline ml-1"> 고객지원</span>
                 </a>
                 <div class="collapse" id="cs">
-                    <a href="./adnotilist.action" class="list-group-item" data-parent="#sidebar">공지사항</a>
-                    <a href="./adqnalist.action" class="list-group-item" data-parent="#sidebar">문의글</a>
+                    <a href="./adnotilist.action?pageNum=1" class="list-group-item" data-parent="#sidebar">공지사항</a>
+                    <a href="./adqnalist.action?pageNum=1" class="list-group-item" data-parent="#sidebar">문의글</a>
                 </div>
                 
             </div> 
