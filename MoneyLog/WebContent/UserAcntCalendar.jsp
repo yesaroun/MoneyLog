@@ -96,7 +96,7 @@
 			<c:forEach var="in" items="${inTot }">
 				if (i==${in.day})
 				{
-					url += "<span class='in'>수입 : "+${in.tot}+" 원</span><br>";
+					url += "<span class='in'>수입 : " + "<fmt:formatNumber value='${in.tot}' pattern='#,###' />" + " 원</span><br>";
 				}
 			</c:forEach>
 			
@@ -104,7 +104,7 @@
 			
 				if (i==${out.day})
 				{
-					url += "<span class='out'>지출 : "+${out.tot}+" 원</span><br>";
+					url += "<span class='out'>지출 : " + "<fmt:formatNumber value='${out.tot}' pattern='#,###' />" + " 원</span><br>";
 				}
 			</c:forEach>
 	
