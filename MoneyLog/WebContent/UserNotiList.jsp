@@ -82,7 +82,7 @@
 					      </tr>	
 			    	 </thead>
 			         <tbody>
-		             
+		             	
 						<c:if test="${empty userNotiList}">
 						<tr>
 							<td colspan="5" style="text-align: center;">등록된 공지사항이 없습니다.</td>
@@ -109,7 +109,7 @@
 							</tr>
 						</c:forEach>
 						</c:if>
-
+						
 		            </tbody>
 				    </table>
 					  
