@@ -20,3 +20,4 @@
 - jQuery
 
 ## ERD 설계
+[img](./docs/DB모델링_머니로그.png)
